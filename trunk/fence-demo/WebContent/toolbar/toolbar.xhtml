@@ -1,0 +1,83 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/derocate/part.xhtml">
+	<ui:define name="pageTitle">Button</ui:define>
+	<ui:define name="body">
+		<div class="introduction">
+		<h1>Panel有关说明</h1>
+		<p>toolbar增加了position属性用来区别位置，值可以为：tbar和bbar。不设置默认为tbar</p>
+		</div>
+		<table class="demoTable">
+			<tr>
+				<td class="td"><s:panel title="Standard" width="500"
+					autoShow="true" height="100">
+					<s:toolbar autoShow="true">
+						<s:splitbutton text="Menu Button" iconCls="add16">
+							<s:menu>
+								<s:textitem text="Menu Item1" />
+							</s:menu>
+						</s:splitbutton>
+						<s:tbseparator />
+						<s:button autoShow="true" text="Copy" iconCls="add16"
+							handler="Ext.getCmp('rightTextItem').setText('New Text Item');" />
+						<s:action text="Action" />
+						<s:tbfill />
+						<s:tbtextitem id="rightTextItem" text="Text item" iconCls="add16" />
+					</s:toolbar>
+				</s:panel></td>
+			</tr>
+			<tr>
+				<td class="td"><s:panel title="Multi Columns" width="500"
+					height="150">
+					<s:toolbar>
+						<s:buttongroup columns="3" title="Clipboard">
+							<s:splitbutton text="Menu Button" iconCls="add16">
+								<s:menu>
+									<s:textitem text="Menu Item1" />
+								</s:menu>
+							</s:splitbutton>
+							<s:button text="Cut" iconCls="add16" />
+							<s:button text="Copy" iconCls="add16" />
+							<s:button text="Paste" iconCls="add16" />
+							<s:button text="Format" iconCls="add16" />
+						</s:buttongroup>
+						<s:buttongroup columns="3" title="Other Bugus Actions">
+							<s:splitbutton text="Menu Button" iconCls="add16">
+								<s:menu>
+									<s:textitem text="Menu Item1" />
+								</s:menu>
+							</s:splitbutton>
+							<s:button text="Cut" iconCls="add16" />
+							<s:button text="Copy" iconCls="add16" />
+							<s:button text="Paste" iconCls="add16" />
+							<s:button text="Format" iconCls="add16" />
+						</s:buttongroup>
+					</s:toolbar>
+				</s:panel></td>
+			</tr>
+
+			<tr>
+				<td class="td"><s:panel
+					title="Medium icons, arrows to the bottom" width="500" height="250">
+					<s:toolbar>
+						<s:buttongroup defaults="{scale:'medium',iconAlign:'top'}"
+							title="Clipboard">
+							<s:splitbutton text="Menu Button" iconCls="add24"
+								arrowAlign="bottom">
+								<s:menu>
+									<s:textitem text="Menu Item1" />
+								</s:menu>
+							</s:splitbutton>
+							<s:button text="Cut" iconCls="add24" arrowAlign="bottom" />
+							<s:button text="Copy" iconCls="add24" arrowAlign="bottom" />
+							<s:button text="Paste" iconCls="add24" arrowAlign="bottom" />
+							<s:button text="Format" iconCls="add24" arrowAlign="bottom" />
+						</s:buttongroup>
+					</s:toolbar>
+				</s:panel></td>
+			</tr>
+		</table>
+	</ui:define>
+</ui:composition>

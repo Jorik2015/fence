@@ -1,0 +1,100 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/derocate/part.xhtml">
+	<ui:define name="pageTitle">GridPanel</ui:define>
+	<ui:define name="body">
+		<table class="demoTable" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="td"><h:form /> <s:gridpanel id="gridpanel1"
+					loadMask="true"
+					title="GridPanel use Store and ArrayRender and static(Javascript Array) data"
+					height="150" width="500">
+					<s:toolbar>
+						<s:button text="R(GridPanel)" type="button" iconCls="rerender"
+							render="gridpanel1" tooltip="Rerender the GridPanel"></s:button>
+						<s:button text="R(Store)" type="button" iconCls="rerender"
+							render="store1" tooltip="Rerender the Store"></s:button>
+						<s:button text="R(Load)" type="button" iconCls="rerender"
+							handler="store1.load();" tooltip="ReLoad the Store"></s:button>
+					</s:toolbar>
+					<s:cm>
+						<s:rownumber />
+						<s:column header="username" dataIndex="username" width="100"
+							sortable="true" />
+						<s:column header="password" dataIndex="password" width="100" />
+					</s:cm>
+					<s:store id="store1"
+						data="[['#{userAction.labelText}','123456'],['abner','123455'],['伍治源','123456']]">
+						<s:arrayreader idIndex="0" root="data">
+							<s:dfield name="username" />
+							<s:dfield name="password" />
+						</s:arrayreader>
+					</s:store>
+				</s:gridpanel></td>
+			</tr>
+			<tr>
+				<td class="td"><s:gridpanel id="gridpanel2" loadMask="true"
+					title="Gridpanel use Store and JsonRender" height="150" width="500">
+					<s:toolbar>
+						<s:button text="R(GridPanel)" type="button" iconCls="rerender"
+							render="gridpanel2" tooltip="Rerender the GridPanel"></s:button>
+						<s:button text="R(Store)" type="button" iconCls="rerender"
+							render="store2" tooltip="Rerender the Store"></s:button>
+						<s:button text="R(Load)" type="button" iconCls="rerender"
+							handler="store2.load();" tooltip="ReLoad the Store"></s:button>
+					</s:toolbar>
+					<s:cm>
+						<s:rownumber />
+						<s:column header="username" dataIndex="username" width="100"
+							sortable="true" />
+						<s:column header="password" dataIndex="password" width="100" />
+						<s:datecolumn header="BirthDate" dataIndex="birthdate" width="100" />
+						<s:column header="Salary" dataIndex="salary" width="100" />
+					</s:cm>
+
+					<s:store id="store2" data="#{userAction.list}">
+						<s:jsonreader root="data">
+							<s:dfield name="username" />
+							<s:dfield name="password" />
+							<s:dfield name="birthdate" type="date" dateFormat="Y-m-d H:i:s" />
+							<s:dfield name="salary" type="float" />
+						</s:jsonreader>
+					</s:store>
+				</s:gridpanel></td>
+			</tr>
+			<tr>
+				<td class="td"><s:gridpanel id="gridpanel3" loadMask="true"
+					title="Simple Gridpanel(Data Array)" height="150" width="500">
+					<s:toolbar>
+						<s:button text="R(GridPanel)" type="button" iconCls="rerender"
+							render="gridpanel3" tooltip="Rerender the GridPanel"></s:button>
+						<s:button text="R(Store)" type="button" iconCls="rerender"
+							render="store3" tooltip="Rerender the Store"></s:button>
+						<s:button text="R(Load)" type="button" iconCls="rerender"
+							handler="store3.load();" tooltip="ReLoad the Store"></s:button>
+					</s:toolbar>
+					<s:cm>
+						<s:rownumber />
+						<s:column header="username" dataIndex="username" width="100"
+							sortable="true" />
+						<s:column header="password" dataIndex="password" width="100" />
+						<s:datecolumn header="BirthDate" dataIndex="birthdate" width="100" />
+						<s:column header="Salary" dataIndex="salary" width="100" />
+					</s:cm>
+
+					<s:store id="store3" data="#{userAction.list}">
+						<s:jsonreader root="data">
+							<s:dfield name="username" />
+							<s:dfield name="password" />
+							<s:dfield name="birthdate" type="date" dateFormat="Y-m-d H:i:s" />
+							<s:dfield name="salary" type="float" />
+						</s:jsonreader>
+					</s:store>
+				</s:gridpanel></td>
+			</tr>
+		</table>
+
+	</ui:define>
+</ui:composition>

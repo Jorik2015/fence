@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/derocate/part.xhtml">
+	<ui:define name="pageTitle">Button</ui:define>
+	<ui:define name="body">
+		<h:outputScript name="jsf.js" library="javax.faces" target="head" />
+		<div id="overview"><s:formpanel title="FormPanel" width="500"
+			height="400">
+			<s:toolbar>
+				<s:action id="action" text="Action" handler="alert('action')"/>
+				<s:button text="Menu">
+					<s:menu>
+						<s:textitem refer="action" />
+					</s:menu>
+				</s:button>
+				<s:tbfill />
+				<s:button text="disable" handler="action.disable()"/>
+			</s:toolbar>
+			<div><s:button refer="action" /></div>
+		</s:formpanel></div>
+	</ui:define>
+</ui:composition>
