@@ -95,7 +95,6 @@ columns: [
             
 // instead of specifying renderer: Ext.util.Format.dateRenderer(
 'm/d/Y') use xtype
-
             {
                 header: 
 'Last Updated', width: 135, dataIndex: 
@@ -114,7 +113,6 @@ true,
 
 //      Return CSS class to apply to rows depending upon data
 values
-
         
 getRowClass: 
 function(record, index) {

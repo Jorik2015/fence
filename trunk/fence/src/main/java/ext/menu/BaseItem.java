@@ -206,7 +206,7 @@ public class BaseItem extends ExtCommand {
           clickHideDelay
          : Number
         Length of time in milliseconds to wait
-        before hiding after a click (defaults to 100)
+        before hiding after a click (defaults to 1)
 	 */
 	
 	public Integer getClickHideDelay () {

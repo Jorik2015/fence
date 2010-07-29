@@ -55,7 +55,6 @@ new Ext.tree.TreePanel({
     border: false,
     
 // auto create TreeLoader
-
     dataUrl: 
 'get-nodes.php',
 
@@ -162,7 +161,6 @@ function(n) {
 'tabpanel',
         
 // remaining code not shown ...
-
     }]
 });
     

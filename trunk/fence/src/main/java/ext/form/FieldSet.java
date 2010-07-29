@@ -37,7 +37,6 @@ with FieldSets',
     labelWidth: 75, 
 // 
 label settings here cascade unless overridden
-
     url: 
 'save-form.php',
     frame:true,
@@ -49,10 +48,8 @@ label settings here cascade unless overridden
 'column', 
 // arrange items 
 in columns
-
     defaults: {      
 // defaults applied to items
-
         layout: 
 'form',
         border: false,
@@ -63,7 +60,6 @@ in columns
         
 // Fieldset 
 in Column 1
-
         xtype:
 'fieldset',
         columnWidth: 0.5,
@@ -76,7 +72,6 @@ in Column 1
 '-20' 
 // leave room 
 for error icon
-
         },
         defaultType: 
 'textfield',
@@ -95,19 +90,16 @@ for error icon
         
 // Fieldset 
 in Column 2 - Panel inside
-
         xtype:
 'fieldset',
         title: 
 'Show Panel', 
 // title, header, or checkboxToggle creates fieldset header
-
         autoHeight:true,
         columnWidth: 0.5,
         checkboxToggle: true,
         collapsed: true, 
 // fieldset initially collapsed
-
         layout:
 'anchor',
         items :[{

@@ -101,8 +101,7 @@ import java.util.Date;
 
 // add a handler 
 for a 
-'message' event sent by the server 
-
+'message' event sent by the server
 Ext.Direct.on(
 'message', 
 function(e){

@@ -63,31 +63,24 @@ new Ext.dd.DragZone(v.getEl(), {
 
 //      On receipt of a mousedown event, see 
 if it is within a DataView node.
-
 //      Return a drag data object 
 if so.
-
         getDragData: 
 function(e) {
 
 //          Use the DataView
 's own itemSelector (a mandatory property) to
-
 //          test 
 if the mousedown is within one of the DataView's
 nodes.
-
             
 var sourceEl = e.getTarget(v.itemSelector, 10);
 
 //          If the mousedown is within a DataView node, clone
 the node to produce
-
 //          a ddel element 
 for use by the drag proxy. Also add application data
-
 //          to the returned data object.
-
             
 if (sourceEl) {
                 d = sourceEl.cloneNode(true);
@@ -106,13 +99,10 @@ getRecord(sourceEl)
 
 //      Provide coordinates 
 for the proxy to slide back to on failed drag.
-
 //      This is the original XY coordinates of the draggable
 element captured
-
 //      
 in the getDragData method.
-
         getRepairXY: 
 function() {
             

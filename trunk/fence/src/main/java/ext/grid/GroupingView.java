@@ -62,7 +62,6 @@ new Ext.grid.GridPanel({
     
 // A groupingStore is required 
 for a GroupingView
-
     store: 
 new 
 Ext.data.GroupingStore({
@@ -94,7 +93,6 @@ groupable,
 groupName, 
 groupRender
 are also configurable at column level
-
             {header: 
 'Price', renderer: Ext.util.Format.usMoney, dataIndex: 
 'price', 
@@ -126,7 +124,6 @@ true,
         
 // custom grouping text template to display the number of items
 per group
-
         
 groupTextTpl: 
 '{text} ({[values.rs.length]} {[values.rs.length > 1 ?

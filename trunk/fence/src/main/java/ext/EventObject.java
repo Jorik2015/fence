@@ -35,12 +35,10 @@ import java.util.Date;
 
 function handleClick(e, t){ 
 // e is not a standard event object, it is a Ext.EventObject
-
     e.preventDefault();
     
 var target = e.getTarget(); 
 // same as t (the target HTMLElement)
-
     ...
 }
 var myDiv = 
@@ -48,23 +46,18 @@ Ext.get(
 "myDiv");  
 // get reference to an 
 Ext.Element
-
 myDiv.on(         
 // 
 'on' is shorthand 
 for addListener
-
     
 "click",      
 // perform an action on click of myDiv
-
     handleClick   
 // reference to the action handler
-
 );
 // other methods to 
 do the same:
-
 Ext.EventManager.on(
 "myDiv", 
 'click', handleClick);

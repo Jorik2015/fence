@@ -67,7 +67,6 @@ new Ext.data.ScriptTagProxy({
 url: 
 'http:
 //extjs.com/forum/topics-remote.php'
-
 }),
     
     
@@ -90,12 +89,10 @@ default.php',
 // see options parameter 
 for 
 Ext.Ajax.request
-
     
 api: {
         
 // all actions except the following will use above url
-
         create  : 
 'local/
 new.php',
@@ -114,7 +111,6 @@ new.php',
 
 // Listen to all 
 "beforewrite" event fired by all proxies.
-
 Ext.data.DataProxy.on(
 'beforewrite', 
 function(proxy, action) {
@@ -124,7 +120,6 @@ function(proxy, action) {
 
 // Listen to 
 "write" event fired by all proxies
-
 Ext.data.DataProxy.on(
 'write', 
 function(proxy, action, data, res, rs) {
@@ -134,7 +129,6 @@ function(proxy, action, data, res, rs) {
 
 // Listen to 
 "exception" event fired by all proxies
-
 Ext.data.DataProxy.on(
 'exception', 
 function(proxy, type, action) {
@@ -225,7 +219,6 @@ new Ext.data.Store({
 new Ext.data.HttpProxy({url:
 '/users'}); 
 // all requests sent to /users
-
     ...
 )}
           If there is no 
@@ -321,7 +314,6 @@ new',
 // Server MUST 
 return idProperty of 
 new record
-
     save :    
 '/controller/update',
     destroy : 
@@ -330,7 +322,6 @@ new record
 
 // Alternatively, one can use the object-form to specify each
 API-action
-
 api: {
     load: {url: 
 'read.php', method: 
@@ -360,7 +351,6 @@ api: {
 
 // modify the url 
 for the action
-
 myStore.on({
     beforeload: {
         fn: 
@@ -371,29 +361,25 @@ function (store, options) {
   setUrl
  to change the URL 
 for *just* this request.
-
             store.proxy.setUrl(
 'changed1.php');
 
             
-// set optional second parameter to true to make this URL change
-
+// set optional second parameter to true to make this URL
+change
             
 // permanent, applying this URL 
 for all subsequent requests.
-
             store.proxy.setUrl(
 'changed1.php', true);
 
             
 // Altering the proxy API should be done using the public
-
             
 // method 
 
   setApi
 .
-
             store.proxy.setApi(
 'read', 
 'changed2.php');
@@ -401,14 +387,11 @@ for all subsequent requests.
             
 // Or set the entire API 
 with a config-object.
-
             
 // When using the config-object option, you must redefine the 
 entire
-
             
 // API -- not just a specific action of it.
-
             store.proxy.setApi({
                 read    : 
 'changed_read.php',

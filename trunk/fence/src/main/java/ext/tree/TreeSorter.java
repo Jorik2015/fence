@@ -41,7 +41,6 @@ new Ext.tree.TreeSorter(myTree, {
 function(node) {
         
 // sort by a custom, typed attribute:
-
         
 return parseInt(node.id, 10);
     }

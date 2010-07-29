@@ -256,8 +256,8 @@ public class Component extends ext.util.Observable {
 			,applyTo
 			,autoShow
 			,stateful
-			,hidden
 			,fieldLabel
+			,hidden
 			,style
 			,renderTo
 			,plugins
@@ -275,6 +275,7 @@ public class Component extends ext.util.Observable {
 			,ref
 			,overCls
 			,clearCls
+			,bubbleEvents
 			,data
 			,contentEl
 			,xtype
@@ -859,32 +860,6 @@ new Date().getTime()+(1000*60*60*24*7)),
 	}
     	/*
 	 *
-        
-        
-          hidden
-         : Boolean
-        Render this component hidden (default is
-        false). If 
-        true, the 
-        hide method
-        will be called internally.
-	 */
-	
-	public Boolean getHidden () {
-		return (Boolean) getStateHelper().eval(PropertyKeys.hidden);
-	}
-
-	/**
-	 * <p>
-	 * Set the value of the <code>hidden</code> property.
-	 * </p>
-	 */
-	public void setHidden ( Boolean   hidden ) {
-		getStateHelper().put(PropertyKeys.hidden, hidden);
-		handleAttribute("hidden", hidden);
-	}
-    	/*
-	 *
           The label text to display next to this Component
           (defaults to '').
           
@@ -933,6 +908,32 @@ new Ext.FormPanel({
 	public void setFieldLabel ( String   fieldLabel ) {
 		getStateHelper().put(PropertyKeys.fieldLabel, fieldLabel);
 		handleAttribute("fieldLabel", fieldLabel);
+	}
+    	/*
+	 *
+        
+        
+          hidden
+         : Boolean
+        Render this component hidden (default is
+        false). If 
+        true, the 
+        hide method
+        will be called internally.
+	 */
+	
+	public Boolean getHidden () {
+		return (Boolean) getStateHelper().eval(PropertyKeys.hidden);
+	}
+
+	/**
+	 * <p>
+	 * Set the value of the <code>hidden</code> property.
+	 * </p>
+	 */
+	public void setHidden ( Boolean   hidden ) {
+		getStateHelper().put(PropertyKeys.hidden, hidden);
+		handleAttribute("hidden", hidden);
 	}
     	/*
 	 *A custom style specification to be
@@ -1484,6 +1485,30 @@ in the GridPanel
 	public void setClearCls ( String   clearCls ) {
 		getStateHelper().put(PropertyKeys.clearCls, clearCls);
 		handleAttribute("clearCls", clearCls);
+	}
+    	/*
+	 *
+            An array of events that, when fired, should be
+            bubbled to any parent container. See 
+            Ext.util.Observable.enableBubble.
+            Defaults to 
+            [].
+          
+	 */
+	@ClientConfig(JsonMode.Array)
+
+	public Object getBubbleEvents () {
+		return (Object) getStateHelper().eval(PropertyKeys.bubbleEvents);
+	}
+
+	/**
+	 * <p>
+	 * Set the value of the <code>bubbleEvents</code> property.
+	 * </p>
+	 */
+	public void setBubbleEvents ( Object   bubbleEvents ) {
+		getStateHelper().put(PropertyKeys.bubbleEvents, bubbleEvents);
+		handleAttribute("bubbleEvents", bubbleEvents);
 	}
     	/*
 	 *

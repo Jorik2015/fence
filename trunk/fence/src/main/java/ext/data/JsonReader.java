@@ -264,7 +264,7 @@ per page)
  */
 
 @InstanceOf("Ext.data.JsonReader")
-@ParseConfigMode(id=false,ui = false,name="reader",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
+@ParseConfigMode(ui = false,name="reader",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
 @FacesComponent(value = "Ext.data.JsonReader")
 public class JsonReader extends DataReader {
 	public static final String COMPONENT_FAMILY = "Ext.data.JsonReader";

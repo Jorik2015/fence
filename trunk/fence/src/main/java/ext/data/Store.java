@@ -163,7 +163,7 @@ add)
  */
 @XType("store")
 @InstanceOf("Ext.data.Store")
-@ParseConfigMode(id=false,ui = false,name="store",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
+@ParseConfigMode(ui = false,name="store",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
 @FacesComponent(value = "Ext.data.Store")
 public class Store extends com.abner.fence.component.ExtCommand {
 	public static final String COMPONENT_FAMILY = "Ext.data.Store";

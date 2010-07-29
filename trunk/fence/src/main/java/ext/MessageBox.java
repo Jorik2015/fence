@@ -42,14 +42,12 @@ import java.util.Date;
 
 
 // Basic alert:
-
 Ext.Msg.alert(
 'Status', 
 'Changes saved successfully.');
 
 // Prompt 
 for user data and process the result using a callback:
-
 Ext.Msg.prompt(
 'Name', 
 'Please enter your name:', 
@@ -59,12 +57,10 @@ if (btn ==
 'ok'){
         
 // process text value and close...
-
     }
 });
 
 // Show a dialog using config options:
-
 Ext.Msg.show({
    title:
 'Save Changes?',

@@ -43,10 +43,8 @@ import java.util.Date;
 
 // Define the shared action.  Each component below will have the
 same
-
 // display text and icon, and will display the same message on
 click.
-
 var action = 
 new Ext.Action({
     
@@ -77,21 +75,18 @@ new Ext.Panel({
     tbar: [
         
 // Add the action directly to a toolbar as a menu button
-
         action,
         {
             text: 
 'Action Menu',
             
 // Add the action to a menu as a text item
-
             menu: [action]
         }
     ],
     items: [
         
 // Add the action to the panel body as a standard button
-
         
 new Ext.Button(action)
     ],
@@ -100,13 +95,11 @@ new Ext.Button(action)
 
 // Change the text 
 for all components using the action
-
 action.setText(
 'Something 
 else');
 
 // Reference an action through a container using the itemId
-
 var btn = panel.getComponent(
 'myAction');
 var aRef = btn.baseAction;
@@ -211,7 +204,6 @@ public class Action extends HackAction {
 // specify the property 
 in the config 
 for the class:
-
      ...
      iconCls: 
 '
@@ -219,7 +211,6 @@ do-something'
 
 // css class that specifies background image to be used as the
 icon image:
-
 .
 do-something { background-image: url(../images/my-icon.gif)
 0 6px no-repeat !important; }

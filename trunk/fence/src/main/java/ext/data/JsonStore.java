@@ -87,7 +87,7 @@ new Date(2007, 10, 30)}
  */
 @XType("jsonstore")
 @InstanceOf("Ext.data.JsonStore")
-@ParseConfigMode(id=false,ui = false,name="store",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
+@ParseConfigMode(ui = false,name="store",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
 @FacesComponent(value = "Ext.data.JsonStore")
 public class JsonStore extends Store {
 	public static final String COMPONENT_FAMILY = "Ext.data.JsonStore";

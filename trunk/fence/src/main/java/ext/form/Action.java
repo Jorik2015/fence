@@ -69,6 +69,7 @@ public class Action extends ExtComponent {
 		enum PropertyKeys {
 			waitTitle
 			,timeout
+			,submitEmptyText
 			,params
 			,scope
 			,reset
@@ -140,6 +141,31 @@ public class Action extends ExtComponent {
 	public void setTimeout ( Integer   timeout ) {
 		getStateHelper().put(PropertyKeys.timeout, timeout);
 		handleAttribute("timeout", timeout);
+	}
+    	/*
+	 *
+        
+        
+          submitEmptyText
+         : Boolean
+        If set to 
+        true, the emptyText value will be sent with the
+        form when it is submitted. Defaults to 
+        true.
+	 */
+	
+	public Boolean getSubmitEmptyText () {
+		return (Boolean) getStateHelper().eval(PropertyKeys.submitEmptyText);
+	}
+
+	/**
+	 * <p>
+	 * Set the value of the <code>submitEmptyText</code> property.
+	 * </p>
+	 */
+	public void setSubmitEmptyText ( Boolean   submitEmptyText ) {
+		getStateHelper().put(PropertyKeys.submitEmptyText, submitEmptyText);
+		handleAttribute("submitEmptyText", submitEmptyText);
 	}
     	/*
 	 *

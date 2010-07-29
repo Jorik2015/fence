@@ -50,7 +50,7 @@ new Ext.grid.RowNumberer(),
  */
 
 @InstanceOf("Ext.grid.RowNumberer")
-@ParseConfigMode(name="columns",ui=false,pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
+
 @FacesComponent(value = "Ext.grid.RowNumberer")
 public class RowNumberer extends ExtComponent {
 	public static final String COMPONENT_FAMILY = "Ext.grid.RowNumberer";

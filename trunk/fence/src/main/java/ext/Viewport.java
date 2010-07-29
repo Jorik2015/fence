@@ -70,7 +70,6 @@ Title</h1>',
 TreePanel or a Panel 
 with 
 Accordion layout
-
     }, {
         region: 
 'south',
@@ -96,21 +95,17 @@ for the Grid Panel',
 'grid',
         
 // remaining grid configuration not shown ...
-
         
 // notice that the GridPanel is added directly as the region
-
         
 // it is not 
 "overnested" inside another Panel
-
     }, {
         region: 
 'center',
         xtype: 
 'tabpanel', 
 // TabPanel itself has no title
-
         items: {
             title: 
 'Default Tab',

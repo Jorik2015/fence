@@ -91,7 +91,7 @@ message (optional)
  */
 
 @InstanceOf("Ext.data.XmlReader")
-@ParseConfigMode(id=false,ui = false,name="reader",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
+@ParseConfigMode(ui = false,name="reader",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
 @FacesComponent(value = "Ext.data.XmlReader")
 public class XmlReader extends DataReader {
 	public static final String COMPONENT_FAMILY = "Ext.data.XmlReader";

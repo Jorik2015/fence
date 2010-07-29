@@ -45,7 +45,6 @@ import java.util.Date;
 
 
 // consume JSON of this form:
-
 {
    
 "images":[
@@ -74,7 +73,7 @@ import java.util.Date;
 "images\/thumbs\/zack_sink.jpg"
       }
    ]
-} 
+}
 var store = 
 new Ext.data.JsonStore({
     url: 
@@ -112,7 +111,7 @@ new Ext.list.ListView({
     },{
         header: 
 'Last Modified',
-        width: .35, 
+        width: .35,
         dataIndex: 
 'lastmod',
         tpl: 
@@ -125,7 +124,6 @@ new Ext.list.ListView({
         tpl: 
 '{size:fileSize}', 
 // format using Ext.util.Format.fileSize()
-
         align: 
 'right'
     }]
@@ -133,7 +131,6 @@ new Ext.list.ListView({
 
 // put it 
 in a Panel so it looks pretty
-
 var panel = 
 new Ext.Panel({
     id:
@@ -151,7 +148,6 @@ new Ext.Panel({
 panel.render(document.body);
 
 // little bit of feedback
-
 listView.on(
 'selectionchange', 
 function(view, nodes){

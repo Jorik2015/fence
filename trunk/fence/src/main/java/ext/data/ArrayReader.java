@@ -64,7 +64,7 @@ idIndex: 0
  */
 
 @InstanceOf("Ext.data.ArrayReader")
-@ParseConfigMode(id=false,ui = false,name="reader",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
+@ParseConfigMode(ui = false,name="reader",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
 @FacesComponent(value = "Ext.data.ArrayReader")
 public class ArrayReader extends JsonReader {
 	public static final String COMPONENT_FAMILY = "Ext.data.ArrayReader";

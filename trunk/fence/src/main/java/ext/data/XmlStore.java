@@ -36,22 +36,18 @@ var store =
 new Ext.data.XmlStore({
     
 // store configs
-
     autoDestroy: true,
     storeId: 
 'myStore',
     url: 
 'sheldon.xml', 
 // automatically configures a HttpProxy
-
     
 // reader configs
-
     record: 
 'Item', 
 // records will have an 
 "Item" tag
-
     idPath: 
 'ASIN',
     totalRecords: 
@@ -59,10 +55,8 @@ new Ext.data.XmlStore({
     fields: [
         
 // set up the fields mapping into the xml doc
-
         
 // The first needs mapping, the others are very basic
-
         {name: 
 'Author', mapping: 
 'ItemAttributes > Author'},
@@ -84,7 +78,6 @@ new Ext.data.XmlStore({
 &#60ItemSearchResponse xmlns=
 "http:
 //webservices.amazon.com/AWSECommerceService/2009-05-15">
-
     &#60Items>
         &#60Request>
             &#60IsValid>True</IsValid>
@@ -100,7 +93,6 @@ new Ext.data.XmlStore({
             &#60DetailPageURL>
                 http:
 //www.amazon.com/
-
             </DetailPageURL>
             &#60ItemAttributes>
                 &#60Author>Sidney Sheldon</Author>
@@ -126,7 +118,7 @@ Books</Manufacturer>
  */
 @XType("xmlstore")
 @InstanceOf("Ext.data.XmlStore")
-@ParseConfigMode(id=false,ui = false,name="store",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
+@ParseConfigMode(ui = false,name="store",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
 @FacesComponent(value = "Ext.data.XmlStore")
 public class XmlStore extends Store {
 	public static final String COMPONENT_FAMILY = "Ext.data.XmlStore";

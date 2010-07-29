@@ -1,4 +1,4 @@
-package ext.grid;
+package ext.slider;
 
 import javax.el.ValueExpression;
 import com.abner.fence.annotation.*;
@@ -24,31 +24,36 @@ import ext.form.Action;
 import java.util.Date;
 
 /**
- * A custom wrapper for the 
-  Ext.grid.PropertyGrid's 
-  Ext.data.Store. This class handles
-  the mapping between the custom data source objects supported by
-  the grid and the 
-  Ext.grid.PropertyRecord
-  format required for compatibility with the underlying store.
-  Generally this class should not need to be used directly -- the
-  grid's data should be accessed from the underlying store via the 
-  store
-  property.
+ * Slider which supports vertical or
+  horizontal orientation, keyboard adjustments, configurable
+  snapping, axis clicking and animation. Can be added as an item to
+  any container. Example usage: 
+
+
+new Ext.slider.SingleSlider({
+    renderTo: Ext.getBody(),
+    width: 200,
+    value: 50,
+    increment: 10,
+    minValue: 0,
+    maxValue: 100
+});
+  The class Ext.slider.SingleSlider is aliased to Ext.Slider
+  for backwards compatibility.
  */
 
-@InstanceOf("Ext.grid.PropertyStore")
-@ParseConfigMode(ui = false,name="store",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
-@FacesComponent(value = "Ext.grid.PropertyStore")
-public class PropertyStore extends ext.util.Observable {
-	public static final String COMPONENT_FAMILY = "Ext.grid.PropertyStore";
+@InstanceOf("Ext.slider.SingleSlider")
+
+@FacesComponent(value = "Ext.slider.SingleSlider")
+public class SingleSlider extends MultiSlider {
+	public static final String COMPONENT_FAMILY = "Ext.slider.SingleSlider";
 
 	/**
 	 * <p>
-	 * Create a new {@link Ext.grid.PropertyStore} instance with default property values.
+	 * Create a new {@link Ext.slider.SingleSlider} instance with default property values.
 	 * </p>
 	 */
-	public PropertyStore() {
+	public SingleSlider() {
 		super();
 		this.setRendererType(COMPONENT_FAMILY);
 	}

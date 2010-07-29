@@ -52,6 +52,7 @@ public class Button extends HackButton {
 			,iconCls
 			,tooltip
 			,template
+			,autoWidth
 			,hidden
 			,icon
 			,scale
@@ -235,6 +236,29 @@ public class Button extends HackButton {
 	public void setTemplate ( Object   template ) {
 		getStateHelper().put(PropertyKeys.template, template);
 		handleAttribute("template", template);
+	}
+    	/*
+	 *By default, if a width is not specified
+          the button will attempt to stretch horizontally to fit
+          its content. If the button is being managed by a width
+          sizing layout (hbox, fit, anchor), set this to false to
+          prevent the button from doing this automatic sizing.
+          Defaults to 
+          undefined.
+	 */
+	
+	public Boolean getAutoWidth () {
+		return (Boolean) getStateHelper().eval(PropertyKeys.autoWidth);
+	}
+
+	/**
+	 * <p>
+	 * Set the value of the <code>autoWidth</code> property.
+	 * </p>
+	 */
+	public void setAutoWidth ( Boolean   autoWidth ) {
+		getStateHelper().put(PropertyKeys.autoWidth, autoWidth);
+		handleAttribute("autoWidth", autoWidth);
 	}
     	/*
 	 *

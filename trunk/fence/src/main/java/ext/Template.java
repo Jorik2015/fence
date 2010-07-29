@@ -148,14 +148,14 @@ new Ext.Template(
     {
         compiled: true,      
 // 
-compile immediately
-
+compile
+immediately
         disableFormats: true 
 // reduce 
 
   apply
  time since no formatting
-    }    
+    }
 );
           For a list of available format functions, see 
           Ext.util.Format.

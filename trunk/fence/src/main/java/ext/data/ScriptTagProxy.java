@@ -76,7 +76,6 @@ $callback = $_REQUEST[
 'callback'];
 
 // Create the output object.
-
 $output = array(
 'a' => 
 'Apple', 
@@ -84,7 +83,6 @@ $output = array(
 'Banana');
 
 //start output
-
 if ($callback) {
     header(
 'Content-Type: text/javascript');

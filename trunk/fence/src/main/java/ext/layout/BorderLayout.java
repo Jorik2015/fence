@@ -228,6 +228,7 @@ public class BorderLayout extends ContainerLayout {
 			,fieldTpl
 			,trackLabels
 			,labelSeparator
+			,defaultAnchor
 			,anchor
 			,pack
 			,align
@@ -650,6 +651,25 @@ for=
 	public void setLabelSeparator ( String   labelSeparator ) {
 		getStateHelper().put(PropertyKeys.labelSeparator, labelSeparator);
 		handleAttribute("labelSeparator", labelSeparator);
+	}
+    	/*
+	 *default anchor for all child container
+          items applied if no anchor or specific width is set on
+          the child item. Defaults to '100%'.
+	 */
+	
+	public String getDefaultAnchor () {
+		return (String) getStateHelper().eval(PropertyKeys.defaultAnchor);
+	}
+
+	/**
+	 * <p>
+	 * Set the value of the <code>defaultAnchor</code> property.
+	 * </p>
+	 */
+	public void setDefaultAnchor ( String   defaultAnchor ) {
+		getStateHelper().put(PropertyKeys.defaultAnchor, defaultAnchor);
+		handleAttribute("defaultAnchor", defaultAnchor);
 	}
     	/*
 	 *

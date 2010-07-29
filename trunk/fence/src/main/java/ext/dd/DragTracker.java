@@ -24,7 +24,17 @@ import ext.form.Action;
 import java.util.Date;
 
 /**
- * ${ext.commonts}
+ * A DragTracker listens for drag events on
+  an Element and fires events at the start and end of the drag, as
+  well as during the drag. This is useful for components such as 
+  Ext.Slider, where there is an element
+  that can be dragged around to change the Slider's value.
+  DragTracker provides a series of template methods that should be
+  overridden to provide functionality in response to detected drag
+  operations. These are onBeforeStart, onStart, onDrag and onEnd.
+  See 
+  Ext.Slider's initEvents function for an
+  example implementation.
  */
 
 @InstanceOf("Ext.dd.DragTracker")
@@ -94,6 +104,8 @@ public class DragTracker extends ext.util.Observable {
         
           tolerance
          : Number
+        Number of pixels the drag target must be
+        moved before dragging is considered to have started.
         Defaults to 
         5.
 	 */

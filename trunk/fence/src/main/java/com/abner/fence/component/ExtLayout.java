@@ -30,7 +30,7 @@ import java.util.Date;
 @InstanceOf("Ext.ExtLayout")
 
 @FacesComponent(value = "Ext.ExtLayout")
-public abstract  class ExtLayout extends BoxComponent {
+public class ExtLayout extends BoxComponent {
 	public static final String COMPONENT_FAMILY = "Ext.ExtLayout";
 
 	/**
@@ -49,6 +49,7 @@ public abstract  class ExtLayout extends BoxComponent {
 		enum PropertyKeys {
 			renderHidden
 			,extraCls
+			,defaultAnchor
 			,anchor
 			,animate
 			,collapseFirst
@@ -169,6 +170,25 @@ extraCls:
 	public void setExtraCls ( String   extraCls ) {
 		getStateHelper().put(PropertyKeys.extraCls, extraCls);
 		handleAttribute("extraCls", extraCls);
+	}
+    	/*
+	 *default anchor for all child container
+          items applied if no anchor or specific width is set on
+          the child item. Defaults to '100%'.
+	 */
+	
+	public String getDefaultAnchor () {
+		return (String) getStateHelper().eval(PropertyKeys.defaultAnchor);
+	}
+
+	/**
+	 * <p>
+	 * Set the value of the <code>defaultAnchor</code> property.
+	 * </p>
+	 */
+	public void setDefaultAnchor ( String   defaultAnchor ) {
+		getStateHelper().put(PropertyKeys.defaultAnchor, defaultAnchor);
+		handleAttribute("defaultAnchor", defaultAnchor);
 	}
     	/*
 	 *

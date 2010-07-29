@@ -177,7 +177,7 @@ public class TimeField extends ComboBox {
           to try when parsing a user input value and it doesn't
           match the defined format (defaults to 'g:ia|g:iA|g:i
           a|g:i A|h:i|g:i|H:i|ga|ha|gA|h a|g a|g
-          A|gi|hi|gia|hia|g|H').
+          A|gi|hi|gia|hia|g|H|gi a|hi a|giA|hiA|gi A|hi A').
 	 */
 	
 	public String getAltFormats () {

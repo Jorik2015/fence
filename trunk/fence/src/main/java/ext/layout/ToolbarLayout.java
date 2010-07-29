@@ -24,8 +24,9 @@ import ext.form.Action;
 import java.util.Date;
 
 /**
- * Layout manager implicitly used by
-  Ext.Toolbar.
+ * Layout manager used by Ext.Toolbar. This
+  is highly specialised for use by Toolbars and would not usually
+  be used by any other class.
  */
 
 @Layout(LayoutType.toolbar)

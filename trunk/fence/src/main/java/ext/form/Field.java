@@ -171,37 +171,37 @@ public class Field extends com.abner.fence.component.ExtInput {
 		handleAttribute("cls", cls);
 	}
     	/*
-	 *location where the message text set
-          through 
-          markInvalid should display.
-          Must be one of the following values:
-          
-           
-          
+	 *
+            The location where the message text set through 
+            markInvalid should
+            display. Must be one of the following values:
             
               
-              qtip Display a quick tip containing the
-              message when the user hovers over the field. This is
-              the default. 
-              
                 
-                Ext.QuickTips.init must
-                have been called for this setting to work.
+                qtip Display a quick tip containing
+                the message when the user hovers over the field.
+                This is the default. 
+                
+                  
+                  Ext.QuickTips.init
+                  must have been called for this setting to
+                  work.
+                
+                
+                title Display the message in a default
+                browser title attribute popup.
+                
+                under Add a block div beneath the
+                field containing the error message.
+                
+                side Add an error icon to the right of
+                the field, displaying the message in a popup on
+                hover.
+                
+                [element id] Add the error message
+                directly to the innerHTML of the specified
+                element.
               
-              
-              title Display the message in a default
-              browser title attribute popup.
-              
-              under Add a block div beneath the field
-              containing the error message.
-              
-              side Add an error icon to the right of
-              the field, displaying the message in a popup on
-              hover.
-              
-              [element id] Add the error message
-              directly to the innerHTML of the specified
-              element.
             
           
 	 */

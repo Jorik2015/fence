@@ -170,7 +170,7 @@ public class FlashComponent extends BoxComponent {
          : String
         Indicates the version the flash content
         was published for. Defaults to 
-        '9.0.45'.
+        '9.0.115'.
 	 */
 	
 	public String getFlashVersion () {

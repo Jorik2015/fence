@@ -38,7 +38,7 @@ import java.util.Date;
  */
 
 @InstanceOf("Ext.data.DataReader")
-@ParseConfigMode(id=false,ui = false,name="reader",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
+@ParseConfigMode(ui = false,name="reader",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
 @FacesComponent(value = "Ext.data.DataReader")
 public class DataReader extends ExtComponent {
 	public static final String COMPONENT_FAMILY = "Ext.data.DataReader";

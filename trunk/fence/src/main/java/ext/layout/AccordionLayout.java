@@ -55,14 +55,12 @@ new Ext.Panel({
     defaults: {
         
 // applied to each contained panel
-
         bodyStyle: 
 'padding:15px'
     },
     layoutConfig: {
         
 // layout-specific configs go here
-
         titleCollapse: false,
         animate: true,
         activeOnTop: true
@@ -117,6 +115,7 @@ public class AccordionLayout extends FitLayout {
 			,fill
 			,sequence
 			,autoWidth
+			,defaultAnchor
 			,renderHidden
 			,extraCls
 			,anchor
@@ -330,6 +329,25 @@ public class AccordionLayout extends FitLayout {
 	public void setAutoWidth ( Boolean   autoWidth ) {
 		getStateHelper().put(PropertyKeys.autoWidth, autoWidth);
 		handleAttribute("autoWidth", autoWidth);
+	}
+    	/*
+	 *default anchor for all child container
+          items applied if no anchor or specific width is set on
+          the child item. Defaults to '100%'.
+	 */
+	
+	public String getDefaultAnchor () {
+		return (String) getStateHelper().eval(PropertyKeys.defaultAnchor);
+	}
+
+	/**
+	 * <p>
+	 * Set the value of the <code>defaultAnchor</code> property.
+	 * </p>
+	 */
+	public void setDefaultAnchor ( String   defaultAnchor ) {
+		getStateHelper().put(PropertyKeys.defaultAnchor, defaultAnchor);
+		handleAttribute("defaultAnchor", defaultAnchor);
 	}
     	/*
 	 *

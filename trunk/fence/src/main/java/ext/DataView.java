@@ -136,18 +136,19 @@ public class DataView extends BoxComponent {
 		return (COMPONENT_FAMILY);
 	}
 		enum PropertyKeys {
-			singleSelect
+			emptyText
+			,itemSelector
+			,tpl
+			,trackOver
+			,singleSelect
 			,store
 			,multiSelect
-			,itemSelector
-			,emptyText
 			,selectedClass
 			,overClass
-			,loadingText
 			,deferEmptyText
-			,tpl
+			,loadingText
+			,blockRefresh
 			,simpleSelect
-			,trackOver
 		;
 		String toString;
 
@@ -164,6 +165,96 @@ public class DataView extends BoxComponent {
 	}
 	
 		/*
+	 *
+        
+        
+          emptyText
+         : String
+        The text to display in the view when
+        there is no data to display (defaults to '').
+	 */
+	
+	public String getEmptyText () {
+		return (String) getStateHelper().eval(PropertyKeys.emptyText);
+	}
+
+	/**
+	 * <p>
+	 * Set the value of the <code>emptyText</code> property.
+	 * </p>
+	 */
+	public void setEmptyText ( String   emptyText ) {
+		getStateHelper().put(PropertyKeys.emptyText, emptyText);
+		handleAttribute("emptyText", emptyText);
+	}
+    	/*
+	 *
+          This is a required setting. A simple CSS selector
+          (e.g. 
+          div.some-class or 
+          span:first-child) that will be used to determine
+          what nodes this DataView will be working with.
+	 */
+	
+	public String getItemSelector () {
+		return (String) getStateHelper().eval(PropertyKeys.itemSelector);
+	}
+
+	/**
+	 * <p>
+	 * Set the value of the <code>itemSelector</code> property.
+	 * </p>
+	 */
+	public void setItemSelector ( String   itemSelector ) {
+		getStateHelper().put(PropertyKeys.itemSelector, itemSelector);
+		handleAttribute("itemSelector", itemSelector);
+	}
+    	/*
+	 *The HTML fragment or an array of
+          fragments that will make up the template used by this
+          DataView. This should be specified in the same format
+          expected by the constructor of 
+          Ext.XTemplate.
+	 */
+	@ClientConfig(JsonMode.Array)
+
+	public Object getTpl () {
+		return (Object) getStateHelper().eval(PropertyKeys.tpl);
+	}
+
+	/**
+	 * <p>
+	 * Set the value of the <code>tpl</code> property.
+	 * </p>
+	 */
+	public void setTpl ( Object   tpl ) {
+		getStateHelper().put(PropertyKeys.tpl, tpl);
+		handleAttribute("tpl", tpl);
+	}
+    	/*
+	 *
+        
+        
+          trackOver
+         : Boolean
+        True to enable mouseenter and mouseleave
+        events
+	 */
+	
+	public Boolean getTrackOver () {
+		return (Boolean) getStateHelper().eval(PropertyKeys.trackOver);
+	}
+
+	/**
+	 * <p>
+	 * Set the value of the <code>trackOver</code> property.
+	 * </p>
+	 */
+	public void setTrackOver ( Boolean   trackOver ) {
+		getStateHelper().put(PropertyKeys.trackOver, trackOver);
+		handleAttribute("trackOver", trackOver);
+	}
+    	/*
 	 *True to allow selection of exactly one
           item at a time, false to allow no selection at all
           (defaults to false). Note that if 
@@ -233,51 +324,6 @@ public class DataView extends BoxComponent {
 	}
     	/*
 	 *
-          This is a required setting. A simple CSS selector
-          (e.g. 
-          div.some-class or 
-          span:first-child) that will be used to determine
-          what nodes this DataView will be working with.
-	 */
-	
-	public String getItemSelector () {
-		return (String) getStateHelper().eval(PropertyKeys.itemSelector);
-	}
-
-	/**
-	 * <p>
-	 * Set the value of the <code>itemSelector</code> property.
-	 * </p>
-	 */
-	public void setItemSelector ( String   itemSelector ) {
-		getStateHelper().put(PropertyKeys.itemSelector, itemSelector);
-		handleAttribute("itemSelector", itemSelector);
-	}
-    	/*
-	 *
-        
-        
-          emptyText
-         : String
-        The text to display in the view when
-        there is no data to display (defaults to '').
-	 */
-	
-	public String getEmptyText () {
-		return (String) getStateHelper().eval(PropertyKeys.emptyText);
-	}
-
-	/**
-	 * <p>
-	 * Set the value of the <code>emptyText</code> property.
-	 * </p>
-	 */
-	public void setEmptyText ( String   emptyText ) {
-		getStateHelper().put(PropertyKeys.emptyText, emptyText);
-		handleAttribute("emptyText", emptyText);
-	}
-    	/*
-	 *
         
         
           selectedClass
@@ -324,29 +370,6 @@ public class DataView extends BoxComponent {
 		handleAttribute("overClass", overClass);
 	}
     	/*
-	 *A string to display during data load
-          operations (defaults to undefined). If specified, this
-          text will be displayed in a loading div and the view's
-          contents will be cleared while loading, otherwise the
-          view's contents will continue to display normally until
-          the new data is loaded and the contents are
-          replaced.
-	 */
-	
-	public String getLoadingText () {
-		return (String) getStateHelper().eval(PropertyKeys.loadingText);
-	}
-
-	/**
-	 * <p>
-	 * Set the value of the <code>loadingText</code> property.
-	 * </p>
-	 */
-	public void setLoadingText ( String   loadingText ) {
-		getStateHelper().put(PropertyKeys.loadingText, loadingText);
-		handleAttribute("loadingText", loadingText);
-	}
-    	/*
 	 *
         
         
@@ -370,26 +393,47 @@ public class DataView extends BoxComponent {
 		handleAttribute("deferEmptyText", deferEmptyText);
 	}
     	/*
-	 *The HTML fragment or an array of
-          fragments that will make up the template used by this
-          DataView. This should be specified in the same format
-          expected by the constructor of 
-          Ext.XTemplate.
+	 *A string to display during data load
+          operations (defaults to undefined). If specified, this
+          text will be displayed in a loading div and the view's
+          contents will be cleared while loading, otherwise the
+          view's contents will continue to display normally until
+          the new data is loaded and the contents are
+          replaced.
 	 */
-	@ClientConfig(JsonMode.Array)
-
-	public Object getTpl () {
-		return (Object) getStateHelper().eval(PropertyKeys.tpl);
+	
+	public String getLoadingText () {
+		return (String) getStateHelper().eval(PropertyKeys.loadingText);
 	}
 
 	/**
 	 * <p>
-	 * Set the value of the <code>tpl</code> property.
+	 * Set the value of the <code>loadingText</code> property.
 	 * </p>
 	 */
-	public void setTpl ( Object   tpl ) {
-		getStateHelper().put(PropertyKeys.tpl, tpl);
-		handleAttribute("tpl", tpl);
+	public void setLoadingText ( String   loadingText ) {
+		getStateHelper().put(PropertyKeys.loadingText, loadingText);
+		handleAttribute("loadingText", loadingText);
+	}
+    	/*
+	 *Set this to true to ignore datachanged
+          events on the bound store. This is useful if you wish to
+          provide custom transition animations via a plugin
+          (defaults to false)
+	 */
+	
+	public Boolean getBlockRefresh () {
+		return (Boolean) getStateHelper().eval(PropertyKeys.blockRefresh);
+	}
+
+	/**
+	 * <p>
+	 * Set the value of the <code>blockRefresh</code> property.
+	 * </p>
+	 */
+	public void setBlockRefresh ( Boolean   blockRefresh ) {
+		getStateHelper().put(PropertyKeys.blockRefresh, blockRefresh);
+		handleAttribute("blockRefresh", blockRefresh);
 	}
     	/*
 	 *True to enable multiselection by
@@ -411,29 +455,6 @@ public class DataView extends BoxComponent {
 	public void setSimpleSelect ( Boolean   simpleSelect ) {
 		getStateHelper().put(PropertyKeys.simpleSelect, simpleSelect);
 		handleAttribute("simpleSelect", simpleSelect);
-	}
-    	/*
-	 *
-        
-        
-          trackOver
-         : Boolean
-        True to enable mouseenter and mouseleave
-        events
-	 */
-	
-	public Boolean getTrackOver () {
-		return (Boolean) getStateHelper().eval(PropertyKeys.trackOver);
-	}
-
-	/**
-	 * <p>
-	 * Set the value of the <code>trackOver</code> property.
-	 * </p>
-	 */
-	public void setTrackOver ( Boolean   trackOver ) {
-		getStateHelper().put(PropertyKeys.trackOver, trackOver);
-		handleAttribute("trackOver", trackOver);
 	}
         
     @Override

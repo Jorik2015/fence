@@ -31,15 +31,9 @@ import java.util.Date;
     
       layout
      is configured into a 
-    Container. ContainerLayout provides
-    the basic foundation for all other layout classes in Ext. It
-    simply renders all child Components into the Container,
-    performing no sizing or positioning services. To utilize a
-    layout that provides sizing and positioning of child
-    Components, specify an appropriate 
-    
-      layout
-    .
+    Container.. AutoLayout provides
+    only a passthrough of any layout calls to any child
+    containers.
   
  */
 
@@ -73,6 +67,7 @@ public class AutoLayout extends ExtComponent {
 			,fieldTpl
 			,trackLabels
 			,labelSeparator
+			,defaultAnchor
 			,anchor
 			,pack
 			,align
@@ -495,6 +490,25 @@ for=
 	public void setLabelSeparator ( String   labelSeparator ) {
 		getStateHelper().put(PropertyKeys.labelSeparator, labelSeparator);
 		handleAttribute("labelSeparator", labelSeparator);
+	}
+    	/*
+	 *default anchor for all child container
+          items applied if no anchor or specific width is set on
+          the child item. Defaults to '100%'.
+	 */
+	
+	public String getDefaultAnchor () {
+		return (String) getStateHelper().eval(PropertyKeys.defaultAnchor);
+	}
+
+	/**
+	 * <p>
+	 * Set the value of the <code>defaultAnchor</code> property.
+	 * </p>
+	 */
+	public void setDefaultAnchor ( String   defaultAnchor ) {
+		getStateHelper().put(PropertyKeys.defaultAnchor, defaultAnchor);
+		handleAttribute("defaultAnchor", defaultAnchor);
 	}
     	/*
 	 *

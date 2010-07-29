@@ -169,14 +169,11 @@ public class RemotingProvider extends JsonProvider {
 "actions":{ 
 // each property within the 
 'actions' object represents a server side Class 
-
     
 "TestAction":[ 
 // array of methods within each server side Class to be   
-
     {              
 // stubbed out on client
-
         
 "name":
 "doEcho", 
@@ -187,25 +184,21 @@ public class RemotingProvider extends JsonProvider {
 "name":
 "multiply",
 // name of method
-
         
 "len":2           
 // The number of parameters that will be used to create an
-
                           
 // array of data to send to the server side 
 function.
-
                           
 // Ensure the server sends back a Number, not a String. 
-
     },{
         
 "name":
 "doForm",
         
 "formHandler":true, 
-// direct the client to use specialized form handling method 
+// direct the client to use specialized form handling method
 
         
 "len":1
@@ -221,17 +214,13 @@ function.
 TestAction.multiply(
     2, 4, 
 // pass two arguments to server, so specify len=2
-
     
 // callback 
 function after the server is called
-
     
 // result: the result returned by the server
-
     
 //      e: Ext.Direct.RemotingEvent object
-
     
 function(result, e){
         
@@ -239,24 +228,20 @@ var t = e.getTransaction();
         
 var action = t.action; 
 // server side Class called
-
         
 var method = t.method; 
 // server side method called
-
         
 if(e.status){
             
 var answer = Ext.encode(result); 
 // 8
-
     
         }
 else{
             
 var msg = e.message; 
 // failure message
-
         }
     }
 );

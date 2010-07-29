@@ -73,20 +73,13 @@ import java.util.Date;
 
 // This code will generate a layout table that is 3 columns by 2
 rows
-
 // 
 with some spanning included.  The basic layout will be:
-
 // +--------+-----------------+
-
 // |   A    |   B             |
-
 // |        |--------+--------|
-
 // |        |   C    |   D    |
-
 // +--------+--------+--------+
-
 var table = 
 new Ext.Panel({
     title: 
@@ -96,14 +89,12 @@ new Ext.Panel({
     defaults: {
         
 // applied to each contained panel
-
         bodyStyle:
 'padding:20px'
     },
     layoutConfig: {
         
 // The total column count must be specified here
-
         columns: 3
     },
     items: [{

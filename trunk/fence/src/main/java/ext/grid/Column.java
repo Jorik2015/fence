@@ -228,34 +228,27 @@ function(value, metaData, record, rowIndex, colIndex, store)
 {
       
 // provide the logic depending on business rules
-
       
 // name of your own choosing to manipulate the cell depending
 upon
-
       
 // the data 
 in the underlying Record object.
-
       
 if (value == 
 'whatever') {
           
 //metaData.css : String : A CSS class name to add to the TD
 element of the cell.
-
           
 //metaData.attr : String : An html attribute definition string
 to apply to
-
           
 //                         the data container element within the
 table
-
           
 //                         cell (e.g. 
 'style="color:red;"').
-
           metaData.css = 
 'name-of-css-class-you-will-define';
       }
@@ -703,17 +696,14 @@ new Ext.grid.GridPanel({
         
 //renderer: Ext.util.Format.dateRenderer(
 'm/d/Y'),
-
         xtype: 
 'datecolumn', 
 // use xtype instead of renderer
-
         format: 
 'M/d/Y' 
 // configuration property 
 for 
 Ext.grid.DateColumn
-
     }, {
         ...
     }]

@@ -107,7 +107,8 @@ public class AnchorLayout extends ContainerLayout {
 		return (COMPONENT_FAMILY);
 	}
 		enum PropertyKeys {
-			anchor
+			defaultAnchor
+			,anchor
 			,renderHidden
 			,extraCls
 			,defaultMargins
@@ -148,6 +149,25 @@ public class AnchorLayout extends ContainerLayout {
 	}
 	
 		/*
+	 *default anchor for all child container
+          items applied if no anchor or specific width is set on
+          the child item. Defaults to '100%'.
+	 */
+	
+	public String getDefaultAnchor () {
+		return (String) getStateHelper().eval(PropertyKeys.defaultAnchor);
+	}
+
+	/**
+	 * <p>
+	 * Set the value of the <code>defaultAnchor</code> property.
+	 * </p>
+	 */
+	public void setDefaultAnchor ( String   defaultAnchor ) {
+		getStateHelper().put(PropertyKeys.defaultAnchor, defaultAnchor);
+		handleAttribute("defaultAnchor", defaultAnchor);
+	}
+    	/*
 	 *
             This configuation option is to be applied to 
             child 

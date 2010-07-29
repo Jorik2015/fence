@@ -115,7 +115,7 @@ import java.util.Date;
  */
 @XType("directstore")
 @InstanceOf("Ext.data.DirectStore")
-@ParseConfigMode(id=false,ui = false,name="store",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
+@ParseConfigMode(ui = false,name="store",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
 @FacesComponent(value = "Ext.data.DirectStore")
 public class DirectStore extends Store {
 	public static final String COMPONENT_FAMILY = "Ext.data.DirectStore";

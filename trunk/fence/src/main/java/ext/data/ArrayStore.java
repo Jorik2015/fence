@@ -99,7 +99,7 @@ var myData = [
  */
 @XType("arraystore")
 @InstanceOf("Ext.data.ArrayStore")
-@ParseConfigMode(id=false,ui = false,name="store",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
+@ParseConfigMode(ui = false,name="store",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
 @FacesComponent(value = "Ext.data.ArrayStore")
 public class ArrayStore extends Store {
 	public static final String COMPONENT_FAMILY = "Ext.data.ArrayStore";

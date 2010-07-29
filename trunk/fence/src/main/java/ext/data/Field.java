@@ -39,7 +39,7 @@ import java.util.Date;
  */
 
 @InstanceOf("Ext.data.Field")
-@ParseConfigMode(id=false,ui = false,name="fields",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Config)
+@ParseConfigMode(ui = false,name="fields",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Config)
 @FacesComponent(value = "Ext.data.Field")
 public class Field extends ExtComponent {
 	public static final String COMPONENT_FAMILY = "Ext.data.Field";
@@ -271,8 +271,8 @@ in data object
           referenced by the 
           
             mapping
-           does not exist in the data object (i.e. undefined).
-          (defaults to "")
+           does not exist in the data object (i.e.
+          undefined). (defaults to "")
 	 */
 	@ClientConfig(JsonMode.Object)
 
@@ -290,11 +290,13 @@ in data object
 		handleAttribute("defaultValue", defaultValue);
 	}
     	/*
-	 *The data type for conversion to
-          displayable value if 
+	 *The data type for automatic conversion
+          from received data to the 
+          stored value if 
           
             convert
-           has not been specified. Possible values are 
+           has not been specified. This may be specified as
+          a string value. Possible values are 
           
             
               auto (Default, implies no conversion)
@@ -305,10 +307,18 @@ in data object
               date
             
           
+          This may also be specified by referencing a member of
+          the 
+          Ext.data.Types class.
+          Developers may create their own application-specific
+          data types by defining new members of the 
+          Ext.data.Types
+          class.
 	 */
-	
-	public String getType () {
-		return (String) getStateHelper().eval(PropertyKeys.type);
+	@ClientConfig(JsonMode.Object)
+
+	public Object getType () {
+		return (Object) getStateHelper().eval(PropertyKeys.type);
 	}
 
 	/**
@@ -316,7 +326,7 @@ in data object
 	 * Set the value of the <code>type</code> property.
 	 * </p>
 	 */
-	public void setType ( String   type ) {
+	public void setType ( Object   type ) {
 		getStateHelper().put(PropertyKeys.type, type);
 		handleAttribute("type", type);
 	}
@@ -343,12 +353,21 @@ in data object
 		handleAttribute("allowBlank", allowBlank);
 	}
     	/*
-	 *A format string for the 
-          Date.parseDate
-          function, or "timestamp" if the value provided by the
-          Reader is a UNIX timestamp, or "time" if the value
-          provided by the Reader is a javascript millisecond
-          timestamp.
+	 *
+            (Optional) Used when converting received data into a
+            Date when the 
+            type is
+            specified as 
+            
+              "date"
+            .
+            A format string for the 
+            Date.parseDate function, or
+            "timestamp" if the value provided by the Reader is a
+            UNIX timestamp, or "time" if the value provided by the
+            Reader is a javascript millisecond timestamp. See 
+            Date
+          
 	 */
 	
 	public String getDateFormat () {
@@ -422,9 +441,15 @@ return 3;
           sortDir
          : String
         Initial direction to sort (
-        "ASC" or 
-        "DESC"). Defaults to 
-        "ASC".
+        
+          "ASC"
+         or 
+        
+          "DESC"
+        ). Defaults to 
+        
+          "ASC"
+        .
 	 */
 	
 	public String getSortDir () {
@@ -444,8 +469,8 @@ return 3;
 	 *The name by which the field is
           referenced within the Record. This is referenced by, for
           example, the 
-          dataIndex property in column definition objects
-          passed to 
+          dataIndex property in column definition
+          objects passed to 
           Ext.grid.ColumnModel. 
           Note: In the simplest case, if no properties other
           than 

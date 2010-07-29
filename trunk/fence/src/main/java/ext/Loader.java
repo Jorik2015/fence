@@ -1,4 +1,4 @@
-package ext.grid;
+package ext;
 
 import javax.el.ValueExpression;
 import com.abner.fence.annotation.*;
@@ -20,35 +20,29 @@ import ext.tree.*;
 import ext.layout.*;
 import ext.menu.*;
 import java.util.*;
-import ext.form.Action;
 import java.util.Date;
 
 /**
- * A custom wrapper for the 
-  Ext.grid.PropertyGrid's 
-  Ext.data.Store. This class handles
-  the mapping between the custom data source objects supported by
-  the grid and the 
-  Ext.grid.PropertyRecord
-  format required for compatibility with the underlying store.
-  Generally this class should not need to be used directly -- the
-  grid's data should be accessed from the underlying store via the 
-  store
-  property.
+ * 
+    
+    
+    This class is a singleton and cannot be created
+    directly.
+  
  */
 
-@InstanceOf("Ext.grid.PropertyStore")
-@ParseConfigMode(ui = false,name="store",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
-@FacesComponent(value = "Ext.grid.PropertyStore")
-public class PropertyStore extends ext.util.Observable {
-	public static final String COMPONENT_FAMILY = "Ext.grid.PropertyStore";
+@InstanceOf("Ext.Loader")
+
+@FacesComponent(value = "Ext.Loader")
+public class Loader extends ExtComponent {
+	public static final String COMPONENT_FAMILY = "Ext.Loader";
 
 	/**
 	 * <p>
-	 * Create a new {@link Ext.grid.PropertyStore} instance with default property values.
+	 * Create a new {@link Ext.Loader} instance with default property values.
 	 * </p>
 	 */
-	public PropertyStore() {
+	public Loader() {
 		super();
 		this.setRendererType(COMPONENT_FAMILY);
 	}

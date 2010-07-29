@@ -1,4 +1,4 @@
-package ext.grid;
+package ext.slider;
 
 import javax.el.ValueExpression;
 import com.abner.fence.annotation.*;
@@ -24,31 +24,44 @@ import ext.form.Action;
 import java.util.Date;
 
 /**
- * A custom wrapper for the 
-  Ext.grid.PropertyGrid's 
-  Ext.data.Store. This class handles
-  the mapping between the custom data source objects supported by
-  the grid and the 
-  Ext.grid.PropertyRecord
-  format required for compatibility with the underlying store.
-  Generally this class should not need to be used directly -- the
-  grid's data should be accessed from the underlying store via the 
-  store
-  property.
+ * Simple plugin for using an Ext.Tip with
+  a slider to show the slider value. Example usage: 
+
+new Ext.Slider({
+    width: 214,
+    minValue: 0,
+    maxValue: 100,
+    plugins: new Ext.slider.Tip()
+});
+  Optionally provide your own tip text by overriding getText:
+  
+
+ new Ext.Slider({
+     width: 214,
+     minValue: 0,
+     maxValue: 100,
+     plugins: new Ext.slider.Tip({
+         getText: function(thumb){
+             return String.format('
+{0}% complete', thumb.value);
+         }
+     })
+ });
+  
  */
 
-@InstanceOf("Ext.grid.PropertyStore")
-@ParseConfigMode(ui = false,name="store",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
-@FacesComponent(value = "Ext.grid.PropertyStore")
-public class PropertyStore extends ext.util.Observable {
-	public static final String COMPONENT_FAMILY = "Ext.grid.PropertyStore";
+@InstanceOf("Ext.slider.Tip")
+
+@FacesComponent(value = "Ext.slider.Tip")
+public class Tip extends ext.Tip {
+	public static final String COMPONENT_FAMILY = "Ext.slider.Tip";
 
 	/**
 	 * <p>
-	 * Create a new {@link Ext.grid.PropertyStore} instance with default property values.
+	 * Create a new {@link Ext.slider.Tip} instance with default property values.
 	 * </p>
 	 */
-	public PropertyStore() {
+	public Tip() {
 		super();
 		this.setRendererType(COMPONENT_FAMILY);
 	}

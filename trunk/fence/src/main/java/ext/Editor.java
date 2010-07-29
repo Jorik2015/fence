@@ -365,7 +365,7 @@ public class Editor extends Component {
         complete the
         editing process if in edit mode when the field is
         blurred. Defaults to 
-        false.
+        true.
 	 */
 	
 	public Boolean getAllowBlur () {

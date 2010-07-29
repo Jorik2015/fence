@@ -28,11 +28,15 @@ import java.util.Date;
   provides for grouping records by one of the available fields.
   This is usually used in conjunction with an 
   Ext.grid.GroupingView to
-  proved the data model for a grouped GridPanel.
+  provide the data model for a grouped GridPanel. Internally,
+  GroupingStore is simply a normal Store with multi sorting enabled
+  from the start. The grouping field and direction are always
+  injected as the first sorter pair. GroupingView picks up on the
+  configured groupField and builds grid rows appropriately.
  */
 @XType("groupingstore")
 @InstanceOf("Ext.data.GroupingStore")
-@ParseConfigMode(id=false,ui = false,name="store",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
+@ParseConfigMode(ui = false,name="store",pmode=PersistenceMode.ParentProperty,rmode=ReferenceMode.Var)
 @FacesComponent(value = "Ext.data.GroupingStore")
 public class GroupingStore extends Store {
 	public static final String COMPONENT_FAMILY = "Ext.data.GroupingStore";
@@ -144,6 +148,9 @@ public class GroupingStore extends Store {
 	@Override
 	public Collection<String> getEventNames() {
 		Collection<String> superEvent = super.getEventNames();
+				superEvent.addAll(Arrays.asList(
+					 "groupchange"
+				));
 				return superEvent;
 	}
 }

@@ -57,27 +57,21 @@ function(direction){
     
 // This routine could contain business logic required to manage
 the navigation steps.
-
     
 // It would call setActiveItem as needed, manage navigation
 button state, handle any
-
     
 // branching logic that might be required, handle alternate
 actions like cancellation
-
     
 // or finalization, etc.  A complete wizard implementation could
 get pretty
-
     
 // sophisticated depending on the complexity required, and
 should probably be
-
     
 // done as a subclass of CardLayout 
 in a real-world implementation.
-
 };
 
 var card = 
@@ -88,19 +82,16 @@ new Ext.Panel({
 'card',
     activeItem: 0, 
 // make sure the active item is set on the container config!
-
     bodyStyle: 
 'padding:15px',
     defaults: {
         
 // applied to each contained panel
-
         border:false
     },
     
 // just an example of one possible navigation scheme, using
 buttons
-
     bbar: [
         {
             id: 
@@ -112,8 +103,8 @@ buttons
         },
         
 '->', 
-// greedy spacer so that the buttons are aligned to each side
-
+// greedy spacer so that the buttons are aligned to each
+side
         {
             id: 
 'move-next',
@@ -125,7 +116,6 @@ buttons
     
 // the panels (or 
 "cards") within the layout
-
     items: [{
         id: 
 'card-0',
@@ -177,6 +167,7 @@ public class CardLayout extends FitLayout {
 			,fieldTpl
 			,trackLabels
 			,labelSeparator
+			,defaultAnchor
 			,anchor
 			,defaultMargins
 			,pack
@@ -503,6 +494,25 @@ for=
 	public void setLabelSeparator ( String   labelSeparator ) {
 		getStateHelper().put(PropertyKeys.labelSeparator, labelSeparator);
 		handleAttribute("labelSeparator", labelSeparator);
+	}
+    	/*
+	 *default anchor for all child container
+          items applied if no anchor or specific width is set on
+          the child item. Defaults to '100%'.
+	 */
+	
+	public String getDefaultAnchor () {
+		return (String) getStateHelper().eval(PropertyKeys.defaultAnchor);
+	}
+
+	/**
+	 * <p>
+	 * Set the value of the <code>defaultAnchor</code> property.
+	 * </p>
+	 */
+	public void setDefaultAnchor ( String   defaultAnchor ) {
+		getStateHelper().put(PropertyKeys.defaultAnchor, defaultAnchor);
+		handleAttribute("defaultAnchor", defaultAnchor);
 	}
     	/*
 	 *

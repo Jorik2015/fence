@@ -52,7 +52,7 @@ class's
         
 // Call our superclass constructor to complete construction
 process.
-        Employee.superclass.constructor.call(config)
+        Employee.superclass.constructor.call(this, config)
     }
 });
   This could then be used like this:
