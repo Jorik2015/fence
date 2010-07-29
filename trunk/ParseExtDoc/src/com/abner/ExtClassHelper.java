@@ -127,6 +127,10 @@ public class ExtClassHelper {
 		if (ext.getPk().equalsIgnoreCase("Ext") && ext.getClazz().equalsIgnoreCase("Action")) {
 			result = "HackAction";
 		}
+		
+		if (ext.getPk().equalsIgnoreCase("Ext.slider") && ext.getClazz().equalsIgnoreCase("Tip")) {
+			result = "ext.Tip";
+		}
 
 		if (ext.getClazz().equalsIgnoreCase("BaseItem")) {
 			result = "ExtCommand";

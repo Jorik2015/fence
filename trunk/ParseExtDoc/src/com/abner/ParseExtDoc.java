@@ -40,7 +40,7 @@ import com.abner.model.Config;
 import com.abner.model.ExtClass;
 
 public class ParseExtDoc {
-	private static String docPath = "E:\\lib\\ext-3.1.1\\docs";
+	private static String docPath = "E:\\Fence\\ext-3.2.1\\docs";
 	private static String sourcePath = docPath + File.separator + "output";
 	private static String xhtmlpPath = docPath + File.separator + "xhtml";
 	private static String outPath = "E:\\Fence\\fence\\src\\main\\java\\";
@@ -52,14 +52,14 @@ public class ParseExtDoc {
 		Velocity.init();
 		Template t = Velocity.getTemplate("clazz.vm");
 
-		// parseHtmlToXhtml(sourcePath);
-		scanFiles(t, xhtmlpPath);
+		//parseHtmlToXhtml(sourcePath);
+		buildJavaFiles(t, xhtmlpPath);
 		genCustomComponent(t);
 		collectLayout(t);
 	}
 
 	// 转换为标准的xhtml
-	public static void parseHtmlToXhtml(String path) throws Exception {
+	private static void parseHtmlToXhtml(String path) throws Exception {
 		File fileDir = new File(path);
 		File[] files = fileDir.listFiles(new XhtmlFileFilter());
 		for (File file : files) {
@@ -90,12 +90,12 @@ public class ParseExtDoc {
 		System.out.println("Parse end=========================");
 	}
 
-	private static void scanFiles(Template t, String dir) throws Exception {
+	private static void buildJavaFiles(Template t, String dir) throws Exception {
 		File fileDir = new File(dir);
 		File[] files = fileDir.listFiles();
 		for (File file : files) {
 			if (file.isDirectory())
-				scanFiles(t, file.getPath());
+				buildJavaFiles(t, file.getPath());
 			if (!file.getName().startsWith("Ext"))
 				continue;
 
