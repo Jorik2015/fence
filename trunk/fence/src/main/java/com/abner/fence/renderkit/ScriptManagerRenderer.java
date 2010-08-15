@@ -43,11 +43,18 @@ public class ScriptManagerRenderer extends Renderer {
 			scriptManager.setVersion(version);
 		}
 		version = version.replaceAll("\\.", "");
+		
+		StringBuilder sb = new StringBuilder();
 
 		String temp = ScriptManager.ScriptIncludeTemplate;
-		writer.write(MessageFormat.format(temp, prefix + ExtResources.PREFIX + ScriptManager.ScriptManager + "?key="
+		sb.append(MessageFormat.format(temp, prefix + ExtResources.PREFIX + ScriptManager.ScriptManager + "?key="
 				+ JSUtils.getKey() + "&debug=" + scriptManager.isDebug() + "&st=" + System.currentTimeMillis()));
 
+		temp = ScriptManager.StyleIncludeTemplate;
+		sb.append(MessageFormat.format(temp, prefix + MessageFormat.format(ExtResources.EXT_CSS_ALL,ExtUtils.VERSION)));
+
+		writer.write(sb.toString());
+		
 		// 收集图标
 		outputIcons(context, scriptManager);
 	}

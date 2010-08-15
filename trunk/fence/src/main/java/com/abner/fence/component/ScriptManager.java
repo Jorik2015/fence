@@ -16,6 +16,7 @@ import com.abner.fence.utils.AjaxJSUtils;
 import com.abner.fence.utils.FacesUtils;
 import com.abner.fence.utils.JSUtils;
 import com.abner.fence.utils.RequestUtils;
+import com.abner.fence.utils.Utils;
 import com.abner.fence.web.RequestContext;
 import com.abner.fence.web.ScriptReository;
 
@@ -24,8 +25,7 @@ import com.abner.fence.web.ScriptReository;
 		@ResourceDependency(library = "ext#{ext.version}/adapter/#{ext.adapter}", name = "ext-base#{ext.debugSuffix}.js"),
 		@ResourceDependency(library = "ext#{ext.version}", name = "ext-all#{ext.debugSuffix}.js"),
 		@ResourceDependency(name = "fencebase#{ext.debugSuffix}.js"),
-		@ResourceDependency(name = "ext#{ext.version}/resources/css/ext-all.css")
-
+/* @ResourceDependency(name = "ext#{ext.version}/resources/css/ext-all.css") */
 })
 public class ScriptManager extends ExtComponent {
 	private static final String CHART_URL_KEY = "Ext.chart.Chart.CHART_URL";
@@ -81,10 +81,10 @@ public class ScriptManager extends ExtComponent {
 		scriptReository.RegisterGlobalClientScript("Fence.AppPath = '" + FacesUtils.getHostAppPath() + "';");
 		scriptReository.RegisterGlobalClientScript(AJAX_PATH + " = '" + RequestUtils.getAjaxActionPath() + "';");
 		scriptReository.RegisterGlobalClientScript("Ext.BLANK_IMAGE_URL = '"
-				+ FacesUtils.extContext().getRequestContextPath() + "/"
+				+ FacesUtils.extContext().getRequestContextPath() + ExtResources.PREFIX
 				+ MessageFormat.format(ExtResources.BLANK_IMAGE_URL, version) + "';");
 		scriptReository.RegisterGlobalClientScript(CHART_URL_KEY + " = '"
-				+ FacesUtils.extContext().getRequestContextPath()
+				+ FacesUtils.extContext().getRequestContextPath() + ExtResources.PREFIX
 				+ MessageFormat.format(ExtResources.CHART_URL, version) + "';");
 		scriptReository.RegisterGlobalClientScript(JSUtils.getGlobalScript());
 

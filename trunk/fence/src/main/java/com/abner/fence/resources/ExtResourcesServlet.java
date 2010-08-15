@@ -52,6 +52,8 @@ public class ExtResourcesServlet extends HttpServlet {
 			response.reset();
 			writePageScript(request, response);
 			return;
+		}else{
+			path = "META-INF/" + path;
 		}
 		long modifiedSince = request.getDateHeader("If-Modified-Since");
 		if (modifiedSince != -1) {
