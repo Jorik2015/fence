@@ -315,8 +315,7 @@ in data object
           Ext.data.Types
           class.
 	 */
-	@ClientConfig(JsonMode.Object)
-
+	
 	public Object getType () {
 		return (Object) getStateHelper().eval(PropertyKeys.type);
 	}
