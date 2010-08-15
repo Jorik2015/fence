@@ -91,6 +91,14 @@ public class ExtClassHelper {
 				cfg.add(config);
 			}
 			ext.setConfigs(cfg);
+			
+			if(ext.getPk().equals("ext.data")){
+				for (Config config : ext.getConfigs()) {
+					if (config.getName().equalsIgnoreCase("type")) {
+						config.setClientConfig("");
+					}
+				}
+			}
 		}
 
 		if (ext.getClazz().equals("Menu")) {
