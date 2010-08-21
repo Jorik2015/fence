@@ -25,7 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 @SuppressWarnings("unchecked")
-public class HibernateDao<T> extends HibernateDaoSupport implements GenericDao {
+public class HibernateDao<T> extends HibernateDaoSupport implements GenericDao<T> {
 
 	@Transactional
 	public boolean delete(Object domain) {
