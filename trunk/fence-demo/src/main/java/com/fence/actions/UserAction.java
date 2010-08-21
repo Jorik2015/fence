@@ -46,7 +46,6 @@ public class UserAction {
 		System.out.println("the edituser birthdate : " + editUser.getBirthdate());
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<User> getList() {
 		if (list.isEmpty()) {
 			list = userDao.findAll();
@@ -58,7 +57,6 @@ public class UserAction {
 		return list;
 	}
 
-	@SuppressWarnings("unchecked")
 	public String[][] getArray() {
 		if (list.isEmpty()) {
 			list = userDao.findAll();
