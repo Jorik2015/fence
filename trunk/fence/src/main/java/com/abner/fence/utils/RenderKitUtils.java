@@ -90,6 +90,9 @@ public final class RenderKitUtils {
 	public static void renderBehaviors(FacesContext context, ExtComponent component) throws IOException {
 		if (!(component instanceof ClientBehaviorHolder))
 			return;
+		
+		renderJsfJs_(context);
+		
 		if (component instanceof ExtCommand)
 			renderBehaviorHandler(context, component, "click");
 

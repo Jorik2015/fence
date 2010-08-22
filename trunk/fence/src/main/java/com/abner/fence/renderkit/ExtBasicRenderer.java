@@ -143,8 +143,6 @@ public class ExtBasicRenderer<T extends ExtComponent> extends Renderer {
 
 	protected void getEndTextToRender(FacesContext context, UIComponent component, String currentValue)
 			throws IOException {
-
-		// no-op unless overridden
 	}
 
 	public void beforeEncodeBegin(FacesContext context, T component) throws IOException {
