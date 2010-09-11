@@ -22,6 +22,7 @@
 				collapseFirst="true" iconCls="list">
 				<s:toolbar>
 					<s:tbfill />
+					<s:button iconCls="add-gif" handler="nodeManageWin.show()" />
 					<s:button iconCls="collapse-all-gif"
 						handler="treePanel.collapseAll()" />
 					<s:button iconCls="expand-all-gif" handler="treePanel.expandAll()" />
@@ -73,6 +74,19 @@
 				}" />
 			</s:tabpanel>
 		</s:viewport>
+		<s:window id="nodeManageWin" title="TreeNode Management"
+			closeAction="hide" layout="fit" constrain="true" width="350"
+			height="250" autoScroll="true">
+			<s:formpanel border="false" bodyStyle="padding:5px"
+				model="treeNodeManager.treeNode">
+				<s:textfield name="nodeId" fieldLabel="Node Id"></s:textfield>
+				<s:textfield name="text" fieldLabel="Text"></s:textfield>
+				<s:textfield name="href" fieldLabel="Href"></s:textfield>
+				<s:checkbox name="expanded" fieldLabel="Expanded" />
+				<s:checkbox name="leaf" fieldLabel="Leaf" />
+				<s:button text="Save" type="submit" action="#{treeNodeManager.save}" />
+			</s:formpanel>
+		</s:window>
 	</h:body>
 </f:view>
 </html>
