@@ -187,10 +187,11 @@ public class ExtBasicRenderer<T extends ExtComponent> extends Renderer {
 		// Don't overwrite the value unless you have to!
 		String newValue = requestMap.get(submitParamName);
 		if(field instanceof Checkbox){
+			//note:don't set not string value,the value is always String from client form
 			if("on".equals(newValue) || "true".equals(newValue))
-				setSubmittedValue(component, Boolean.TRUE);
+				setSubmittedValue(component,"true");
 			else
-				setSubmittedValue(component, Boolean.FALSE);
+				setSubmittedValue(component, "false");
 		}else if (newValue != null) {
 			setSubmittedValue(component, newValue);
 		}

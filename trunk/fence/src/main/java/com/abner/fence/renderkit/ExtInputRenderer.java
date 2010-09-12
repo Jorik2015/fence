@@ -21,6 +21,7 @@ import com.abner.fence.utils.JSUtils;
 import com.abner.fence.web.ExtFacesMessage;
 
 import ext.Toolbar;
+import ext.form.Checkbox;
 import ext.form.CheckboxGroup;
 import ext.form.Field;
 import ext.form.FieldSet;
@@ -77,8 +78,12 @@ public class ExtInputRenderer extends ExtBasicRenderer<ExtInput> {
 	@Override
 	public void beforeEncodeEnd(FacesContext context, ExtInput component) throws IOException {
 		super.beforeEncodeEnd(context, component);
+		//for checkbox ,we can use a converter
 		String value = getCurrentValue(context, (UIComponent) component);
 		component.handleConfig("value", value);
+		if(component instanceof Checkbox){
+			component.handleConfig("checked","true".equals(value));
+		}
 	}
 
 	@Override
@@ -99,7 +104,6 @@ public class ExtInputRenderer extends ExtBasicRenderer<ExtInput> {
 	private boolean hasStringConverterSet = false;
 
 	// ---------------------------------------------------------- Public Methods
-	@SuppressWarnings("unchecked")
 	@Override
 	public Object getConvertedValue(FacesContext context, UIComponent component, Object submittedValue)
 			throws ConverterException {
@@ -123,7 +127,7 @@ public class ExtInputRenderer extends ExtBasicRenderer<ExtInput> {
 		}
 
 		if (null == converter && null != valueExpression) {
-			Class converterType = valueExpression.getType(context.getELContext());
+			Class<?> converterType = valueExpression.getType(context.getELContext());
 			// if converterType is null, assume the modelType is "String".
 			if (converterType == null || converterType == Object.class)
 				return newValue;
