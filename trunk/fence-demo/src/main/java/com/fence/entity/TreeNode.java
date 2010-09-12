@@ -1,5 +1,6 @@
 package com.fence.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,11 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class TreeNode {
+public class TreeNode implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3342945795220718047L;
 	private String nodeId;
 	private String text;
 	private String href;
-	private boolean expanded;
+	private boolean expanded = true;
 	private String iconCls;
 	private boolean leaf;
 	private List<TreeNode> children = new ArrayList<TreeNode>();

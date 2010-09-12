@@ -51,6 +51,32 @@ Docs.classData = {
 		} ]
 	}, {
 		"href" : "",
+		"text" : "Buttons",
+		"id" : "Buttons",
+		"isClass" : true,
+		"iconCls" : "icon-cmp",
+		"cls" : "cls",
+		"leaf" : false,
+		"expanded" : false,
+		children : [ {
+			"href" : "button/action.xhtml",
+			"text" : "Action",
+			"id" : "Ext.Action",
+			"isClass" : true,
+			"iconCls" : "icon-cmp",
+			"cls" : "cls",
+			"leaf" : true
+		}, {
+			"href" : "button/button.xhtml",
+			"text" : "button",
+			"id" : "Ext.Button",
+			"isClass" : true,
+			"iconCls" : "icon-cmp",
+			"cls" : "cls",
+			"leaf" : true
+		} ]
+	}, {
+		"href" : "",
 		"text" : "Data",
 		"id" : "data",
 		"isClass" : true,
@@ -102,32 +128,6 @@ Docs.classData = {
 			"href" : "data/arraystore.xhtml",
 			"text" : "ArrayStore",
 			"id" : "Ext.data.ArrayStore",
-			"isClass" : true,
-			"iconCls" : "icon-cmp",
-			"cls" : "cls",
-			"leaf" : true
-		} ]
-	}, {
-		"href" : "",
-		"text" : "Buttons",
-		"id" : "Buttons",
-		"isClass" : true,
-		"iconCls" : "icon-cmp",
-		"cls" : "cls",
-		"leaf" : false,
-		"expanded" : false,
-		children : [ {
-			"href" : "button/action.xhtml",
-			"text" : "Action",
-			"id" : "Ext.Action",
-			"isClass" : true,
-			"iconCls" : "icon-cmp",
-			"cls" : "cls",
-			"leaf" : true
-		}, {
-			"href" : "button/button.xhtml",
-			"text" : "button",
-			"id" : "Ext.Button",
 			"isClass" : true,
 			"iconCls" : "icon-cmp",
 			"cls" : "cls",

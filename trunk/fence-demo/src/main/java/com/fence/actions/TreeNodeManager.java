@@ -1,15 +1,13 @@
 package com.fence.actions;
 
-import java.io.Serializable;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.fence.entity.TreeNode;
 
 @Controller("treeNodeManager")
-@Scope("session")
-public class TreeNodeManager implements Serializable {
+@Scope("request")
+public class TreeNodeManager {
 	
 	private static final long serialVersionUID = -5754891622763122888L;
 	
@@ -23,6 +21,6 @@ public class TreeNodeManager implements Serializable {
 		if (treeNode == null)
 			treeNode = new TreeNode();
 
-		return treeNode;//15819552480
+		return treeNode;
 	}
 }

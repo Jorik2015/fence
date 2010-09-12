@@ -36,7 +36,7 @@
 					if(!n.isLeaf())
 						return;
 					e.stopEvent();
-					mainPanel.loadClass(n.attributes.href,n.id);
+					mainPanel.loadPage(n.attributes.href,n.id);
 				}" />
 			</s:treepanel>
 			<s:tabpanel id="mainPanel" title="Center" region="center"
@@ -50,7 +50,7 @@
 				<s:toolbar position="bbar">
 					<s:tbtextitem text="Copy Right 2009" />
 				</s:toolbar>
-				<s:function name="loadClass"
+				<s:function name="loadPage"
 					handler="function(href,cls){
 					 	var id = 'docs-' + cls;
 				        var ps = cls.split('.');
@@ -84,7 +84,9 @@
 				<s:textfield name="href" fieldLabel="Href"></s:textfield>
 				<s:checkbox name="expanded" fieldLabel="Expanded" />
 				<s:checkbox name="leaf" fieldLabel="Leaf" />
-				<s:button text="Save" type="submit" action="#{treeNodeManager.save}" />
+				<s:button text="Save" type="submit" action="#{treeNodeManager.save}" >
+					<s:event execute="@form" />
+				</s:button>
 			</s:formpanel>
 		</s:window>
 	</h:body>
