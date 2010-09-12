@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.fence.dao.UserDao;
-import com.fence.entity.TreeNode;
 import com.fence.entity.User;
 
 @Controller
@@ -17,7 +16,6 @@ import com.fence.entity.User;
 public class UserAction {
 	private User user;
 	private User editUser;
-	private TreeNode treeNode;
 	private List<User> list = new ArrayList<User>();
 
 	@Autowired
@@ -32,17 +30,6 @@ public class UserAction {
 		return user;
 	}
 
-	public void save() {
-		System.out.println("======" + treeNode.getText());
-	}
-
-	public TreeNode getTreeNode() {
-		if (treeNode == null)
-			treeNode = new TreeNode();
-
-		return treeNode;
-	}
-	
 	public User getEditUser() {
 		if (editUser == null)
 			editUser = new User();

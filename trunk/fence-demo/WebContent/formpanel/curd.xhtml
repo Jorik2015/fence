@@ -43,8 +43,7 @@
 						</s:submit>
 					</s:button>
 				</s:formpanel></td>
-				<td class="td">
-				<s:formpanel id="formpanel1"
+				<td class="td"><s:formpanel id="formpanel1"
 					buttonAlign="center" waitMsgTarget="true" frame="false"
 					labelWidth="79" title="Form Panel use model" width="300"
 					height="200" model="userAction.editUser">
@@ -62,20 +61,7 @@
 					<s:button text="Add" type="submit" action="#{userAction.add}">
 						<s:event execute="@form" />
 					</s:button>
-				</s:formpanel>
-				
-				<s:formpanel id="formPanel2" border="false" bodyStyle="padding:5px"
-				model="userAction.treeNode">
-					<s:textfield name="nodeId" fieldLabel="Node Id"></s:textfield>
-					<s:textfield name="text" fieldLabel="Text"></s:textfield>
-					<s:textfield name="href" fieldLabel="Href"></s:textfield>
-					<s:checkbox name="expanded" fieldLabel="Expanded" />
-					<s:checkbox name="leaf" fieldLabel="Leaf" />
-					<s:button text="Save" type="submit" action="#{userAction.save}" >
-						<s:event execute="@form" />
-					</s:button>
-				</s:formpanel>
-				</td>
+				</s:formpanel></td>
 			</tr>
 			<tr>
 				<td class="td"><s:gridpanel id="gridpanel" loadMask="true"
