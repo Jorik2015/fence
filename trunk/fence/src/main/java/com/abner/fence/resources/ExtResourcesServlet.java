@@ -386,7 +386,7 @@ public class ExtResourcesServlet extends HttpServlet {
 	 * @param request
 	 * @return
 	 */
-	private static boolean isGZipEncoding(HttpServletRequest request) {
+	private boolean isGZipEncoding(HttpServletRequest request) {
 		boolean flag = false;
 		String encoding = request.getHeader("Accept-Encoding");
 		if (encoding.indexOf("gzip") != -1) {

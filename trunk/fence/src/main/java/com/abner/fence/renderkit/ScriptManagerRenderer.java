@@ -48,7 +48,7 @@ public class ScriptManagerRenderer extends Renderer {
 
 		String temp = ScriptManager.ScriptIncludeTemplate;
 		sb.append(MessageFormat.format(temp, prefix + ExtResources.PREFIX + ScriptManager.ScriptManager + "?key="
-				+ JSUtils.getKey() + "&debug=" + scriptManager.isDebug() + "&st=" + System.currentTimeMillis()));
+				+ JSUtils.getKey() + "&amp;debug=" + scriptManager.isDebug() + "&amp;st=" + System.currentTimeMillis()));
 
 		temp = ScriptManager.StyleIncludeTemplate;
 		sb.append(MessageFormat.format(temp, prefix + MessageFormat.format(ExtResources.EXT_CSS_ALL,ExtUtils.VERSION)));

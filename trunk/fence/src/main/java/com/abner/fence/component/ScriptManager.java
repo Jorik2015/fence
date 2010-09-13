@@ -25,12 +25,11 @@ import com.abner.fence.web.ScriptReository;
 		@ResourceDependency(library = "ext#{ext.version}/adapter/#{ext.adapter}", name = "ext-base#{ext.debugSuffix}.js"),
 		@ResourceDependency(library = "ext#{ext.version}", name = "ext-all#{ext.debugSuffix}.js"),
 		@ResourceDependency(name = "fencebase#{ext.debugSuffix}.js"),
-/* @ResourceDependency(name = "ext#{ext.version}/resources/css/ext-all.css") */
 })
 public class ScriptManager extends ExtComponent {
 	private static final String CHART_URL_KEY = "Ext.chart.Chart.CHART_URL";
 	private static final String ComponentType = "Ext.ScriptManager";
-	public static final String ScriptManager = "abner.fence.script.js";
+	public static final String ScriptManager = "fence_runtime_script.js";
 	public static final String ExecuteMethodTemp = "{0}.{1}({2});";
 	public static final String IncludeJSTemp = "Fence.includeJS(''{0}'');";
 	public static final String IncludeCssTemp = "Fence.includeCss(''{0}'');";
@@ -84,8 +83,7 @@ public class ScriptManager extends ExtComponent {
 				+ FacesUtils.extContext().getRequestContextPath() + ExtResources.PREFIX
 				+ MessageFormat.format(ExtResources.BLANK_IMAGE_URL, version) + "';");
 		scriptReository.RegisterGlobalClientScript(CHART_URL_KEY + " = '"
-				+ FacesUtils.extContext().getRequestContextPath() + ExtResources.PREFIX
-				+ MessageFormat.format(ExtResources.CHART_URL, version) + "';");
+				+ FacesUtils.extContext().getRequestContextPath() + ExtResources.PREFIX	+ MessageFormat.format(ExtResources.CHART_URL, version) + "';");
 		scriptReository.RegisterGlobalClientScript(JSUtils.getGlobalScript());
 
 		// show all the content div
@@ -95,7 +93,7 @@ public class ScriptManager extends ExtComponent {
 					+ " = new Ext.util.MixedCollection();");
 			AjaxJSUtils.showAllContentDiv();
 		}
-
+		
 		super.encodeAll(context);
 	}
 
