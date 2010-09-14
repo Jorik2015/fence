@@ -25,32 +25,6 @@ Docs.classData = {
 		} ]
 	}, {
 		"href" : "",
-		"text" : "Jsf demo",
-		"id" : "jsf-demo",
-		"isClass" : true,
-		"iconCls" : "icon-cmp",
-		"cls" : "cls",
-		"leaf" : false,
-		"expanded" : false,
-		children : [ {
-			"href" : "jsf/index.html",
-			"text" : "Base Ajax",
-			"id" : "baseajax",
-			"isClass" : true,
-			"iconCls" : "icon-cmp",
-			"cls" : "cls",
-			"leaf" : true
-		}, {
-			"href" : "jsf-v/home.xhtml",
-			"text" : "Validate",
-			"id" : "jsf-Validate",
-			"isClass" : true,
-			"iconCls" : "icon-cmp",
-			"cls" : "cls",
-			"leaf" : true
-		} ]
-	}, {
-		"href" : "",
 		"text" : "Buttons",
 		"id" : "Buttons",
 		"isClass" : true,
