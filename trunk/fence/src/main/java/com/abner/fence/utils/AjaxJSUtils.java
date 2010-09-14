@@ -350,6 +350,6 @@ public final class AjaxJSUtils {
 	public static void showAllContentDiv() {
 		JSONFunction fun = new JSONFunction(new String[] { "item", "index", "length" }, "Ext.get(item).show();");
 		JSUtils.RegisterAfterClientInitScript("(function(){" + ScriptManager.All_HTML_CONTENT_DIV_VAR + ".each("
-				+ fun.toString() + ");}).defer(50);");
+				+ fun.toString() + ");}).defer(10);");
 	}
 }

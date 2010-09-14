@@ -16,7 +16,6 @@ import com.abner.fence.utils.AjaxJSUtils;
 import com.abner.fence.utils.FacesUtils;
 import com.abner.fence.utils.JSUtils;
 import com.abner.fence.utils.RequestUtils;
-import com.abner.fence.utils.Utils;
 import com.abner.fence.web.RequestContext;
 import com.abner.fence.web.ScriptReository;
 

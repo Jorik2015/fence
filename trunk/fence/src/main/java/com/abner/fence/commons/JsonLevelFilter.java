@@ -40,6 +40,10 @@ public class JsonLevelFilter implements PropertyFilter {
 			methodName = "is" + Strings.upperFirstChar(name);
 			m = ClassUtils.lookupMethod(source.getClass(), methodName);
 		}
+		
+		if(m == null)
+			return false;
+		
 		Class<?> clazz = m.getReturnType();
 
 		// 第一次进入

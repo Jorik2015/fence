@@ -44,7 +44,6 @@ Fence = function() {
 	};
 
 	var onhandlererror = function(data) {
-		// nothing;
 	};
 
 	return {
@@ -110,7 +109,7 @@ Fence = function() {
 			}
 			return true;
 		},
-		
+
 		call : function(el, callback) {
 			var params = {};
 			params["javax.faces.partial.handler"] = "actionHandler";
@@ -127,9 +126,9 @@ Fence = function() {
 				waitMsg : "Loading...",
 				success : Fence.Actions.ajaxSuccess,
 				failure : Fence.Actions.ajaxFailure,
-				callback:callback
+				callback : callback
 			});
-			
+
 			Ext.Ajax.request(options);
 		},
 
@@ -168,7 +167,8 @@ Fence = function() {
 			if (Ext.isEmpty(form)) {
 				form = document.forms[0];
 				if (Ext.isEmpty(form)) {
-					Fence.error("Fence.request: must be called in FormPanel or h:form");
+					Fence
+							.error("Fence.request: must be called in FormPanel or h:form");
 					return false;
 				}
 				formid = form.id;
@@ -246,7 +246,8 @@ Fence = function() {
 			if (options.onerror && typeof options.onerror === 'function') {
 				onerror = options.onerror;
 			} else if (options.onerror && typeof options.onerror !== 'function') {
-				Fence.error("Fence.request: the onerror callback that was not a function");
+				Fence
+						.error("Fence.request: the onerror callback that was not a function");
 				return false;
 			}
 			if (!onerror)
@@ -261,7 +262,8 @@ Fence = function() {
 			if (options.onevent && typeof options.onevent === 'function') {
 				onevent = options.onevent;
 			} else if (options.onevent && typeof options.onevent !== 'function') {
-				Fence.error("Fence.request: the onevent callback that was not a function");
+				Fence
+						.error("Fence.request: the onevent callback that was not a function");
 				return false;
 			}
 
@@ -312,20 +314,21 @@ Fence = function() {
 				jsf.ajax.response(action.response, action.options.context);
 			},
 			actionFailure : function(form, action) {
-				 switch (action.failureType) {
-		            case Ext.form.Action.CLIENT_INVALID:
-		            	Fence.error('Form fields may not be submitted with invalid values');
-		                break;
-		            case Ext.form.Action.CONNECT_FAILURE:
-		            	Fence.error('Ajax communication failed');
-		                break;
-		            case Ext.form.Action.SERVER_INVALID:
-		            	Fence.error(action.result.msg);
-		            	break;
-		            case Ext.form.Action.LOAD_FAILURE:
-		            	Fence.error(action.result.msg);
-		            	break;
-				 }
+				switch (action.failureType) {
+				case Ext.form.Action.CLIENT_INVALID:
+					Fence
+							.error('Form fields may not be submitted with invalid values');
+					break;
+				case Ext.form.Action.CONNECT_FAILURE:
+					Fence.error('Ajax communication failed');
+					break;
+				case Ext.form.Action.SERVER_INVALID:
+					Fence.error(action.result.msg);
+					break;
+				case Ext.form.Action.LOAD_FAILURE:
+					Fence.error(action.result.msg);
+					break;
+				}
 			},
 			ajaxCallBack : function(options, success, response) {
 				jsf.ajax.response(response, options.context);
