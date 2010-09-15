@@ -1,3 +1,25 @@
+/*
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+ * 
+ * Copyright 2009-2010 5base, Inc. All rights reserved.
+ * 
+ * The contents of this file are subject to the terms of either the GNU
+ * General Public License Version 3 only ("GPL") or the Common Development
+ * and Distribution License("CDDL") (collectively, the "License").  You
+ * may not use this file except in compliance with the License.
+ * See the License for the specific language governing permissions and limitations under the License.
+ * 
+ * When distributing the software, include this License Header Notice in each
+ * file and include 5base License file at root If applicable, add the following below the License
+ * Header, with the fields enclosed by brackets [] replaced by your own
+ * identifying information: "Portions Copyrighted [year]
+ * [name of copyright owner]"
+ * 
+ * Open Source License
+ * ------------------------------------------------------------------------------------------
+ * Ext is licensed under the terms of the Open Source GPL 3.0 license. 
+ * http://www.gnu.org/licenses/gpl.html
+ */
 package com.abner.fence.ajax;
 
 import java.util.HashMap;
@@ -13,6 +35,13 @@ import javax.faces.component.behavior.FacesBehavior;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorListener;
 
+
+/**
+ * @created Sep 15, 2010 12:13:42 PM
+ * @author arron
+ 
+ * @description ExtAjaxBehavior,this class is extend the AjaxBehavior class and add some property
+ */
 @FacesBehavior("com.fence.fence.behavior.Ajax")
 public class ExtAjaxBehavior extends AjaxBehavior {
 	public static final String BEHAVIOR_ID = "com.fence.fence.behavior.Ajax";
