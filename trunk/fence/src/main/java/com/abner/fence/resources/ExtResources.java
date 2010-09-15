@@ -1,7 +1,7 @@
 package com.abner.fence.resources;
 
 public class ExtResources {
-	public static final String PREFIX = "/extjs/faces/";
+	public static final String PREFIX = "/ext_resources/";
 	public static final String CHART_URL = "resources/ext{0}/resources/charts.swf";
 	public static final String BLANK_IMAGE_URL = "resources/ext{0}/resources/images/default/s.gif";
 
