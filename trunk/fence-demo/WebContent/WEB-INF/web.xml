@@ -47,7 +47,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Ext Resources Servlet</servlet-name>
-    <url-pattern>/extjs/faces/*</url-pattern>
+    <url-pattern>/ext_resources/*</url-pattern>
   </servlet-mapping>
   <listener>
     <listener-class>

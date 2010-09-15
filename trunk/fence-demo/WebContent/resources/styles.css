@@ -2,6 +2,10 @@
 	color: red;
 }
 
+.clear {
+	clear: both;
+}
+
 #top {
 	height: 39px;
 	border-bottom: 1px solid #135c8a;
@@ -63,4 +67,22 @@
 .code {
 	font-size: 11px;
 	color: #555555;
+}
+
+.box {
+	display: block;
+}
+
+.left {
+	float: left;
+	width: 45%;
+	margin: 10px;
+	width: 45%;
+}
+
+.right {
+	float: right;
+	width: 45%;
+	margin: 10px;
+	width: 45%;
 }

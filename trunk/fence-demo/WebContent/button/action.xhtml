@@ -1,24 +1,33 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
-	template="/derocate/part.xhtml">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://fence.com/ext" template="/derocate/part.xhtml">
 	<ui:define name="pageTitle">Button</ui:define>
 	<ui:define name="body">
-		<h:outputScript name="jsf.js" library="javax.faces" target="head" />
-		<div id="overview"><s:formpanel title="FormPanel" width="500"
-			height="400">
+		<div class="introduction">
+			Action 的行为和Button是一样的，可以当作一个按钮使用，多个按钮可以引用同一个Action。
+		</div>
+		<div class="box left">
+		 <s:formpanel title="FormPanel" height="150">
 			<s:toolbar>
-				<s:action id="action" text="Action" handler="alert('action')"/>
+				<s:action id="action" text="Action" handler="alert('action')" />
 				<s:button text="Menu">
 					<s:menu>
 						<s:textitem refer="action" />
 					</s:menu>
 				</s:button>
 				<s:tbfill />
-				<s:button text="disable" handler="action.disable()"/>
+				<s:button text="execute" handler="action.execute();" />
+				<s:button text="disable" handler="function(btn,e){
+					if(btn.getText() == 'disable'){
+						action.disable();
+						btn.setText('enable');
+					}else{
+						action.enable();
+						btn.setText('disable');
+					}}" />
 			</s:toolbar>
 			<div><s:button refer="action" /></div>
+			<s:button refer="action" />
 		</s:formpanel></div>
 	</ui:define>
 </ui:composition>

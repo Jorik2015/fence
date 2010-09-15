@@ -15,13 +15,15 @@
 			}
 		//]]>
 		</script>
-		<h:outputScript name="jsf.js" library="javax.faces" target="head" />
-		<s:panel layout="column">
-			<s:formpanel id="formpanel1" columnWidth=".5" title="FormPanel"
-				width="400" height="250">
+		<div class="introduction">
+			button 是执行页面动作的主要组件，各种button虽然各自的表现UI不一样，但是各自的行为是一样的。
+		</div>
+		<div class="box left">
+		<s:formpanel id="formpanel1" columnWidth=".5" title="FormPanel"
+				 height="250">
 				<table class="demoTable" cellpadding="0" cellspacing="0">
 					<tr>
-						<td class="td" width="200">Simple Button</td>
+						<td class="td" width="200">Simple Button:</td>
 						<td class="td"><s:button text="button"
 							handler="function(){
 						alert('function');
@@ -31,7 +33,7 @@
 						</s:button></td>
 					</tr>
 					<tr>
-						<td class="td">Confirm Button</td>
+						<td class="td">Confirm Button:</td>
 						<td class="td"><s:button id="confirmBtn" type="button"
 							render="renderPanel" text="Confirm"
 							confirmText="are you sure do the action?"
@@ -89,25 +91,27 @@
 					</tr>
 				</table>
 			</s:formpanel>
-
-			<s:formpanel id="formpanel2" columnWidth=".5" title="FormPanel"
-				width="400" height="250">
+		</div>
+		<div class="box right">
+		
+		<s:formpanel id="formpanel2" columnWidth=".5" title="FormPanel"
+				 height="250">
 				<table class="demoTable" cellpadding="0" cellspacing="0">
 					<tr>
-						<td class="td" width="200">Behavior Handler Only</td>
+						<td class="td" width="200">Behavior Handler Only:</td>
 						<td class="td"><s:button text="button" type="submit">
 							<s:event event="mouseover" args="btn,e"
 								handler="alert('Behavior Handler Only!' + btn)" />
 						</s:button></td>
 					</tr>
 					<tr>
-						<td class="td">Behavior request only</td>
+						<td class="td">Behavior request only:</td>
 						<td class="td"><s:button text="button" type="button">
 							<s:event event="mouseover" render="renderPanel" />
 						</s:button></td>
 					</tr>
 					<tr>
-						<td class="td">Behavior After Handler</td>
+						<td class="td">Behavior After Handler:</td>
 						<td class="td"><s:button text="button" type="button">
 							<s:event event="mouseover" args="btn,e"
 								handler="alert('Handler before behavior!' + btn.getId() +  arguments.length)"
@@ -115,21 +119,21 @@
 						</s:button></td>
 					</tr>
 					<tr>
-						<td class="td">Click submit only</td>
+						<td class="td">Click submit only:</td>
 						<td class="td"><s:button id="clickSubmitOnly" text="button"
 							type="button">
 							<s:event render="renderPanel" />
 						</s:button></td>
 					</tr>
 					<tr>
-						<td class="td">Click handler and submit</td>
+						<td class="td">Click handler and submit:</td>
 						<td class="td"><s:button id="handlerSubmit" text="submit"
 							type="submit" handler="function(){alert('ok')}"
 							render="renderPanel">
 						</s:button></td>
 					</tr>
 					<tr>
-						<td class="td">Click handler and submit</td>
+						<td class="td">Click handler and submit:</td>
 						<td class="td"><s:button text="submit" type="submit"
 							render="renderPanel">
 							<s:event handler="function(){alert('ok')}" />
@@ -137,7 +141,9 @@
 					</tr>
 				</table>
 			</s:formpanel>
-		</s:panel>
+		</div>
+		<div class="clear" ></div>
+		
 		<h:panelGroup id="renderPanel">
 			<span class="red">#{userAction.labelText}</span>
 		</h:panelGroup>
