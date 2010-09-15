@@ -183,17 +183,17 @@ Docs.classData = {
 		} ]
 	}, {
 		"href" : "",
-		"text" : "GridPanel",
-		"id" : "Ext.GridPanel",
+		"text" : "Grids",
+		"id" : "Ext.Grids",
 		"isClass" : true,
 		"iconCls" : "icon-cmp",
 		"cls" : "cls",
 		"leaf" : false,
 		"expanded" : true,
 		"children" : [ {
-			"href" : "grid/gridpanel.xhtml",
-			"text" : "GridPanel",
-			"id" : "Ext.Grid",
+			"href" : "grid/basicarraygrid.xhtml",
+			"text" : "Basic Array Grid",
+			"id" : "Ext.BasicArrayGrid",
 			"isClass" : true,
 			"iconCls" : "icon-cmp",
 			"cls" : "cls",
