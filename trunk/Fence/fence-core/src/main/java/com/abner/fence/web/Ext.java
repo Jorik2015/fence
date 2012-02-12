@@ -13,13 +13,13 @@ import com.abner.fence.utils.FacesUtils;
 @ManagedBean
 @SessionScoped
 public class Ext implements Serializable {
+	private String version = ExtUtils.VERSION;
+	private String  adapter = "ext";
+	
 	/**
 	 */
 	private static final long serialVersionUID = 3789767031124785501L;
 
-	public String getVersion() {
-		return ExtUtils.VERSION;
-	}
 
 	public boolean isDebug() {
 		FacesContext context = FacesUtils.context();
@@ -33,7 +33,19 @@ public class Ext implements Serializable {
 		return "";
 	}
 
+	public String getVersion() {
+		return version;
+	}
+
+	public void setVersion(String version) {
+		this.version = version;
+	}
+
 	public String getAdapter() {
-		return "ext";
+		return adapter;
+	}
+
+	public void setAdapter(String adapter) {
+		this.adapter = adapter;
 	}
 }
