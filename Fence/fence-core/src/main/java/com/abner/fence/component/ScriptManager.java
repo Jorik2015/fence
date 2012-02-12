@@ -20,11 +20,12 @@ import com.abner.fence.web.RequestContext;
 import com.abner.fence.web.ScriptReository;
 
 @ParseConfigMode(pmode = PersistenceMode.Component)
-@ResourceDependencies( {
-		@ResourceDependency(library = "ext#{ext.version}/adapter/#{ext.adapter}", name = "ext-base#{ext.debugSuffix}.js"),
+@ResourceDependencies({
+	    @ResourceDependency(library = "ext#{ext.version}/resources/css", name = "ext-all#{ext.debugSuffix}.css"),
+		@ResourceDependency(library = "ext#{ext.version}/adapter/#{ext.adapter}", name = "#{ext.adapter}#{ext.debugSuffix}.js"),
+		@ResourceDependency(library = "ext#{ext.version}/adapter/#{ext.adapter}", name = "ext-#{ext.adapter}-adapter#{ext.debugSuffix}.js"),
 		@ResourceDependency(library = "ext#{ext.version}", name = "ext-all#{ext.debugSuffix}.js"),
-		@ResourceDependency(name = "fencebase#{ext.debugSuffix}.js"),
-})
+		@ResourceDependency(name = "fencebase#{ext.debugSuffix}.js"), })
 public class ScriptManager extends ExtComponent {
 	private static final String CHART_URL_KEY = "Ext.chart.Chart.CHART_URL";
 	private static final String ComponentType = "Ext.ScriptManager";
@@ -71,28 +72,28 @@ public class ScriptManager extends ExtComponent {
 	public void encodeAll(FacesContext context) throws IOException {
 		scriptReository = JSUtils.getScriptReository();
 		ScriptManager manager = (ScriptManager) RequestContext.instance().get(ComponentType);
-		if (manager != null)
+		if (manager != null) {
 			throw new IllegalArgumentException("The ScriptManager only one in page.");
+		}
 
 		RequestContext.instance().put(ComponentType, this);
 
 		scriptReository.RegisterGlobalClientScript("Fence.AppPath = '" + FacesUtils.getHostAppPath() + "';");
 		scriptReository.RegisterGlobalClientScript(AJAX_PATH + " = '" + RequestUtils.getAjaxActionPath() + "';");
 		scriptReository.RegisterGlobalClientScript("Ext.BLANK_IMAGE_URL = '"
-				+ FacesUtils.extContext().getRequestContextPath() + ExtResources.PREFIX
+				+ FacesUtils.extContext().getRequestContextPath() + "/"
 				+ MessageFormat.format(ExtResources.BLANK_IMAGE_URL, version) + "';");
-		scriptReository.RegisterGlobalClientScript(CHART_URL_KEY + " = '"
-				+ FacesUtils.extContext().getRequestContextPath() + ExtResources.PREFIX	+ MessageFormat.format(ExtResources.CHART_URL, version) + "';");
+		scriptReository.RegisterGlobalClientScript(CHART_URL_KEY + " = '" + FacesUtils.extContext().getRequestContextPath()
+				+ "/" + MessageFormat.format(ExtResources.CHART_URL, version) + "';");
 		scriptReository.RegisterGlobalClientScript(JSUtils.getGlobalScript());
 
 		// show all the content div
 		if (!RequestUtils.isAjaxRequest()) {
 			scriptReository.putGlobalVar(All_HTML_CONTENT_DIV_VAR);
-			scriptReository.RegisterBeforeClientInitScript(All_HTML_CONTENT_DIV_VAR
-					+ " = new Ext.util.MixedCollection();");
+			scriptReository.RegisterBeforeClientInitScript(All_HTML_CONTENT_DIV_VAR + " = new Ext.util.MixedCollection();");
 			AjaxJSUtils.showAllContentDiv();
 		}
-		
+
 		super.encodeAll(context);
 	}
 
