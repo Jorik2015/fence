@@ -24,7 +24,7 @@ import ext.form.Action;
 import java.util.Date;
 
 /**
- * ${ext.commonts}
+ * 
  */
 @XType("cartesianchart")
 @InstanceOf("Ext.chart.CartesianChart")
