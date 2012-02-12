@@ -13,7 +13,7 @@ import com.abner.fence.commons.DateJsonValueProcessor;
 import com.abner.fence.component.ExtComponent;
 
 public class ExtUtils {
-	public static final String VERSION = "321";
+	public static final String VERSION = "340";
 	public static final String NULL = null;
 	public static final String PREFIX_RAW_VALUE = "@";
 	public static final String SUFFIX_HTML_ID = "_html";
