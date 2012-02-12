@@ -41,10 +41,10 @@ import com.sun.org.apache.xml.internal.serializer.Serializer;
 import com.sun.org.apache.xml.internal.serializer.SerializerFactory;
 
 public class ParseExtDoc {
-	private static String docPath = "E:\\lib\\ext-3.4.0\\docs";
+	private static String docPath = "D:\\AppServ\\www\\ext-3.4.0\\docs";
 	private static String sourcePath = docPath + File.separator + "output";
 	private static String xhtmlpPath = docPath + File.separator + "xhtml";
-	private static String outPath = "E:\\stsws\\fence\\src\\main\\java\\";
+	private static String outPath = "E:\\lib\\Fence\\fence-core\\src\\main\\java\\";
 	private static String tempPath = "src/com/abner/templates";
 	private static DocumentBuilder builder = null;
 
