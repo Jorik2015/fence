@@ -87,6 +87,11 @@
 	</dependencyManagement>
 	<repositories>
 		<repository>
+			<id>jvnet-nexus-releases</id>
+			<name>jvnet-nexus-releases</name>
+			<url>https://maven.java.net/content/repositories/releases/</url>
+		</repository>
+		<repository>
 			<id>maven-nuxeo</id>
 			<name>Maven Nuxeo Repository</name>
 			<url>https://maven.nuxeo.org/nexus/content/groups/public/</url>
