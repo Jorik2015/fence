@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+	<h:head>
+		<s:script debug="true" ux="true" />
+		<h:outputScript name="tree.js" library="scripts" />
+		<h:outputStylesheet name="styles.css" />
+	</h:head>
+	<h:body>
+		<s:viewport layout="border">
+			<s:panel region="north" height="40">
+				<div id="top">
+				<h1>Fence</h1>
+				<span><a href="#">5base.net</a></span></div>
+			</s:panel>
+			<s:treepanel region="west" id="treePanel" margins="2 0 2 0"
+				width="200" split="true" title="Navigation" lines="false" mixSize="175"
+				rootVisible="false" animCollapse="false" autoScroll="true" collapseMode="mini"
+				collapseFirst="true" iconCls="list">
+				<s:toolbar>
+					<s:tbfill />
+					<s:button iconCls="add-gif" handler="nodeManageWin.show()" />
+					<s:button iconCls="collapse-all-gif"
+						handler="treePanel.collapseAll()" />
+					<s:button iconCls="expand-all-gif" handler="treePanel.expandAll()" />
+				</s:toolbar>
+				<s:asynctreenode text="Fence Component" childs="@[Docs.classData]"
+					expanded="true" id="root">
+				</s:asynctreenode>
+				<s:treeloader preloadChildren="true" clearOnLoad="false" />
+				<s:event event="click"
+					handler="function(n,e){
+					if(!n.isLeaf())
+						return;
+					e.stopEvent();
+					mainPanel.loadPage(n.attributes.href,n.id);
+				}" />
+			</s:treepanel>
+			<s:tabpanel id="mainPanel" title="Center" region="center"
+				enableTabScroll="true" defaults="{xtype:'iframepanel'}"
+				activeTab="home" cmargins="2 0 5 0" margins="2 0 5 0">
+				<s:mifpanel id="home" defaultSrc="/overview.xhtml" iconCls="home"
+					title="Home" autoScroll="true">
+				</s:mifpanel>
+				<s:tabclosemenu />
+				<ui:insert name="body" />
+				<s:toolbar position="bbar">
+					<s:tbtextitem text="Copy Right 2009" />
+				</s:toolbar>
+				<s:function name="loadPage"
+					handler="function(href,cls){
+					 	var id = 'docs-' + cls;
+				        var ps = cls.split('.');
+				        var title = ps[ps.length-1];
+				        href = 'faces/' + href + '?st=' + Math.random();
+				         
+				        var tab = this.getComponent(id);
+				        tab || (tab = this.add({
+				                id: id,
+				                title : title,
+				                closable: true,
+				                autoScroll:true,
+				                defaultSrc : href,
+				                loadMask : href ? {msg:'Loading...'} : false                
+				            }));
+			                
+			            if(!tab.rendered){
+			                this.doLayout();
+			            }
+			            this.setActiveTab(tab);
+				}" />
+			</s:tabpanel>
+		</s:viewport>
+		<s:window id="nodeManageWin" title="TreeNode Management"
+			closeAction="hide" layout="fit" constrain="true" width="350"
+			height="250" autoScroll="true">
+			<s:formpanel border="false" bodyStyle="padding:5px"
+				model="treeNodeManager.treeNode">
+				<s:textfield name="nodeId" fieldLabel="Node Id"></s:textfield>
+				<s:textfield name="text" fieldLabel="Text"></s:textfield>
+				<s:textfield name="href" fieldLabel="Href"></s:textfield>
+				<s:checkbox name="expanded" fieldLabel="Expanded" />
+				<s:checkbox name="leaf" fieldLabel="Leaf" />
+				<s:button text="Save" type="submit" action="#{treeNodeManager.save}" >
+					<s:event execute="@form" />
+				</s:button>
+			</s:formpanel>
+		</s:window>
+	</h:body>
+</f:view>
+</html>

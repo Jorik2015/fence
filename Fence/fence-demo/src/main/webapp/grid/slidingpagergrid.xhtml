@@ -1,0 +1,76 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/layout/part.xhtml">
+	<ui:define name="pageTitle">GridPanel</ui:define>
+	<ui:define name="body">
+		<table class="demoTable" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="td">
+				<s:gridpanel id="gridpanel1" loadMask="true"
+					title="Paging grid use ToolBar" height="210" width="750"
+					trackMouseOver="false" frame="true">
+					<s:panelresizer minHeight="100"/>
+					<s:toolbar>
+						<s:button text="R(GridPanel)" type="button" iconCls="rerender"
+							render="gridpanel3" tooltip="Rerender the GridPanel"></s:button>
+						<s:button text="R(Store)" type="button" iconCls="rerender"
+							render="store3" tooltip="Rerender the Store"></s:button>
+						<s:button text="R(Load)" type="button" iconCls="rerender"
+							handler="store3.load();" tooltip="ReLoad the Store"></s:button>
+					</s:toolbar>
+					<s:cm>
+						<s:rownumber />
+						<s:column header="username" dataIndex="username" width="100"
+							sortable="true" />
+						<s:column header="password" dataIndex="password" width="100" />
+						<s:datecolumn header="BirthDate" dataIndex="birthDate" width="100" />
+						<s:column header="Salary" dataIndex="salary" width="100" />
+					</s:cm>
+
+					<s:store id="store3" data="#{userAction.pagingUsers}" totalCount="#{userAction.pagingCount}">
+						<s:jsonreader>
+							<s:dfield name="username" />
+							<s:dfield name="password" />
+							<s:dfield name="birthDate" type="date" dateFormat="Y-m-d H:i:s" />
+							<s:dfield name="salary" type="float" />
+						</s:jsonreader>
+					</s:store>
+					<s:pagingtoolbar pageSize="5" store="store3" displayInfo="true">
+						<s:slidingpager />
+					</s:pagingtoolbar>
+				</s:gridpanel></td>
+			</tr>
+			<tr>
+			<td>
+				<div class="code">
+					<h1>Java code</h1>
+					<pre class="brush:java">
+public List&lt;UserEntity&gt; getPagingUsers(){
+	int start = Params.getParam("start").getIntValue();
+	int limit = Params.getParam("limit").getIntValue();
+	if(limit == 0)
+		limit = 5;
+	
+	if (users == null)
+		users = userDao.findAll(start,limit);
+
+	for (UserEntity user : users) {
+		user.setMobile(user.getMobile() + rand.nextInt(20));
+		user.setSalary(user.getSalary() * rand.nextDouble());
+	}
+
+	return users;
+}
+
+public int getPagingCount(){
+	return userDao.getCount();
+}
+					</pre>
+				</div>
+			</td>
+			</tr>
+		</table>
+	</ui:define>
+</ui:composition>
