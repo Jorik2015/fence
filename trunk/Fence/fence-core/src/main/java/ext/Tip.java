@@ -23,7 +23,7 @@ import java.util.*;
 import java.util.Date;
 
 /**
- * ${ext.commonts}
+ * 
  */
 
 @InstanceOf("Ext.Tip")
