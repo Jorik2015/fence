@@ -17,6 +17,7 @@ import com.abner.fence.utils.ExtUtils;
 import com.abner.fence.utils.FacesUtils;
 import com.abner.fence.utils.JSUtils;
 import com.abner.fence.utils.Strings;
+import com.abner.fence.web.Ext;
 
 import ext.Button;
 import ext.Panel;
@@ -40,21 +41,24 @@ public class ScriptManagerRenderer extends Renderer {
 		String version = scriptManager.getVersion();
 		if (Strings.isEmpty(version)) {
 			version = ExtUtils.VERSION;
-			scriptManager.setVersion(version);
 		}
 		version = version.replaceAll("\\.", "");
-		
+		scriptManager.setVersion(version);
+
+		// override the ext config
+		Ext ext = FacesUtils.getBean("ext");
+		ext.setVersion(scriptManager.getVersion());
+		ext.setAdapter(scriptManager.getAdapter().toLowerCase());
+
 		StringBuilder sb = new StringBuilder();
 
 		String temp = ScriptManager.ScriptIncludeTemplate;
-		sb.append(MessageFormat.format(temp, prefix + ExtResources.PREFIX + ScriptManager.ScriptManager + "?key="
-				+ JSUtils.getKey() + "&amp;debug=" + scriptManager.isDebug() + "&amp;st=" + System.currentTimeMillis()));
-
-		temp = ScriptManager.StyleIncludeTemplate;
-		sb.append(MessageFormat.format(temp, prefix + MessageFormat.format(ExtResources.EXT_CSS_ALL,ExtUtils.VERSION)));
+		sb.append(MessageFormat.format(temp,
+				prefix + ExtResources.PREFIX + ScriptManager.ScriptManager + "?key=" + JSUtils.getKey() + "&amp;debug="
+						+ scriptManager.isDebug() + "&amp;st=" + System.currentTimeMillis()));
 
 		writer.write(sb.toString());
-		
+
 		// 收集图标
 		outputIcons(context, scriptManager);
 	}
