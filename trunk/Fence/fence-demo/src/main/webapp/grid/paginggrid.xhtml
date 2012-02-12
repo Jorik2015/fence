@@ -1,0 +1,63 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/layout/part.xhtml">
+	<ui:define name="pageTitle">GridPanel</ui:define>
+	<ui:define name="body">
+		<table class="demoTable" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="td"><s:gridpanel id="gridpanel1" loadMask="true"
+					title="Paging grid use remote data" height="350" width="750"
+					trackMouseOver="false">
+					<s:toolbar>
+						<s:button text="R(GridPanel)" type="button" iconCls="rerender"
+							render="gridpanel1" tooltip="Rerender the GridPanel"></s:button>
+						<s:tbfill />
+						<s:button text="Update Store" iconCls="rerender"
+							tooltip="Update Store">
+							<s:event name="click"
+								handler="remoteStore.load();" />
+						</s:button>
+					</s:toolbar>
+					
+					<s:cm>
+						<s:column id="topic" width="420" renderer="renderTopic" header="Topic" dataIndex="title">
+							<s:fun name="renderTopic">
+								function renderTopic(value, p, record){
+							        return String.format(
+							                '<b><a href="http://extjs.com/forum/showthread.php?t={2}" target="_blank">{0}</a></b><a href="http://extjs.com/forum/forumdisplay.php?f={3}" target="_blank">{1} Forum</a>',
+							                value, record.data.forumtitle, record.id, record.data.forumid);
+							    };							
+							</s:fun>
+						</s:column>
+						<s:column width="100" header="Author" dataIndex="author" sortable="true"></s:column>
+						<s:column width="70" header="Replies" dataIndex="replycount" sortable="true"></s:column>
+						<s:column id="last" width="150" header="Last Post" dataIndex="lastpost" sortable="true"></s:column>
+					</s:cm>
+					<s:jsonstore id="remoteStore" autoLoad="true" root="topics" totalProperty="totalCount"
+						idProperty="threadid" remoteSort="true">
+						<s:dfield name="title"></s:dfield>
+						<s:dfield name="forumtitle" />
+						<s:dfield name="forumid" />
+						<s:dfield name="author" />
+						<s:dfield name="replycount" type="int" />
+						<s:dfield name="lastpost" type="date" dateFormat="timestamp"/>
+						<s:dfield name="lastposter" />
+						<s:dfield name="excerpt" />
+						<s:scripttagproxy
+							url="http://extjs.com/forum/topics-browse-remote.php"></s:scripttagproxy>
+					</s:jsonstore>
+					<s:pagingtoolbar position="bbar" pageSize="25" store="remoteStore" displayInfo="true">
+						<s:tbseparator></s:tbseparator>
+						<s:button pressed="true" enableToggle="true" text="Show preview" toggleHandler="function(btn, pressed){
+			                    var view = gridpanel1.getView();
+			                    view.showPreview = pressed;
+			                    view.refresh();
+			                }"></s:button>
+					</s:pagingtoolbar>
+				</s:gridpanel></td>
+			</tr>
+		</table>
+	</ui:define>
+</ui:composition>

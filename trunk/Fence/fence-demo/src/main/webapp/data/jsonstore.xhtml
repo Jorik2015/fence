@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/derocate/part.xhtml">
+	<ui:define name="pageTitle">JsonStore</ui:define>
+	<ui:define name="body">
+		<h:form id="jsfForm" />
+		<s:gridpanel store="store" title="JsonStore" width="600" height="300">
+			<s:toolbar>
+				<s:button text="load" handler="store.load()" />
+			</s:toolbar>
+			<s:jsonstore id="store" autoLoad="true" data="#{userAction.list}"
+				autoSave="false">
+				<s:dfield name="username" />
+				<s:dfield name="age" type="int" />
+				<s:dfield name="mobile" />
+				<s:dfield name="salary" type="float" />
+				<s:dfield name="birthdate" type="date" dateFormat="Y-m-d H:i:s" />
+			</s:jsonstore>
+			<s:cm>
+				<s:column header="username" dataIndex="username" />
+				<s:column header="salary" dataIndex="salary" />
+				<s:column width="100" xtype="datecolumn" header="birthdate"
+					dataIndex="birthdate" format="m/d/Y" />
+			</s:cm>
+		</s:gridpanel>
+	</ui:define>
+</ui:composition>

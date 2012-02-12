@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/derocate/part.xhtml">
+	<ui:define name="pageTitle">Store</ui:define>
+	<ui:define name="body">
+		<h:form id="jsfForm" />
+		<s:gridpanel store="store" title="Store with static data" width="600"
+			height="300">
+			<s:toolbar>
+				<s:button text="load" handler="store.load()" />
+			</s:toolbar>
+			<s:store id="store" autoLoad="true"
+				data="[['红色',1000],['绿色',900],['黄色',34],['混合色',${userAction.random}]]"
+				autoSave="false">
+				<s:arrayreader root="data">
+					<s:dfield name="color" />
+					<s:dfield name="num" type="float" />
+				</s:arrayreader>
+			</s:store>
+			<s:cm>
+				<s:column header="颜色" dataIndex="color" />
+				<s:column header="数量" dataIndex="num" />
+			</s:cm>
+		</s:gridpanel>
+	</ui:define>
+</ui:composition>

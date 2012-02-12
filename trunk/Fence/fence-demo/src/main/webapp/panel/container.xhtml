@@ -1,0 +1,75 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/derocate/part.xhtml">
+	<ui:define name="pageTitle">Button</ui:define>
+	<ui:define name="body">
+		<table class="demoTable" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="td" width="400">
+				<s:panel width="300" height="300"
+					autoScroll="true" title="simple panel">
+					<s:toolbar>
+						<s:button text="tbbutton" />
+						<s:button text="Show Floating Panel" handler="floatingPanel.setPosition(100,100);"> </s:button>
+					</s:toolbar>
+					<s:toolbar position="bbar">
+						<s:button text="bbbutton" />
+					</s:toolbar>
+					<div>before static html</div>
+					<s:panel title="Nested Panel" width="200" height="80"
+						id="panelchild">
+						<div>panel static html content.</div>
+					</s:panel>
+					<s:panel title="Nested Floating Panel" floating="true" width="200" height="80"
+						id="floatingPanel">
+						<div>panel static html content.</div>
+					</s:panel>
+					<span>asdf, span </span>
+					much text,much text,much text,much text,much text,
+					much text,much text,much text,much text,
+					much text,much text,much text,much text,
+					much text,much text,much text,much text,
+					much text,much text,much text,much text,
+					much text,much text,much text,much text,much text,
+					much text,much text,much text,
+					much text,much text,much text,
+				<s:textfield />
+				</s:panel></td>
+				<td class="td"><s:window var="win" ns="" title="Window"
+					closeAction="hide" autoShow="true" width="200" height="150">
+					<div>window</div>
+				</s:window></td>
+			</tr>
+			<tr>
+				<td class="td" colspan="2"><s:borderlayout collapsible="true"
+					bodyStyle="padding:15px">
+					<s:panel title="panel" width="400" height="200">
+						<s:panel title="west" split="true" cmargins="5 5 5 5"
+							margins="5 5 5 5" collapsible="false" region="west" />
+						<s:panel title="center" split="true" cmargins="5 5 5 5"
+							margins="5 5 5 5" region="center" />
+						<s:tabpanel region="east" width="100">
+							<s:panel title="tab1" />
+							<s:panel title="tab2" />
+						</s:tabpanel>
+					</s:panel>
+				</s:borderlayout></td>
+			</tr>
+			<tr>
+				<td class="td" colspan="2"><s:absolutelayout collapsible="true"
+					bodyStyle="padding:15px">
+					<s:panel title="absolutelayout panel" width="400" height="200">
+						<s:panel title="center" frame="true" x="40" y="40" split="true"
+							cmargins="5 5 5 5" margins="5 5 5 5" html="asdfsadf" />
+						<s:panel title="west" split="true" cmargins="5 5 5 5"
+							margins="5 5 5 5" frame="true" collapsible="false" x="60" y="80"
+							html="asdfsadfasdf" />
+					</s:panel>
+				</s:absolutelayout>
+				</td>
+			</tr>
+		</table>
+	</ui:define>
+</ui:composition>
