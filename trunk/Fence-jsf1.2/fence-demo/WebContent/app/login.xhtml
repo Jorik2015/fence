@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/layout/part.xhtml">
+	<ui:define name="pageTitle">Demo</ui:define>
+	<ui:define name="body">
+		<div id="overview">
+		<h1>Welcome to Fence App Demo</h1>
+		<p><s:window title="User Login #{userAction.labelText}" width="350" height="200"
+			layout="fit" autoShow="true" ns="" bodyStyle="padding:10px;">
+			<s:formpanel border="false" standardSubmit="false">
+				<s:textfield fieldLabel="Username" required="true" name="j_username"></s:textfield>
+				<s:textfield fieldLabel="Password" name="j_password"></s:textfield>
+				<s:checkbox fieldLabel="Remenber Me" name="_spring_security_remember_me"></s:checkbox>
+				<s:button type="submit" text="Login" action="#{loginAction.doLogin}"></s:button>
+			</s:formpanel>
+		</s:window></p>
+		
+		<s:message title="Message" width="300" height="120" autoShow="true"/>
+		</div>
+	</ui:define>
+</ui:composition>

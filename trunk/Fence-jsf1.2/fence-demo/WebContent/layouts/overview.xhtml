@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/layout/part.xhtml">
+	<ui:define name="pageTitle">Layout Overview</ui:define>
+	<ui:define name="pageHeader">
+		<script type="text/javascript"> //<![CDATA[
+	var fun1 = function(src,e){
+		alert("fun1" +src);
+	};
+	//]]> </script>
+	</ui:define>
+	<ui:define name="body">
+		<div class="introduction">
+		<h1>Layout使用说明</h1>
+		<p>从ext的角度，layout的所有config都可以直接设置在对象的config里面。
+		fence组件中layout可以有两种书写方式， 一种是使用对应的layout标签，标签里面为需要设置的对象的layout;
+		另外一种是直接将config设置在对象的属性里面。</p>
+		<p>注意，当使用layout标签时，内部所有一级子元素容器的layout都将采用标签的配置,浮动除外。</p>
+		</div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,126 @@
+<tag><description>    <![CDATA[A TreeLoader provides for lazy loading of
+an <a href="output/Ext.tree.TreeNode.html" ext:cls="Ext.tree.TreeNode">Ext.tree.TreeNode</a>'s child nodes
+from a specified URL. The response must be a JavaScript Array
+definition whose elements are node definition objects. e.g.: 
+
+<pre><code>[{
+        id: 1,
+        text: <em>'A leaf Node'</em>,
+        leaf: true
+    },{
+        id: 2,
+        text: <em>'A folder Node'</em>,
+        children: [{
+            id: 3,
+            text: <em>'A child Node'</em>,
+            leaf: true
+        }]
+   }]</code>
+</pre>
+
+<br>
+<br>
+A server request is sent, and child nodes are loaded only when a
+node is expanded. The loading node's id is passed to the server
+under the parameter name "node" to enable the server to produce the
+correct child nodes.<br>
+<br>
+To pass extra parameters, an event handler may be attached to the
+"beforeload" event, and the parameters specified in the
+TreeLoader's baseParams property: 
+
+<pre><code>myTreeLoader.on(<em>"beforeload"</em>, <b>function</b>(treeLoader, node) {
+        this.baseParams.category = node.attributes.category;
+    }, this);</code>
+</pre>
+
+This would pass an HTTP parameter called "category" to the server
+containing the value of the Node's "category" attribute.]]></description><name>treeloader</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[An object containing attributes to be added toall nodes created by this loader. If the attributes sent by the
+server have an attribute in this object, they take priority.]]>    </description>	<name>baseAttrs</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[An object containing properties which specifyHTTP parameters to be passed to each request for child nodes.]]>    </description>	<name>baseParams</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Default to true. Remove previously existingchild nodes before loading.]]>    </description>	<name>clearOnLoad</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The URL from which to request a Json string whichspecifies an array of node definition objects representing the
+child nodes to be loaded.]]>    </description>	<name>dataUrl</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Function to call when executing a request.]]>    </description>	<name>directFn</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>A config object containing one or more event handlers to be
+added to this object during initialization. This should be a valid
+listeners config object as specified in the <a href="output/Ext.util.Observable.html#Ext.util.Observable-addListener" ext:member="addListener" ext:cls="Ext.util.Observable">addListener</a> example for attaching
+multiple handlers at once.</p>
+
+<br>
+<p><b><u>DOM events from ExtJs <a href="output/Ext.Component.html" ext:cls="Ext.Component">Components</a></u></b></p>
+
+<br>
+<p>While <i>some</i> ExtJs Component classes export selected DOM
+events (e.g. "click", "mouseover" etc), this is usually only done
+when extra value can be added. For example the <a href="output/Ext.DataView.html" ext:cls="Ext.DataView">DataView</a>'s <b><code><a href="output/Ext.DataView.html#Ext.DataView-click" ext:member="click" ext:cls="Ext.DataView">click</a></code></b>
+event passing the node clicked on. To access DOM events directly
+from a Component's HTMLElement, listeners must be added to the
+<i><a href="output/Ext.Component.html#Ext.Component-getEl" ext:member="getEl" ext:cls="Ext.Component">Element</a></i> after
+the Component has been rendered. A plugin can simplify this
+step:</p>
+
+<pre><code><i>// Plugin is configured <b>with</b> a listeners config object.</i>
+<i>// The Component is appended to the argument list of all handler functions.</i>
+Ext.DomObserver = Ext.extend(Object, {
+    constructor: <b>function</b>(config) {
+        this.listeners = config.listeners ? config.listeners : config;
+    },
+
+    <i>// Component passes itself into plugin's init method</i>
+    init: <b>function</b>(c) {
+        <b>var</b> p, l = this.listeners;
+        <b>for</b> (p <b>in</b> l) {
+            <b>if</b> (Ext.isFunction(l[p])) {
+                l[p] = this.createHandler(l[p], c);
+            } <b>else</b> {
+                l[p].fn = this.createHandler(l[p].fn, c);
+            }
+        }
+
+        <i>// Add the listeners to the Element immediately following the render call</i>
+        c.render = c.render.<a href="output/Function.html#Function-createSequence" ext:member="createSequence" ext:cls="Function">createSequence</a>(<b>function</b>() {
+            <b>var</b> e = c.getEl();
+            <b>if</b> (e) {
+                e.on(l);
+            }
+        });
+    },
+
+    createHandler: <b>function</b>(fn, c) {
+        <b>return</b> <b>function</b>(e) {
+            fn.call(this, e, c);
+        };
+    }
+});
+
+<b>var</b> combo = <b>new</b> Ext.form.ComboBox({
+
+    <i>// Collapse combo when its element is clicked on</i>
+    plugins: [ <b>new</b> Ext.DomObserver({
+        click: <b>function</b>(evt, comp) {
+            comp.collapse();
+        }
+    })],
+    store: myStore,
+    typeAhead: true,
+    mode: <em>'local'</em>,
+    triggerAction: <em>'all'</em>
+});</code>
+</pre>
+
+<br>
+<br>
+]]>    </description>	<name>listeners</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Defaults to <tt>undefined</tt>. Only used whenusing directFn. A list of params to be executed server side.
+Specify the params in the order in which they must be executed on
+the server-side as either (1) an Array of String values, or (2) a
+String of params delimited by either whitespace, comma, or pipe.
+For example, any of the following would be acceptable:
+
+<pre><code>paramOrder: [<em>'param1'</em>,<em>'param2'</em>,<em>'param3'</em>]
+paramOrder: <em>'param1 param2 param3'</em>
+paramOrder: <em>'param1,param2,param3'</em>
+paramOrder: <em>'param1|param2|param'</em></code>
+</pre>
+]]>    </description>	<name>paramOrder</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Only used when using directFn. Send parameters asa collection of named arguments (defaults to <tt>false</tt>).
+Providing a <tt><a href="output/Ext.tree.TreeLoader.html#Ext.tree.TreeLoader-paramOrder" ext:member="paramOrder" ext:cls="Ext.tree.TreeLoader">paramOrder</a></tt> nullifies this
+configuration.]]>    </description>	<name>paramsAsHash</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[If set to true, the loader recursively loads"children" attributes when doing the first load on nodes.]]>    </description>	<name>preloadChildren</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The HTTP request method for loading data(defaults to the value of <a href="output/Ext.Ajax.html#Ext.Ajax-method" ext:member="method" ext:cls="Ext.Ajax">Ext.Ajax.method</a>).]]>    </description>	<name>requestMethod</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[An object containing properties which specifycustom <a href="output/Ext.tree.TreeNodeUI.html" ext:cls="Ext.tree.TreeNodeUI">Ext.tree.TreeNodeUI</a>
+implementations. If the optional <i>uiProvider</i> attribute of a
+returned child node is a string rather than a reference to a
+TreeNodeUI implementation, then that string value is used as a
+property name in the uiProviders object.]]>    </description>	<name>uiProviders</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Equivalent to <a href="output/Ext.tree.TreeLoader.html#Ext.tree.TreeLoader-dataUrl" ext:member="dataUrl" ext:cls="Ext.tree.TreeLoader">dataUrl</a>.]]>    </description>	<name>url</name>	<required>false</required></attribute></tag>

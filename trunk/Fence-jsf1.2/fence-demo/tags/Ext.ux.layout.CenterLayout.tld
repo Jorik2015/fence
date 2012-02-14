@@ -1,0 +1,69 @@
+<tag><description>    <![CDATA[
+<p>This is a very simple layout style used to center contents
+within a container. This layout works within nested containers and
+can also be used as expected as a Viewport layout to center the
+page layout.</p>
+
+<p>As a subclass of FitLayout, CenterLayout expects to have a
+single child panel of the container that uses the layout. The
+layout does not require any config options, although the child
+panel contained within the layout must provide a fixed or
+percentage width. The child panel's height will fit to the
+container by default, but you can specify <tt>autoHeight:true</tt>
+to allow it to autosize based on its content height. Example
+usage:</p>
+
+<pre><code><i>// The content panel is centered <b>in</b> the container</i>
+<b>var</b> p = <b>new</b> Ext.Panel({
+    title: <em>'Center Layout'</em>,
+    layout: <em>'ux.center'</em>,
+    items: [{
+        title: <em>'Centered Content'</em>,
+        width: <em>'75%'</em>,
+        html: <em>'Some content'</em>
+    }]
+});
+
+<i>// If you leave the title blank and specify no border</i>
+<i>// you<em>'ll create a non-visual, structural panel just</em>
+</i>// <b>for</b> centering the contents <b>in</b> the main container.</code>
+<b>var</b> p = <b>new</b> Ext.Panel({
+    layout: 'ux.center<em>',
+    border: false,
+    items: [{
+        title: '</em>Centered Content<em>',
+        width: 300,
+        autoHeight: true,
+        html: '</em>Some content<em>'
+    }]
+});</em>
+</pre>
+]]></description><name>centerlayout</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[<p>An optional extra CSS class that will be added to the container.
+This can be useful for adding customized styles to the container or
+any of its children using standard CSS rules. See <a href="output/Ext.Component.html" ext:cls="Ext.Component">Ext.Component</a>.<a href="output/Ext.Component.html#Ext.Component-ctCls" ext:member="ctCls" ext:cls="Ext.Component">ctCls</a> also.</p>
+
+<p><b>Note</b>: <tt>extraCls</tt> defaults to <tt>''</tt> except
+for the following classes which assign a value by default:</p>
+
+<div class="mdetail-params">
+<ul>
+<li><a href="output/Ext.layout.AbsoluteLayout.html" ext:cls="Ext.layout.AbsoluteLayout">Absolute Layout</a> :
+<tt>'x-abs-layout-item'</tt></li>
+
+<li><a href="output/Ext.layout.Box.html" ext:cls="Ext.layout.Box">Box Layout</a> :
+<tt>'x-box-item'</tt></li>
+
+<li><a href="output/Ext.layout.ColumnLayout.html" ext:cls="Ext.layout.ColumnLayout">Column Layout</a> :
+<tt>'x-column'</tt></li>
+</ul>
+</div>
+
+To configure the above Classes with an extra CSS class append to
+the default. For example, for ColumnLayout:
+
+<pre><code>extraCls: <em>'x-column custom-class'</em></code>
+</pre>
+
+<br>
+<br>
+]]>    </description>	<name>extraCls</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True to hide each contained item on render(defaults to false).]]>    </description>	<name>renderHidden</name>	<required>false</required></attribute></tag>

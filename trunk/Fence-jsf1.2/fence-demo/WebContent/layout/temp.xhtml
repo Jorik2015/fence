@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jsfExt="http://java.sun.com/jsf/extensions/dynafaces"
+	xmlns:s="http://fence.com/ext">
+<f:view>
+	<head>
+	<title><ui:insert name="pageTitle" /></title>
+	<s:script var="script" debug="false" theme="blue"/>
+	<script type="text/javascript" src="#{app.appPath}/resources/tree.js"></script>
+	<link rel="stylesheet" type="text/css"
+		href="#{app.appPath}/resources/styles.css" />
+	<ui:insert name="pageHeader" />
+	<s:onready>
+		mainPanel.loadClass = function(href, cls){
+	        var id = 'docs-' + cls;
+	        var ps = cls.split('.');
+	        var title = ps[ps.length-1];
+	        href = href + '?st=' + Math.random();
+	         
+	        var tab = this.getComponent(id);
+	        tab || (tab = this.add({
+	                id: id,
+	                title : title,
+	                closable: true,
+	                autoScroll:true,
+	                defaultSrc : href,
+	                loadMask : href ? {msg:'Loading...'} : false                
+	            }));
+                
+            if(!tab.rendered){
+                this.doLayout();
+            }
+            this.setActiveTab(tab);
+	    };
+	</s:onready>
+	</head>
+	<body>
+	<s:viewport layout="border" id="viewport">
+		<s:box id="topPanel" border="false" region="north" height="39">
+			<div id="top"> <h1></h1> <span><a
+				href="http://www.5base.net" target="_blank">5Base.net</a></span> </div>
+		</s:box>
+		<s:region cmargins="2 3 5 0" collapsible="true" minWidth="180"
+			maxWidth="350">
+			<s:treepanel id="treePanel" region="west" margins="2 0 5 0"
+				width="200" split="true" title="Navigation" lines="false"
+				rootVisible="false" animCollapse="true" autoScroll="true"
+				collapseFirst="true" iconCls="list">
+				<s:toolbar>
+					<s:tbfill />
+					<s:button iconCls="collapse" handler="treePanel.collapseAll();" />
+					<s:button iconCls="expand" handler="treePanel.expandAll();" />
+				</s:toolbar>
+				<s:asynctreenode text="Fence Component" childs="@[Docs.classData]"
+					expanded="true" id="root">
+				</s:asynctreenode>
+				<s:treeloader preloadChildren="true" clearOnLoad="false" />
+				<s:event name="click"
+					handler="function(node,e){
+						if(node.isLeaf()){
+							e.stopEvent();
+							var href = '/fence-demo/faces/' + node.attributes.href;
+							Ext.apply(Ext.Ajax.defaultHeaders,{fence_ajax:false});
+							mainPanel.loadClass(href, node.id);
+						}}" />
+				<s:toolbar position="bbar">
+					<s:tbtextitem text="Version:0.1" />
+				</s:toolbar>
+			</s:treepanel>
+		</s:region>
+		<s:tabpanel id="mainPanel" title="Center" region="center"
+			enableTabScroll="true" defaults="{xtype:'iframepanel'}"
+			activeTab="home" cmargins="2 0 5 0" margins="2 0 5 0">
+			<s:mifpanel id="home" defaultSrc="/home.xhtml" iconCls="home"
+				title="Home" autoScroll="true">
+			</s:mifpanel>
+			<s:tabclosemenu />
+			<ui:insert name="body" />
+			<s:toolbar position="bbar">
+				<s:tbtextitem text="Copy Right 2009" />
+			</s:toolbar>
+		</s:tabpanel>
+	</s:viewport>
+	</body>
+</f:view>
+</html>

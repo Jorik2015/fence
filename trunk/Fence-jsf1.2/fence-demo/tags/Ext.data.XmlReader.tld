@@ -1,0 +1,45 @@
+<tag><description>    <![CDATA[
+<p>Data reader class to create an Array of <a href="output/Ext.data.Record.html" ext:cls="Ext.data.Record">Ext.data.Record</a> objects from an XML
+document based on mappings in a provided <a href="output/Ext.data.Record.html" ext:cls="Ext.data.Record">Ext.data.Record</a> constructor.</p>
+
+<p><b>Note</b>: that in order for the browser to parse a returned
+XML document, the Content-Type header in the HTTP response must be
+set to "text/xml" or "application/xml".</p>
+
+<p>Example code:</p>
+
+<pre><code><b>var</b> Employee = Ext.data.Record.create([
+   {name: <em>'name'</em>, mapping: <em>'name'</em>},     <i>// <em>"mapping"</em> property not needed <b>if</b> it is the same as <em>"name"</em></i>
+   {name: <em>'occupation'</em>}                 <i>// This field will use <em>"occupation"</em> as the mapping.</i>
+]);
+<b>var</b> myReader = <b>new</b> Ext.data.XmlReader({
+   totalProperty: <em>"results"</em>, <i>// The element which contains the total dataset size (optional)</i>
+   record: <em>"row"</em>,           <i>// The repeated element which contains row information</i>
+   idProperty: <em>"id"</em>         <i>// The element within the row that provides an ID <b>for</b> the record (optional)</i>
+   messageProperty: <em>"msg"</em>   <i>// The element within the response that provides a user-feedback message (optional)</i>
+}, Employee);</code>
+</pre>
+
+<p>This would consume an XML file like this:</p>
+
+<pre><code>&lt;?xml version=<em>"1.0"</em> encoding=<em>"UTF-8"</em>?&gt;
+&lt;dataset&gt;
+ &lt;results&gt;2&lt;/results&gt;
+ &lt;row&gt;
+   &lt;id&gt;1&lt;/id&gt;
+   &lt;name&gt;Bill&lt;/name&gt;
+   &lt;occupation&gt;Gardener&lt;/occupation&gt;
+ &lt;/row&gt;
+ &lt;row&gt;
+   &lt;id&gt;2&lt;/id&gt;
+   &lt;name&gt;Ben&lt;/name&gt;
+   &lt;occupation&gt;Horticulturalist&lt;/occupation&gt;
+ &lt;/row&gt;
+&lt;/dataset&gt;</code>
+</pre>
+]]></description><name>xmlreader</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[<p>Either an Array of <a href="output/Ext.data.Field.html" ext:cls="Ext.data.Field">Field</a> definition objects (which will
+be passed to <a href="output/Ext.data.Record.html#Ext.data.Record-create" ext:member="create" ext:cls="Ext.data.Record">Ext.data.Record.create</a>, or a <a href="output/Ext.data.Record.html" ext:cls="Ext.data.Record">Record</a> constructor created from <a href="output/Ext.data.Record.html#Ext.data.Record-create" ext:member="create" ext:cls="Ext.data.Record">Ext.data.Record.create</a>.</p>
+]]>    </description>	<name>fields</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The DomQuery path relative from the recordelement to the element that contains a record identifier
+value.]]>    </description>	<name>idPath</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[[undefined] Optional name of a property within aserver-response that represents a user-feedback message.]]>    </description>	<name>messageProperty</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The DomQuery path to the repeated element whichcontains record information.]]>    </description>	<name>record</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The DomQuery path to the repeated element whichcontains record information.]]>    </description>	<name>record</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The DomQuery path to the success attribute usedby forms.]]>    </description>	<name>successProperty</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The DomQuery path from which to retrieve thetotal number of records in the dataset. This is only needed if the
+whole dataset is not passed in one go, but is being paged from the
+remote server.]]>    </description>	<name>totalProperty</name>	<required>false</required></attribute></tag>

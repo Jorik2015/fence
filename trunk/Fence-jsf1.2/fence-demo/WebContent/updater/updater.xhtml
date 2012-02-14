@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/layout/part.xhtml">
+	<ui:define name="pageTitle">Updater</ui:define>
+	<ui:define name="pageHeader">
+		<s:onready>
+			Ext.Updater.defaults.showLoadIndicator = false;
+		</s:onready>
+		<script type="text/javascript">
+		
+	</script>
+	</ui:define>
+	<ui:define name="body">
+		<table class="demoTable" cellpadding="0" cellspacing="0">
+			<tr>
+				<td width="100"><s:button text="Refresh" iconCls="refresh"
+					handler="simpleUpdater.executeUpdate();" /></td>
+				<td width="100"><s:button text="AutoRefresh" iconCls="refresh"
+					handler="simpleUpdater.executeAutoRefresh();" /></td>
+				<td><s:button text="StopRefresh" iconCls="refresh"
+					handler="simpleUpdater.stopAutoRefresh();" /></td>
+			</tr>
+			<tr>
+				<td colspan="3">
+				<br/>
+				Input name:
+				<s:textfield fieldLabel="UserName" enableKeyEvents="true">
+					<s:event name="keyup" handler="function(t,e){
+						username.setValue(t.getValue());
+					}" />
+				</s:textfield>
+				<s:updater id="simpleUpdater">
+					<s:updateoptions interval="1" refreshNow="true" >
+						<s:hidden name="username" id="username"/>
+					</s:updateoptions>
+					<h:outputText value="Time:#{app.time},User:#{param.username}"></h:outputText>
+				</s:updater></td>
+			</tr>
+		</table>
+	</ui:define>
+</ui:composition>

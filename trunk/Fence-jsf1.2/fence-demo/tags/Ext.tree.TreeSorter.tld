@@ -1,0 +1,24 @@
+<tag><description>    <![CDATA[Provides sorting of nodes in a <a href="output/Ext.tree.TreePanel.html" ext:cls="Ext.tree.TreePanel">Ext.tree.TreePanel</a>. The TreeSorter
+automatically monitors events on the associated TreePanel that
+might affect the tree's sort order (beforechildrenrendered, append,
+insert and textchange). Example usage:<br>
+<pre><code><b>new</b> Ext.tree.TreeSorter(myTree, {
+    folderSort: true,
+    dir: <em>"desc"</em>,
+    sortType: <b>function</b>(node) {
+        <i>// sort by a custom, typed attribute:
+</i>
+        <b>return</b> parseInt(node.id, 10);
+    }
+});</code>
+</pre>
+]]></description><name>treesorter</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[true for case-sensitive sort (defaults tofalse)]]>    </description>	<name>caseSensitive</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The direction to sort ("asc" or "desc,"case-insensitive, defaults to "asc")]]>    </description>	<name>dir</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True to sort leaf nodes under non-leaf nodes(defaults to false)]]>    </description>	<name>folderSort</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The attribute used to determine leaf nodes when<a href="output/Ext.tree.TreeSorter.html#Ext.tree.TreeSorter-folderSort" ext:member="folderSort" ext:cls="Ext.tree.TreeSorter">folderSort</a> = true (defaults to
+"leaf")]]>    </description>	<name>leafAttr</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The named attribute on the node to sort by(defaults to "text"). Note that this property is only used if no <a href="output/Ext.tree.TreeSorter.html#Ext.tree.TreeSorter-sortType" ext:member="sortType" ext:cls="Ext.tree.TreeSorter">sortType</a>
+function is specified, otherwise it is ignored.]]>    </description>	<name>property</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[A custom "casting" function used to convert nodevalues before sorting. The function will be called with a single
+parameter (the <a href="output/Ext.tree.TreeNode.html" ext:cls="Ext.tree.TreeNode">Ext.tree.TreeNode</a> being evaluated)
+and is expected to return the node's sort value cast to the
+specific data type required for sorting. This could be used, for
+example, when a node's text (or other attribute) should be sorted
+as a date or numeric value. See the class description for example
+usage. Note that if a sortType is specified, any <a href="output/Ext.tree.TreeSorter.html#Ext.tree.TreeSorter-property" ext:member="property" ext:cls="Ext.tree.TreeSorter">property</a>
+config will be ignored.]]>    </description>	<name>sortType</name>	<required>false</required></attribute></tag>

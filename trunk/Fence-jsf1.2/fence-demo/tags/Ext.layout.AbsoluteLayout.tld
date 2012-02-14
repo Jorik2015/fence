@@ -1,0 +1,161 @@
+<tag><description>    <![CDATA[
+<p>This is a layout that inherits the anchoring of <b><a href="output/Ext.layout.AnchorLayout.html" ext:cls="Ext.layout.AnchorLayout">Ext.layout.AnchorLayout</a></b>
+and adds the ability for x/y positioning using the standard x and y
+component config options.</p>
+
+<p>This class is intended to be extended or created via the
+<tt><b><a href="output/Ext.Container.html#Ext.Container-layout" ext:member="layout" ext:cls="Ext.Container">layout</a></b></tt>
+configuration property. See <tt><b><a href="output/Ext.Container.html#Ext.Container-layout" ext:member="layout" ext:cls="Ext.Container">Ext.Container.layout</a></b></tt> for
+additional details.</p>
+
+<p>Example usage:</p>
+
+<pre><code><b>var</b> form = <b>new</b> Ext.form.FormPanel({
+    title: <em>'Absolute Layout'</em>,
+    layout:<em>'absolute'</em>,
+    layoutConfig: {
+        <i>// layout-specific configs go here
+</i>
+        extraCls: <em>'x-abs-layout-item'</em>,
+    },
+    baseCls: <em>'x-plain'</em>,
+    url:<em>'save-form.php'</em>,
+    defaultType: <em>'textfield'</em>,
+    items: [{
+        x: 0,
+        y: 5,
+        xtype:<em>'<b>label</b>'</em>,
+        text: <em>'Send To:'</em>
+    },{
+        x: 60,
+        y: 0,
+        name: <em>'to'</em>,
+        anchor:<em>'100%'</em>  <i>// anchor width by percentage
+</i>
+    },{
+        x: 0,
+        y: 35,
+        xtype:<em>'<b>label</b>'</em>,
+        text: <em>'Subject:'</em>
+    },{
+        x: 60,
+        y: 30,
+        name: <em>'subject'</em>,
+        anchor: <em>'100%'</em>  <i>// anchor width by percentage
+</i>
+    },{
+        x:0,
+        y: 60,
+        xtype: <em>'textarea'</em>,
+        name: <em>'msg'</em>,
+        anchor: <em>'100% 100%'</em>  <i>// anchor width and height
+</i>
+    }]
+});</code>
+</pre>
+]]></description><name>absolutelayout</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[<p>This configuation option is to be applied to <b>child
+<tt>items</tt></b> of a container managed by this layout (ie.
+configured with <tt>layout:'anchor'</tt>).</p>
+
+<br>
+<p>This value is what tells the layout how an item should be
+anchored to the container. <tt>items</tt> added to an AnchorLayout
+accept an anchoring-specific config property of <b>anchor</b> which
+is a string containing two values: the horizontal anchor value and
+the vertical anchor value (for example, '100% 50%'). The following
+types of anchor values are supported:</p>
+
+<div class="mdetail-params">
+<ul>
+<li><b>Percentage</b> : Any value between 1 and 100, expressed as a
+percentage.
+
+<div class="sub-desc">The first anchor is the percentage width that
+the item should take up within the container, and the second is the
+percentage height. For example:
+
+<pre><code><i>// two values specified
+</i>
+anchor: <em>'100% 50%'</em> <i>// render item complete width of the container and
+</i>
+                   <i>// 1/2 height of the container
+</i>
+<i>// one value specified
+</i>
+anchor: <em>'100%'</em>     <i>// the width value; the height will <b>default</b> to auto</i></code>
+</pre>
+</div>
+</li>
+
+<li><b>Offsets</b> : Any positive or negative integer value.
+
+<div class="sub-desc">This is a raw adjustment where the first
+anchor is the offset from the right edge of the container, and the
+second is the offset from the bottom edge. For example:
+
+<pre><code><i>// two values specified
+</i>
+anchor: <em>'-50 -100'</em> <i>// render item the complete width of the container
+</i>
+                   <i>// minus 50 pixels and
+</i>
+                   <i>// the complete height minus 100 pixels.
+</i>
+<i>// one value specified
+</i>
+anchor: <em>'-50'</em>      <i>// anchor value is assumed to be the right offset value
+</i>
+                   <i>// bottom offset will <b>default</b> to 0</i></code>
+</pre>
+</div>
+</li>
+
+<li><b>Sides</b> : Valid values are <tt>'right'</tt> (or
+<tt>'r'</tt>) and <tt>'bottom'</tt> (or <tt>'b'</tt>).
+
+<div class="sub-desc">Either the container must have a fixed size
+or an anchorSize config value defined at render time in order for
+these to have any effect.</div>
+</li>
+
+<li><b>Mixed</b> : 
+
+<div class="sub-desc">Anchor values can also be mixed as needed.
+For example, to render the width offset from the container right
+edge by 50 pixels and 75% of the container's height use: 
+
+<pre><code>anchor: <em>'-50 75%'</em></code>
+</pre>
+</div>
+</li>
+</ul>
+</div>
+]]>    </description>	<name>anchor</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>An optional extra CSS class that will be added to the container.
+This can be useful for adding customized styles to the container or
+any of its children using standard CSS rules. See <a href="output/Ext.Component.html" ext:cls="Ext.Component">Ext.Component</a>.<a href="output/Ext.Component.html#Ext.Component-ctCls" ext:member="ctCls" ext:cls="Ext.Component">ctCls</a> also.</p>
+
+<p><b>Note</b>: <tt>extraCls</tt> defaults to <tt>''</tt> except
+for the following classes which assign a value by default:</p>
+
+<div class="mdetail-params">
+<ul>
+<li><a href="output/Ext.layout.AbsoluteLayout.html" ext:cls="Ext.layout.AbsoluteLayout">Absolute Layout</a> :
+<tt>'x-abs-layout-item'</tt></li>
+
+<li><a href="output/Ext.layout.Box.html" ext:cls="Ext.layout.Box">Box Layout</a> :
+<tt>'x-box-item'</tt></li>
+
+<li><a href="output/Ext.layout.ColumnLayout.html" ext:cls="Ext.layout.ColumnLayout">Column Layout</a> :
+<tt>'x-column'</tt></li>
+</ul>
+</div>
+
+To configure the above Classes with an extra CSS class append to
+the default. For example, for ColumnLayout:
+
+<pre><code>extraCls: <em>'x-column custom-class'</em></code>
+</pre>
+
+<br>
+<br>
+]]>    </description>	<name>extraCls</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True to hide each contained item on render(defaults to false).]]>    </description>	<name>renderHidden</name>	<required>false</required></attribute></tag>

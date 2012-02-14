@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/layout/part.xhtml">
+	<ui:define name="pageTitle">Button</ui:define>
+	<ui:define name="body">
+		<div class="introduction">
+		<h1>Messages 使用说明及demo</h1>
+		<p>从ext的角度，message 是弹出式提示信息窗口，只是客户端的动作，而与服务器打交道的时候模式将的依据faces的模式。
+		JSF有Message和Messages两个组件，前者是显示某个特定组件的消息，后者是显示全局性质的消息列表。如果页面上不存在这两个组件的时候，则FacesMessage将不显示。
+		也就是如果在没有抛出异常而使用FacesMessage来装载的异常将无法看到。即：依据JSF的模式，校验及转换异常将装载在FacesMessage中，在渲染视图阶段将使用消息组件渲染。</p>
+		<p>
+		Fence设计消息的方式:转换校验异常：使用ExtFacesMessage类包装一下FacesMessage类，让消息带上Ext
+		组件的Id，这样在非ajax请求的情况下将保持JSF原有的模式，而在ajax情况下将
+		在ViewRoot渲染阶段来处理ExtFacesMessage消息。在fence中也包含了message组件。使用s:message或者s:msg来显示消息。
+		ExtMessage类提供了静态方法以在ajax和非ajax时显示不同类型消息的快捷方式。</p>
+		</div>
+
+		<table class="demoTable" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="td" width="300"><s:formpanel
+					title="Validate form ajax" standardSubmit="false" width="300"
+					height="100">
+					<s:textfield fieldLabel="Required Field" required="true"></s:textfield>
+					<s:button type="submit" text="submit"></s:button>
+				</s:formpanel></td>
+				<td class="td">
+				<s:formpanel title="Validate form not ajax" 
+					standardSubmit="true" width="300" height="100">
+					<s:textfield fieldLabel="Required Field" required="true"></s:textfield>
+					<s:button type="submit" text="submit"></s:button>
+				</s:formpanel></td>
+			</tr>
+			<tr>
+				<td class="td" width="300"></td>
+				<td class="td"><h:form>
+					<h:inputText id="rfield" value="" required="true" />
+					<br />
+					<h:inputText id="nfield" value="#{userAction.user.age}" />
+					<br />
+					<h:commandButton value="Submit" type="submit" />
+				</h:form></td>
+			</tr>
+		</table>
+		<s:message width="300" height="120" title="Information"></s:message>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,160 @@
+<tag><description>    <![CDATA[
+<p>A layout that arranges items horizontally across a Container.
+This layout optionally divides available horizontal space between
+child items containing a numeric <code>flex</code>
+configuration.</p>
+
+This layout may also be used to set the heights of child items by
+configuring it with the <a href="output/Ext.layout.HBoxLayout.html#Ext.layout.HBoxLayout-align" ext:member="align" ext:cls="Ext.layout.HBoxLayout">align</a>
+option.]]></description><name>hboxlayout</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[Controls how the child items of the container arealigned. Acceptable configuration values for this property are: 
+
+<div class="mdetail-params">
+<ul>
+<li><b><tt>top</tt></b> : <b>Default</b>
+<div class="sub-desc">child items are aligned vertically at the
+<b>left</b> side of the container</div>
+</li>
+
+<li><b><tt>middle</tt></b> : 
+
+<div class="sub-desc">child items are aligned vertically at the
+<b>mid-height</b> of the container</div>
+</li>
+
+<li><b><tt>stretch</tt></b> : 
+
+<div class="sub-desc">child items are stretched vertically to fill
+the height of the container</div>
+</li>
+
+<li><b><tt>stretchmax</tt></b> : 
+
+<div class="sub-desc">child items are stretched vertically to the
+size of the largest item.</div>
+</li>
+</ul>
+</div>
+]]>    </description>	<name>align</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>If the individual contained items do not have a <tt>margins</tt>
+property specified, the default margins from this property will be
+applied to each item.</p>
+
+<br>
+<p>This property may be specified as an object containing margins
+to apply in the format:</p>
+
+<pre><code>{
+    top: (top margin),
+    right: (right margin),
+    bottom: (bottom margin),
+    left: (left margin)
+}</code>
+</pre>
+
+<p>This property may also be specified as a string containing
+space-separated, numeric margin values. The order of the sides
+associated with each value matches the way CSS processes margin
+values:</p>
+
+<div class="mdetail-params">
+<ul>
+<li>If there is only one value, it applies to all sides.</li>
+
+<li>If there are two values, the top and bottom borders are set to
+the first value and the right and left are set to the second.</li>
+
+<li>If there are three values, the top is set to the first value,
+the left and right are set to the second, and the bottom is set to
+the third.</li>
+
+<li>If there are four values, they apply to the top, right, bottom,
+and left, respectively.</li>
+</ul>
+</div>
+
+<p>Defaults to:</p>
+
+<pre><code>{top:0, right:0, bottom:0, left:0}</code>
+</pre>
+]]>    </description>	<name>defaultMargins</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>An optional extra CSS class that will be added to the container.
+This can be useful for adding customized styles to the container or
+any of its children using standard CSS rules. See <a href="output/Ext.Component.html" ext:cls="Ext.Component">Ext.Component</a>.<a href="output/Ext.Component.html#Ext.Component-ctCls" ext:member="ctCls" ext:cls="Ext.Component">ctCls</a> also.</p>
+
+<p><b>Note</b>: <tt>extraCls</tt> defaults to <tt>''</tt> except
+for the following classes which assign a value by default:</p>
+
+<div class="mdetail-params">
+<ul>
+<li><a href="output/Ext.layout.AbsoluteLayout.html" ext:cls="Ext.layout.AbsoluteLayout">Absolute Layout</a> :
+<tt>'x-abs-layout-item'</tt></li>
+
+<li><a href="output/Ext.layout.Box.html" ext:cls="Ext.layout.Box">Box Layout</a> :
+<tt>'x-box-item'</tt></li>
+
+<li><a href="output/Ext.layout.ColumnLayout.html" ext:cls="Ext.layout.ColumnLayout">Column Layout</a> :
+<tt>'x-column'</tt></li>
+</ul>
+</div>
+
+To configure the above Classes with an extra CSS class append to
+the default. For example, for ColumnLayout:
+
+<pre><code>extraCls: <em>'x-column custom-class'</em></code>
+</pre>
+
+<br>
+<br>
+]]>    </description>	<name>extraCls</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[This configuation option is to be applied to<b>child <tt>items</tt></b> of the container managed by this
+layout. Each child item with a <tt>flex</tt> property will be
+flexed <b>horizontally</b> according to each item's <b>relative</b>
+<tt>flex</tt> value compared to the sum of all items with a
+<tt>flex</tt> value specified. Any child items that have either a
+<tt>flex = 0</tt> or <tt>flex = undefined</tt> will not be 'flexed'
+(the initial size will not be changed).]]>    </description>	<name>flex</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Controls how the child items of the container arepacked together. Acceptable configuration values for this property
+are: 
+
+<div class="mdetail-params">
+<ul>
+<li><b><tt>start</tt></b> : <b>Default</b>
+<div class="sub-desc">child items are packed together at
+<b>left</b> side of container</div>
+</li>
+
+<li><b><tt>center</tt></b> : 
+
+<div class="sub-desc">child items are packed together at
+<b>mid-width</b> of container</div>
+</li>
+
+<li><b><tt>end</tt></b> : 
+
+<div class="sub-desc">child items are packed together at
+<b>right</b> side of container</div>
+</li>
+</ul>
+</div>
+]]>    </description>	<name>pack</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>Sets the padding to be applied to all child items managed by
+this layout.</p>
+
+<p>This property must be specified as a string containing
+space-separated, numeric padding values. The order of the sides
+associated with each value matches the way CSS processes padding
+values:</p>
+
+<div class="mdetail-params">
+<ul>
+<li>If there is only one value, it applies to all sides.</li>
+
+<li>If there are two values, the top and bottom borders are set to
+the first value and the right and left are set to the second.</li>
+
+<li>If there are three values, the top is set to the first value,
+the left and right are set to the second, and the bottom is set to
+the third.</li>
+
+<li>If there are four values, they apply to the top, right, bottom,
+and left, respectively.</li>
+</ul>
+</div>
+
+<p>Defaults to: <code><em>"0"</em></code></p>
+]]>    </description>	<name>padding</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True to hide each contained item on render(defaults to false).]]>    </description>	<name>renderHidden</name>	<required>false</required></attribute></tag>

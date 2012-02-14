@@ -1,0 +1,98 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/layout/part.xhtml" xmlns:c="http://java.sun.com/jstl/core">
+	<ui:define name="pageTitle">Button</ui:define>
+	<ui:define name="pageHeader">
+		<script type="text/javascript"> //<![CDATA[
+		Ext.onReady(function(){
+			Ext.form.Field.prototype.msgTarget = 'side';
+		});
+		var fun1 = function(src,e){
+			alert("fun1" +src);
+		};
+	//]]> </script>
+	</ui:define>
+	<ui:define name="body">
+		<table class="demoTable" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="td"><s:formpanel id="formpanel" waitMsgTarget="true"
+					frame="false" labelWidth="79" title="Form Panel" width="350"
+					height="250" buttonAlign="center">
+					<s:textfield fieldLabel="Username" required="true" name="username"
+						value="#{userAction.user.username}"></s:textfield>
+					<s:textfield fieldLabel="Age" value="#{userAction.user.age}"></s:textfield>
+					<s:textfield fieldLabel="Password" required="true" name="password"
+						inputType="password" value="#{userAction.user.password}"></s:textfield>
+					<s:textfield fieldLabel="Mobile" value="#{userAction.user.mobile}"></s:textfield>
+					<s:datefield fieldLabel="Birthdate" name="birthDate"
+						value="#{userAction.user.birthDate}" format="Y/m/d H:i:s">
+						<f:convertDateTime pattern="yyyy/MM/dd HH:mm:ss" />
+					</s:datefield>
+					<s:datetime fieldLabel="Birthdate" name="loginTime"
+						value="#{userAction.user.birthDate}" hiddenFormat="Y/m/d H:i:s"
+						dateFormat="Y/m/d" timeFormat="H:i:s">
+						<f:convertDateTime pattern="yyyy/MM/dd HH:mm:ss" />
+					</s:datetime>
+					<s:numberfield fieldLabel="Salary" name="salary"
+						value="#{userAction.user.salary}" />
+
+					<s:button text="load" type="load" action="#{userAction.getUser}">
+						<s:event name="click"
+							handler="function(){userid.setValue('customId');}" />
+						<s:hidden name="customParam" id="userid"></s:hidden>
+						<f:param name="recId" value="#{userAction.labelText}" />
+					</s:button>
+					<s:button text="Add" type="submit" action="#{userAction.insert}"
+						render="gridpanel">
+						<f:param name="btnParam" value="#{userAction.labelText}" />
+						<s:submit reset="false" waitMsg="提交中..." clientValidation="true">
+							<f:param name="submitParam" value="#{userAction.labelText}" />
+						</s:submit>
+					</s:button>
+				</s:formpanel></td>
+				<td class="td"><s:formpanel id="formpanel1"
+					buttonAlign="center" waitMsgTarget="true" frame="false"
+					labelWidth="79" title="Form Panel use model" width="300"
+					height="250" model="userAction.user">
+					<s:textfield fieldLabel="Username" required="true" name="username"></s:textfield>
+					<s:textfield fieldLabel="Age" name="age"></s:textfield>
+					<s:textfield fieldLabel="Password" required="true"
+						inputType="password" name="password"></s:textfield>
+					<s:textfield fieldLabel="Mobile" name="mobile"></s:textfield>
+					<s:datefield fieldLabel="Birthdate" name="birthDate"
+						format="Y/m/d H:i:s">
+						<f:convertDateTime pattern="yyyy/MM/dd HH:mm:ss" />
+					</s:datefield>
+					<s:numberfield fieldLabel="Salary" name="salary" />
+					<s:button text="load" type="load">
+						<f:param name="recId" value="#{userAction.labelText}" />
+					</s:button>
+					<s:button text="Add" type="submit" action="#{userAction.insert}"
+						render="store" />
+				</s:formpanel></td>
+			</tr>
+			<tr>
+				<td class="td"><s:gridpanel id="gridpanel" loadMask="true"
+					title="Users" height="250" width="400">
+					<s:cm>
+						<s:column header="username" dataIndex="username" width="100"
+							sortable="true" />
+						<s:column header="password" dataIndex="password" width="100" />
+						<s:datecolumn header="BirthDate" dataIndex="birthDate" width="100" />
+					</s:cm>
+
+					<s:store id="store" data="#{userAction.users}">
+						<s:jsonreader>
+							<s:dfield name="username" />
+							<s:dfield name="password" />
+							<s:dfield name="birthDate" type="date" dateFormat="Y-m-d H:i:s" />
+						</s:jsonreader>
+					</s:store>
+				</s:gridpanel></td>
+				<td class="td"></td>
+			</tr>
+		</table>
+	</ui:define>
+</ui:composition>

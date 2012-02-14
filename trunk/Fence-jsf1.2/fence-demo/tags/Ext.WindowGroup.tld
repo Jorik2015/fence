@@ -1,0 +1,8 @@
+<tag>
+	<description>    <![CDATA[An object that represents a group of <a href="output/Ext.Window.html" ext:cls="Ext.Window">Ext.Window</a>
+instances and provides z-order management and window activation
+behavior.]]></description>
+	<name>windowgroup</name>
+	<tag-class></tag-class>
+	<body-content>JSP</body-content>
+</tag>

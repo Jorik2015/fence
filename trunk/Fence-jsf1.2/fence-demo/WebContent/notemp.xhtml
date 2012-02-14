@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext">
+<f:view>
+	<head>
+	<title><ui:insert name="pageTitle" /></title>
+	<s:script var="script" debug="true" />
+	<script type="text/javascript" src="/fenceweb/resources/tree.js"></script>
+	<link rel="stylesheet" type="text/css"
+		href="/fenceweb/resources/styles.css" />
+	<ui:insert name="pageHeader" />
+	<script type="text/javascript">
+		//<![CDATA[
+		function fun1(){
+			alert('fun1');	
+		}
+		Ext.onReady(function(){
+			var ajax_vars = new MixedCollection();
+			ajax_vars.addAll("a".split(","));
+			ajax_vars.each(function(item){
+				if(typeof item == 'undefined') var item;
+			});
+		});
+		//]]>
+		</script>
+	</head>
+
+	<body style="background: #FFFFFF">
+	<s:panel id="renderPanel" layout="border" width="500" height="200"
+		title="border layout panel">
+		<s:panel id="inPanel" title="center" region="center">
+			<s:button text="click test" handler="function(){
+				alert('ok');
+				
+			}"/>
+		</s:panel>
+	</s:panel>
+	</body>
+</f:view>
+</html>

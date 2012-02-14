@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+	<wb-module deploy-name="fence-demo">
+		<wb-resource deploy-path="/" source-path="/WebContent" />
+		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java" />
+		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources" />
+		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java" />
+		<wb-resource deploy-path="/WEB-INF/classes" source-path="/tags" />
+		<dependent-module archiveName="fence-comps.jar"
+			deploy-path="/WEB-INF/lib" handle="module:/resource/fence-comps/fence-comps">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module archiveName="fence-commons.jar"
+			deploy-path="/WEB-INF/lib" handle="module:/resource/fence-commons/fence-commons">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module archiveName="fence-core.jar"
+			deploy-path="/WEB-INF/lib" handle="module:/resource/fence-core/fence-core">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<property name="context-root" value="fence-demo" />
+		<property name="java-output-path" />
+	</wb-module>
+</project-modules>

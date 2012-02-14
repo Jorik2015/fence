@@ -1,0 +1,32 @@
+<tag><description>    <![CDATA[
+<p>Layout manager used by <a href="output/Ext.menu.Menu.html" ext:cls="Ext.menu.Menu">Ext.menu.Menu</a>. Generally this class
+should not need to be used directly.</p>
+]]></description><name>menulayout</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[<p>An optional extra CSS class that will be added to the container.
+This can be useful for adding customized styles to the container or
+any of its children using standard CSS rules. See <a href="output/Ext.Component.html" ext:cls="Ext.Component">Ext.Component</a>.<a href="output/Ext.Component.html#Ext.Component-ctCls" ext:member="ctCls" ext:cls="Ext.Component">ctCls</a> also.</p>
+
+<p><b>Note</b>: <tt>extraCls</tt> defaults to <tt>''</tt> except
+for the following classes which assign a value by default:</p>
+
+<div class="mdetail-params">
+<ul>
+<li><a href="output/Ext.layout.AbsoluteLayout.html" ext:cls="Ext.layout.AbsoluteLayout">Absolute Layout</a> :
+<tt>'x-abs-layout-item'</tt></li>
+
+<li><a href="output/Ext.layout.Box.html" ext:cls="Ext.layout.Box">Box Layout</a> :
+<tt>'x-box-item'</tt></li>
+
+<li><a href="output/Ext.layout.ColumnLayout.html" ext:cls="Ext.layout.ColumnLayout">Column Layout</a> :
+<tt>'x-column'</tt></li>
+</ul>
+</div>
+
+To configure the above Classes with an extra CSS class append to
+the default. For example, for ColumnLayout:
+
+<pre><code>extraCls: <em>'x-column custom-class'</em></code>
+</pre>
+
+<br>
+<br>
+]]>    </description>	<name>extraCls</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True to hide each contained item on render(defaults to false).]]>    </description>	<name>renderHidden</name>	<required>false</required></attribute></tag>

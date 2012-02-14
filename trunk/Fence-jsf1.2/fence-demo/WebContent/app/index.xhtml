@@ -1,0 +1,25 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/layout/part.xhtml">
+	<ui:define name="pageTitle">Demo</ui:define>
+	<ui:define name="body">
+		<div id="overview">
+		<h1>Welcome to Fence App Demo</h1>
+		<p>
+			this is a demo.you must login to access the demo content.<br/>
+		</p>
+		<p>
+			This demo show-how spring security use fence.
+		</p>
+		<p>
+			<a href="#{app.appPath}/faces/app/login.xhtml">Login</a>
+			|
+			<a href="#{app.appPath}/j_spring_security_logout">Logout</a>
+			|
+			<a href="#{app.appPath}/faces/app/protected.xhtml">Secret</a>
+		</p>
+		</div>
+	</ui:define>
+</ui:composition>

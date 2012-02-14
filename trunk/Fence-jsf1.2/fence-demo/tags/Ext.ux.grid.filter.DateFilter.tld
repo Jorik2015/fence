@@ -1,0 +1,108 @@
+<tag><description>    <![CDATA[Filter by a configurable Ext.menu.DateMenu
+
+
+<p><b><u>Example Usage:</u></b></p>
+
+<pre><code><b>var</b> filters = <b>new</b> Ext.ux.grid.GridFilters({
+    ...
+    filters: [{
+        <i>// required configs
+</i>
+        type: <em>'date'</em>,
+        dataIndex: <em>'dateAdded'</em>,
+        
+        <i>// optional configs
+</i>
+        dateFormat: <em>'m/d/Y'</em>,  <i>// <b>default</b>
+</i>
+        beforeText: <em>'Before'</em>, <i>// <b>default</b>
+</i>
+        afterText: <em>'After'</em>,   <i>// <b>default</b>
+</i>
+        onText: <em>'On'</em>,         <i>// <b>default</b>
+</i>
+        pickerOpts: {
+            <i>// any DateMenu configs
+</i>
+        },
+
+        active: true <i>// <b>default</b> is false
+</i>
+    }]
+});</code>
+</pre>
+]]></description><name>datefilter</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[Indicates the initial status of the filter(defaults to false).]]>    </description>	<name>active</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Defaults to 'After'.]]>    </description>	<name>afterText</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Defaults to 'Before'.]]>    </description>	<name>beforeText</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Map for assigning the comparison values used inserialization.]]>    </description>	<name>compareMap</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The <a href="output/Ext.data.Store.html" ext:cls="Ext.data.Store">Ext.data.Store</a> dataIndex of the fieldthis filter represents. The dataIndex does not actually have to
+exist in the store.]]>    </description>	<name>dataIndex</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The date format to return when using getValue.Defaults to 'm/d/Y'.]]>    </description>	<name>dateFormat</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>A config object containing one or more event handlers to be
+added to this object during initialization. This should be a valid
+listeners config object as specified in the <a href="output/Ext.util.Observable.html#Ext.util.Observable-addListener" ext:member="addListener" ext:cls="Ext.util.Observable">addListener</a> example for attaching
+multiple handlers at once.</p>
+
+<br>
+<p><b><u>DOM events from ExtJs <a href="output/Ext.Component.html" ext:cls="Ext.Component">Components</a></u></b></p>
+
+<br>
+<p>While <i>some</i> ExtJs Component classes export selected DOM
+events (e.g. "click", "mouseover" etc), this is usually only done
+when extra value can be added. For example the <a href="output/Ext.DataView.html" ext:cls="Ext.DataView">DataView</a>'s <b><code><a href="output/Ext.DataView.html#Ext.DataView-click" ext:member="click" ext:cls="Ext.DataView">click</a></code></b>
+event passing the node clicked on. To access DOM events directly
+from a Component's HTMLElement, listeners must be added to the
+<i><a href="output/Ext.Component.html#Ext.Component-getEl" ext:member="getEl" ext:cls="Ext.Component">Element</a></i> after
+the Component has been rendered. A plugin can simplify this
+step:</p>
+
+<pre><code><i>// Plugin is configured <b>with</b> a listeners config object.</i>
+<i>// The Component is appended to the argument list of all handler functions.</i>
+Ext.DomObserver = Ext.extend(Object, {
+    constructor: <b>function</b>(config) {
+        this.listeners = config.listeners ? config.listeners : config;
+    },
+
+    <i>// Component passes itself into plugin's init method</i>
+    init: <b>function</b>(c) {
+        <b>var</b> p, l = this.listeners;
+        <b>for</b> (p <b>in</b> l) {
+            <b>if</b> (Ext.isFunction(l[p])) {
+                l[p] = this.createHandler(l[p], c);
+            } <b>else</b> {
+                l[p].fn = this.createHandler(l[p].fn, c);
+            }
+        }
+
+        <i>// Add the listeners to the Element immediately following the render call</i>
+        c.render = c.render.<a href="output/Function.html#Function-createSequence" ext:member="createSequence" ext:cls="Function">createSequence</a>(<b>function</b>() {
+            <b>var</b> e = c.getEl();
+            <b>if</b> (e) {
+                e.on(l);
+            }
+        });
+    },
+
+    createHandler: <b>function</b>(fn, c) {
+        <b>return</b> <b>function</b>(e) {
+            fn.call(this, e, c);
+        };
+    }
+});
+
+<b>var</b> combo = <b>new</b> Ext.form.ComboBox({
+
+    <i>// Collapse combo when its element is clicked on</i>
+    plugins: [ <b>new</b> Ext.DomObserver({
+        click: <b>function</b>(evt, comp) {
+            comp.collapse();
+        }
+    })],
+    store: myStore,
+    typeAhead: true,
+    mode: <em>'local'</em>,
+    triggerAction: <em>'all'</em>
+});</code>
+</pre>
+
+<br>
+<br>
+]]>    </description>	<name>listeners</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Allowable date as passed to the Ext.DatePickerDefaults to undefined.]]>    </description>	<name>maxDate</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Default configuration options for each menuitem]]>    </description>	<name>menuItemCfgs</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The items to be shown in this menu Defaults to:
+<pre>menuItems : ['before', 'after', '-', 'on'],
+</pre>
+]]>    </description>	<name>menuItems</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Allowable date as passed to the Ext.DatePickerDefaults to undefined.]]>    </description>	<name>minDate</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Defaults to 'On'.]]>    </description>	<name>onText</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Configuration options for the date pickerassociated with each field.]]>    </description>	<name>pickerOpts</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Number of milliseconds to wait after userinteraction to fire an update. Only supported by filters: 'list',
+'numeric', and 'string'. Defaults to 500.]]>    </description>	<name>updateBuffer</name>	<required>false</required></attribute></tag>

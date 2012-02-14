@@ -1,0 +1,228 @@
+<tag><description>    <![CDATA[
+<p>GridFilter is a plugin
+(<code>ptype=<em>'gridfilters'</em></code>) for grids that allow
+for a slightly more robust representation of filtering than what is
+provided by the default store.</p>
+
+<p>Filtering is adjusted by the user using the grid's column header
+menu (this menu can be disabled through configuration). Through
+this menu users can configure, enable, and disable filters for each
+column.</p>
+
+<p><b><u>Features:</u></b></p>
+
+<div class="mdetail-params">
+<ul>
+<li><b>Filtering implementations</b> : 
+
+<div class="sub-desc">Default filtering for Strings, Numeric
+Ranges, Date Ranges, Lists (which can be backed by a
+Ext.data.Store), and Boolean. Additional custom filter types and
+menus are easily created by extending
+Ext.ux.grid.filter.Filter.</div>
+</li>
+
+<li><b>Graphical indicators</b> : 
+
+<div class="sub-desc">Columns that are filtered have <a href="output/Ext.ux.grid.GridFilters.html#Ext.ux.grid.GridFilters-filterCls" ext:member="filterCls" ext:cls="Ext.ux.grid.GridFilters">a
+configurable css class</a> applied to the column headers.</div>
+</li>
+
+<li><b>Paging</b> : 
+
+<div class="sub-desc">If specified as a plugin to the grid's
+configured PagingToolbar, the current page will be reset to page 1
+whenever you update the filters.</div>
+</li>
+
+<li><b>Automatic Reconfiguration</b> : 
+
+<div class="sub-desc">Filters automatically reconfigure when the
+grid 'reconfigure' event fires.</div>
+</li>
+
+<li><b>Stateful</b> : Filter information will be persisted across
+page loads by specifying a <code>stateId</code> in the Grid
+configuration. 
+
+<div class="sub-desc">The filter collection binds to the <code><a href="output/Ext.grid.GridPanel.html#Ext.grid.GridPanel-beforestaterestore" ext:member="beforestaterestore" ext:cls="Ext.grid.GridPanel">beforestaterestore</a></code> and
+<code><a href="output/Ext.grid.GridPanel.html#Ext.grid.GridPanel-beforestatesave" ext:member="beforestatesave" ext:cls="Ext.grid.GridPanel">beforestatesave</a></code> events in
+order to be stateful.</div>
+</li>
+
+<li><b>Grid Changes</b> : 
+
+<div class="sub-desc">
+<ul>
+<li>A <code>filters</code> <i>property</i> is added to the grid
+pointing to this plugin.</li>
+
+<li>A <code>filterupdate</code> <i>event</i> is added to the grid
+and is fired upon onStateChange completion.</li>
+</ul>
+</div>
+</li>
+
+<li><b>Server side code examples</b> : 
+
+<div class="sub-desc">
+<ul>
+<li><a href="http://www.vinylfox.com/extjs/grid-filter-php-backend-code.php">
+PHP</a> - (Thanks VinylFox)</li>
+
+<li><a href="http://extjs.com/forum/showthread.php?p=77326#post77326">Ruby
+on Rails</a> - (Thanks Zyclops)</li>
+
+<li><a href="http://extjs.com/forum/showthread.php?p=176596#post176596">Ruby
+on Rails</a> - (Thanks Rotomaul)</li>
+
+<li><a href="http://www.debatablybeta.com/posts/using-extjss-grid-filtering-with-django/">
+Python</a> - (Thanks Matt)</li>
+
+<li><a href="http://mcantrell.wordpress.com/2008/08/22/extjs-grids-and-grails/">
+Grails</a> - (Thanks Mike)</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+
+<p><b><u>Example usage:</u></b></p>
+
+<pre><code><b>var</b> store = <b>new</b> Ext.data.GroupingStore({
+    ...
+});
+ 
+<b>var</b> filters = <b>new</b> Ext.ux.grid.GridFilters({
+    autoReload: false, <i>//don't reload automatically
+</i>
+    local: true, <i>//only filter locally
+</i>
+    <i>// filters may be configured through the plugin,
+</i>
+    <i>// or <b>in</b> the column definition within the column model configuration
+</i>
+    filters: [{
+        type: <em>'numeric'</em>,
+        dataIndex: <em>'id'</em>
+    }, {
+        type: <em>'string'</em>,
+        dataIndex: <em>'name'</em>
+    }, {
+        type: <em>'numeric'</em>,
+        dataIndex: <em>'price'</em>
+    }, {
+        type: <em>'date'</em>,
+        dataIndex: <em>'dateAdded'</em>
+    }, {
+        type: <em>'list'</em>,
+        dataIndex: <em>'size'</em>,
+        options: [<em>'extra small'</em>, <em>'small'</em>, <em>'medium'</em>, <em>'large'</em>, <em>'extra large'</em>],
+        phpMode: true
+    }, {
+        type: <em>'boolean'</em>,
+        dataIndex: <em>'visible'</em>
+    }]
+});
+<b>var</b> cm = <b>new</b> Ext.grid.ColumnModel([{
+    ...
+}]);
+ 
+<b>var</b> grid = <b>new</b> Ext.grid.GridPanel({
+     ds: store,
+     cm: cm,
+     view: <b>new</b> Ext.grid.GroupingView(),
+     plugins: [filters],
+     height: 400,
+     width: 700,
+     bbar: <b>new</b> Ext.PagingToolbar({
+         store: store,
+         pageSize: 15,
+         plugins: [filters] <i>//reset page to page 1 <b>if</b> filters change
+</i>
+     })
+ });
+
+store.load({params: {start: 0, limit: 15}});
+
+<i>// a filters property is added to the grid
+</i>
+grid.filters</code>
+</pre>
+]]></description><name>gridfilters</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[Defaults to true, reloading the datasource when afilter change happens. Set this to false to prevent the datastore
+from being reloaded if there are changes to the filters. See
+<code><a href="output/updateBuffer.html" ext:cls="updateBuffer">updateBuffer</a></code>.]]>    </description>	<name>autoReload</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Specify true for <a href="output/Ext.ux.grid.GridFilters.html#Ext.ux.grid.GridFilters-buildQuery" ext:member="buildQuery" ext:cls="Ext.ux.grid.GridFilters">buildQuery</a> to useExt.util.JSON.encode to encode the filter query parameter sent with
+a remote request. Defaults to false.]]>    </description>	<name>encode</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The css class to be applied to column headerswith active filters. Defaults to
+<tt>'ux-filterd-column'</tt>.]]>    </description>	<name>filterCls</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[An Array of filters config objects. Refer to eachfilter type class for configuration details specific to each filter
+type. Filters for Strings, Numeric Ranges, Date Ranges, Lists, and
+Boolean are the standard filters available.]]>    </description>	<name>filters</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>A config object containing one or more event handlers to be
+added to this object during initialization. This should be a valid
+listeners config object as specified in the <a href="output/Ext.util.Observable.html#Ext.util.Observable-addListener" ext:member="addListener" ext:cls="Ext.util.Observable">addListener</a> example for attaching
+multiple handlers at once.</p>
+
+<br>
+<p><b><u>DOM events from ExtJs <a href="output/Ext.Component.html" ext:cls="Ext.Component">Components</a></u></b></p>
+
+<br>
+<p>While <i>some</i> ExtJs Component classes export selected DOM
+events (e.g. "click", "mouseover" etc), this is usually only done
+when extra value can be added. For example the <a href="output/Ext.DataView.html" ext:cls="Ext.DataView">DataView</a>'s <b><code><a href="output/Ext.DataView.html#Ext.DataView-click" ext:member="click" ext:cls="Ext.DataView">click</a></code></b>
+event passing the node clicked on. To access DOM events directly
+from a Component's HTMLElement, listeners must be added to the
+<i><a href="output/Ext.Component.html#Ext.Component-getEl" ext:member="getEl" ext:cls="Ext.Component">Element</a></i> after
+the Component has been rendered. A plugin can simplify this
+step:</p>
+
+<pre><code><i>// Plugin is configured <b>with</b> a listeners config object.</i>
+<i>// The Component is appended to the argument list of all handler functions.</i>
+Ext.DomObserver = Ext.extend(Object, {
+    constructor: <b>function</b>(config) {
+        this.listeners = config.listeners ? config.listeners : config;
+    },
+
+    <i>// Component passes itself into plugin's init method</i>
+    init: <b>function</b>(c) {
+        <b>var</b> p, l = this.listeners;
+        <b>for</b> (p <b>in</b> l) {
+            <b>if</b> (Ext.isFunction(l[p])) {
+                l[p] = this.createHandler(l[p], c);
+            } <b>else</b> {
+                l[p].fn = this.createHandler(l[p].fn, c);
+            }
+        }
+
+        <i>// Add the listeners to the Element immediately following the render call</i>
+        c.render = c.render.<a href="output/Function.html#Function-createSequence" ext:member="createSequence" ext:cls="Function">createSequence</a>(<b>function</b>() {
+            <b>var</b> e = c.getEl();
+            <b>if</b> (e) {
+                e.on(l);
+            }
+        });
+    },
+
+    createHandler: <b>function</b>(fn, c) {
+        <b>return</b> <b>function</b>(e) {
+            fn.call(this, e, c);
+        };
+    }
+});
+
+<b>var</b> combo = <b>new</b> Ext.form.ComboBox({
+
+    <i>// Collapse combo when its element is clicked on</i>
+    plugins: [ <b>new</b> Ext.DomObserver({
+        click: <b>function</b>(evt, comp) {
+            comp.collapse();
+        }
+    })],
+    store: myStore,
+    typeAhead: true,
+    mode: <em>'local'</em>,
+    triggerAction: <em>'all'</em>
+});</code>
+</pre>
+
+<br>
+<br>
+]]>    </description>	<name>listeners</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<tt>true</tt> to use Ext.data.Store filterfunctions (local filtering) instead of the default (<tt>false</tt>)
+server side filtering.]]>    </description>	<name>local</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[defaults to <tt>'Filters'</tt>.]]>    </description>	<name>menuFilterText</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The url parameter prefix for the filters.Defaults to <tt>'filter'</tt>.]]>    </description>	<name>paramPrefix</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Defaults to true, including a filter submenu inthe default header menu.]]>    </description>	<name>showMenu</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Name of the value to be used to store stateinformation.]]>    </description>	<name>stateId</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Number of milliseconds to defer store updatessince the last filter change.]]>    </description>	<name>updateBuffer</name>	<required>false</required></attribute></tag>

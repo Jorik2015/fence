@@ -1,0 +1,317 @@
+<tag><description>    <![CDATA[
+<p>The Store class encapsulates a client side cache of <a href="output/Ext.data.Record.html" ext:cls="Ext.data.Record">Record</a> objects which provide input
+data for Components such as the <a href="output/Ext.grid.GridPanel.html" ext:cls="Ext.grid.GridPanel">GridPanel</a>, the <a href="output/Ext.form.ComboBox.html" ext:cls="Ext.form.ComboBox">ComboBox</a>, or the <a href="output/Ext.DataView.html" ext:cls="Ext.DataView">DataView</a>.</p>
+
+<p><u>Retrieving Data</u></p>
+
+<p>A Store object may access a data object using:</p>
+
+<div class="mdetail-params">
+<ul>
+<li><a href="output/Ext.data.Store.html#Ext.data.Store-proxy" ext:member="proxy" ext:cls="Ext.data.Store">configured
+implementation</a> of <a href="output/Ext.data.DataProxy.html" ext:cls="Ext.data.DataProxy">DataProxy</a></li>
+
+<li><a href="output/Ext.data.Store.html#Ext.data.Store-data" ext:member="data" ext:cls="Ext.data.Store">data</a> to
+automatically pass in data</li>
+
+<li><a href="output/Ext.data.Store.html#Ext.data.Store-loadData" ext:member="loadData" ext:cls="Ext.data.Store">loadData</a> to
+manually pass in data</li>
+</ul>
+</div>
+
+<br>
+<br>
+ 
+
+<p><u>Reading Data</u></p>
+
+<p>A Store object has no inherent knowledge of the format of the
+data object (it could be an Array, XML, or JSON). A Store object
+uses an appropriate <a href="output/Ext.data.Store.html#Ext.data.Store-reader" ext:member="reader" ext:cls="Ext.data.Store">configured
+implementation</a> of a <a href="output/Ext.data.DataReader.html" ext:cls="Ext.data.DataReader">DataReader</a> to create <a href="output/Ext.data.Record.html" ext:cls="Ext.data.Record">Record</a> instances from the data
+object.</p>
+
+<p><u>Store Types</u></p>
+
+<p>There are several implementations of Store available which are
+customized for use with a specific DataReader implementation. Here
+is an example using an ArrayStore which implicitly creates a reader
+commensurate to an Array data object.</p>
+
+<pre><code><b>var</b> myStore = <b>new</b> Ext.data.ArrayStore({
+    fields: [<em>'fullname'</em>, <em>'first'</em>],
+    idIndex: 0 <i>// id <b>for</b> each record will be the first element</i>
+});</code>
+</pre>
+
+<p>For custom implementations create a basic <a href="output/Ext.data.Store.html" ext:cls="Ext.data.Store">Ext.data.Store</a> configured as
+needed:</p>
+
+<pre><code><i>// create a <a href="output/Ext.data.Record.html" ext:cls="Ext.data.Record">Record</a> constructor:</i>
+<b>var</b> rt = Ext.data.Record.create([
+    {name: <em>'fullname'</em>},
+    {name: <em>'first'</em>}
+]);
+<b>var</b> myStore = <b>new</b> Ext.data.Store({
+    <i>// explicitly create reader</i>
+    reader: <b>new</b> Ext.data.ArrayReader(
+        {
+            idIndex: 0  <i>// id <b>for</b> each record will be the first element</i>
+        },
+        rt <i>// recordType</i>
+    )
+});</code>
+</pre>
+
+<p>Load some data into store (note the data object is an array
+which corresponds to the reader):</p>
+
+<pre><code><b>var</b> myData = [
+    [1, <em>'Fred Flintstone'</em>, <em>'Fred'</em>],  <i>// note that id <b>for</b> the record is the first element</i>
+    [2, <em>'Barney Rubble'</em>, <em>'Barney'</em>]
+];
+myStore.loadData(myData);</code>
+</pre>
+
+<p>Records are cached and made available through accessor
+functions. An example of adding a record to the store:</p>
+
+<pre><code><b>var</b> defaultData = {
+    fullname: <em>'Full Name'</em>,
+    first: <em>'First Name'</em>
+};
+<b>var</b> recId = 100; <i>// provide unique id <b>for</b> the record</i>
+<b>var</b> r = <b>new</b> myStore.recordType(defaultData, ++recId); <i>// create <b>new</b> record</i>
+myStore.<a href="output/Ext.data.Store.html#Ext.data.Store-insert" ext:member="insert" ext:cls="Ext.data.Store">insert</a>(0, r); <i>// insert a <b>new</b> record into the store (also see <a href="output/Ext.data.Store.html#Ext.data.Store-add" ext:member="add" ext:cls="Ext.data.Store">add</a>)</i></code>
+</pre>
+
+<p><u>Writing Data</u></p>
+
+<p>And <b>new in Ext version 3</b>, use the new <a href="output/Ext.data.DataWriter.html" ext:cls="Ext.data.DataWriter">DataWriter</a> to create an
+automated, <a href="http://extjs.com/deploy/dev/examples/writer/writer.html">Writable
+Store</a> along with <a href="http://extjs.com/deploy/dev/examples/restful/restful.html">RESTful
+features.</a></p>
+]]></description><name>store</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[<tt>true</tt> to destroy the store when thecomponent the store is bound to is destroyed (defaults to
+<tt>false</tt>). 
+
+<p><b>Note</b>: this should be set to true when using stores that
+are bound to only 1 component.</p>
+]]>    </description>	<name>autoDestroy</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[If <tt><a href="output/Ext.data.Store.html#Ext.data.Store-data" ext:member="data" ext:cls="Ext.data.Store">data</a></tt> is notspecified, and if <tt>autoLoad</tt> is <tt>true</tt> or an
+<tt>Object</tt>, this store's <a href="output/Ext.data.Store.html#Ext.data.Store-load" ext:member="load" ext:cls="Ext.data.Store">load</a> method is
+automatically called after creation. If the value of
+<tt>autoLoad</tt> is an <tt>Object</tt>, this <tt>Object</tt> will
+be passed to the store's <a href="output/Ext.data.Store.html#Ext.data.Store-load" ext:member="load" ext:cls="Ext.data.Store">load</a> method.]]>    </description>	<name>autoLoad</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>Defaults to <tt>true</tt> causing the store to automatically <a href="output/Ext.data.Store.html#Ext.data.Store-save" ext:member="save" ext:cls="Ext.data.Store">save</a> records to the
+server when a record is modified (ie: becomes 'dirty'). Specify
+<tt>false</tt> to manually call <a href="output/Ext.data.Store.html#Ext.data.Store-save" ext:member="save" ext:cls="Ext.data.Store">save</a> to send all
+modifiedRecords to the server.</p>
+
+<br>
+<p><b>Note</b>: each CRUD action will be sent as a separate
+request.</p>
+]]>    </description>	<name>autoSave</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>An object containing properties which are to be sent as
+parameters for <i>every</i> HTTP request.</p>
+
+<p>Parameters are encoded as standard HTTP parameters using <a href="output/Ext.html#Ext-urlEncode" ext:member="urlEncode" ext:cls="Ext">Ext.urlEncode</a>.</p>
+
+<p><b>Note</b>: <code>baseParams</code> may be superseded by any
+<code>params</code> specified in a <code><a href="output/Ext.data.Store.html#Ext.data.Store-load" ext:member="load" ext:cls="Ext.data.Store">load</a></code> request,
+see <code><a href="output/Ext.data.Store.html#Ext.data.Store-load" ext:member="load" ext:cls="Ext.data.Store">load</a></code> for more
+details.</p>
+
+This property may be modified after creation using the <code><a href="output/Ext.data.Store.html#Ext.data.Store-setBaseParam" ext:member="setBaseParam" ext:cls="Ext.data.Store">setBaseParam</a></code> method.]]>    </description>	<name>baseParams</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>Defaults to <tt>true</tt> (unless <code><a href="output/Ext.data.Store.html#Ext.data.Store-restful" ext:member="restful" ext:cls="Ext.data.Store">restful</a>:true</code>). Multiple
+requests for each CRUD action (CREATE, READ, UPDATE and DESTROY)
+will be combined and sent as one transaction. Only applies when
+<code><a href="output/Ext.data.Store.html#Ext.data.Store-autoSave" ext:member="autoSave" ext:cls="Ext.data.Store">autoSave</a></code>
+is set to <tt>false</tt>.</p>
+
+<br>
+<p>If Store is RESTful, the DataProxy is also RESTful, and a unique
+transaction is generated for each record.</p>
+]]>    </description>	<name>batch</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[An inline data object readable by the <code><a href="output/Ext.data.Store.html#Ext.data.Store-reader" ext:member="reader" ext:cls="Ext.data.Store">reader</a></code>.Typically this option, or the <code><a href="output/Ext.data.Store.html#Ext.data.Store-url" ext:member="url" ext:cls="Ext.data.Store">url</a></code> option
+will be specified.]]>    </description>	<name>data</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Provides the default values for the <a href="output/Ext.data.Store.html#Ext.data.Store-paramNames" ext:member="paramNames" ext:cls="Ext.data.Store">paramNames</a>property. To globally modify the parameters for all stores, this
+object should be changed on the store prototype.]]>    </description>	<name>defaultParamNames</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>A config object containing one or more event handlers to be
+added to this object during initialization. This should be a valid
+listeners config object as specified in the <a href="output/Ext.util.Observable.html#Ext.util.Observable-addListener" ext:member="addListener" ext:cls="Ext.util.Observable">addListener</a> example for attaching
+multiple handlers at once.</p>
+
+<br>
+<p><b><u>DOM events from ExtJs <a href="output/Ext.Component.html" ext:cls="Ext.Component">Components</a></u></b></p>
+
+<br>
+<p>While <i>some</i> ExtJs Component classes export selected DOM
+events (e.g. "click", "mouseover" etc), this is usually only done
+when extra value can be added. For example the <a href="output/Ext.DataView.html" ext:cls="Ext.DataView">DataView</a>'s <b><code><a href="output/Ext.DataView.html#Ext.DataView-click" ext:member="click" ext:cls="Ext.DataView">click</a></code></b>
+event passing the node clicked on. To access DOM events directly
+from a Component's HTMLElement, listeners must be added to the
+<i><a href="output/Ext.Component.html#Ext.Component-getEl" ext:member="getEl" ext:cls="Ext.Component">Element</a></i> after
+the Component has been rendered. A plugin can simplify this
+step:</p>
+
+<pre><code><i>// Plugin is configured <b>with</b> a listeners config object.</i>
+<i>// The Component is appended to the argument list of all handler functions.</i>
+Ext.DomObserver = Ext.extend(Object, {
+    constructor: <b>function</b>(config) {
+        this.listeners = config.listeners ? config.listeners : config;
+    },
+
+    <i>// Component passes itself into plugin's init method</i>
+    init: <b>function</b>(c) {
+        <b>var</b> p, l = this.listeners;
+        <b>for</b> (p <b>in</b> l) {
+            <b>if</b> (Ext.isFunction(l[p])) {
+                l[p] = this.createHandler(l[p], c);
+            } <b>else</b> {
+                l[p].fn = this.createHandler(l[p].fn, c);
+            }
+        }
+
+        <i>// Add the listeners to the Element immediately following the render call</i>
+        c.render = c.render.<a href="output/Function.html#Function-createSequence" ext:member="createSequence" ext:cls="Function">createSequence</a>(<b>function</b>() {
+            <b>var</b> e = c.getEl();
+            <b>if</b> (e) {
+                e.on(l);
+            }
+        });
+    },
+
+    createHandler: <b>function</b>(fn, c) {
+        <b>return</b> <b>function</b>(e) {
+            fn.call(this, e, c);
+        };
+    }
+});
+
+<b>var</b> combo = <b>new</b> Ext.form.ComboBox({
+
+    <i>// Collapse combo when its element is clicked on</i>
+    plugins: [ <b>new</b> Ext.DomObserver({
+        click: <b>function</b>(evt, comp) {
+            comp.collapse();
+        }
+    })],
+    store: myStore,
+    typeAhead: true,
+    mode: <em>'local'</em>,
+    triggerAction: <em>'all'</em>
+});</code>
+</pre>
+
+<br>
+<br>
+]]>    </description>	<name>listeners</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>An object containing properties which specify the names of the
+paging and sorting parameters passed to remote servers when loading
+blocks of data. By default, this object takes the following
+form:</p>
+
+<pre><code>{
+    start : <em>'start'</em>,  <i>// The parameter name which specifies the start row</i>
+    limit : <em>'limit'</em>,  <i>// The parameter name which specifies number of rows to <b>return</b></i>
+    sort : <em>'sort'</em>,    <i>// The parameter name which specifies the column to sort on</i>
+    dir : <em>'dir'</em>       <i>// The parameter name which specifies the sort direction</i>
+}</code>
+</pre>
+
+<p>The server must produce the requested data block upon receipt of
+these parameter names. If different parameter names are required,
+this property can be overriden using a configuration property.</p>
+
+<p>A <a href="output/Ext.PagingToolbar.html" ext:cls="Ext.PagingToolbar">PagingToolbar</a> bound to this Store
+uses this property to determine the parameter names to use in its
+<a href="output/Ext.data.Store.html#Ext.data.Store-load" ext:member="load" ext:cls="Ext.data.Store">requests</a>.</p>
+]]>    </description>	<name>paramNames</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The <a href="output/Ext.data.DataProxy.html" ext:cls="Ext.data.DataProxy">DataProxy</a> object which providesaccess to a data object. See <code><a href="output/Ext.data.Store.html#Ext.data.Store-url" ext:member="url" ext:cls="Ext.data.Store">url</a></code>.]]>    </description>	<name>proxy</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<tt>true</tt> to clear all modified recordinformation each time the store is loaded or when a record is
+removed (defaults to <tt>false</tt>). See <a href="output/Ext.data.Store.html#Ext.data.Store-getModifiedRecords" ext:member="getModifiedRecords" ext:cls="Ext.data.Store">getModifiedRecords</a> for the accessor
+method to retrieve the modified records.]]>    </description>	<name>pruneModifiedRecords</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The <a href="output/Ext.data.DataReader.html" ext:cls="Ext.data.DataReader">Reader</a> object which processes thedata object and returns an Array of <a href="output/Ext.data.Record.html" ext:cls="Ext.data.Record">Ext.data.Record</a> objects which are
+cached keyed by their <b><tt><a href="output/Ext.data.Record.html#Ext.data.Record-id" ext:member="id" ext:cls="Ext.data.Record">id</a></tt></b>
+property.]]>    </description>	<name>reader</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<tt>true</tt> if sorting is to be handled byrequesting the <tt><a href="output/Ext.data.Store.html#Ext.data.Store-proxy" ext:member="proxy" ext:cls="Ext.data.Store">Proxy</a></tt> to
+provide a refreshed version of the data object in sorted order, as
+opposed to sorting the Record cache in place (defaults to
+<tt>false</tt>). 
+
+<p>If <tt>remoteSort</tt> is <tt>true</tt>, then clicking on a <a href="output/Ext.grid.Column.html" ext:cls="Ext.grid.Column">Grid
+Column</a>'s <a href="output/Ext.grid.Column.html#Ext.grid.Column-header" ext:member="header" ext:cls="Ext.grid.Column">header</a> causes the
+current page to be requested from the server appending the
+following two parameters to the <b><tt><a href="output/Ext.data.Store.html#Ext.data.Store-load" ext:member="load" ext:cls="Ext.data.Store">params</a></tt></b>:</p>
+
+<div class="mdetail-params">
+<ul>
+<li><b><tt>sort</tt></b> : String
+
+<p class="sub-desc">The <tt>name</tt> (as specified in the Record's
+<a href="output/Ext.data.Field.html" ext:cls="Ext.data.Field">Field
+definition</a>) of the field to sort on.</p>
+</li>
+
+<li><b><tt>dir</tt></b> : String
+
+<p class="sub-desc">The direction of the sort, 'ASC' or 'DESC'
+(case-sensitive).</p>
+</li>
+</ul>
+</div>
+
+<br>
+<br>
+]]>    </description>	<name>remoteSort</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Defaults to <tt>false</tt>. Set to <tt>true</tt>to have the Store and the set Proxy operate in a RESTful manner.
+The store will automatically generate GET, POST, PUT and DELETE
+requests to the server. The HTTP method used for any given CRUD
+action is described in <a href="output/Ext.data.Api.html#Ext.data.Api-restActions" ext:member="restActions" ext:cls="Ext.data.Api">Ext.data.Api.restActions</a>. For additional
+information see <a href="output/Ext.data.DataProxy.html#Ext.data.DataProxy-restful" ext:member="restful" ext:cls="Ext.data.DataProxy">Ext.data.DataProxy.restful</a>. 
+
+<p><b>Note</b>: if <code><a href="output/Ext.data.Store.html#Ext.data.Store-restful" ext:member="restful" ext:cls="Ext.data.Store">restful</a>:true</code> <code>batch</code>
+will internally be set to <tt>false</tt>.</p>
+]]>    </description>	<name>restful</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[A config object to specify the sort order in therequest of a Store's <a href="output/Ext.data.Store.html#Ext.data.Store-load" ext:member="load" ext:cls="Ext.data.Store">load</a> operation. Note
+that for local sorting, the <tt>direction</tt> property is
+case-sensitive. See also <a href="output/Ext.data.Store.html#Ext.data.Store-remoteSort" ext:member="remoteSort" ext:cls="Ext.data.Store">remoteSort</a> and
+<a href="output/Ext.data.Store.html#Ext.data.Store-paramNames" ext:member="paramNames" ext:cls="Ext.data.Store">paramNames</a>.
+For example:
+
+<pre><code>sortInfo: {
+    field: <em>'fieldName'</em>,
+    direction: <em>'ASC'</em> <i>// or <em>'DESC'</em> (<b>case</b> sensitive <b>for</b> local sorting)</i>
+}</code>
+</pre>
+]]>    </description>	<name>sortInfo</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[If passed, the id to use to register with the<b><a href="output/Ext.StoreMgr.html" ext:cls="Ext.StoreMgr">StoreMgr</a></b>. 
+
+<p><b>Note</b>: if a (deprecated) <tt><a href="output/Ext.data.Store.html#Ext.data.Store-id" ext:member="id" ext:cls="Ext.data.Store">id</a></tt> is specified it will supersede
+the <tt>storeId</tt> assignment.</p>
+]]>    </description>	<name>storeId</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[If a <tt><a href="output/Ext.data.Store.html#Ext.data.Store-proxy" ext:member="proxy" ext:cls="Ext.data.Store">proxy</a></tt> is notspecified the <tt>url</tt> will be used to implicitly configure a
+<a href="output/Ext.data.HttpProxy.html" ext:cls="Ext.data.HttpProxy">HttpProxy</a> if an <tt>url</tt> is
+specified. Typically this option, or the <code><a href="output/Ext.data.Store.html#Ext.data.Store-data" ext:member="data" ext:cls="Ext.data.Store">data</a></code> option
+will be specified.]]>    </description>	<name>url</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>The <a href="output/Ext.data.DataWriter.html" ext:cls="Ext.data.DataWriter">Writer</a> object which processes a
+record object for being written to the server-side database.</p>
+
+<br>
+<p>When a writer is installed into a Store the <a href="output/Ext.data.Store.html#Ext.data.Store-add" ext:member="add" ext:cls="Ext.data.Store">add</a>, <a href="output/Ext.data.Store.html#Ext.data.Store-remove" ext:member="remove" ext:cls="Ext.data.Store">remove</a>, and <a href="output/Ext.data.Store.html#Ext.data.Store-update" ext:member="update" ext:cls="Ext.data.Store">update</a> events on
+the store are monitored in order to remotely <a href="output/Ext.data.Store.html#Ext.data.Store-createRecords" ext:member="createRecords" ext:cls="Ext.data.Store">create
+records</a>, <a href="output/Ext.data.Store.html#Ext.data.Store-destroyRecord" ext:member="destroyRecord" ext:cls="Ext.data.Store">destroy
+records</a>, or <a href="output/Ext.data.Store.html#Ext.data.Store-updateRecord" ext:member="updateRecord" ext:cls="Ext.data.Store">update
+records</a>.</p>
+
+<br>
+<p>The proxy for this store will relay any <a href="output/Ext.data.Store.html#Ext.data.Store-writexception" ext:member="writexception" ext:cls="Ext.data.Store">writexception</a> events to this
+store.</p>
+
+<br>
+<p>Sample implementation:</p>
+
+<pre><code><b>var</b> writer = <b>new</b> <a href="output/Ext.data.JsonWriter.html" ext:cls="Ext.data.JsonWriter">Ext.data.JsonWriter</a>({
+    encode: true,
+    writeAllFields: true <i>// write all fields, not just those that changed</i>
+});
+
+<i>// Typical Store collecting the Proxy, Reader and Writer together.</i>
+<b>var</b> store = <b>new</b> Ext.data.Store({
+    storeId: <em>'user'</em>,
+    root: <em>'records'</em>,
+    proxy: proxy,
+    reader: reader,
+    writer: writer,     <i>// &lt;-- plug a DataWriter into the store just as you would a Reader</i>
+    paramsAsHash: true,
+    autoSave: false    <i>// &lt;-- false to delay executing create, update, destroy requests</i>
+                        <i>//     until specifically told to <b>do</b> so.</i>
+});</code>
+</pre>
+
+<br>
+<br>
+]]>    </description>	<name>writer</name>	<required>false</required></attribute></tag>

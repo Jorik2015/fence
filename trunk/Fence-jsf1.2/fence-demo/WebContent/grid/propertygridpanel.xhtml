@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/layout/part.xhtml">
+	<ui:define name="pageTitle">GridPanel</ui:define>
+	<ui:define name="body">
+		<table class="demoTable" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="td"><s:propertygrid id="gridpanel1" loadMask="true"
+					title="Property GridPanel use Map" source="#{userAction.user}"
+					height="350" width="500">
+					<s:toolbar>
+						<s:button text="R(GridPanel)" type="button" iconCls="rerender"
+							render="gridpanel1" tooltip="Rerender the GridPanel"></s:button>
+						<s:tbfill />
+						<s:button text="Update Source" iconCls="rerender"
+							tooltip="Update Source">
+							<s:event name="click" handler="function(){
+								Fence.call('userAction.user',function(res,options){
+									gridpanel1.setSource(Ext.decode(res.responseText));
+								});
+							}" />
+							</s:button>
+					</s:toolbar>
+				</s:propertygrid></td>
+			</tr>
+			<tr>
+				<td>
+				<div class="code">
+				<h1>The java code</h1>
+					<pre class="brush:java">
+public UserEntity getUser() {
+	if (user == null)
+		user = userDao.getUserByName("arron0");
+	
+	user.setMobile(user.getMobile() + rand.nextInt(20));
+	user.setSalary(user.getSalary() * rand.nextDouble());
+
+	return user;
+}
+					</pre>
+				</div>
+				</td>
+			</tr>
+		</table>
+	</ui:define>
+</ui:composition>

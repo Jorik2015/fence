@@ -1,0 +1,89 @@
+<tag><description>    <![CDATA[
+<p>This is a layout that manages multiple Panels in an expandable
+accordion style such that only <b>one Panel can be expanded at any
+given time</b>. Each Panel has built-in support for expanding and
+collapsing.</p>
+
+<p>Note: Only Ext.Panels <b>and all subclasses of Ext.Panel</b> may
+be used in an accordion layout Container.</p>
+
+<p>This class is intended to be extended or created via the
+<tt><b><a href="output/Ext.Container.html#Ext.Container-layout" ext:member="layout" ext:cls="Ext.Container">layout</a></b></tt>
+configuration property. See <tt><b><a href="output/Ext.Container.html#Ext.Container-layout" ext:member="layout" ext:cls="Ext.Container">Ext.Container.layout</a></b></tt> for
+additional details.</p>
+
+<p>Example usage:</p>
+
+<pre><code><b>var</b> accordion = <b>new</b> Ext.Panel({
+    title: <em>'Accordion Layout'</em>,
+    layout:<em>'accordion'</em>,
+    defaults: {
+        <i>// applied to each contained panel
+</i>
+        bodyStyle: <em>'padding:15px'</em>
+    },
+    layoutConfig: {
+        <i>// layout-specific configs go here
+</i>
+        titleCollapse: false,
+        animate: true,
+        activeOnTop: true
+    },
+    items: [{
+        title: <em>'Panel 1'</em>,
+        html: <em>'&lt;p&gt;Panel content!&lt;/p&gt;'</em>
+    },{
+        title: <em>'Panel 2'</em>,
+        html: <em>'&lt;p&gt;Panel content!&lt;/p&gt;'</em>
+    },{
+        title: <em>'Panel 3'</em>,
+        html: <em>'&lt;p&gt;Panel content!&lt;/p&gt;'</em>
+    }]
+});</code>
+</pre>
+]]></description><name>accordionlayout</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[True to swap the position of each panel as it isexpanded so that it becomes the first item in the container, false
+to keep the panels in the rendered order. <b>This is NOT compatible
+with "animate:true"</b> (defaults to false).]]>    </description>	<name>activeOnTop</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True to slide the contained panels open andclosed during expand/collapse using animation, false to open and
+close directly with no animation (defaults to false). Note: to
+defer to the specific config setting of each contained panel for
+this property, set this to undefined at the layout level.]]>    </description>	<name>animate</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True to set each contained item's width to'auto', false to use the item's current width (defaults to true).
+Note that some components, in particular the <a href="output/Ext.grid.GridPanel.html" ext:cls="Ext.grid.GridPanel">grid</a>, will not function properly
+within layouts if they have auto width, so in such cases this
+config should be set to false.]]>    </description>	<name>autoWidth</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True to make sure the collapse/expand togglebutton always renders first (to the left of) any other tools in the
+contained panels' title bars, false to render it last (defaults to
+false).]]>    </description>	<name>collapseFirst</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>An optional extra CSS class that will be added to the container.
+This can be useful for adding customized styles to the container or
+any of its children using standard CSS rules. See <a href="output/Ext.Component.html" ext:cls="Ext.Component">Ext.Component</a>.<a href="output/Ext.Component.html#Ext.Component-ctCls" ext:member="ctCls" ext:cls="Ext.Component">ctCls</a> also.</p>
+
+<p><b>Note</b>: <tt>extraCls</tt> defaults to <tt>''</tt> except
+for the following classes which assign a value by default:</p>
+
+<div class="mdetail-params">
+<ul>
+<li><a href="output/Ext.layout.AbsoluteLayout.html" ext:cls="Ext.layout.AbsoluteLayout">Absolute Layout</a> :
+<tt>'x-abs-layout-item'</tt></li>
+
+<li><a href="output/Ext.layout.Box.html" ext:cls="Ext.layout.Box">Box Layout</a> :
+<tt>'x-box-item'</tt></li>
+
+<li><a href="output/Ext.layout.ColumnLayout.html" ext:cls="Ext.layout.ColumnLayout">Column Layout</a> :
+<tt>'x-column'</tt></li>
+</ul>
+</div>
+
+To configure the above Classes with an extra CSS class append to
+the default. For example, for ColumnLayout:
+
+<pre><code>extraCls: <em>'x-column custom-class'</em></code>
+</pre>
+
+<br>
+<br>
+]]>    </description>	<name>extraCls</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True to adjust the active item's height to fillthe available space in the container, false to use the item's
+current height, or auto height if not explicitly set (defaults to
+true).]]>    </description>	<name>fill</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True to hide the contained panels'collapse/expand toggle buttons, false to display them (defaults to
+false). When set to true, <a href="output/Ext.layout.AccordionLayout.html#Ext.layout.AccordionLayout-titleCollapse" ext:member="titleCollapse" ext:cls="Ext.layout.AccordionLayout">titleCollapse</a> should be
+true also.]]>    </description>	<name>hideCollapseTool</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True to hide each contained item on render(defaults to false).]]>    </description>	<name>renderHidden</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<b>Experimental</b>. If animate is set to true,this will result in each animation running in sequence.]]>    </description>	<name>sequence</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True to allow expand/collapse of each containedpanel by clicking anywhere on the title bar, false to allow
+expand/collapse only when the toggle tool button is clicked
+(defaults to true). When set to false, <a href="output/Ext.layout.AccordionLayout.html#Ext.layout.AccordionLayout-hideCollapseTool" ext:member="hideCollapseTool" ext:cls="Ext.layout.AccordionLayout">hideCollapseTool</a> should be
+false also.]]>    </description>	<name>titleCollapse</name>	<required>false</required></attribute></tag>

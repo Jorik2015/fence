@@ -1,0 +1,53 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/layout/part.xhtml">
+	<ui:define name="pageTitle">Button</ui:define>
+	<ui:define name="pageHeader">
+		<script type="text/javascript">
+	//<![CDATA[
+    //Please do not use the following code as a best practice! :)
+	var Runner = function(){
+	    var f = function(v, pbar, btn, count, cb){
+	        return function(){
+	            if(v > count){
+	                btn.enable();
+	                cb();
+	            }else{
+	                pbar.updateProgress(v/count, 'Loading item ' + v + ' of '+count+'...');
+	            }
+	       };
+	    };
+	    return {
+	        run : function(pbar, btn, count, cb){
+	            btn.disable();
+	            var ms = 5000/count;
+	            for(var i = 1; i < (count+2); i++){
+	               setTimeout(f(i, pbar, btn, count, cb), i*ms);
+	            }
+	        }
+	    }
+	}();
+	//]]></script>
+	</ui:define>
+	<ui:define name="body">
+		<table class="demoTable"
+			style="border: 1px solid #f1f1f1; width: 100%">
+			<tr>
+				<td class="td"><s:slider width="200" value="50" increment="10"
+					minValue="0" maxValue="100" /></td>
+			</tr>
+			<tr>
+				<td><s:progressbar id="probar" text="Ready" width="500" /> 
+				<s:button
+					text="Start" var="btnStart"
+					handler="function(){
+			        Runner.run(probar,btnStart,12,function(){
+			            probar.reset();
+			            probar.updateText('Done.');
+			        });}"></s:button></td>
+			</tr>
+		</table>
+	</ui:define>
+</ui:composition>

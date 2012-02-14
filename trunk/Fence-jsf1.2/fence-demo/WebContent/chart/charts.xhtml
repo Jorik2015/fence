@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/layout/part.xhtml">
+	<ui:define name="pageTitle">Button</ui:define>
+	<ui:define name="body">
+		<table class="demoTable">
+			<tr>
+				<td class="td">
+				<s:fitlayout>
+				<s:panel title="simple chart" width="500" height="250">
+					<s:linechart xField="username" yField="salary">
+					<s:jsonstore data="#{userAction.users}">
+						<s:dfield name="username" />
+						<s:dfield name="salary" />
+					</s:jsonstore>
+					</s:linechart>
+				</s:panel>
+				</s:fitlayout>
+				</td>
+			</tr>
+			<tr>
+				<td class="td">
+				<s:fitlayout>
+				<s:panel title="simple column chart" width="500" height="250">
+					<s:columnchart xField="username" yField="salary">
+					<s:jsonstore data="#{userAction.users}">
+						<s:dfield name="username" />
+						<s:dfield name="salary" />
+					</s:jsonstore>
+					</s:columnchart>
+				</s:panel>
+				</s:fitlayout>
+				</td>
+			</tr>
+		</table>
+	</ui:define>
+</ui:composition>

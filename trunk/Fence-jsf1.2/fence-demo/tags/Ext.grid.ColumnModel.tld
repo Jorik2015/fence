@@ -1,0 +1,177 @@
+<tag><description>    <![CDATA[
+<p>After the data has been read into the client side cache (<b><a href="output/Ext.data.Store.html" ext:cls="Ext.data.Store">Store</a></b>), the ColumnModel is used to
+configure how and what parts of that data will be displayed in the
+vertical slices (columns) of the grid. The Ext.grid.ColumnModel
+Class is the default implementation of a ColumnModel used by
+implentations of <a href="output/Ext.grid.GridPanel.html" ext:cls="Ext.grid.GridPanel">GridPanel</a>.</p>
+
+<p>Data is mapped into the store's records and then indexed into
+the ColumnModel using the <tt><a href="output/Ext.grid.Column.html#Ext.grid.Column-dataIndex" ext:member="dataIndex" ext:cls="Ext.grid.Column">dataIndex</a></tt>:</p>
+
+<pre><code>{data source} == mapping ==&gt; {data store} == <b><tt><a href="output/Ext.grid.Column.html#Ext.grid.Column-dataIndex" ext:member="dataIndex" ext:cls="Ext.grid.Column">dataIndex</a></tt></b> ==&gt; {ColumnModel}</code>
+</pre>
+
+<p>Each <a href="output/Ext.grid.Column.html" ext:cls="Ext.grid.Column">Column</a> in the grid's ColumnModel is
+configured with a <tt><a href="output/Ext.grid.Column.html#Ext.grid.Column-dataIndex" ext:member="dataIndex" ext:cls="Ext.grid.Column">dataIndex</a></tt>
+to specify how the data within each record in the store is indexed
+into the ColumnModel.</p>
+
+<p>There are two ways to initialize the ColumnModel class:</p>
+
+<p><u>Initialization Method 1: an Array</u></p>
+
+<pre><code><b>var</b> colModel = <b>new</b> Ext.grid.ColumnModel([
+    { header: <em>"Ticker"</em>, width: 60, sortable: true},
+    { header: <em>"Company Name"</em>, width: 150, sortable: true, id: <em>'company'</em>},
+    { header: <em>"Market Cap."</em>, width: 100, sortable: true},
+    { header: <em>"$ Sales"</em>, width: 100, sortable: true, renderer: money},
+    { header: <em>"Employees"</em>, width: 100, sortable: true, resizable: false}
+ ]);</code>
+</pre>
+
+<p>The ColumnModel may be initialized with an Array of <a href="output/Ext.grid.Column.html" ext:cls="Ext.grid.Column">Ext.grid.Column</a> column configuration
+objects to define the initial layout / display of the columns in
+the Grid. The order of each <a href="output/Ext.grid.Column.html" ext:cls="Ext.grid.Column">Ext.grid.Column</a> column configuration
+object within the specified Array defines the initial order of the
+column display. A Column's display may be initially hidden using
+the <tt><a href="output/Ext.grid.Column.html#Ext.grid.Column-hidden" ext:member="hidden" ext:cls="Ext.grid.Column">hidden</a></tt>
+config property (and then shown using the column header menu).
+Fields that are not included in the ColumnModel will not be
+displayable at all.</p>
+
+<p>How each column in the grid correlates (maps) to the <a href="output/Ext.data.Record.html" ext:cls="Ext.data.Record">Ext.data.Record</a> field in the <a href="output/Ext.data.Store.html" ext:cls="Ext.data.Store">Store</a> the column draws its data from
+is configured through the <b><tt><a href="output/Ext.grid.Column.html#Ext.grid.Column-dataIndex" ext:member="dataIndex" ext:cls="Ext.grid.Column">dataIndex</a></tt></b>. If the <b><tt><a href="output/Ext.grid.Column.html#Ext.grid.Column-dataIndex" ext:member="dataIndex" ext:cls="Ext.grid.Column">dataIndex</a></tt></b> is not explicitly
+defined (as shown in the example above) it will use the column
+configuration's index in the Array as the index.</p>
+
+<p>See <b><tt><a href="output/Ext.grid.Column.html" ext:cls="Ext.grid.Column">Ext.grid.Column</a></tt></b> for
+additional configuration options for each column.</p>
+
+<p><u>Initialization Method 2: an Object</u></p>
+
+<p>In order to use configuration options from
+<tt>Ext.grid.ColumnModel</tt>, an Object may be used to initialize
+the ColumnModel. The column configuration Array will be specified
+in the <tt><b><a href="output/Ext.grid.ColumnModel.html#Ext.grid.ColumnModel-columns" ext:member="columns" ext:cls="Ext.grid.ColumnModel">columns</a></b></tt> config
+property. The <tt><b><a href="output/Ext.grid.ColumnModel.html#Ext.grid.ColumnModel-defaults" ext:member="defaults" ext:cls="Ext.grid.ColumnModel">defaults</a></b></tt> config
+property can be used to apply defaults for all columns, e.g.:</p>
+
+<pre><code><b>var</b> colModel = <b>new</b> Ext.grid.ColumnModel({
+    columns: [
+        { header: <em>"Ticker"</em>, width: 60, menuDisabled: false},
+        { header: <em>"Company Name"</em>, width: 150, id: <em>'company'</em>},
+        { header: <em>"Market Cap."</em>},
+        { header: <em>"$ Sales"</em>, renderer: money},
+        { header: <em>"Employees"</em>, resizable: false}
+    ],
+    defaults: {
+        sortable: true,
+        menuDisabled: true,
+        width: 100
+    },
+    listeners: {
+        <a href="output/Ext.grid.ColumnModel.html#Ext.grid.ColumnModel-hiddenchange" ext:member="hiddenchange" ext:cls="Ext.grid.ColumnModel">hiddenchange</a>: <b>function</b>(cm, colIndex, hidden) {
+            saveConfig(colIndex, hidden);
+        }
+    }
+});</code>
+</pre>
+
+<p>In both examples above, the ability to apply a CSS class to all
+cells in a column (including the header) is demonstrated through
+the use of the <b><tt><a href="output/Ext.grid.Column.html#Ext.grid.Column-id" ext:member="id" ext:cls="Ext.grid.Column">id</a></tt></b> config
+option. This column could be styled by including the following
+css:</p>
+
+<pre><code><i>//add this css *after* the core css is loaded</i>
+.x-grid3-td-company {
+    color: red; <i>// entire column will have red font</i>
+}
+<i>// modify the header row only, adding an icon to the column header</i>
+.x-grid3-hd-company {
+    background: transparent
+        url(../../resources/images/icons/silk/building.png)
+        no-repeat 3px 3px ! important;
+        padding-left:20px;
+}</code>
+</pre>
+
+Note that the "Company Name" column could be specified as the
+<b><tt><a href="output/Ext.grid.GridPanel.html" ext:cls="Ext.grid.GridPanel">Ext.grid.GridPanel</a>.<a href="output/Ext.grid.GridPanel.html#Ext.grid.GridPanel-autoExpandColumn" ext:member="autoExpandColumn" ext:cls="Ext.grid.GridPanel">autoExpandColumn</a></tt></b>.]]></description><name>columnmodel</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[An Array of object literals. The config optionsdefined by <b><a href="output/Ext.grid.Column.html" ext:cls="Ext.grid.Column">Ext.grid.Column</a></b> are the options
+which may appear in the object literal for each individual column
+definition.]]>    </description>	<name>columns</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Default sortable of columns which have nosortable specified (defaults to <tt>false</tt>). This property
+shall preferably be configured through the <tt><b><a href="output/Ext.grid.ColumnModel.html#Ext.grid.ColumnModel-defaults" ext:member="defaults" ext:cls="Ext.grid.ColumnModel">defaults</a></b></tt> config
+property.]]>    </description>	<name>defaultSortable</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The width of columns which have no <tt><a href="output/Ext.grid.ColumnModel.html#Ext.grid.ColumnModel-width" ext:member="width" ext:cls="Ext.grid.ColumnModel">width</a></tt>specified (defaults to <tt>100</tt>). This property shall
+preferably be configured through the <tt><b><a href="output/Ext.grid.ColumnModel.html#Ext.grid.ColumnModel-defaults" ext:member="defaults" ext:cls="Ext.grid.ColumnModel">defaults</a></b></tt> config
+property.]]>    </description>	<name>defaultWidth</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Object literal which will be used to apply <a href="output/Ext.grid.Column.html" ext:cls="Ext.grid.Column">Ext.grid.Column</a> configuration optionsto all <tt><b><a href="output/Ext.grid.ColumnModel.html#Ext.grid.ColumnModel-columns" ext:member="columns" ext:cls="Ext.grid.ColumnModel">columns</a></b></tt>. Configuration
+options specified with individual <a href="output/Ext.grid.Column.html" ext:cls="Ext.grid.Column">column</a> configs will supersede these
+<tt><b><a href="output/Ext.grid.ColumnModel.html#Ext.grid.ColumnModel-defaults" ext:member="defaults" ext:cls="Ext.grid.ColumnModel">defaults</a></b></tt>.]]>    </description>	<name>defaults</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>A config object containing one or more event handlers to be
+added to this object during initialization. This should be a valid
+listeners config object as specified in the <a href="output/Ext.util.Observable.html#Ext.util.Observable-addListener" ext:member="addListener" ext:cls="Ext.util.Observable">addListener</a> example for attaching
+multiple handlers at once.</p>
+
+<br>
+<p><b><u>DOM events from ExtJs <a href="output/Ext.Component.html" ext:cls="Ext.Component">Components</a></u></b></p>
+
+<br>
+<p>While <i>some</i> ExtJs Component classes export selected DOM
+events (e.g. "click", "mouseover" etc), this is usually only done
+when extra value can be added. For example the <a href="output/Ext.DataView.html" ext:cls="Ext.DataView">DataView</a>'s <b><code><a href="output/Ext.DataView.html#Ext.DataView-click" ext:member="click" ext:cls="Ext.DataView">click</a></code></b>
+event passing the node clicked on. To access DOM events directly
+from a Component's HTMLElement, listeners must be added to the
+<i><a href="output/Ext.Component.html#Ext.Component-getEl" ext:member="getEl" ext:cls="Ext.Component">Element</a></i> after
+the Component has been rendered. A plugin can simplify this
+step:</p>
+
+<pre><code><i>// Plugin is configured <b>with</b> a listeners config object.</i>
+<i>// The Component is appended to the argument list of all handler functions.</i>
+Ext.DomObserver = Ext.extend(Object, {
+    constructor: <b>function</b>(config) {
+        this.listeners = config.listeners ? config.listeners : config;
+    },
+
+    <i>// Component passes itself into plugin's init method</i>
+    init: <b>function</b>(c) {
+        <b>var</b> p, l = this.listeners;
+        <b>for</b> (p <b>in</b> l) {
+            <b>if</b> (Ext.isFunction(l[p])) {
+                l[p] = this.createHandler(l[p], c);
+            } <b>else</b> {
+                l[p].fn = this.createHandler(l[p].fn, c);
+            }
+        }
+
+        <i>// Add the listeners to the Element immediately following the render call</i>
+        c.render = c.render.<a href="output/Function.html#Function-createSequence" ext:member="createSequence" ext:cls="Function">createSequence</a>(<b>function</b>() {
+            <b>var</b> e = c.getEl();
+            <b>if</b> (e) {
+                e.on(l);
+            }
+        });
+    },
+
+    createHandler: <b>function</b>(fn, c) {
+        <b>return</b> <b>function</b>(e) {
+            fn.call(this, e, c);
+        };
+    }
+});
+
+<b>var</b> combo = <b>new</b> Ext.form.ComboBox({
+
+    <i>// Collapse combo when its element is clicked on</i>
+    plugins: [ <b>new</b> Ext.DomObserver({
+        click: <b>function</b>(evt, comp) {
+            comp.collapse();
+        }
+    })],
+    store: myStore,
+    typeAhead: true,
+    mode: <em>'local'</em>,
+    triggerAction: <em>'all'</em>
+});</code>
+</pre>
+
+<br>
+<br>
+]]>    </description>	<name>listeners</name>	<required>false</required></attribute></tag>

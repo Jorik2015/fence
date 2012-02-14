@@ -1,0 +1,126 @@
+<tag><description>    <![CDATA[
+<p>Data reader class to create an Array of <a href="output/Ext.data.Record.html" ext:cls="Ext.data.Record">Ext.data.Record</a> objects from a JSON
+packet based on mappings in a provided <a href="output/Ext.data.Record.html" ext:cls="Ext.data.Record">Ext.data.Record</a> constructor.</p>
+
+<p>Example code:</p>
+
+<pre><code><b>var</b> myReader = <b>new</b> Ext.data.JsonReader({
+    <i>// metadata configuration options:</i>
+    <a href="output/Ext.data.JsonReader.html#Ext.data.JsonReader-idProperty" ext:member="idProperty" ext:cls="Ext.data.JsonReader">idProperty</a>: <em>'id'</em>
+    <a href="output/Ext.data.JsonReader.html#Ext.data.JsonReader-root" ext:member="root" ext:cls="Ext.data.JsonReader">root</a>: <em>'rows'</em>,
+    <a href="output/Ext.data.JsonReader.html#Ext.data.JsonReader-totalProperty" ext:member="totalProperty" ext:cls="Ext.data.JsonReader">totalProperty</a>: <em>'results'</em>,
+    <a href="output/Ext.data.DataReader.html#Ext.data.DataReader-messageProperty" ext:member="messageProperty" ext:cls="Ext.data.DataReader">Ext.data.DataReader.messageProperty</a>: <em>"msg"</em>  <i>// The element within the response that provides a user-feedback message (optional)</i>
+
+    <i>// the fields config option will internally create an <a href="output/Ext.data.Record.html" ext:cls="Ext.data.Record">Ext.data.Record</a></i>
+    <i>// constructor that provides mapping <b>for</b> reading the record data objects</i>
+    <a href="output/Ext.data.DataReader.html#Ext.data.DataReader-fields" ext:member="fields" ext:cls="Ext.data.DataReader">fields</a>: [
+        <i>// map Record's <em>'firstname'</em> field to data object's key of same name</i>
+        {name: <em>'name'</em>},
+        <i>// map Record's <em>'job'</em> field to data object's <em>'occupation'</em> key</i>
+        {name: <em>'job'</em>, mapping: <em>'occupation'</em>}
+    ]
+});</code>
+</pre>
+
+<p>This would consume a JSON data object of the form:</p>
+
+<pre><code>{
+    results: 2000, <i>// Reader's configured <a href="output/Ext.data.JsonReader.html#Ext.data.JsonReader-totalProperty" ext:member="totalProperty" ext:cls="Ext.data.JsonReader">totalProperty</a></i>
+    rows: [        <i>// Reader's configured <a href="output/Ext.data.JsonReader.html#Ext.data.JsonReader-root" ext:member="root" ext:cls="Ext.data.JsonReader">root</a></i>
+        <i>// record data objects:</i>
+        { <a href="output/Ext.data.JsonReader.html#Ext.data.JsonReader-idProperty" ext:member="idProperty" ext:cls="Ext.data.JsonReader">id</a>: 1, firstname: <em>'Bill'</em>, occupation: <em>'Gardener'</em> },
+        { <a href="output/Ext.data.JsonReader.html#Ext.data.JsonReader-idProperty" ext:member="idProperty" ext:cls="Ext.data.JsonReader">id</a>: 2, firstname: <em>'Ben'</em> , occupation: <em>'Horticulturalist'</em> },
+        ...
+    ]
+}</code>
+</pre>
+
+<p><b><u>Automatic configuration using metaData</u></b></p>
+
+<p>It is possible to change a JsonReader's metadata at any time by
+including a <b><tt>metaData</tt></b> property in the JSON data
+object. If the JSON data object has a <b><tt>metaData</tt></b>
+property, a <a href="output/Ext.data.Store.html" ext:cls="Ext.data.Store">Store</a> object using this Reader will
+reconfigure itself to use the newly provided field definition and
+fire its <a href="output/Ext.data.Store.html#Ext.data.Store-metachange" ext:member="metachange" ext:cls="Ext.data.Store">metachange</a>
+event. The metachange event handler may interrogate the
+<b><tt>metaData</tt></b> property to perform any configuration
+required.</p>
+
+<p>Note that reconfiguring a Store potentially invalidates objects
+which may refer to Fields or Records which no longer exist.</p>
+
+<p>To use this facility you would create the JsonReader like
+this:</p>
+
+<pre><code><b>var</b> myReader = <b>new</b> Ext.data.JsonReader();</code>
+</pre>
+
+<p>The first data packet from the server would configure the reader
+by containing a <b><tt>metaData</tt></b> property <b>and</b> the
+data. For example, the JSON data object might take the form:</p>
+
+<pre><code>{
+    metaData: {
+        <em>"<a href="output/Ext.data.JsonReader.html#Ext.data.JsonReader-idProperty" ext:member="idProperty" ext:cls="Ext.data.JsonReader">idProperty</a>"</em>: <em>"id"</em>,
+        <em>"<a href="output/Ext.data.JsonReader.html#Ext.data.JsonReader-root" ext:member="root" ext:cls="Ext.data.JsonReader">root</a>"</em>: <em>"rows"</em>,
+        <em>"<a href="output/Ext.data.JsonReader.html#Ext.data.JsonReader-totalProperty" ext:member="totalProperty" ext:cls="Ext.data.JsonReader">totalProperty</a>"</em>: <em>"results"</em>
+        <em>"<a href="output/Ext.data.JsonReader.html#Ext.data.JsonReader-successProperty" ext:member="successProperty" ext:cls="Ext.data.JsonReader">successProperty</a>"</em>: <em>"success"</em>,
+        <em>"<a href="output/Ext.data.DataReader.html#Ext.data.DataReader-fields" ext:member="fields" ext:cls="Ext.data.DataReader">fields</a>"</em>: [
+            {<em>"name"</em>: <em>"name"</em>},
+            {<em>"name"</em>: <em>"job"</em>, <em>"mapping"</em>: <em>"occupation"</em>}
+        ],
+        <i>// used by store to set its sortInfo</i>
+        <em>"sortInfo"</em>:{
+           <em>"field"</em>: <em>"name"</em>,
+           <em>"direction"</em>: <em>"ASC"</em>
+        },
+        <i>// <a href="output/Ext.PagingToolbar.html" ext:cls="Ext.PagingToolbar">paging data</a> (<b>if</b> applicable)</i>
+        <em>"start"</em>: 0,
+        <em>"limit"</em>: 2,
+        <i>// custom property</i>
+        <em>"foo"</em>: <em>"bar"</em>
+    },
+    <i>// Reader's configured <a href="output/Ext.data.JsonReader.html#Ext.data.JsonReader-successProperty" ext:member="successProperty" ext:cls="Ext.data.JsonReader">successProperty</a></i>
+    <em>"success"</em>: true,
+    <i>// Reader's configured <a href="output/Ext.data.JsonReader.html#Ext.data.JsonReader-totalProperty" ext:member="totalProperty" ext:cls="Ext.data.JsonReader">totalProperty</a></i>
+    <em>"results"</em>: 2000,
+    <i>// Reader's configured <a href="output/Ext.data.JsonReader.html#Ext.data.JsonReader-root" ext:member="root" ext:cls="Ext.data.JsonReader">root</a></i>
+    <i>// (this data simulates 2 results <a href="output/Ext.PagingToolbar.html" ext:cls="Ext.PagingToolbar">per page</a>)</i>
+    <em>"rows"</em>: [ <i>// <b>*Note:</b> this must be an Array</i>
+        { <em>"id"</em>: 1, <em>"name"</em>: <em>"Bill"</em>, <em>"occupation"</em>: <em>"Gardener"</em> },
+        { <em>"id"</em>: 2, <em>"name"</em>:  <em>"Ben"</em>, <em>"occupation"</em>: <em>"Horticulturalist"</em> }
+    ]
+}</code>
+</pre>
+
+<p>The <b><tt>metaData</tt></b> property in the JSON data object
+should contain:</p>
+
+<div class="mdetail-params">
+<ul>
+<li>any of the configuration options for this class</li>
+
+<li>a <b><tt><a href="output/Ext.data.Record.html#Ext.data.Record-fields" ext:member="fields" ext:cls="Ext.data.Record">fields</a></tt></b>
+property which the JsonReader will use as an argument to the <a href="output/Ext.data.Record.html#Ext.data.Record-create" ext:member="create" ext:cls="Ext.data.Record">data Record create
+method</a> in order to configure the layout of the Records it will
+produce.</li>
+
+<li>a <b><tt><a href="output/Ext.data.Store.html#Ext.data.Store-sortInfo" ext:member="sortInfo" ext:cls="Ext.data.Store">sortInfo</a></tt></b> property which the
+JsonReader will use to set the <a href="output/Ext.data.Store.html" ext:cls="Ext.data.Store">Ext.data.Store</a>'s <a href="output/Ext.data.Store.html#Ext.data.Store-sortInfo" ext:member="sortInfo" ext:cls="Ext.data.Store">sortInfo</a>
+property</li>
+
+<li>any custom properties needed</li>
+</ul>
+</div>
+]]></description><name>jsonreader</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[<p>Either an Array of <a href="output/Ext.data.Field.html" ext:cls="Ext.data.Field">Field</a> definition objects (which will
+be passed to <a href="output/Ext.data.Record.html#Ext.data.Record-create" ext:member="create" ext:cls="Ext.data.Record">Ext.data.Record.create</a>, or a <a href="output/Ext.data.Record.html" ext:cls="Ext.data.Record">Record</a> constructor created from <a href="output/Ext.data.Record.html#Ext.data.Record-create" ext:member="create" ext:cls="Ext.data.Record">Ext.data.Record.create</a>.</p>
+]]>    </description>	<name>fields</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[[id] Name of the property within a row objectthat contains a record identifier value. Defaults to
+<tt>id</tt>]]>    </description>	<name>idProperty</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[[undefined] Optional name of a property within aserver-response that represents a user-feedback message.]]>    </description>	<name>messageProperty</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[[undefined] <b>Required</b>. The name of theproperty which contains the Array of row objects. Defaults to
+<tt>undefined</tt>. An exception will be thrown if the root
+property is undefined. The data packet value for this property
+should be an empty array to clear the data or show no data.]]>    </description>	<name>root</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[[success] Name of the property from which toretrieve the success attribute. Defaults to <tt>success</tt>. See
+<a href="output/Ext.data.DataProxy.html" ext:cls="Ext.data.DataProxy">Ext.data.DataProxy</a>.<a href="output/Ext.data.DataProxy.html#Ext.data.DataProxy-exception" ext:member="exception" ext:cls="Ext.data.DataProxy">exception</a>
+for additional information.]]>    </description>	<name>successProperty</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[[total] Name of the property from which toretrieve the total number of records in the dataset. This is only
+needed if the whole dataset is not passed in one go, but is being
+paged from the remote server. Defaults to <tt>total</tt>.]]>    </description>	<name>totalProperty</name>	<required>false</required></attribute></tag>

@@ -1,0 +1,128 @@
+<tag><description>    <![CDATA[
+<p>The class encapsulates a connection to the page's originating
+domain, allowing requests to be made either to a configured URL, or
+to a URL specified at request time.</p>
+
+<p>Requests made by this class are asynchronous, and will return
+immediately. No data from the server will be available to the
+statement immediately following the <a href="output/Ext.data.Connection.html#Ext.data.Connection-request" ext:member="request" ext:cls="Ext.data.Connection">request</a>
+call. To process returned data, use a <a href="#request-option-success" ext:member="request-option-success" ext:cls="Ext.data.Connection">success callback</a> in the request
+options object, or an <a href="output/Ext.data.Connection.html#Ext.data.Connection-requestcomplete" ext:member="requestcomplete" ext:cls="Ext.data.Connection">event
+listener</a>.</p>
+
+<h3>File Uploads</h3>
+
+<a href="#request-option-isUpload" ext:member="request-option-isUpload" ext:cls="Ext.data.Connection">File uploads</a> are not performed
+using normal "Ajax" techniques, that is they are <b>not</b>
+performed using XMLHttpRequests. Instead the form is submitted in
+the standard manner with the DOM <tt>&lt;form&gt;</tt> element
+temporarily modified to have its <a href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-target">
+target</a> set to refer to a dynamically generated, hidden
+<tt>&lt;iframe&gt;</tt> which is inserted into the document but
+removed after the return data has been gathered.<br>
+<br>
+ 
+
+<p>The server response is parsed by the browser to create the
+document for the IFRAME. If the server is using JSON to send the
+return object, then the <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">
+Content-Type</a> header must be set to "text/html" in order to tell
+the browser to insert the text unchanged into the document
+body.</p>
+
+<p>Characters which are significant to an HTML parser must be sent
+as HTML entities, so encode "&lt;" as "&amp;lt;", "&amp;" as
+"&amp;amp;" etc.</p>
+
+<p>The response text is retrieved from the document, and a fake
+XMLHttpRequest object is created containing a <tt>responseText</tt>
+property in order to conform to the requirements of event handlers
+and callbacks.</p>
+
+<p>Be aware that file upload packets are sent with the content type
+<a href="http://www.faqs.org/rfcs/rfc2388.html">multipart/form</a>
+and some server technologies (notably JEE) may require some custom
+processing in order to retrieve parameter names and parameter
+values from the packet content.</p>
+]]></description><name>connection</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[Whether this request should abort any pendingrequests. (defaults to false)]]>    </description>	<name>autoAbort</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[An object containing request headers which areadded to each request made by this object. (defaults to
+undefined)]]>    </description>	<name>defaultHeaders</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True to add a unique cache-buster param to GETrequests. (defaults to true)]]>    </description>	<name>disableCaching</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Change the parameter which is sent wentdisabling caching through a cache buster. Defaults to '_dc']]>    </description>	<name>disableCachingParam</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[An object containing properties which are used asextra parameters to each request made by this object. (defaults to
+undefined)]]>    </description>	<name>extraParams</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>A config object containing one or more event handlers to be
+added to this object during initialization. This should be a valid
+listeners config object as specified in the <a href="output/Ext.util.Observable.html#Ext.util.Observable-addListener" ext:member="addListener" ext:cls="Ext.util.Observable">addListener</a> example for attaching
+multiple handlers at once.</p>
+
+<br>
+<p><b><u>DOM events from ExtJs <a href="output/Ext.Component.html" ext:cls="Ext.Component">Components</a></u></b></p>
+
+<br>
+<p>While <i>some</i> ExtJs Component classes export selected DOM
+events (e.g. "click", "mouseover" etc), this is usually only done
+when extra value can be added. For example the <a href="output/Ext.DataView.html" ext:cls="Ext.DataView">DataView</a>'s <b><code><a href="output/Ext.DataView.html#Ext.DataView-click" ext:member="click" ext:cls="Ext.DataView">click</a></code></b>
+event passing the node clicked on. To access DOM events directly
+from a Component's HTMLElement, listeners must be added to the
+<i><a href="output/Ext.Component.html#Ext.Component-getEl" ext:member="getEl" ext:cls="Ext.Component">Element</a></i> after
+the Component has been rendered. A plugin can simplify this
+step:</p>
+
+<pre><code><i>// Plugin is configured <b>with</b> a listeners config object.</i>
+<i>// The Component is appended to the argument list of all handler functions.</i>
+Ext.DomObserver = Ext.extend(Object, {
+    constructor: <b>function</b>(config) {
+        this.listeners = config.listeners ? config.listeners : config;
+    },
+
+    <i>// Component passes itself into plugin's init method</i>
+    init: <b>function</b>(c) {
+        <b>var</b> p, l = this.listeners;
+        <b>for</b> (p <b>in</b> l) {
+            <b>if</b> (Ext.isFunction(l[p])) {
+                l[p] = this.createHandler(l[p], c);
+            } <b>else</b> {
+                l[p].fn = this.createHandler(l[p].fn, c);
+            }
+        }
+
+        <i>// Add the listeners to the Element immediately following the render call</i>
+        c.render = c.render.<a href="output/Function.html#Function-createSequence" ext:member="createSequence" ext:cls="Function">createSequence</a>(<b>function</b>() {
+            <b>var</b> e = c.getEl();
+            <b>if</b> (e) {
+                e.on(l);
+            }
+        });
+    },
+
+    createHandler: <b>function</b>(fn, c) {
+        <b>return</b> <b>function</b>(e) {
+            fn.call(this, e, c);
+        };
+    }
+});
+
+<b>var</b> combo = <b>new</b> Ext.form.ComboBox({
+
+    <i>// Collapse combo when its element is clicked on</i>
+    plugins: [ <b>new</b> Ext.DomObserver({
+        click: <b>function</b>(evt, comp) {
+            comp.collapse();
+        }
+    })],
+    store: myStore,
+    typeAhead: true,
+    mode: <em>'local'</em>,
+    triggerAction: <em>'all'</em>
+});</code>
+</pre>
+
+<br>
+<br>
+]]>    </description>	<name>listeners</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The default HTTP method to be used for requests.(defaults to undefined; if not set, but <a href="output/Ext.data.Connection.html#Ext.data.Connection-request" ext:member="request" ext:cls="Ext.data.Connection">request</a>
+params are present, POST will be used; otherwise, GET will be
+used.)]]>    </description>	<name>method</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The timeout in milliseconds to be used forrequests. (defaults to 30000)]]>    </description>	<name>timeout</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>The default URL to be used for requests to the server. Defaults
+to undefined.</p>
+
+<p>The <code>url</code> config may be a function which
+<i>returns</i> the URL to use for the Ajax request. The scope
+(<code><b>this</b></code> reference) of the function is the
+<code>scope</code> option passed to the <a href="output/Ext.data.Connection.html#Ext.data.Connection-request" ext:member="request" ext:cls="Ext.data.Connection">request</a>
+method.</p>
+]]>    </description>	<name>url</name>	<required>false</required></attribute></tag>
