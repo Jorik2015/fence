@@ -1,0 +1,72 @@
+<tag><description>    <![CDATA[]]></description><name>asynctreenode</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[False to not allow this node to have child nodes(defaults to true)]]>    </description>	<name>allowChildren</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[False to make this node undraggable if <a href="output/Ext.tree.TreeNode.html#Ext.tree.TreeNode-draggable" ext:member="draggable" ext:cls="Ext.tree.TreeNode">draggable</a> =true (defaults to true)]]>    </description>	<name>allowDrag</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[False if this node cannot have child nodesdropped on it (defaults to true)]]>    </description>	<name>allowDrop</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True to render a checked checkbox for this node,false to render an unchecked checkbox (defaults to undefined with
+no checkbox rendered)]]>    </description>	<name>checked</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[A css class to be added to the node]]>    </description>	<name>cls</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[true to start the node disabled]]>    </description>	<name>disabled</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True to make this node draggable (defaults tofalse)]]>    </description>	<name>draggable</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[False to not allow this node to be edited by an(@link Ext.tree.TreeEditor} (defaults to true)]]>    </description>	<name>editable</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[If set to true, the node will always show aplus/minus icon, even when empty]]>    </description>	<name>expandable</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[true to start the node expanded]]>    </description>	<name>expanded</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True to render hidden. (Defaults tofalse).]]>    </description>	<name>hidden</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[URL of the link used for the node (defaults to#)]]>    </description>	<name>href</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[target frame for the link]]>    </description>	<name>hrefTarget</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The path to an icon for the node. The preferredway to do this is to use the cls or iconCls attributes and add the
+icon via a CSS background image.]]>    </description>	<name>icon</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[A css class to be added to the nodes iconelement for applying css background images]]>    </description>	<name>iconCls</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The id for this node. If one is not specified,one is generated.]]>    </description>	<name>id</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[False to not allow this node to act as a droptarget (defaults to true)]]>    </description>	<name>isTarget</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[true if this node is a leaf and does not havechildren]]>    </description>	<name>leaf</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>A config object containing one or more event handlers to be
+added to this object during initialization. This should be a valid
+listeners config object as specified in the <a href="output/Ext.util.Observable.html#Ext.util.Observable-addListener" ext:member="addListener" ext:cls="Ext.util.Observable">addListener</a> example for attaching
+multiple handlers at once.</p>
+
+<br>
+<p><b><u>DOM events from ExtJs <a href="output/Ext.Component.html" ext:cls="Ext.Component">Components</a></u></b></p>
+
+<br>
+<p>While <i>some</i> ExtJs Component classes export selected DOM
+events (e.g. "click", "mouseover" etc), this is usually only done
+when extra value can be added. For example the <a href="output/Ext.DataView.html" ext:cls="Ext.DataView">DataView</a>'s <b><code><a href="output/Ext.DataView.html#Ext.DataView-click" ext:member="click" ext:cls="Ext.DataView">click</a></code></b>
+event passing the node clicked on. To access DOM events directly
+from a Component's HTMLElement, listeners must be added to the
+<i><a href="output/Ext.Component.html#Ext.Component-getEl" ext:member="getEl" ext:cls="Ext.Component">Element</a></i> after
+the Component has been rendered. A plugin can simplify this
+step:</p>
+
+<pre><code><i>// Plugin is configured <b>with</b> a listeners config object.</i>
+<i>// The Component is appended to the argument list of all handler functions.</i>
+Ext.DomObserver = Ext.extend(Object, {
+    constructor: <b>function</b>(config) {
+        this.listeners = config.listeners ? config.listeners : config;
+    },
+
+    <i>// Component passes itself into plugin's init method</i>
+    init: <b>function</b>(c) {
+        <b>var</b> p, l = this.listeners;
+        <b>for</b> (p <b>in</b> l) {
+            <b>if</b> (Ext.isFunction(l[p])) {
+                l[p] = this.createHandler(l[p], c);
+            } <b>else</b> {
+                l[p].fn = this.createHandler(l[p].fn, c);
+            }
+        }
+
+        <i>// Add the listeners to the Element immediately following the render call</i>
+        c.render = c.render.<a href="output/Function.html#Function-createSequence" ext:member="createSequence" ext:cls="Function">createSequence</a>(<b>function</b>() {
+            <b>var</b> e = c.getEl();
+            <b>if</b> (e) {
+                e.on(l);
+            }
+        });
+    },
+
+    createHandler: <b>function</b>(fn, c) {
+        <b>return</b> <b>function</b>(e) {
+            fn.call(this, e, c);
+        };
+    }
+});
+
+<b>var</b> combo = <b>new</b> Ext.form.ComboBox({
+
+    <i>// Collapse combo when its element is clicked on</i>
+    plugins: [ <b>new</b> Ext.DomObserver({
+        click: <b>function</b>(evt, comp) {
+            comp.collapse();
+        }
+    })],
+    store: myStore,
+    typeAhead: true,
+    mode: <em>'local'</em>,
+    triggerAction: <em>'all'</em>
+});</code>
+</pre>
+
+<br>
+<br>
+]]>    </description>	<name>listeners</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[A TreeLoader to be used by this node (defaultsto the loader defined on the tree)]]>    </description>	<name>loader</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[An Ext QuickTip for the node]]>    </description>	<name>qtip</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[An Ext QuickTip config for the node (usedinstead of qtip)]]>    </description>	<name>qtipCfg</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True for single click expand on this node]]>    </description>	<name>singleClickExpand</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The text for this node]]>    </description>	<name>text</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[A UI <b>class</b> to use for this node (defaultsto Ext.tree.TreeNodeUI)]]>    </description>	<name>uiProvider</name>	<required>false</required></attribute></tag>

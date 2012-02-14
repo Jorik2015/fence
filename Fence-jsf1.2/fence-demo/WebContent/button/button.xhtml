@@ -1,0 +1,93 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/layout/part.xhtml">
+	<ui:define name="pageTitle">Button</ui:define>
+	<ui:define name="body">
+		<table class="demoTable" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="td" width="200">Action Button</td>
+				<td class="td">
+				<s:action id="action" type="button" text="Action"
+					confirmText="This is action executed by the button" render="renderPanel"></s:action>
+				<s:button refer="action" />
+				<s:button refer="action" /></td>
+			</tr>
+			<tr>
+				<td class="td" width="200">Simple Button</td>
+				<td class="td">
+				<s:button text="button"	handler="function(){alert('ok');}">
+					<s:event name="click" handler="alert('event1');" />
+					<s:event name="click" handler="alert('event2 with params:' + src.getId());" args="src,e" />	
+				</s:button></td>
+			</tr>
+			<tr>
+				<td class="td" width="200">Confirm Button</td>
+				<td class="td">
+				<s:button id="confirmBtn" type="button" render="renderPanel" text="Confirm" confirmText="are you sure do the action?"	handler="function(){alert('ok');}">
+					<s:event name="click" handler="alert('event1');" />
+					<s:event name="click" handler="alert('event2 with params:' + src.getId());" args="src,e" />	
+				</s:button></td>
+			</tr>
+			<tr>
+				<td class="td">SplitButton:</td>
+				<td class="td">
+				<s:fun name="onItemClick" args="item">
+				Fence.info('you click the item :' + item.text);
+				</s:fun>
+				<s:splitbutton text="SplitButton" >
+					<s:menu>
+						<s:textitem text="&lt;b&gt;Bold&lt;/b&gt;" handler="onItemClick"></s:textitem>
+						<s:textitem text="&lt;i&gt;Italic&lt;/i&gt;" handler="onItemClick"></s:textitem>
+						<s:textitem text="&lt;u&gt;Underline&lt;/u&gt;" handler="onItemClick"></s:textitem>
+						<s:textitem text="Pick a Color" handler="onItemClick">
+							<s:colormenu></s:colormenu>
+						</s:textitem>
+					</s:menu>
+				</s:splitbutton></td>
+			</tr>
+			<tr>
+				<td class="td">CycleButton:</td>
+				<td class="td">
+				<s:cyclebutton prependText="Select "
+					showText="true">
+					<s:checkitem text="item1" />
+					<s:checkitem text="item2" checked="true" />
+					<s:checkitem text="item3" />
+				</s:cyclebutton></td>
+			</tr>
+			<tr>
+				<td class="td">Button With Menu</td>
+				<td class="td"><s:button text="With Menu">
+					<s:menu>
+						<s:item text="text item" />
+						<s:item text="date item">
+							<s:datemenu />
+						</s:item>
+					</s:menu>
+				</s:button></td>
+			</tr>
+			<tr>
+				<td class="td">SplitButton With Menu</td>
+				<td class="td"><s:splitbutton text="Split With Menu">
+					<s:menu>
+						<s:item text="text item" />
+						<s:item text="date item">
+							<s:datemenu />
+						</s:item>
+					</s:menu>
+				</s:splitbutton></td>
+			</tr>
+			<tr>
+				<td class="td">The Render area</td>
+				<td class="td">
+				<h:panelGroup id="renderPanel">
+					This is updated when the button execute.Test text:
+					<span class="red">#{userAction.labelText}</span>
+				</h:panelGroup>
+				</td>
+			</tr>
+		</table>
+	</ui:define>
+</ui:composition>

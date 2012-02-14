@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/layout/part.xhtml">
+	<ui:define name="pageTitle">Button</ui:define>
+	<ui:define name="pageHeader">
+	<script type="text/javascript">
+		var colorMenu = new Ext.menu.ColorMenu({handler:function(){}}); 
+	</script>
+	</ui:define>
+	<ui:define name="body">
+		<s:splitbutton text="menubutton" var="mbtn">
+			<s:menu>
+				<s:textitem text="textitem" />
+				<s:item text="item1" />
+				<s:checkitem text="check item" />
+				<s:item text="Radio Options">
+					<s:menu>
+						<s:textitem text="Choose a Theme" />
+						<s:checkitem text="red" checked="true" group="theme"></s:checkitem>
+						<s:checkitem text="green" checked="false" group="theme"></s:checkitem>
+						<s:checkitem text=" white" checked="false" group="theme"></s:checkitem>
+					</s:menu>
+				</s:item>
+				<s:item text="item2">
+					<s:menu>
+						<s:item text="submenuitem1" />
+						<s:item text="submenuitem2" />
+					</s:menu>
+				</s:item>
+				<s:item text="color item" menu="colorMenu">
+				</s:item>
+				<s:item text="date item">
+					<s:datemenu />
+				</s:item>
+			</s:menu>
+		</s:splitbutton>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,9 @@
+<tag><description>    <![CDATA[Plugin (ptype = 'tabclosemenu') for
+displaying a progressbar inside of a paging toolbar instead of
+plain text]]></description><name>progressbarpager</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[<p>A <a href="output/Ext.Fx.html" ext:cls="Ext.Fx">Ext.Fx</a>
+configuration object. Default is { duration : 1, easing :
+'bounceOut' }.</p>
+]]>    </description>	<name>defaultAnimCfg</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>The text to display while the store is loading. Default is
+'Loading...'</p>
+]]>    </description>	<name>defaultText</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>The default progress bar width. Default is 225.</p>
+]]>    </description>	<name>progBarWidth</name>	<required>false</required></attribute></tag>

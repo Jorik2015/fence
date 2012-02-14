@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/layout/part.xhtml">
+	<ui:define name="pageTitle">Button</ui:define>
+	<ui:define name="pageHeader">
+		<script type="text/javascript"> //<![CDATA[
+	var fun1 = function(src,e){
+		alert("fun1" +src);
+	};
+	//]]> </script>
+	</ui:define>
+	<ui:define name="body">
+		<div class="introduction">
+		<h1>Formpanel说明</h1>
+		<p>FormPanel遵循Ext的模式，可以ajax提交也可以普通提交，由属性standardSubmit控制(符合ext的规范)。
+		相对于h:form来讲，FromPanel使用如同h:form,只是其中的input全部换成field或其子类。
+		<br/>
+		使用技巧:<br/>
+		1、Ext的basicform所有config同时适用FormPanel,Formpanel默认采用ajax方式提交，所有在formpanel内部实现了ExtCommand(fence其中一个类，实现了JSF的ActionSource2接口)的组件都将具有动作属性即action、actionListener以及Fence赋予的render、successFn属性；
+		当，在fence中所有菜单项、按钮及toolbar中按钮继承了ExtCommand,所以如果type为submit的菜单（menu）或者按钮都将提交FormPanel;
+		<br/>2、FormPanel配置新增一种简化的绑定方式，利用FormPanel的model属性，此属性暂时定为字符串类型。默认情况下我们在绑定的时候所有field都将绑定一个对象的属性已提交值，而使用model模式之后，field将不在需要写绑定表达式，只需要有name即可。
+		设置了model属性之后，formpanel内部的name属性即为model的一个属性。如model为userAction.user,某field的name属性为username，即表示该field绑定表达式
+		为userAction.user.name。同时，如果field本身设置了value的表达式，则field自身的优先。
+		<br/>
+		3、所有Field组件都支持服务端验证和转换，也支持JSF自定义验证器和转换器，只要按照JSF的方式使用配置即可。
+		<br/>4、Formpanel验证可以在客户端或者服务端，客户端验证完全可以使用ext的验证方式，服务端验证则完全遵循JSF模式，当服务端验证失败或者转换失败，错误信息依然可以返回到客户端并显示标识。
+		<br/>
+		5、formpanel新增属性showErrorType用来显示错误消息的方式，值可以为alert(弹出消息框)、bar(使用状态栏显示，需要安装插件)、默认为空，即只在输入框显示错误验证信息。
+		此属性值在submit时才有效。TODO <br />
+
+		</p>
+		</div>
+	</ui:define>
+</ui:composition>

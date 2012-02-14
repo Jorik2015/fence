@@ -1,0 +1,98 @@
+<tag><description>    <![CDATA[
+<p>Base Class for HBoxLayout and VBoxLayout Classes. Generally it
+should not need to be used directly.</p>
+]]></description><name>boxlayout</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[<p>If the individual contained items do not have a <tt>margins</tt>
+property specified, the default margins from this property will be
+applied to each item.</p>
+
+<br>
+<p>This property may be specified as an object containing margins
+to apply in the format:</p>
+
+<pre><code>{
+    top: (top margin),
+    right: (right margin),
+    bottom: (bottom margin),
+    left: (left margin)
+}</code>
+</pre>
+
+<p>This property may also be specified as a string containing
+space-separated, numeric margin values. The order of the sides
+associated with each value matches the way CSS processes margin
+values:</p>
+
+<div class="mdetail-params">
+<ul>
+<li>If there is only one value, it applies to all sides.</li>
+
+<li>If there are two values, the top and bottom borders are set to
+the first value and the right and left are set to the second.</li>
+
+<li>If there are three values, the top is set to the first value,
+the left and right are set to the second, and the bottom is set to
+the third.</li>
+
+<li>If there are four values, they apply to the top, right, bottom,
+and left, respectively.</li>
+</ul>
+</div>
+
+<p>Defaults to:</p>
+
+<pre><code>{top:0, right:0, bottom:0, left:0}</code>
+</pre>
+]]>    </description>	<name>defaultMargins</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>An optional extra CSS class that will be added to the container.
+This can be useful for adding customized styles to the container or
+any of its children using standard CSS rules. See <a href="output/Ext.Component.html" ext:cls="Ext.Component">Ext.Component</a>.<a href="output/Ext.Component.html#Ext.Component-ctCls" ext:member="ctCls" ext:cls="Ext.Component">ctCls</a> also.</p>
+
+<p><b>Note</b>: <tt>extraCls</tt> defaults to <tt>''</tt> except
+for the following classes which assign a value by default:</p>
+
+<div class="mdetail-params">
+<ul>
+<li><a href="output/Ext.layout.AbsoluteLayout.html" ext:cls="Ext.layout.AbsoluteLayout">Absolute Layout</a> :
+<tt>'x-abs-layout-item'</tt></li>
+
+<li><a href="output/Ext.layout.Box.html" ext:cls="Ext.layout.Box">Box Layout</a> :
+<tt>'x-box-item'</tt></li>
+
+<li><a href="output/Ext.layout.ColumnLayout.html" ext:cls="Ext.layout.ColumnLayout">Column Layout</a> :
+<tt>'x-column'</tt></li>
+</ul>
+</div>
+
+To configure the above Classes with an extra CSS class append to
+the default. For example, for ColumnLayout:
+
+<pre><code>extraCls: <em>'x-column custom-class'</em></code>
+</pre>
+
+<br>
+<br>
+]]>    </description>	<name>extraCls</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>Sets the padding to be applied to all child items managed by
+this layout.</p>
+
+<p>This property must be specified as a string containing
+space-separated, numeric padding values. The order of the sides
+associated with each value matches the way CSS processes padding
+values:</p>
+
+<div class="mdetail-params">
+<ul>
+<li>If there is only one value, it applies to all sides.</li>
+
+<li>If there are two values, the top and bottom borders are set to
+the first value and the right and left are set to the second.</li>
+
+<li>If there are three values, the top is set to the first value,
+the left and right are set to the second, and the bottom is set to
+the third.</li>
+
+<li>If there are four values, they apply to the top, right, bottom,
+and left, respectively.</li>
+</ul>
+</div>
+
+<p>Defaults to: <code><em>"0"</em></code></p>
+]]>    </description>	<name>padding</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True to hide each contained item on render(defaults to false).]]>    </description>	<name>renderHidden</name>	<required>false</required></attribute></tag>

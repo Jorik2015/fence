@@ -1,0 +1,52 @@
+<tag><description>    <![CDATA[
+<p>This is a base class for layouts that contain <b>a single
+item</b> that automatically expands to fill the layout's container.
+This class is intended to be extended or created via the
+<tt>layout:'fit'</tt> <a href="output/Ext.Container.html#Ext.Container-layout" ext:member="layout" ext:cls="Ext.Container">Ext.Container.layout</a> config, and should
+generally not need to be created directly via the new keyword.</p>
+
+<p>FitLayout does not have any direct config options (other than
+inherited ones). To fit a panel to a container using FitLayout,
+simply set layout:'fit' on the container and add a single panel to
+it. If the container has multiple panels, only the first one will
+be displayed. Example usage:</p>
+
+<pre><code><b>var</b> p = <b>new</b> Ext.Panel({
+    title: <em>'Fit Layout'</em>,
+    layout:<em>'fit'</em>,
+    items: {
+        title: <em>'Inner Panel'</em>,
+        html: <em>'&lt;p&gt;This is the inner panel content&lt;/p&gt;'</em>,
+        border: false
+    }
+});</code>
+</pre>
+]]></description><name>fitlayout</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[<p>An optional extra CSS class that will be added to the container.
+This can be useful for adding customized styles to the container or
+any of its children using standard CSS rules. See <a href="output/Ext.Component.html" ext:cls="Ext.Component">Ext.Component</a>.<a href="output/Ext.Component.html#Ext.Component-ctCls" ext:member="ctCls" ext:cls="Ext.Component">ctCls</a> also.</p>
+
+<p><b>Note</b>: <tt>extraCls</tt> defaults to <tt>''</tt> except
+for the following classes which assign a value by default:</p>
+
+<div class="mdetail-params">
+<ul>
+<li><a href="output/Ext.layout.AbsoluteLayout.html" ext:cls="Ext.layout.AbsoluteLayout">Absolute Layout</a> :
+<tt>'x-abs-layout-item'</tt></li>
+
+<li><a href="output/Ext.layout.Box.html" ext:cls="Ext.layout.Box">Box Layout</a> :
+<tt>'x-box-item'</tt></li>
+
+<li><a href="output/Ext.layout.ColumnLayout.html" ext:cls="Ext.layout.ColumnLayout">Column Layout</a> :
+<tt>'x-column'</tt></li>
+</ul>
+</div>
+
+To configure the above Classes with an extra CSS class append to
+the default. For example, for ColumnLayout:
+
+<pre><code>extraCls: <em>'x-column custom-class'</em></code>
+</pre>
+
+<br>
+<br>
+]]>    </description>	<name>extraCls</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True to hide each contained item on render(defaults to false).]]>    </description>	<name>renderHidden</name>	<required>false</required></attribute></tag>

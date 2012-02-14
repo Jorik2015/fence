@@ -1,0 +1,152 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/layout/part.xhtml">
+	<ui:define name="pageTitle">Button</ui:define>
+	<ui:define name="pageHeader">
+		<script type="text/javascript">
+		//<![CDATA[
+		var replace = function(config){
+            var btns = Ext.getCmp('btns');
+
+            btns.remove(0);
+
+            btns.add(Ext.apply(config, {
+                layout:'hbox'
+            }));
+
+            btns.doLayout();
+        };
+        //]]>
+		</script>
+	</ui:define>
+	<ui:define name="body">
+		<table class="demoTable" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="td" width="300"><s:borderlayout>
+					<s:panel id="borderPanel" width="300" height="200"
+						title="border layout panel">
+						<s:splitregion minWidth="50" split="true">
+							<s:panel title="west" region="west" />
+						</s:splitregion>
+						<s:panel title="center" region="center" />
+						<s:panel title="east" region="east" />
+					</s:panel>
+				</s:borderlayout></td>
+				<td class="td"><s:accordionlayout>
+					<s:panel id="accordionPanel" width="300" height="200"
+						title="accordion layout panel">
+						<s:panel title="item1" />
+						<s:panel title="item2" />
+						<s:panel title="item3" />
+					</s:panel>
+				</s:accordionlayout></td>
+			</tr>
+			<tr>
+				<td class="td" width="300"><s:panel width="300" height="200"
+					layout="border" title="border layout panel">
+					<s:panel title="west" region="west" />
+					<s:panel title="center" region="center" />
+					<s:panel title="east" region="east" />
+				</s:panel></td>
+				<td class="td"><s:panel layout="accordion" width="300"
+					height="200" title="accordion layout panel">
+					<s:panel title="item1" />
+					<s:panel title="item2" />
+					<s:panel title="item3" />
+				</s:panel></td>
+			</tr>
+			<tr>
+				<td class="td" colspan="2"><s:panel layout="border"
+					height="200" title="HboxLayout" width="600">
+					<s:fitlayout>
+						<s:panel id="btns" region="north" split="true" height="50"
+							minHeight="40" maxHeight="85" margins="5 5 0 5">
+							<p style="padding: 10px; color: #556677;">Select a
+							configuration below:</p>
+						</s:panel>
+					</s:fitlayout>
+					<s:anchorlayout>
+						<s:panel id="anchor" title="anchor layout" region="center"
+							margins="0 5 5 5">
+							<s:button text="Spaced"
+								handler="function(){
+                                replace({
+                                    layoutConfig: {
+                                        padding:'5',
+                                        align:'top'
+                                    },
+                                    defaults:{margins:'0 5 0 0'},
+                                    items:[{
+                                        xtype:'button',
+                                        text: 'Button 1'
+                                    },{
+                                        xtype:'spacer',
+                                        flex:1
+                                    },{
+                                        xtype:'button',
+                                        text: 'Button 2'
+                                    },{
+                                        xtype:'button',
+                                        text: 'Button 3'
+                                    },{
+                                        xtype:'button',
+                                        text: 'Button 4',
+                                        margins:'0'
+                                    }]
+                                });
+                            }" />
+							<s:button text="Align: top"
+								handler="function(){
+                                replace({
+                                    layoutConfig: {
+                                        padding:'5',
+                                        align:'top'
+                                    },
+                                    defaults:{margins:'0 5 0 0'},
+                                    items:[{
+                                        xtype:'button',
+                                        text: 'Button 1'
+                                    },{
+                                        xtype:'button',
+                                        text: 'Button 2'
+                                    },{
+                                        xtype:'button',
+                                        text: 'Button 3'
+                                    },{
+                                        xtype:'button',
+                                        text: 'Button 4'
+                                    }]
+                                });
+                            }" />
+							<s:button text="Align: middle"
+								handler=" function(){
+                                replace({
+                                    layoutConfig: {
+                                        padding:'5',
+                                        align:'middle'
+                                    },
+                                    defaults:{margins:'0 5 0 0'},
+                                    items:[{
+                                        xtype:'button',
+                                        text: 'Button 1'
+                                    },{
+                                        xtype:'button',
+                                        text: 'Button 2'
+                                    },{
+                                        xtype:'button',
+                                        text: 'Button 3'
+                                    },{
+                                        xtype:'button',
+                                        text: 'Button 4'
+                                    }]
+                                });
+                            }" />
+						</s:panel>
+					</s:anchorlayout>
+				</s:panel></td>
+			</tr>
+		</table>
+	</ui:define>
+</ui:composition>

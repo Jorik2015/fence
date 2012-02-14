@@ -1,0 +1,123 @@
+<tag><description>    <![CDATA[
+<p>This class encapsulates the user interface of an <a href="output/Ext.grid.GridPanel.html" ext:cls="Ext.grid.GridPanel">Ext.grid.GridPanel</a>. Methods of
+this class may be used to access user interface elements to enable
+special display effects. Do not change the DOM structure of the
+user interface.</p>
+
+<p>This class does not provide ways to manipulate the underlying
+data. The data model of a Grid is held in an <a href="output/Ext.data.Store.html" ext:cls="Ext.data.Store">Ext.data.Store</a>.</p>
+]]></description><name>gridview</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[Defaults to <tt>false</tt>. Specify <tt>true</tt>to have the column widths re-proportioned when the grid is
+<b>initially rendered</b>. The <a href="output/Ext.grid.Column.html#Ext.grid.Column-width" ext:member="width" ext:cls="Ext.grid.Column">initially configured
+width</a> of each column will be adjusted to fit the grid width and
+prevent horizontal scrolling. If columns are later resized
+(manually or programmatically), the other columns in the grid will
+<b>not</b> be resized to fit the grid width. See <tt><a href="output/Ext.grid.GridView.html#Ext.grid.GridView-forceFit" ext:member="forceFit" ext:cls="Ext.grid.GridView">forceFit</a></tt>
+also.]]>    </description>	<name>autoFill</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The selector used to find cells internally(defaults to <tt>'td.x-grid3-cell'</tt>)]]>    </description>	<name>cellSelector</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The number of levels to search for cells inevent delegation (defaults to <tt>4</tt>)]]>    </description>	<name>cellSelectorDepth</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The text displayed in the 'Columns' menu item(defaults to <tt>'Columns'</tt>)]]>    </description>	<name>columnsText</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True to defer <tt><a href="output/Ext.grid.GridView.html#Ext.grid.GridView-emptyText" ext:member="emptyText" ext:cls="Ext.grid.GridView">emptyText</a></tt> being applied untilthe store's first load (defaults to <tt>true</tt>).]]>    </description>	<name>deferEmptyText</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Default text (html tags are accepted) to displayin the grid body when no rows are available (defaults to ''). This
+value will be used to update the <tt><a href="output/Ext.grid.GridView.html#Ext.grid.GridView-mainBody" ext:member="mainBody" ext:cls="Ext.grid.GridView">mainBody</a></tt>: 
+
+<pre><code>this.mainBody.update(<em>'&lt;div class=</em>"x-grid-empty"</code>&gt;' + this.emptyText + <em>'&lt;/div&gt;'</em>);
+</pre>
+]]>    </description>	<name>emptyText</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True to add a second TR element per row that canbe used to provide a row body that spans beneath the data row. Use
+the <a href="output/Ext.grid.GridView.html#Ext.grid.GridView-getRowClass" ext:member="getRowClass" ext:cls="Ext.grid.GridView">getRowClass</a> method's rowParams
+config to customize the row body.]]>    </description>	<name>enableRowBody</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Defaults to <tt>false</tt>. Specify <tt>true</tt>to have the column widths re-proportioned at <b>all times</b>. The
+<a href="output/Ext.grid.Column.html#Ext.grid.Column-width" ext:member="width" ext:cls="Ext.grid.Column">initially configured
+width</a> of each column will be adjusted to fit the grid width and
+prevent horizontal scrolling. If columns are later resized
+(manually or programmatically), the other columns in the grid
+<b>will</b> be resized to fit the grid width. See <tt><a href="output/Ext.grid.GridView.html#Ext.grid.GridView-autoFill" ext:member="autoFill" ext:cls="Ext.grid.GridView">autoFill</a></tt>
+also.]]>    </description>	<name>forceFit</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True to disable the grid column headers (defaultsto <tt>false</tt>). Use the <a href="output/Ext.grid.ColumnModel.html" ext:cls="Ext.grid.ColumnModel">ColumnModel</a> <tt><a href="output/Ext.grid.ColumnModel.html#Ext.grid.ColumnModel-menuDisabled" ext:member="menuDisabled" ext:cls="Ext.grid.ColumnModel">menuDisabled</a></tt> config to
+disable the <i>menu</i> for individual columns. While this config
+is true the following will be disabled:
+
+<div class="mdetail-params">
+<ul>
+<li>clicking on header to sort</li>
+
+<li>the trigger to reveal the menu.</li>
+</ul>
+</div>
+]]>    </description>	<name>headersDisabled</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>A config object containing one or more event handlers to be
+added to this object during initialization. This should be a valid
+listeners config object as specified in the <a href="output/Ext.util.Observable.html#Ext.util.Observable-addListener" ext:member="addListener" ext:cls="Ext.util.Observable">addListener</a> example for attaching
+multiple handlers at once.</p>
+
+<br>
+<p><b><u>DOM events from ExtJs <a href="output/Ext.Component.html" ext:cls="Ext.Component">Components</a></u></b></p>
+
+<br>
+<p>While <i>some</i> ExtJs Component classes export selected DOM
+events (e.g. "click", "mouseover" etc), this is usually only done
+when extra value can be added. For example the <a href="output/Ext.DataView.html" ext:cls="Ext.DataView">DataView</a>'s <b><code><a href="output/Ext.DataView.html#Ext.DataView-click" ext:member="click" ext:cls="Ext.DataView">click</a></code></b>
+event passing the node clicked on. To access DOM events directly
+from a Component's HTMLElement, listeners must be added to the
+<i><a href="output/Ext.Component.html#Ext.Component-getEl" ext:member="getEl" ext:cls="Ext.Component">Element</a></i> after
+the Component has been rendered. A plugin can simplify this
+step:</p>
+
+<pre><code><i>// Plugin is configured <b>with</b> a listeners config object.</i>
+<i>// The Component is appended to the argument list of all handler functions.</i>
+Ext.DomObserver = Ext.extend(Object, {
+    constructor: <b>function</b>(config) {
+        this.listeners = config.listeners ? config.listeners : config;
+    },
+
+    <i>// Component passes itself into plugin's init method</i>
+    init: <b>function</b>(c) {
+        <b>var</b> p, l = this.listeners;
+        <b>for</b> (p <b>in</b> l) {
+            <b>if</b> (Ext.isFunction(l[p])) {
+                l[p] = this.createHandler(l[p], c);
+            } <b>else</b> {
+                l[p].fn = this.createHandler(l[p].fn, c);
+            }
+        }
+
+        <i>// Add the listeners to the Element immediately following the render call</i>
+        c.render = c.render.<a href="output/Function.html#Function-createSequence" ext:member="createSequence" ext:cls="Function">createSequence</a>(<b>function</b>() {
+            <b>var</b> e = c.getEl();
+            <b>if</b> (e) {
+                e.on(l);
+            }
+        });
+    },
+
+    createHandler: <b>function</b>(fn, c) {
+        <b>return</b> <b>function</b>(e) {
+            fn.call(this, e, c);
+        };
+    }
+});
+
+<b>var</b> combo = <b>new</b> Ext.form.ComboBox({
+
+    <i>// Collapse combo when its element is clicked on</i>
+    plugins: [ <b>new</b> Ext.DomObserver({
+        click: <b>function</b>(evt, comp) {
+            comp.collapse();
+        }
+    })],
+    store: myStore,
+    typeAhead: true,
+    mode: <em>'local'</em>,
+    triggerAction: <em>'all'</em>
+});</code>
+</pre>
+
+<br>
+<br>
+]]>    </description>	<name>listeners</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The selector used to find rows internally(defaults to <tt>'div.x-grid3-row'</tt>)]]>    </description>	<name>rowSelector</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The number of levels to search for rows in eventdelegation (defaults to <tt>10</tt>)]]>    </description>	<name>rowSelectorDepth</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The amount of space to reserve for the verticalscrollbar (defaults to <tt>undefined</tt>). If an explicit value
+isn't specified, this will be automatically calculated.]]>    </description>	<name>scrollOffset</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The CSS class applied to a selected row (defaultsto <tt>'x-grid3-row-selected'</tt>). An example overriding the
+default styling: 
+
+<pre><code>.x-grid3-row-selected {background-color: yellow;}</code>
+</pre>
+
+Note that this only controls the row, and will not do anything for
+the text inside it. To style inner facets (like text) use something
+like: 
+
+<pre><code>.x-grid3-row-selected .x-grid3-cell-inner {
+        color: #FFCC00;
+    }</code>
+</pre>
+]]>    </description>	<name>selectedRowClass</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The text displayed in the 'Sort Ascending' menuitem (defaults to <tt>'Sort Ascending'</tt>)]]>    </description>	<name>sortAscText</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The CSS classes applied to a header when it issorted. (defaults to <tt>['sort-asc', 'sort-desc']</tt>)]]>    </description>	<name>sortClasses</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The text displayed in the 'Sort Descending' menuitem (defaults to <tt>'Sort Descending'</tt>)]]>    </description>	<name>sortDescText</name>	<required>false</required></attribute></tag>

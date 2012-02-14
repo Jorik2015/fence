@@ -1,0 +1,232 @@
+<tag><description>    <![CDATA[
+<p>An implementation of <a href="output/Ext.data.DataProxy.html" ext:cls="Ext.data.DataProxy">Ext.data.DataProxy</a> that processes
+data requests within the same domain of the originating page.</p>
+
+<p><b>Note</b>: this class cannot be used to retrieve data from a
+domain other than the domain from which the running page was
+served. For cross-domain requests, use a <a href="output/Ext.data.ScriptTagProxy.html" ext:cls="Ext.data.ScriptTagProxy">ScriptTagProxy</a>.</p>
+
+<p>Be aware that to enable the browser to parse an XML document,
+the server must set the Content-Type header in the HTTP response to
+"<tt>text/xml</tt>".</p>
+]]></description><name>httpproxy</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[Specific urls to call on CRUD action methods"read", "create", "update" and "destroy". Defaults to:
+
+<pre><code>api: {
+    read    : undefined,
+    create  : undefined,
+    update  : undefined,
+    destroy : undefined
+}</code>
+</pre>
+
+<p>The url is built based upon the action being executed
+<tt>[load|create|save|destroy]</tt> using the commensurate <tt><a href="output/Ext.data.DataProxy.html#Ext.data.DataProxy-api" ext:member="api" ext:cls="Ext.data.DataProxy">api</a></tt>
+property, or if undefined default to the configured <a href="output/Ext.data.Store.html" ext:cls="Ext.data.Store">Ext.data.Store</a>.<a href="output/Ext.data.Store.html#Ext.data.Store-url" ext:member="url" ext:cls="Ext.data.Store">url</a>.</p>
+
+<br>
+<p>For example:</p>
+
+<pre><code>api: {
+    load :    <em>'/controller/load'</em>,
+    create :  <em>'/controller/<b>new</b>'</em>,  <i>// Server MUST <b>return</b> idProperty of <b>new</b> record
+</i>
+    save :    <em>'/controller/update'</em>,
+    destroy : <em>'/controller/destroy_action'</em>
+}
+
+<i>// Alternatively, one can use the object-form to specify each API-action
+</i>
+api: {
+    load: {url: <em>'read.php'</em>, method: <em>'GET'</em>},
+    create: <em>'create.php'</em>,
+    destroy: <em>'destroy.php'</em>,
+    save: <em>'update.php'</em>
+}</code>
+</pre>
+
+<p>If the specific URL for a given CRUD action is undefined, the
+CRUD action request will be directed to the configured <tt><a href="output/Ext.data.Connection.html#Ext.data.Connection-url" ext:member="url" ext:cls="Ext.data.Connection">url</a></tt>.</p>
+
+<br>
+<p><b>Note</b>: To modify the URL for an action dynamically the
+appropriate API property should be modified before the action is
+requested using the corresponding before action event. For example
+to modify the URL associated with the load action:</p>
+
+<pre><code><i>// modify the url <b>for</b> the action
+</i>
+myStore.on({
+    beforeload: {
+        fn: <b>function</b> (store, options) {
+            <i>// use <tt><a href="output/Ext.data.HttpProxy.html#Ext.data.HttpProxy-setUrl" ext:member="setUrl" ext:cls="Ext.data.HttpProxy">setUrl</a></tt> to change the URL <b>for</b> *just* this request.
+</i>
+            store.proxy.setUrl(<em>'changed1.php'</em>);
+
+            <i>// set optional second parameter to true to make this URL change
+</i>
+            <i>// permanent, applying this URL <b>for</b> all subsequent requests.
+</i>
+            store.proxy.setUrl(<em>'changed1.php'</em>, true);
+
+            <i>// Altering the proxy API should be done using the public
+</i>
+            <i>// method <tt><a href="output/Ext.data.DataProxy.html#Ext.data.DataProxy-setApi" ext:member="setApi" ext:cls="Ext.data.DataProxy">setApi</a></tt>.
+</i>
+            store.proxy.setApi(<em>'read'</em>, <em>'changed2.php'</em>);
+
+            <i>// Or set the entire API <b>with</b> a config-object.
+</i>
+            <i>// When using the config-object option, you must redefine the <b>entire</b>
+</i>
+            <i>// API -- not just a specific action of it.
+</i>
+            store.proxy.setApi({
+                read    : <em>'changed_read.php'</em>,
+                create  : <em>'changed_create.php'</em>,
+                update  : <em>'changed_update.php'</em>,
+                destroy : <em>'changed_destroy.php'</em>
+            });
+        }
+    }
+});</code>
+</pre>
+
+<br>
+<br>
+]]>    </description>	<name>api</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Abstract method that should be implemented inall subclasses (e.g.: <a href="output/Ext.data.HttpProxy.html#Ext.data.HttpProxy-doRequest" ext:member="doRequest" ext:cls="Ext.data.HttpProxy">HttpProxy.doRequest</a>, <a href="output/Ext.data.DirectProxy.html#Ext.data.DirectProxy-doRequest" ext:member="doRequest" ext:cls="Ext.data.DirectProxy">DirectProxy.doRequest</a>).]]>    </description>	<name>doRequest</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>A config object containing one or more event handlers to be
+added to this object during initialization. This should be a valid
+listeners config object as specified in the <a href="output/Ext.util.Observable.html#Ext.util.Observable-addListener" ext:member="addListener" ext:cls="Ext.util.Observable">addListener</a> example for attaching
+multiple handlers at once.</p>
+
+<br>
+<p><b><u>DOM events from ExtJs <a href="output/Ext.Component.html" ext:cls="Ext.Component">Components</a></u></b></p>
+
+<br>
+<p>While <i>some</i> ExtJs Component classes export selected DOM
+events (e.g. "click", "mouseover" etc), this is usually only done
+when extra value can be added. For example the <a href="output/Ext.DataView.html" ext:cls="Ext.DataView">DataView</a>'s <b><code><a href="output/Ext.DataView.html#Ext.DataView-click" ext:member="click" ext:cls="Ext.DataView">click</a></code></b>
+event passing the node clicked on. To access DOM events directly
+from a Component's HTMLElement, listeners must be added to the
+<i><a href="output/Ext.Component.html#Ext.Component-getEl" ext:member="getEl" ext:cls="Ext.Component">Element</a></i> after
+the Component has been rendered. A plugin can simplify this
+step:</p>
+
+<pre><code><i>// Plugin is configured <b>with</b> a listeners config object.</i>
+<i>// The Component is appended to the argument list of all handler functions.</i>
+Ext.DomObserver = Ext.extend(Object, {
+    constructor: <b>function</b>(config) {
+        this.listeners = config.listeners ? config.listeners : config;
+    },
+
+    <i>// Component passes itself into plugin's init method</i>
+    init: <b>function</b>(c) {
+        <b>var</b> p, l = this.listeners;
+        <b>for</b> (p <b>in</b> l) {
+            <b>if</b> (Ext.isFunction(l[p])) {
+                l[p] = this.createHandler(l[p], c);
+            } <b>else</b> {
+                l[p].fn = this.createHandler(l[p].fn, c);
+            }
+        }
+
+        <i>// Add the listeners to the Element immediately following the render call</i>
+        c.render = c.render.<a href="output/Function.html#Function-createSequence" ext:member="createSequence" ext:cls="Function">createSequence</a>(<b>function</b>() {
+            <b>var</b> e = c.getEl();
+            <b>if</b> (e) {
+                e.on(l);
+            }
+        });
+    },
+
+    createHandler: <b>function</b>(fn, c) {
+        <b>return</b> <b>function</b>(e) {
+            fn.call(this, e, c);
+        };
+    }
+});
+
+<b>var</b> combo = <b>new</b> Ext.form.ComboBox({
+
+    <i>// Collapse combo when its element is clicked on</i>
+    plugins: [ <b>new</b> Ext.DomObserver({
+        click: <b>function</b>(evt, comp) {
+            comp.collapse();
+        }
+    })],
+    store: myStore,
+    typeAhead: true,
+    mode: <em>'local'</em>,
+    triggerAction: <em>'all'</em>
+});</code>
+</pre>
+
+<br>
+<br>
+]]>    </description>	<name>listeners</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>Defaults to <tt>false</tt>. Set to <tt>true</tt> to operate in a
+RESTful manner.</p>
+
+<br>
+<p>Note: this parameter will automatically be set to <tt>true</tt>
+if the <a href="output/Ext.data.Store.html" ext:cls="Ext.data.Store">Ext.data.Store</a> it is plugged into is
+set to <code>restful: true</code>. If the Store is RESTful, there
+is no need to set this option on the proxy.</p>
+
+<br>
+<p>RESTful implementations enable the serverside framework to
+automatically route actions sent to one url based upon the HTTP
+method, for example:</p>
+
+<pre><code>store: <b>new</b> Ext.data.Store({
+    restful: true,
+    proxy: <b>new</b> Ext.data.HttpProxy({url:<em>'/users'</em>}); <i>// all requests sent to /users
+</i>
+    ...
+)}</code>
+</pre>
+
+If there is no <code><a href="output/Ext.data.DataProxy.html#Ext.data.DataProxy-api" ext:member="api" ext:cls="Ext.data.DataProxy">api</a></code>
+specified in the configuration of the proxy, all requests will be
+marshalled to a single RESTful url (/users) so the serverside
+framework can inspect the HTTP Method and act accordingly: 
+
+<pre><u>Method</u>   <u>url</u>        <u>action</u>
+POST     /users     create
+GET      /users     read
+PUT      /users/23  update
+DESTROY  /users/23  delete
+</pre>
+
+<br>
+<br>
+ 
+
+<p>If set to <tt>true</tt>, a <a href="output/Ext.data.Record.html#Ext.data.Record-phantom" ext:member="phantom" ext:cls="Ext.data.Record">non-phantom</a>
+record's <a href="output/Ext.data.Record.html#Ext.data.Record-id" ext:member="id" ext:cls="Ext.data.Record">id</a> will be appended
+to the url. Some MVC (e.g., Ruby on Rails, Merb and Django) support
+segment based urls where the segments in the URL follow the
+Model-View-Controller approach:</p>
+
+<pre><code>someSite.com/controller/action/id</code>
+</pre>
+
+Where the segments in the url are typically:
+
+<div class="mdetail-params">
+<ul>
+<li>The first segment : represents the controller class that should
+be invoked.</li>
+
+<li>The second segment : represents the class function, or method,
+that should be called.</li>
+
+<li>The third segment : represents the ID (a variable typically
+passed to the method).</li>
+</ul>
+</div>
+
+<br>
+<br>
+<br>
+<p>Refer to <code><a href="output/Ext.data.DataProxy.html#Ext.data.DataProxy-api" ext:member="api" ext:cls="Ext.data.DataProxy">Ext.data.DataProxy.api</a></code> for
+additional information.</p>
+]]>    </description>	<name>restful</name>	<required>false</required></attribute></tag>

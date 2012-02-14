@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/layout/part.xhtml">
+	<ui:define name="pageTitle">Updater Overview</ui:define>
+	<ui:define name="pageHeader">
+		<script type="text/javascript"> //<![CDATA[
+	//]]> </script>
+	</ui:define>
+	<ui:define name="body">
+		<div class="introduction">
+		<h1>Updater有关说明</h1>
+		<p>Updater
+		并不是Ext的一个组件，只是一个用来异步更新页面Element的工具，所以其构造函数里面不接受Config对象作为参数。
+		Updater主要的方法是update和startAutoRefresh这两个方法，update主要是执行一次更新操作，而后者则是间隔性执行更新操作，两者接受的参数不一。
+		Fence处理，Fence使用s:updater和s:updateoptions两个组件来包装这个很有用的类。<br />
+		1、Fence给Updater添加executeUpdate()和executeAutoRefresh()两个方法，此两个方法不带任何参数，分别执行Updater的update()和startAutoRefresh()方法；
+		<br />
+		2、使用s:updateoptions为s:updater填写参数,s:updateoptions
+		的属性是update方法和startAutoRefresh方法的并集。但是要注意，callback的参数不一样，当interval参数不为空时，则会自动启用executeAutoRefresh方法，如果此参数为空，则执行executeRefesh方法不会执行任何服务端动作。
+		<br />
+		3、updater接受所有Ext.Updater的Public Properties。 <br />
+		4、s:updateoptions 的params的写法，可以使用url
+		encode的方式，也可以使用Json对象如ext一致。 <br />
+		5、s:updater及s:updateoptions均接受h:param
+		参数和s:hidden为参数，其中s:hidden是可以在客户端随意改变，提交参数将取得改变后的值。</p>
+		</div>
+	</ui:define>
+</ui:composition>

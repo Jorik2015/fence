@@ -1,0 +1,1027 @@
+<tag><description>    <![CDATA[
+<p>A combobox control with support for autocomplete,
+remote-loading, paging and many other features.</p>
+
+<p>A ComboBox works in a similar manner to a traditional HTML
+&lt;select&gt; field. The difference is that to submit the <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-valueField" ext:member="valueField" ext:cls="Ext.form.ComboBox">valueField</a>,
+you must specify a <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-hiddenName" ext:member="hiddenName" ext:cls="Ext.form.ComboBox">hiddenName</a>
+to create a hidden input field to hold the value of the valueField.
+The <i><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-displayField" ext:member="displayField" ext:cls="Ext.form.ComboBox">displayField</a></i> is shown in the
+text field which is named according to the <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-name" ext:member="name" ext:cls="Ext.form.ComboBox">name</a>.</p>
+
+<p><b><u>Events</u></b></p>
+
+<p>To do something when something in ComboBox is selected,
+configure the select event:</p>
+
+<pre><code><b>var</b> cb = <b>new</b> Ext.form.ComboBox({
+    <i>// all of your config options
+</i>
+    listeners:{
+         scope: yourScope,
+         <em>'select'</em>: yourFunction
+    }
+});
+
+<i>// Alternatively, you can assign events after the object is created:
+</i>
+<b>var</b> cb = <b>new</b> Ext.form.ComboBox(yourOptions);
+cb.on(<em>'select'</em>, yourFunction, yourScope);</code>
+</pre>
+
+<br>
+<br>
+ 
+
+<p><b><u>ComboBox in Grid</u></b></p>
+
+<p>If using a ComboBox in an <a href="output/Ext.grid.EditorGridPanel.html" ext:cls="Ext.grid.EditorGridPanel">Editor Grid</a> a <a href="output/Ext.grid.Column.html#Ext.grid.Column-renderer" ext:member="renderer" ext:cls="Ext.grid.Column">renderer</a> will
+be needed to show the displayField when the editor is not active.
+Set up the renderer manually, or implement a reusable render, for
+example:</p>
+
+<pre><code><i>// create reusable renderer
+</i>
+Ext.util.Format.comboRenderer = <b>function</b>(combo){
+    <b>return</b> <b>function</b>(value){
+        <b>var</b> record = combo.findRecord(combo.<a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-valueField" ext:member="valueField" ext:cls="Ext.form.ComboBox">valueField</a>, value);
+        <b>return</b> record ? record.get(combo.<a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-displayField" ext:member="displayField" ext:cls="Ext.form.ComboBox">displayField</a>) : combo.<a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-valueNotFoundText" ext:member="valueNotFoundText" ext:cls="Ext.form.ComboBox">valueNotFoundText</a>;
+    }
+}
+
+<i>// create the combo instance
+</i>
+<b>var</b> combo = <b>new</b> Ext.form.ComboBox({
+    <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-typeAhead" ext:member="typeAhead" ext:cls="Ext.form.ComboBox">typeAhead</a>: true,
+    <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-triggerAction" ext:member="triggerAction" ext:cls="Ext.form.ComboBox">triggerAction</a>: <em>'all'</em>,
+    <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-lazyRender" ext:member="lazyRender" ext:cls="Ext.form.ComboBox">lazyRender</a>:true,
+    <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-mode" ext:member="mode" ext:cls="Ext.form.ComboBox">mode</a>: <em>'local'</em>,
+    <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-store" ext:member="store" ext:cls="Ext.form.ComboBox">store</a>: <b>new</b> Ext.data.ArrayStore({
+        id: 0,
+        fields: [
+            <em>'myId'</em>,
+            <em>'displayText'</em>
+        ],
+        data: [[1, <em>'item1'</em>], [2, <em>'item2'</em>]]
+    }),
+    <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-valueField" ext:member="valueField" ext:cls="Ext.form.ComboBox">valueField</a>: <em>'myId'</em>,
+    <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-displayField" ext:member="displayField" ext:cls="Ext.form.ComboBox">displayField</a>: <em>'displayText'</em>
+});
+
+<i>// snippet of column model used within grid
+</i>
+<b>var</b> cm = <b>new</b> Ext.grid.ColumnModel([{
+       ...
+    },{
+       header: <em>"Some Header"</em>,
+       dataIndex: <em>'whatever'</em>,
+       width: 130,
+       editor: combo, <i>// specify reference to combo instance
+</i>
+       renderer: Ext.util.Format.comboRenderer(combo) <i>// pass combo instance to reusable renderer
+</i>
+    },
+    ...
+]);</code>
+</pre>
+
+<br>
+<br>
+ 
+
+<p><b><u>Filtering</u></b></p>
+
+<p>A ComboBox <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-doQuery" ext:member="doQuery" ext:cls="Ext.form.ComboBox">uses filtering
+itself</a>, for information about filtering the ComboBox store
+manually see <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-lastQuery" ext:member="lastQuery" ext:cls="Ext.form.ComboBox">lastQuery</a></tt>.</p>
+]]></description><name>combobox</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[The text query to send to the server to returnall records for the list with no filtering (defaults to '')]]>    </description>	<name>allQuery</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Specify <tt>false</tt> to validate that thevalue's length is &gt; 0 (defaults to <tt>true</tt>)]]>    </description>	<name>allowBlank</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Whether the component can move the Dom node whenrendering (defaults to true).]]>    </description>	<name>allowDomMove</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p><b>Note</b>: this config is only used when this Component is
+rendered by a Container which has been configured to use an <b><a href="output/Ext.layout.AnchorLayout.html" ext:cls="Ext.layout.AnchorLayout">AnchorLayout</a></b> based layout
+manager, for example:</p>
+
+<div class="mdetail-params">
+<ul>
+<li><a href="output/Ext.form.FormPanel.html" ext:cls="Ext.form.FormPanel">Ext.form.FormPanel</a></li>
+
+<li>specifying <code>layout: <em>'anchor'</em> <i>// or
+<em>'form'</em>, or <em>'absolute'</em></i></code></li>
+</ul>
+</div>
+
+<br>
+<br>
+ 
+
+<p>See <a href="output/Ext.layout.AnchorLayout.html" ext:cls="Ext.layout.AnchorLayout">Ext.layout.AnchorLayout</a>.<a href="output/Ext.layout.AnchorLayout.html#Ext.layout.AnchorLayout-anchor" ext:member="anchor" ext:cls="Ext.layout.AnchorLayout">anchor</a>
+also.</p>
+]]>    </description>	<name>anchor</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>Specify the id of the element, a DOM element or an existing
+Element corresponding to a DIV that is already present in the
+document that specifies some structural markup for this
+component.</p>
+
+<div>
+<ul>
+<li><b>Description</b> : 
+
+<div style="margin-left: 2em;">
+<div class="sub-desc">When <tt>applyTo</tt> is used, constituent
+parts of the component can also be specified by id or CSS class
+name within the main element, and the component being created may
+attempt to create its subcomponents from that markup if
+applicable.</div>
+</div>
+</li>
+
+<li><b>Notes</b> : 
+
+<div style="margin-left: 2em;">
+<div class="sub-desc">When using this config, a call to render() is
+not required.</div>
+
+<div class="sub-desc">If applyTo is specified, any value passed for
+<a href="output/Ext.Component.html#Ext.Component-renderTo" ext:member="renderTo" ext:cls="Ext.Component">renderTo</a> will be
+ignored and the target element's parent node will automatically be
+used as the component's container.</div>
+</div>
+</li>
+</ul>
+</div>
+]]>    </description>	<name>applyTo</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>A <a href="output/Ext.DomHelper.html" ext:cls="Ext.DomHelper">DomHelper</a> element spec, or
+<tt>true</tt> for a default element spec. Used to create the <a href="output/Ext.Component.html#Ext.Component-getEl" ext:member="getEl" ext:cls="Ext.Component">Element</a> which will
+encapsulate this Component. See <tt><a href="output/Ext.Component.html#Ext.Component-autoEl" ext:member="autoEl" ext:cls="Ext.Component">autoEl</a></tt> for
+details. Defaults to:</p>
+
+<pre><code>{tag: <em>"input"</em>, type: <em>"text"</em>, size: <em>"24"</em>, autocomplete: <em>"off"</em>}</code>
+</pre>
+]]>    </description>	<name>autoCreate</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True if the component should check for hiddenclasses (e.g. 'x-hidden' or 'x-hide-display') and remove them on
+render (defaults to false).]]>    </description>	<name>autoShow</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The error text to display if the <b><tt><a href="output/Ext.form.TextField.html#Ext.form.TextField-allowBlank" ext:member="allowBlank" ext:cls="Ext.form.TextField">allowBlank</a></tt></b> validationfails (defaults to <tt>'This field is required'</tt>)]]>    </description>	<name>blankText</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>The CSS class used to to apply to the special clearing div
+rendered directly after each form field wrapper to provide field
+clearing (defaults to <tt>'x-form-clear-left'</tt>).</p>
+
+<br>
+<p><b>Note</b>: this config is only used when this Component is
+rendered by a Container which has been configured to use the <b><a href="output/Ext.layout.FormLayout.html" ext:cls="Ext.layout.FormLayout">FormLayout</a></b> layout manager
+(e.g. <a href="output/Ext.form.FormPanel.html" ext:cls="Ext.form.FormPanel">Ext.form.FormPanel</a> or specifying
+<tt>layout:'form'</tt>) and either a <tt><a href="output/Ext.Component.html#Ext.Component-fieldLabel" ext:member="fieldLabel" ext:cls="Ext.Component">fieldLabel</a></tt>
+is specified or <tt>isFormField=true</tt> is specified.</p>
+
+<br>
+<p>See <a href="output/Ext.layout.FormLayout.html" ext:cls="Ext.layout.FormLayout">Ext.layout.FormLayout</a>.<a href="output/Ext.layout.FormLayout.html#Ext.layout.FormLayout-fieldTpl" ext:member="fieldTpl" ext:cls="Ext.layout.FormLayout">fieldTpl</a>
+also.</p>
+]]>    </description>	<name>clearCls</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[A custom CSS class to apply to the field'sunderlying element (defaults to '').]]>    </description>	<name>cls</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>An optional extra CSS class that will be added to this
+component's container. This can be useful for adding customized
+styles to the container or any of its children using standard CSS
+rules. See <a href="output/Ext.layout.ContainerLayout.html" ext:cls="Ext.layout.ContainerLayout">Ext.layout.ContainerLayout</a>.<a href="output/Ext.layout.ContainerLayout.html#Ext.layout.ContainerLayout-extraCls" ext:member="extraCls" ext:cls="Ext.layout.ContainerLayout">extraCls</a> also.</p>
+
+<p><b>Note</b>: <tt>ctCls</tt> defaults to <tt>''</tt> except for
+the following class which assigns a value by default:</p>
+
+<div class="mdetail-params">
+<ul>
+<li><a href="output/Ext.layout.Box.html" ext:cls="Ext.layout.Box">Box Layout</a> :
+<tt>'x-box-layout-ct'</tt></li>
+</ul>
+</div>
+
+To configure the above Class with an extra CSS class append to the
+default. For example, for BoxLayout (Hbox and Vbox):
+
+<pre><code>ctCls: <em>'x-box-layout-ct custom-class'</em></code>
+</pre>
+
+<br>
+<br>
+]]>    </description>	<name>ctCls</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Specify <tt>true</tt> to disable input keystrokefiltering (defaults to <tt>false</tt>)]]>    </description>	<name>disableKeyFilter</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True to disable the field (defaults to false). 
+<p>Be aware that conformant with the <a href="http://www.w3.org/TR/html401/interact/forms.html#h-17.12.1">HTML
+specification</a>, disabled Fields will not be <a href="output/Ext.form.BasicForm.html#Ext.form.BasicForm-submit" ext:member="submit" ext:cls="Ext.form.BasicForm">submitted</a>.</p>
+]]>    </description>	<name>disabled</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[CSS class added to the component when it isdisabled (defaults to 'x-item-disabled').]]>    </description>	<name>disabledClass</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The underlying <a href="output/Ext.data.Field.html#Ext.data.Field-name" ext:member="name" ext:cls="Ext.data.Field">data field name</a> tobind to this ComboBox (defaults to undefined if <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-mode" ext:member="mode" ext:cls="Ext.form.ComboBox">mode</a> =
+'remote'</tt> or <tt>'field1'</tt> if <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-transform" ext:member="transform" ext:cls="Ext.form.ComboBox">transforming a
+select</a> or if the <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-store" ext:member="store" ext:cls="Ext.form.ComboBox">field name is
+autogenerated based on the store configuration</a>). 
+
+<p>See also <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-valueField" ext:member="valueField" ext:cls="Ext.form.ComboBox">valueField</a></tt>.</p>
+
+<p><b>Note</b>: if using a ComboBox in an <a href="output/Ext.grid.EditorGridPanel.html" ext:cls="Ext.grid.EditorGridPanel">Editor Grid</a> a <a href="output/Ext.grid.Column.html#Ext.grid.Column-renderer" ext:member="renderer" ext:cls="Ext.grid.Column">renderer</a> will
+be needed to show the displayField when the editor is not
+active.</p>
+]]>    </description>	<name>displayField</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<tt>false</tt> to prevent the user from typingtext directly into the field, the field will only respond to a
+click on the trigger to set the value. (defaults to
+<tt>true</tt>)]]>    </description>	<name>editable</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The CSS class to apply to an empty field to stylethe <b><tt><a href="output/Ext.form.TextField.html#Ext.form.TextField-emptyText" ext:member="emptyText" ext:cls="Ext.form.TextField">emptyText</a></tt></b> (defaults to
+<tt>'x-form-empty-field'</tt>). This class is automatically added
+and removed as needed depending on the current field value.]]>    </description>	<name>emptyClass</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The default text to place into an empty field(defaults to <tt>null</tt>). <b>Note</b>: that this value will be
+submitted to the server if this field is enabled and configured
+with a <a href="output/Ext.form.TextField.html#Ext.form.TextField-name" ext:member="name" ext:cls="Ext.form.TextField">name</a>.]]>    </description>	<name>emptyText</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<tt>true</tt> to enable the proxying of keyevents for the HTML input field (defaults to <tt>false</tt>)]]>    </description>	<name>enableKeyEvents</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The default CSS class for the field (defaults to'x-form-field')]]>    </description>	<name>fieldClass</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>The label text to display next to this Component (defaults to
+'').</p>
+
+<br>
+<p><b>Note</b>: this config is only used when this Component is
+rendered by a Container which has been configured to use the <b><a href="output/Ext.layout.FormLayout.html" ext:cls="Ext.layout.FormLayout">FormLayout</a></b> layout manager
+(e.g. <a href="output/Ext.form.FormPanel.html" ext:cls="Ext.form.FormPanel">Ext.form.FormPanel</a> or specifying
+<tt>layout:'form'</tt>).</p>
+
+<br>
+<p>Also see <tt><a href="output/Ext.Component.html#Ext.Component-hideLabel" ext:member="hideLabel" ext:cls="Ext.Component">hideLabel</a></tt>
+and <a href="output/Ext.layout.FormLayout.html" ext:cls="Ext.layout.FormLayout">Ext.layout.FormLayout</a>.<a href="output/Ext.layout.FormLayout.html#Ext.layout.FormLayout-fieldTpl" ext:member="fieldTpl" ext:cls="Ext.layout.FormLayout">fieldTpl</a>.</p>
+
+Example use:
+
+<pre><code><b>new</b> Ext.FormPanel({
+    height: 100,
+    renderTo: Ext.getBody(),
+    items: [{
+        xtype: <em>'textfield'</em>,
+        fieldLabel: <em>'Name'</em>
+    }]
+});</code>
+</pre>
+]]>    </description>	<name>fieldLabel</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The CSS class to use when the field receivesfocus (defaults to 'x-form-focus')]]>    </description>	<name>focusClass</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<tt>true</tt> to restrict the selected value toone of the values in the list, <tt>false</tt> to allow the user to
+set arbitrary text into the field (defaults to
+<tt>false</tt>)]]>    </description>	<name>forceSelection</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The height in pixels of the dropdown list resizehandle if <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-resizable" ext:member="resizable" ext:cls="Ext.form.ComboBox">resizable</a> =
+true</tt> (defaults to <tt>8</tt>)]]>    </description>	<name>handleHeight</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The height of this component in pixels (defaultsto auto). <b>Note</b> to express this dimension as a percentage or
+offset see <a href="output/Ext.Component.html#Ext.Component-anchor" ext:member="anchor" ext:cls="Ext.Component">Ext.Component.anchor</a>.]]>    </description>	<name>height</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Render this component hidden (default is false).If <tt>true</tt>, the <a href="output/Ext.Component.html#Ext.Component-hide" ext:member="hide" ext:cls="Ext.Component">hide</a> method will be
+called internally.]]>    </description>	<name>hidden</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[If <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-hiddenName" ext:member="hiddenName" ext:cls="Ext.form.ComboBox">hiddenName</a></tt> is specified,<tt>hiddenId</tt> can also be provided to give the hidden field a
+unique id (defaults to the <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-hiddenName" ext:member="hiddenName" ext:cls="Ext.form.ComboBox">hiddenName</a></tt>). The
+<tt>hiddenId</tt> and combo <a href="output/Ext.Component.html#Ext.Component-id" ext:member="id" ext:cls="Ext.Component">id</a> should be different, since no two
+DOM nodes should share the same id.]]>    </description>	<name>hiddenId</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[If specified, a hidden form field with this nameis dynamically generated to store the field's data value (defaults
+to the underlying DOM element's name). Required for the combo's
+value to automatically post during a form submission. See also <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-valueField" ext:member="valueField" ext:cls="Ext.form.ComboBox">valueField</a>.
+
+
+<p><b>Note</b>: the hidden field's id will also default to this
+name if <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-hiddenId" ext:member="hiddenId" ext:cls="Ext.form.ComboBox">hiddenId</a> is
+not specified. The ComboBox <a href="output/Ext.Component.html#Ext.Component-id" ext:member="id" ext:cls="Ext.Component">id</a> and the <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-hiddenId" ext:member="hiddenId" ext:cls="Ext.form.ComboBox">hiddenId</a></tt>
+<b>should be different</b>, since no two DOM nodes should share the
+same id. So, if the ComboBox <tt><a href="output/Ext.form.Field.html#Ext.form.Field-name" ext:member="name" ext:cls="Ext.form.Field">name</a></tt> and
+<tt>hiddenName</tt> are the same, you should specify a unique
+<tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-hiddenId" ext:member="hiddenId" ext:cls="Ext.form.ComboBox">hiddenId</a></tt>.</p>
+]]>    </description>	<name>hiddenName</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Sets the initial value of the hidden field if <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-hiddenName" ext:member="hiddenName" ext:cls="Ext.form.ComboBox">hiddenName</a>is specified to contain the selected <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-valueField" ext:member="valueField" ext:cls="Ext.form.ComboBox">valueField</a>,
+from the Store. Defaults to the configured <tt><a href="output/Ext.form.Field.html#Ext.form.Field-value" ext:member="value" ext:cls="Ext.form.Field">value</a></tt>.]]>    </description>	<name>hiddenValue</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p><tt>true</tt> to completely hide the label element (<a href="output/Ext.Component.html#Ext.Component-fieldLabel" ext:member="fieldLabel" ext:cls="Ext.Component">label</a> and <a href="output/Ext.Component.html#Ext.Component-labelSeparator" ext:member="labelSeparator" ext:cls="Ext.Component">separator</a>).
+Defaults to <tt>false</tt>. By default, even if you do not specify
+a <tt><a href="output/Ext.Component.html#Ext.Component-fieldLabel" ext:member="fieldLabel" ext:cls="Ext.Component">fieldLabel</a></tt>
+the space will still be reserved so that the field will line up
+with other fields that do have labels. Setting this to
+<tt>true</tt> will cause the field to not reserve that space.</p>
+
+<br>
+<p><b>Note</b>: see the note for <tt><a href="output/Ext.Component.html#Ext.Component-clearCls" ext:member="clearCls" ext:cls="Ext.Component">clearCls</a></tt>.</p>
+
+<br>
+Example use:
+
+<pre><code><b>new</b> Ext.FormPanel({
+    height: 100,
+    renderTo: Ext.getBody(),
+    items: [{
+        xtype: <em>'textfield'</em>
+        hideLabel: true
+    }]
+});</code>
+</pre>
+]]>    </description>	<name>hideLabel</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>How this component should be hidden. Supported values are
+<tt>'visibility'</tt> (css visibility), <tt>'offsets'</tt>
+(negative offset position) and <tt>'display'</tt> (css
+display).</p>
+
+<br>
+<p><b>Note</b>: the default of <tt>'display'</tt> is generally
+preferred since items are automatically laid out when they are
+first shown (no sizing is done while hidden).</p>
+]]>    </description>	<name>hideMode</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[True to hide and show the component's containerwhen hide/show is called on the component, false to hide and show
+the component itself (defaults to false). For example, this can be
+used as a shortcut for a hide button on a window by setting
+hide:true on the button when adding it to its parent
+container.]]>    </description>	<name>hideParent</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<tt>true</tt> to hide the trigger element anddisplay only the base text field (defaults to <tt>false</tt>)]]>    </description>	<name>hideTrigger</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>The <b>unique</b> id of this component (defaults to an <a href="output/Ext.Component.html#Ext.Component-getId" ext:member="getId" ext:cls="Ext.Component">auto-assigned id</a>).
+You should assign an id if you need to be able to access the
+component later and you do not have an object reference available
+(e.g., using <a href="output/Ext.html" ext:cls="Ext">Ext</a>.<a href="output/Ext.html#Ext-getCmp" ext:member="getCmp" ext:cls="Ext">getCmp</a>).</p>
+
+<p>Note that this id will also be used as the element id for the
+containing HTML element that is rendered to the page for this
+component. This allows you to write id-based CSS rules to style the
+specific instance of this component uniquely, and also to select
+sub-elements using this component's id as the parent.</p>
+
+<p><b>Note</b>: to avoid complications imposed by a unique
+<tt>id</tt> also see <code><a href="output/Ext.Component.html#Ext.Component-itemId" ext:member="itemId" ext:cls="Ext.Component">itemId</a></code> and
+<code><a href="output/Ext.Component.html#Ext.Component-ref" ext:member="ref" ext:cls="Ext.Component">ref</a></code>.</p>
+
+<p><b>Note</b>: to access the container of an item see <code><a href="output/Ext.Component.html#Ext.Component-ownerCt" ext:member="ownerCt" ext:cls="Ext.Component">ownerCt</a></code>.</p>
+]]>    </description>	<name>id</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The type attribute for input fields -- e.g.radio, text, password, file (defaults to 'text'). The types 'file'
+and 'password' must be used to render those field types currently
+-- there are no separate Ext components for those. Note that if you
+use <tt>inputType:'file'</tt>, <a href="output/Ext.form.Field.html#Ext.form.Field-emptyText" ext:member="emptyText" ext:cls="Ext.form.Field">emptyText</a> is
+not supported and should be avoided.]]>    </description>	<name>inputType</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The CSS class to use when marking a fieldinvalid (defaults to 'x-form-invalid')]]>    </description>	<name>invalidClass</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The error text to use when marking a fieldinvalid and no message is provided (defaults to 'The value in this
+field is invalid')]]>    </description>	<name>invalidText</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p><b>Note</b>: this config is only used when this Component is
+rendered by a Container which has been configured to use the <b><a href="output/Ext.layout.FormLayout.html" ext:cls="Ext.layout.FormLayout">FormLayout</a></b> layout manager
+(e.g. <a href="output/Ext.form.FormPanel.html" ext:cls="Ext.form.FormPanel">Ext.form.FormPanel</a> or specifying
+<tt>layout:'form'</tt>).</p>
+
+<br>
+<p>An additional CSS class to apply to the div wrapping the form
+item element of this field. If supplied, <tt>itemCls</tt> at the
+<b>field</b> level will override the default <tt>itemCls</tt>
+supplied at the <b>container</b> level. The value specified for
+<tt>itemCls</tt> will be added to the default class
+(<tt>'x-form-item'</tt>).</p>
+
+<p>Since it is applied to the item wrapper (see <a href="output/Ext.layout.FormLayout.html" ext:cls="Ext.layout.FormLayout">Ext.layout.FormLayout</a>.<a href="output/Ext.layout.FormLayout.html#Ext.layout.FormLayout-fieldTpl" ext:member="fieldTpl" ext:cls="Ext.layout.FormLayout">fieldTpl</a>), it allows you to
+write standard CSS rules that can apply to the field, the label (if
+specified), or any other element within the markup for the
+field.</p>
+
+<br>
+<p><b>Note</b>: see the note for <tt><a href="output/Ext.Component.html#Ext.Component-fieldLabel" ext:member="fieldLabel" ext:cls="Ext.Component">fieldLabel</a></tt>.</p>
+
+<br>
+Example use:
+
+<pre><code><i>// Apply a style to the field's <b>label</b>:</i>
+&lt;style&gt;
+    .required .x-form-item-<b>label</b> {font-weight:bold;color:red;}
+&lt;/style&gt;
+
+<b>new</b> Ext.FormPanel({
+    height: 100,
+    renderTo: Ext.getBody(),
+    items: [{
+        xtype: <em>'textfield'</em>,
+        fieldLabel: <em>'Name'</em>,
+        itemCls: <em>'required'</em> <i>//this <b>label</b> will be styled</i>
+    },{
+        xtype: <em>'textfield'</em>,
+        fieldLabel: <em>'Favorite Color'</em>
+    }]
+});</code>
+</pre>
+]]>    </description>	<name>itemCls</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>An <tt>itemId</tt> can be used as an alternative way to get a
+reference to a component when no object reference is available.
+Instead of using an <code><a href="output/Ext.Component.html#Ext.Component-id" ext:member="id" ext:cls="Ext.Component">id</a></code> with <a href="output/Ext.html" ext:cls="Ext">Ext</a>.<a href="output/Ext.html#Ext-getCmp" ext:member="getCmp" ext:cls="Ext">getCmp</a>, use <code>itemId</code> with <a href="output/Ext.Container.html" ext:cls="Ext.Container">Ext.Container</a>.<a href="output/Ext.Container.html#Ext.Container-getComponent" ext:member="getComponent" ext:cls="Ext.Container">getComponent</a>
+which will retrieve <code>itemId</code>'s or <tt><a href="output/Ext.Component.html#Ext.Component-id" ext:member="id" ext:cls="Ext.Component">id</a></tt>'s. Since <code>itemId</code>'s
+are an index to the container's internal MixedCollection, the
+<code>itemId</code> is scoped locally to the container -- avoiding
+potential conflicts with <a href="output/Ext.ComponentMgr.html" ext:cls="Ext.ComponentMgr">Ext.ComponentMgr</a> which requires a
+<b>unique</b> <code><a href="output/Ext.Component.html#Ext.Component-id" ext:member="id" ext:cls="Ext.Component">id</a></code>.</p>
+
+<pre><code><b>var</b> c = <b>new</b> Ext.Panel({ <i>//</i>
+    <a href="output/Ext.BoxComponent.html#Ext.BoxComponent-height" ext:member="height" ext:cls="Ext.BoxComponent">height</a>: 300,
+    <a href="output/Ext.Component.html#Ext.Component-renderTo" ext:member="renderTo" ext:cls="Ext.Component">renderTo</a>: document.body,
+    <a href="output/Ext.Container.html#Ext.Container-layout" ext:member="layout" ext:cls="Ext.Container">layout</a>: <em>'auto'</em>,
+    <a href="output/Ext.Container.html#Ext.Container-items" ext:member="items" ext:cls="Ext.Container">items</a>: [
+        {
+            itemId: <em>'p1'</em>,
+            <a href="output/Ext.Panel.html#Ext.Panel-title" ext:member="title" ext:cls="Ext.Panel">title</a>: <em>'Panel 1'</em>,
+            <a href="output/Ext.BoxComponent.html#Ext.BoxComponent-height" ext:member="height" ext:cls="Ext.BoxComponent">height</a>: 150
+        },
+        {
+            itemId: <em>'p2'</em>,
+            <a href="output/Ext.Panel.html#Ext.Panel-title" ext:member="title" ext:cls="Ext.Panel">title</a>: <em>'Panel 2'</em>,
+            <a href="output/Ext.BoxComponent.html#Ext.BoxComponent-height" ext:member="height" ext:cls="Ext.BoxComponent">height</a>: 150
+        }
+    ]
+})
+p1 = c.<a href="output/Ext.Container.html#Ext.Container-getComponent" ext:member="getComponent" ext:cls="Ext.Container">getComponent</a>(<em>'p1'</em>); <i>// not the same as <a href="output/Ext.html#Ext-getCmp" ext:member="getCmp" ext:cls="Ext">Ext.getCmp()</a></i>
+p2 = p1.<a href="output/Ext.Component.html#Ext.Component-ownerCt" ext:member="ownerCt" ext:cls="Ext.Component">ownerCt</a>.<a href="output/Ext.Container.html#Ext.Container-getComponent" ext:member="getComponent" ext:cls="Ext.Container">getComponent</a>(<em>'p2'</em>); <i>// reference via a sibling</i></code>
+</pre>
+
+<p>Also see <tt><a href="output/Ext.Component.html#Ext.Component-id" ext:member="id" ext:cls="Ext.Component">id</a></tt> and <code><a href="output/Ext.Component.html#Ext.Component-ref" ext:member="ref" ext:cls="Ext.Component">ref</a></code>.</p>
+
+<p><b>Note</b>: to access the container of an item see <tt><a href="output/Ext.Component.html#Ext.Component-ownerCt" ext:member="ownerCt" ext:cls="Ext.Component">ownerCt</a></tt>.</p>
+]]>    </description>	<name>itemId</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>A simple CSS selector (e.g. div.some-class or span:first-child)
+that will be used to determine what nodes the <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-view" ext:member="view" ext:cls="Ext.form.ComboBox">Ext.DataView</a>
+which handles the dropdown display will be working with.</p>
+
+<p><b>Note</b>: this setting is <b>required</b> if a custom
+XTemplate has been specified in <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-tpl" ext:member="tpl" ext:cls="Ext.form.ComboBox">tpl</a> which assigns
+a class other than</p>
+
+<pre>'x-combo-list-item'
+</pre>
+
+to dropdown list items]]>    </description>	<name>itemSelector</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>The separator to display after the text of each <tt><a href="output/Ext.Component.html#Ext.Component-fieldLabel" ext:member="fieldLabel" ext:cls="Ext.Component">fieldLabel</a></tt>. This property may be
+configured at various levels. The order of precedence is:</p>
+
+<div class="mdetail-params">
+<ul>
+<li>field / component level</li>
+
+<li>container level</li>
+
+<li><a href="output/Ext.layout.FormLayout.html#Ext.layout.FormLayout-labelSeparator" ext:member="labelSeparator" ext:cls="Ext.layout.FormLayout">layout
+level</a> (defaults to colon <tt>':'</tt>)</li>
+</ul>
+</div>
+
+To display no separator for this field's label specify empty string
+''.<br>
+<br>
+<br>
+<p><b>Note</b>: see the note for <tt><a href="output/Ext.Component.html#Ext.Component-clearCls" ext:member="clearCls" ext:cls="Ext.Component">clearCls</a></tt>.</p>
+
+<br>
+<p>Also see <tt><a href="output/Ext.Component.html#Ext.Component-hideLabel" ext:member="hideLabel" ext:cls="Ext.Component">hideLabel</a></tt>
+and <a href="output/Ext.layout.FormLayout.html" ext:cls="Ext.layout.FormLayout">Ext.layout.FormLayout</a>.<a href="output/Ext.layout.FormLayout.html#Ext.layout.FormLayout-fieldTpl" ext:member="fieldTpl" ext:cls="Ext.layout.FormLayout">fieldTpl</a>.</p>
+
+Example use:
+
+<pre><code><b>new</b> Ext.FormPanel({
+    height: 100,
+    renderTo: Ext.getBody(),
+    layoutConfig: {
+        labelSeparator: <em>'~'</em>   <i>// layout config has lowest priority (defaults to <em>':'</em>)</i>
+    },
+    <a href="output/Ext.layout.FormLayout.html#Ext.layout.FormLayout-labelSeparator" ext:member="labelSeparator" ext:cls="Ext.layout.FormLayout">labelSeparator</a>: <em>'&gt;&gt;'</em>,     <i>// config at container level</i>
+    items: [{
+        xtype: <em>'textfield'</em>,
+        fieldLabel: <em>'Field 1'</em>,
+        labelSeparator: <em>'...'</em> <i>// field/component level config supersedes others</i>
+    },{
+        xtype: <em>'textfield'</em>,
+        fieldLabel: <em>'Field 2'</em> <i>// labelSeparator will be <em>'='</em></i>
+    }]
+});</code>
+</pre>
+]]>    </description>	<name>labelSeparator</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>A CSS style specification string to apply directly to this
+field's label. Defaults to the container's labelStyle value if set
+(e.g., <tt><a href="output/Ext.layout.FormLayout.html#Ext.layout.FormLayout-labelStyle" ext:member="labelStyle" ext:cls="Ext.layout.FormLayout">Ext.layout.FormLayout.labelStyle</a></tt>
+, or '').</p>
+
+<br>
+<p><b>Note</b>: see the note for <code><a href="output/Ext.Component.html#Ext.Component-clearCls" ext:member="clearCls" ext:cls="Ext.Component">clearCls</a></code>.</p>
+
+<br>
+<p>Also see <code><a href="output/Ext.Component.html#Ext.Component-hideLabel" ext:member="hideLabel" ext:cls="Ext.Component">hideLabel</a></code>
+and <code><a href="output/Ext.layout.FormLayout.html" ext:cls="Ext.layout.FormLayout">Ext.layout.FormLayout</a>.<a href="output/Ext.layout.FormLayout.html#Ext.layout.FormLayout-fieldTpl" ext:member="fieldTpl" ext:cls="Ext.layout.FormLayout">fieldTpl</a>.</code></p>
+
+Example use:
+
+<pre><code><b>new</b> Ext.FormPanel({
+    height: 100,
+    renderTo: Ext.getBody(),
+    items: [{
+        xtype: <em>'textfield'</em>,
+        fieldLabel: <em>'Name'</em>,
+        labelStyle: <em>'font-weight:bold;'</em>
+    }]
+});</code>
+</pre>
+]]>    </description>	<name>labelStyle</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<tt>true</tt> to not initialize the list forthis combo until the field is focused (defaults to
+<tt>true</tt>)]]>    </description>	<name>lazyInit</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<tt>true</tt> to prevent the ComboBox fromrendering until requested (should always be used when rendering
+into an <a href="output/Ext.Editor.html" ext:cls="Ext.Editor">Ext.Editor</a> (e.g. <a href="output/Ext.grid.EditorGridPanel.html" ext:cls="Ext.grid.EditorGridPanel">Grids</a>), defaults to
+<tt>false</tt>).]]>    </description>	<name>lazyRender</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[A valid anchor position value. See <tt><a href="output/Ext.Element.html#Ext.Element-alignTo" ext:member="alignTo" ext:cls="Ext.Element">Ext.Element.alignTo</a></tt> for details onsupported anchor positions (defaults to <tt>'tl-bl?'</tt>)]]>    </description>	<name>listAlign</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The CSS class to add to the predefined<tt>'x-combo-list'</tt> class applied the dropdown list element
+(defaults to '').]]>    </description>	<name>listClass</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The empty text to display in the data view if noitems are found. (defaults to '')]]>    </description>	<name>listEmptyText</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The width (used as a parameter to <a href="output/Ext.Element.html#Ext.Element-setWidth" ext:member="setWidth" ext:cls="Ext.Element">Ext.Element.setWidth</a>) of the dropdownlist (defaults to the width of the ComboBox field). See also <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-minListWidth" ext:member="minListWidth" ext:cls="Ext.form.ComboBox">minListWidth</a></tt>]]>    </description>	<name>listWidth</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>A config object containing one or more event handlers to be
+added to this object during initialization. This should be a valid
+listeners config object as specified in the <a href="output/Ext.util.Observable.html#Ext.util.Observable-addListener" ext:member="addListener" ext:cls="Ext.util.Observable">addListener</a> example for attaching
+multiple handlers at once.</p>
+
+<br>
+<p><b><u>DOM events from ExtJs <a href="output/Ext.Component.html" ext:cls="Ext.Component">Components</a></u></b></p>
+
+<br>
+<p>While <i>some</i> ExtJs Component classes export selected DOM
+events (e.g. "click", "mouseover" etc), this is usually only done
+when extra value can be added. For example the <a href="output/Ext.DataView.html" ext:cls="Ext.DataView">DataView</a>'s <b><code><a href="output/Ext.DataView.html#Ext.DataView-click" ext:member="click" ext:cls="Ext.DataView">click</a></code></b>
+event passing the node clicked on. To access DOM events directly
+from a Component's HTMLElement, listeners must be added to the
+<i><a href="output/Ext.Component.html#Ext.Component-getEl" ext:member="getEl" ext:cls="Ext.Component">Element</a></i> after
+the Component has been rendered. A plugin can simplify this
+step:</p>
+
+<pre><code><i>// Plugin is configured <b>with</b> a listeners config object.</i>
+<i>// The Component is appended to the argument list of all handler functions.</i>
+Ext.DomObserver = Ext.extend(Object, {
+    constructor: <b>function</b>(config) {
+        this.listeners = config.listeners ? config.listeners : config;
+    },
+
+    <i>// Component passes itself into plugin's init method</i>
+    init: <b>function</b>(c) {
+        <b>var</b> p, l = this.listeners;
+        <b>for</b> (p <b>in</b> l) {
+            <b>if</b> (Ext.isFunction(l[p])) {
+                l[p] = this.createHandler(l[p], c);
+            } <b>else</b> {
+                l[p].fn = this.createHandler(l[p].fn, c);
+            }
+        }
+
+        <i>// Add the listeners to the Element immediately following the render call</i>
+        c.render = c.render.<a href="output/Function.html#Function-createSequence" ext:member="createSequence" ext:cls="Function">createSequence</a>(<b>function</b>() {
+            <b>var</b> e = c.getEl();
+            <b>if</b> (e) {
+                e.on(l);
+            }
+        });
+    },
+
+    createHandler: <b>function</b>(fn, c) {
+        <b>return</b> <b>function</b>(e) {
+            fn.call(this, e, c);
+        };
+    }
+});
+
+<b>var</b> combo = <b>new</b> Ext.form.ComboBox({
+
+    <i>// Collapse combo when its element is clicked on</i>
+    plugins: [ <b>new</b> Ext.DomObserver({
+        click: <b>function</b>(evt, comp) {
+            comp.collapse();
+        }
+    })],
+    store: myStore,
+    typeAhead: true,
+    mode: <em>'local'</em>,
+    triggerAction: <em>'all'</em>
+});</code>
+</pre>
+
+<br>
+<br>
+]]>    </description>	<name>listeners</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The text to display in the dropdown list whiledata is loading. Only applies when <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-mode" ext:member="mode" ext:cls="Ext.form.ComboBox">mode</a> =
+'remote'</tt> (defaults to <tt>'Loading...'</tt>)]]>    </description>	<name>loadingText</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p><b>Note</b>: this config is only used when this BoxComponent is
+rendered by a Container which has been configured to use the <b><a href="output/Ext.layout.BorderLayout.html" ext:cls="Ext.layout.BorderLayout">BorderLayout</a></b> or one of
+the two <b><a href="output/Ext.layout.BoxLayout.html" ext:cls="Ext.layout.BoxLayout">BoxLayout</a> subclasses.</b></p>
+
+<p>An object containing margins to apply to this BoxComponent in
+the format:</p>
+
+<pre><code>{
+    top: (top margin),
+    right: (right margin),
+    bottom: (bottom margin),
+    left: (left margin)
+}</code>
+</pre>
+
+<p>May also be a string containing space-separated, numeric margin
+values. The order of the sides associated with each value matches
+the way CSS processes margin values:</p>
+
+<div class="mdetail-params">
+<ul>
+<li>If there is only one value, it applies to all sides.</li>
+
+<li>If there are two values, the top and bottom borders are set to
+the first value and the right and left are set to the second.</li>
+
+<li>If there are three values, the top is set to the first value,
+the left and right are set to the second, and the bottom is set to
+the third.</li>
+
+<li>If there are four values, they apply to the top, right, bottom,
+and left, respectively.</li>
+</ul>
+</div>
+
+<br>
+<br>
+ 
+
+<p>Defaults to:</p>
+
+<pre><code>{top:0, right:0, bottom:0, left:0}</code>
+</pre>
+]]>    </description>	<name>margins</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[An input mask regular expression that will beused to filter keystrokes that do not match (defaults to
+<tt>null</tt>)]]>    </description>	<name>maskRe</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The maximum height in pixels of the dropdownlist before scrollbars are shown (defaults to <tt>300</tt>)]]>    </description>	<name>maxHeight</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Maximum input field length allowed by validation(defaults to Number.MAX_VALUE). This behavior is intended to
+provide instant feedback to the user by improving usability to
+allow pasting and editing or overtyping and back tracking. To
+restrict the maximum number of characters that can be entered into
+the field use <tt><b><a href="output/Ext.form.Field.html#Ext.form.Field-autoCreate" ext:member="autoCreate" ext:cls="Ext.form.Field">autoCreate</a></b></tt> to add any
+attributes you want to a field, for example:
+
+<pre><code><b>var</b> myField = <b>new</b> Ext.form.NumberField({
+    id: <em>'mobile'</em>,
+    anchor:<em>'90%'</em>,
+    fieldLabel: <em>'Mobile'</em>,
+    maxLength: 16, <i>// <b>for</b> validation</i>
+    autoCreate: {tag: <em>'input'</em>, type: <em>'text'</em>, size: <em>'20'</em>, autocomplete: <em>'off'</em>, maxlength: <em>'10'</em>}
+});</code>
+</pre>
+]]>    </description>	<name>maxLength</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Error text to display if the <b><tt><a href="output/Ext.form.TextField.html#Ext.form.TextField-maxLength" ext:member="maxLength" ext:cls="Ext.form.TextField">maximumlength</a></tt></b> validation fails (defaults to <tt>'The maximum
+length for this field is {maxLength}'</tt>)]]>    </description>	<name>maxLengthText</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The minimum number of characters the user musttype before autocomplete and <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-typeAhead" ext:member="typeAhead" ext:cls="Ext.form.ComboBox">typeAhead</a>
+activate (defaults to <tt>4</tt> if <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-mode" ext:member="mode" ext:cls="Ext.form.ComboBox">mode</a> =
+'remote'</tt> or <tt>0</tt> if <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-mode" ext:member="mode" ext:cls="Ext.form.ComboBox">mode</a> =
+'local'</tt>, does not apply if <tt><a href="output/Ext.form.TriggerField.html#Ext.form.TriggerField-editable" ext:member="editable" ext:cls="Ext.form.TriggerField">editable</a>
+= false</tt>).]]>    </description>	<name>minChars</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The minimum height in pixels of the dropdown listwhen the list is constrained by its distance to the viewport edges
+(defaults to <tt>90</tt>)]]>    </description>	<name>minHeight</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Minimum input field length required (defaults to<tt>0</tt>)]]>    </description>	<name>minLength</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Error text to display if the <b><tt><a href="output/Ext.form.TextField.html#Ext.form.TextField-minLength" ext:member="minLength" ext:cls="Ext.form.TextField">minimumlength</a></tt></b> validation fails (defaults to <tt>'The minimum
+length for this field is {minLength}'</tt>)]]>    </description>	<name>minLengthText</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The minimum width of the dropdown list in pixels(defaults to <tt>70</tt>, will be ignored if <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-listWidth" ext:member="listWidth" ext:cls="Ext.form.ComboBox">listWidth</a></tt> has a higher
+value)]]>    </description>	<name>minListWidth</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Acceptable values are: 
+<div class="mdetail-params">
+<ul>
+<li><b><tt>'remote'</tt></b> : <b>Default</b> 
+
+<p class="sub-desc">Automatically loads the <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-store" ext:member="store" ext:cls="Ext.form.ComboBox">store</a></tt> the
+<b>first</b> time the trigger is clicked. If you do not want the
+store to be automatically loaded the first time the trigger is
+clicked, set to <tt>'local'</tt> and manually load the store. To
+force a requery of the store <b>every</b> time the trigger is
+clicked see <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-lastQuery" ext:member="lastQuery" ext:cls="Ext.form.ComboBox">lastQuery</a></tt>.</p>
+</li>
+
+<li><b><tt>'local'</tt></b> : 
+
+<p class="sub-desc">ComboBox loads local data</p>
+
+<pre><code><b>var</b> combo = <b>new</b> Ext.form.ComboBox({
+    renderTo: document.body,
+    mode: <em>'local'</em>,
+    store: <b>new</b> Ext.data.ArrayStore({
+        id: 0,
+        fields: [
+            <em>'myId'</em>,  <i>// numeric value is the key
+</i>
+            <em>'displayText'</em>
+        ],
+        data: [[1, <em>'item1'</em>], [2, <em>'item2'</em>]]  <i>// data is local
+</i>
+    }),
+    valueField: <em>'myId'</em>,
+    displayField: <em>'displayText'</em>,
+    triggerAction: <em>'all'</em>
+});</code>
+</pre>
+</li>
+</ul>
+</div>
+]]>    </description>	<name>mode</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<b>Experimental</b> The effect used whendisplaying a validation message under the field (defaults to
+'normal').]]>    </description>	<name>msgFx</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The location where error text should display.Should be one of the following values (defaults to 'qtip'): 
+
+<pre>Value         Description
+-----------   ----------------------------------------------------------------------
+qtip          Display a quick tip when the user hovers over the field
+title         Display a default browser title attribute popup
+under         Add a block div beneath the field containing the error text
+side          Add an error icon to the right of the field with a popup on hover
+[element id]  Add the error text directly to the innerHTML of the specified element
+</pre>
+]]>    </description>	<name>msgTarget</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The field's HTML name attribute (defaults to '').<b>Note</b>: this property must be set if this field is to be
+automatically included with <a href="output/Ext.form.BasicForm.html#Ext.form.BasicForm-submit" ext:member="submit" ext:cls="Ext.form.BasicForm">form
+submit()</a>.]]>    </description>	<name>name</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[An optional extra CSS class that will be added tothis component's Element when the mouse moves over the Element, and
+removed when the mouse moves out. (defaults to ''). This can be
+useful for adding customized 'active' or 'hover' styles to the
+component or any of its children using standard CSS rules.]]>    </description>	<name>overCls</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[If greater than <tt>0</tt>, a <a href="output/Ext.PagingToolbar.html" ext:cls="Ext.PagingToolbar">Ext.PagingToolbar</a> is displayed inthe footer of the dropdown list and the <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-doQuery" ext:member="doQuery" ext:cls="Ext.form.ComboBox">filter queries</a>
+will execute with page start and <a href="output/Ext.PagingToolbar.html#Ext.PagingToolbar-pageSize" ext:member="pageSize" ext:cls="Ext.PagingToolbar">limit</a>
+parameters. Only applies when <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-mode" ext:member="mode" ext:cls="Ext.form.ComboBox">mode</a> =
+'remote'</tt> (defaults to <tt>0</tt>).]]>    </description>	<name>pageSize</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The page level x coordinate for this componentif contained within a positioning container.]]>    </description>	<name>pageX</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The page level y coordinate for this componentif contained within a positioning container.]]>    </description>	<name>pageY</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[An object or array of objects that will providecustom functionality for this component. The only requirement for a
+valid plugin is that it contain an init method that accepts a
+reference of type Ext.Component. When a component is created, if
+any plugins are available, the component will call the init method
+on each plugin, passing a reference to itself. Each plugin can then
+call methods or respond to events on the component as needed to
+provide its functionality.]]>    </description>	<name>plugins</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<tt>true</tt> to disable <a href="output/Ext.form.Field.html#Ext.form.Field-markInvalid" ext:member="markInvalid" ext:cls="Ext.form.Field">marking the fieldinvalid</a>. Defaults to <tt>false</tt>.]]>    </description>	<name>preventMark</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The registered <tt>ptype</tt> to create. Thisconfig option is not used when passing a config object into a
+constructor. This config option is used only when lazy
+instantiation is being used, and a Plugin is being specified not as
+a fully instantiated Component, but as a <i>Component config
+object</i>. The <tt>ptype</tt> will be looked up at render time up
+to determine what type of Plugin to create.<br>
+<br>
+If you create your own Plugins, you may register them using <a href="output/Ext.ComponentMgr.html#Ext.ComponentMgr-registerPlugin" ext:member="registerPlugin" ext:cls="Ext.ComponentMgr">Ext.ComponentMgr.registerPlugin</a> in
+order to be able to take advantage of lazy instantiation and
+rendering.]]>    </description>	<name>ptype</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The length of time in milliseconds to delaybetween the start of typing and sending the query to filter the
+dropdown list (defaults to <tt>500</tt> if <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-mode" ext:member="mode" ext:cls="Ext.form.ComboBox">mode</a> =
+'remote'</tt> or <tt>10</tt> if <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-mode" ext:member="mode" ext:cls="Ext.form.ComboBox">mode</a> =
+'local'</tt>)]]>    </description>	<name>queryDelay</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Name of the query (<a href="output/Ext.data.Store.html#Ext.data.Store-baseParam" ext:member="baseParam" ext:cls="Ext.data.Store">baseParam</a> namefor the store) as it will be passed on the querystring (defaults to
+<tt>'query'</tt>)]]>    </description>	<name>queryParam</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<tt>true</tt> to mark the field as readOnly inHTML (defaults to <tt>false</tt>).<br>
+<p><b>Note</b>: this only sets the element's readOnly DOM
+attribute. Setting <code>readOnly=true</code>, for example, will
+not disable triggering a ComboBox or DateField; it gives you the
+option of forcing the user to choose via the trigger without typing
+in the text box. To hide the trigger use <code><a href="output/Ext.form.TriggerField.html#Ext.form.TriggerField-hideTrigger" ext:member="hideTrigger" ext:cls="Ext.form.TriggerField">hideTrigger</a></code>.</p>
+]]>    </description>	<name>readOnly</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>A path specification, relative to the Component's <a href="output/Ext.Component.html#Ext.Component-ownerCt" ext:member="ownerCt" ext:cls="Ext.Component">ownerCt</a> specifying
+into which ancestor Container to place a named reference to this
+Component.</p>
+
+<p>The ancestor axis can be traversed by using '/' characters in
+the path. For example, to put a reference to a Toolbar Button into
+<i>the Panel which owns the Toolbar</i>:</p>
+
+<pre><code><b>var</b> myGrid = <b>new</b> Ext.grid.EditorGridPanel({
+    title: <em>'My EditorGridPanel'</em>,
+    store: myStore,
+    colModel: myColModel,
+    tbar: [{
+        text: <em>'Save'</em>,
+        handler: saveChanges,
+        disabled: true,
+        ref: <em>'../saveButton'</em>
+    }],
+    listeners: {
+        afteredit: <b>function</b>() {
+<i>//          The button reference is <b>in</b> the GridPanel</i>
+            myGrid.saveButton.enable();
+        }
+    }
+});</code>
+</pre>
+
+<p>In the code above, if the ref had been
+<code><em>'saveButton'</em></code> the reference would have been
+placed into the Toolbar. Each '/' in the ref moves up one level
+from the Component's <a href="output/Ext.Component.html#Ext.Component-ownerCt" ext:member="ownerCt" ext:cls="Ext.Component">ownerCt</a>.</p>
+]]>    </description>	<name>ref</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[A JavaScript RegExp object to be tested againstthe field value during validation (defaults to <tt>null</tt>). If
+the test fails, the field will be marked invalid using <b><tt><a href="output/Ext.form.TextField.html#Ext.form.TextField-regexText" ext:member="regexText" ext:cls="Ext.form.TextField">regexText</a></tt></b>.]]>    </description>	<name>regex</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The error text to display if <b><tt><a href="output/Ext.form.TextField.html#Ext.form.TextField-regex" ext:member="regex" ext:cls="Ext.form.TextField">regex</a></tt></b>is used and the test fails during validation (defaults to
+<tt>''</tt>)]]>    </description>	<name>regexText</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p><b>Note</b>: this config is only used when this BoxComponent is
+rendered by a Container which has been configured to use the <b><a href="output/Ext.layout.BorderLayout.html" ext:cls="Ext.layout.BorderLayout">BorderLayout</a></b> layout
+manager (e.g. specifying <tt>layout:'border'</tt>).</p>
+
+<br>
+<p>See <a href="output/Ext.layout.BorderLayout.html" ext:cls="Ext.layout.BorderLayout">Ext.layout.BorderLayout</a>
+also.</p>
+]]>    </description>	<name>region</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>Specify the id of the element, a DOM element or an existing
+Element that this component will be rendered into.</p>
+
+<div>
+<ul>
+<li><b>Notes</b> : 
+
+<div style="margin-left: 2em;">
+<div class="sub-desc">Do <u>not</u> use this option if the
+Component is to be a child item of a <a href="output/Ext.Container.html" ext:cls="Ext.Container">Container</a>. It is the responsibility of
+the <a href="output/Ext.Container.html" ext:cls="Ext.Container">Container</a>'s <a href="output/Ext.Container.html#Ext.Container-layout" ext:member="layout" ext:cls="Ext.Container">layout manager</a> to
+render and manage its child items.</div>
+
+<div class="sub-desc">When using this config, a call to render() is
+not required.</div>
+</div>
+</li>
+</ul>
+</div>
+
+<p>See <tt><a href="output/Ext.Component.html#Ext.Component-render" ext:member="render" ext:cls="Ext.Component">render</a></tt>
+also.</p>
+]]>    </description>	<name>renderTo</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<tt>true</tt> to add a resize handle to thebottom of the dropdown list (creates an <a href="output/Ext.Resizable.html" ext:cls="Ext.Resizable">Ext.Resizable</a> with 'se' <a href="output/Ext.Resizable.html#Ext.Resizable-pinned" ext:member="pinned" ext:cls="Ext.Resizable">pinned</a> handles).
+Defaults to <tt>false</tt>.]]>    </description>	<name>resizable</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<tt>true</tt> to select any existing text in thefield immediately on focus. Only applies when <tt><a href="output/Ext.form.TriggerField.html#Ext.form.TriggerField-editable" ext:member="editable" ext:cls="Ext.form.TriggerField">editable</a>
+= true</tt> (defaults to <tt>false</tt>).]]>    </description>	<name>selectOnFocus</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[CSS class to apply to the selected item in thedropdown list (defaults to <tt>'x-combo-selected'</tt>)]]>    </description>	<name>selectedClass</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<tt>true</tt> or <tt>"sides"</tt> for thedefault effect, <tt>"frame"</tt> for 4-way shadow, and
+<tt>"drop"</tt> for bottom-right]]>    </description>	<name>shadow</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>An array of events that, when fired, should trigger this
+component to save its state (defaults to none).
+<code>stateEvents</code> may be any type of event supported by this
+component, including browser or custom events (e.g., <tt>['click',
+'customerchange']</tt>).</p>
+
+<p>See <code><a href="output/Ext.Component.html#Ext.Component-stateful" ext:member="stateful" ext:cls="Ext.Component">stateful</a></code>
+for an explanation of saving and restoring Component state.</p>
+]]>    </description>	<name>stateEvents</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The unique id for this component to use for statemanagement purposes (defaults to the component id if one was set,
+otherwise null if the component is using a generated id). 
+
+<p>See <code><a href="output/Ext.Component.html#Ext.Component-stateful" ext:member="stateful" ext:cls="Ext.Component">stateful</a></code>
+for an explanation of saving and restoring Component state.</p>
+]]>    </description>	<name>stateId</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>A flag which causes the Component to attempt to restore the
+state of internal properties from a saved state on startup. The
+component must have either a <code><a href="output/Ext.Component.html#Ext.Component-stateId" ext:member="stateId" ext:cls="Ext.Component">stateId</a></code> or
+<code><a href="output/Ext.Component.html#Ext.Component-id" ext:member="id" ext:cls="Ext.Component">id</a></code> assigned for
+state to be managed. Auto-generated ids are not guaranteed to be
+stable across page loads and cannot be relied upon to save and
+restore the same state for a component.</p>
+
+<p>For state saving to work, the state manager's provider must have
+been set to an implementation of <a href="output/Ext.state.Provider.html" ext:cls="Ext.state.Provider">Ext.state.Provider</a> which overrides
+the <a href="output/Ext.state.Provider.html#Ext.state.Provider-set" ext:member="set" ext:cls="Ext.state.Provider">set</a> and <a href="output/Ext.state.Provider.html#Ext.state.Provider-get" ext:member="get" ext:cls="Ext.state.Provider">get</a> methods to
+save and recall name/value pairs. A built-in implementation, <a href="output/Ext.state.CookieProvider.html" ext:cls="Ext.state.CookieProvider">Ext.state.CookieProvider</a> is
+available.</p>
+
+<p>To set the state provider for the current page:</p>
+
+<pre><code>Ext.state.Manager.setProvider(<b>new</b> Ext.state.CookieProvider({
+    expires: <b>new</b> Date(<b>new</b> Date().getTime()+(1000*60*60*24*7)), <i>//7 days from now</i>
+}));</code>
+</pre>
+
+<p>A stateful Component attempts to save state when one of the
+events listed in the <code><a href="output/Ext.Component.html#Ext.Component-stateEvents" ext:member="stateEvents" ext:cls="Ext.Component">stateEvents</a></code> configuration
+fires.</p>
+
+<p>To save state, a stateful Component first serializes its state
+by calling <b><code>getState</code></b>. By default, this function
+does nothing. The developer must provide an implementation which
+returns an object hash which represents the Component's restorable
+state.</p>
+
+<p>The value yielded by getState is passed to <a href="output/Ext.state.Manager.html#Ext.state.Manager-set" ext:member="set" ext:cls="Ext.state.Manager">Ext.state.Manager.set</a> which uses
+the configured <a href="output/Ext.state.Provider.html" ext:cls="Ext.state.Provider">Ext.state.Provider</a> to save the
+object keyed by the Component's <code><a href="output/stateId.html" ext:cls="stateId">stateId</a></code>, or, if that is not specified,
+its <code><a href="output/Ext.Component.html#Ext.Component-id" ext:member="id" ext:cls="Ext.Component">id</a></code>.</p>
+
+<p>During construction, a stateful Component attempts to
+<i>restore</i> its state by calling <a href="output/Ext.state.Manager.html#Ext.state.Manager-get" ext:member="get" ext:cls="Ext.state.Manager">Ext.state.Manager.get</a> passing the
+<code><a href="output/Ext.Component.html#Ext.Component-stateId" ext:member="stateId" ext:cls="Ext.Component">stateId</a></code>,
+or, if that is not specified, the <code><a href="output/Ext.Component.html#Ext.Component-id" ext:member="id" ext:cls="Ext.Component">id</a></code>.</p>
+
+<p>The resulting object is passed to
+<b><code>applyState</code></b>. The default implementation of
+<code>applyState</code> simply copies properties into the object,
+but a developer may override this to support more behaviour.</p>
+
+<p>You can perform extra processing on state save and restore by
+attaching handlers to the <a href="output/Ext.Component.html#Ext.Component-beforestaterestore" ext:member="beforestaterestore" ext:cls="Ext.Component">beforestaterestore</a>, <a href="output/Ext.Component.html#Ext.Component-staterestore" ext:member="staterestore" ext:cls="Ext.Component">staterestore</a>,
+<a href="output/Ext.Component.html#Ext.Component-beforestatesave" ext:member="beforestatesave" ext:cls="Ext.Component">beforestatesave</a> and <a href="output/Ext.Component.html#Ext.Component-statesave" ext:member="statesave" ext:cls="Ext.Component">statesave</a>
+events.</p>
+]]>    </description>	<name>stateful</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The data source to which this combo is bound(defaults to <tt>undefined</tt>). Acceptable values for this
+property are: 
+
+<div class="mdetail-params">
+<ul>
+<li><b>any <a href="output/Ext.data.Store.html" ext:cls="Ext.data.Store">Store</a> subclass</b></li>
+
+<li><b>an Array</b> : Arrays will be converted to a <a href="output/Ext.data.ArrayStore.html" ext:cls="Ext.data.ArrayStore">Ext.data.ArrayStore</a> internally,
+automatically generating <a href="output/Ext.data.Field.html#Ext.data.Field-name" ext:member="name" ext:cls="Ext.data.Field">field names</a> to work
+with all data components. 
+
+<div class="mdetail-params">
+<ul>
+<li><b>1-dimensional array</b> : (e.g., <tt>['Foo','Bar']</tt>)
+
+<div class="sub-desc">A 1-dimensional array will automatically be
+expanded (each array item will be used for both the combo <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-valueField" ext:member="valueField" ext:cls="Ext.form.ComboBox">valueField</a>
+and <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-displayField" ext:member="displayField" ext:cls="Ext.form.ComboBox">displayField</a>)</div>
+</li>
+
+<li><b>2-dimensional array</b> : (e.g.,
+<tt>[['f','Foo'],['b','Bar']]</tt>)
+
+<div class="sub-desc">For a multi-dimensional array, the value in
+index 0 of each item will be assumed to be the combo <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-valueField" ext:member="valueField" ext:cls="Ext.form.ComboBox">valueField</a>,
+while the value at index 1 is assumed to be the combo <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-displayField" ext:member="displayField" ext:cls="Ext.form.ComboBox">displayField</a>.</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+
+<p>See also <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-mode" ext:member="mode" ext:cls="Ext.form.ComboBox">mode</a></tt>.</p>
+]]>    </description>	<name>store</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[A JavaScript RegExp object used to stripunwanted content from the value before validation (defaults to
+<tt>null</tt>).]]>    </description>	<name>stripCharsRe</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[A custom style specification to be applied tothis component's Element. Should be a valid argument to <a href="output/Ext.Element.html#Ext.Element-applyStyles" ext:member="applyStyles" ext:cls="Ext.Element">Ext.Element.applyStyles</a>. 
+
+<pre><code><b>new</b> Ext.Panel({
+    title: <em>'Some Title'</em>,
+    renderTo: Ext.getBody(),
+    width: 400, height: 300,
+    layout: <em>'form'</em>,
+    items: [{
+        xtype: <em>'textarea'</em>,
+        style: {
+            width: <em>'95%'</em>,
+            marginBottom: <em>'10px'</em>
+        }
+    },
+        <b>new</b> Ext.Button({
+            text: <em>'Send'</em>,
+            minWidth: <em>'100'</em>,
+            style: {
+                marginBottom: <em>'10px'</em>
+            }
+        })
+    ]
+});</code>
+</pre>
+]]>    </description>	<name>style</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The tabIndex for this field. Note this onlyapplies to fields that are rendered, not those which are built via
+applyTo (defaults to undefined).]]>    </description>	<name>tabIndex</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p><b>Note</b>: this config is only used when this BoxComponent is
+a child item of a TabPanel.</p>
+
+A string to be used as innerHTML (html tags are accepted) to show
+in a tooltip when mousing over the associated tab selector element.
+<a href="output/Ext.QuickTips.html" ext:cls="Ext.QuickTips">Ext.QuickTips</a>.init() must be called in
+order for the tips to render.]]>    </description>	<name>tabTip</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[If supplied, a header element is createdcontaining this text and added into the top of the dropdown list
+(defaults to undefined, with no header element)]]>    </description>	<name>title</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>The template string, or <a href="output/Ext.XTemplate.html" ext:cls="Ext.XTemplate">Ext.XTemplate</a> instance to use to
+display each item in the dropdown list. The dropdown list is
+displayed in a DataView. See <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-view" ext:member="view" ext:cls="Ext.form.ComboBox">view</a>.</p>
+
+<p>The default template string is:</p>
+
+<pre><code><em>'&lt;tpl <b>for</b>=</em>"."</code>&gt;&lt;div class=<em>"x-combo-list-item"</em>&gt;{' + this.displayField + <em>'}&lt;/div&gt;&lt;/tpl&gt;'</em>
+</pre>
+
+<p>Override the default value to create custom UI layouts for items
+in the list. For example:</p>
+
+<pre><code><em>'&lt;tpl <b>for</b>=</em>"."</code>&gt;&lt;div ext:qtip=<em>"{state}. {nick}"</em> class=<em>"x-combo-list-item"</em>&gt;{state}&lt;/div&gt;&lt;/tpl&gt;'
+</pre>
+
+<p>The template <b>must</b> contain one or more substitution
+parameters using field names from the Combo's <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-store" ext:member="store" ext:cls="Ext.form.ComboBox">Store</a>. In the
+example above an</p>
+
+<pre>ext:qtip
+</pre>
+
+attribute is added to display other fields from the Store.<br>
+<br>
+ 
+
+<p>To preserve the default visual look of list items, add the CSS
+class name</p>
+
+<pre>x-combo-list-item
+</pre>
+
+to the template's container element.<br>
+<br>
+ 
+
+<p>Also see <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-itemSelector" ext:member="itemSelector" ext:cls="Ext.form.ComboBox">itemSelector</a> for additional
+details.</p>
+]]>    </description>	<name>tpl</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The id, DOM node or element of an existing HTMLSELECT to convert to a ComboBox. Note that if you specify this and
+the combo is going to be in an <a href="output/Ext.form.BasicForm.html" ext:cls="Ext.form.BasicForm">Ext.form.BasicForm</a> or <a href="output/Ext.form.FormPanel.html" ext:cls="Ext.form.FormPanel">Ext.form.FormPanel</a>, you must also
+set <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-lazyRender" ext:member="lazyRender" ext:cls="Ext.form.ComboBox">lazyRender</a>
+= true</tt>.]]>    </description>	<name>transform</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The action to execute when the trigger isclicked. 
+
+<div class="mdetail-params">
+<ul>
+<li><b><tt>'query'</tt></b> : <b>Default</b> 
+
+<p class="sub-desc"><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-doQuery" ext:member="doQuery" ext:cls="Ext.form.ComboBox">run the query</a>
+using the <a href="output/Ext.form.Field.html#Ext.form.Field-getRawValue" ext:member="getRawValue" ext:cls="Ext.form.Field">raw
+value</a>.</p>
+</li>
+
+<li><b><tt>'all'</tt></b> : 
+
+<p class="sub-desc"><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-doQuery" ext:member="doQuery" ext:cls="Ext.form.ComboBox">run the query</a>
+specified by the <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-allQuery" ext:member="allQuery" ext:cls="Ext.form.ComboBox">allQuery</a></tt>
+config option</p>
+</li>
+</ul>
+</div>
+
+<p>See also <code><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-queryParam" ext:member="queryParam" ext:cls="Ext.form.ComboBox">queryParam</a></code>.</p>
+]]>    </description>	<name>triggerAction</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[An additional CSS class used to style the triggerbutton. The trigger will always get the class
+<tt>'x-form-trigger'</tt> and <tt>triggerClass</tt> will be
+<b>appended</b> if specified (defaults to
+<tt>'x-form-arrow-trigger'</tt> which displays a downward arrow
+icon).]]>    </description>	<name>triggerClass</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>A <a href="output/Ext.DomHelper.html" ext:cls="Ext.DomHelper">DomHelper</a> config object specifying the
+structure of the trigger element for this Field. (Optional).</p>
+
+<p>Specify this when you need a customized element to act as the
+trigger button for a TriggerField.</p>
+
+<p>Note that when using this option, it is the developer's
+responsibility to ensure correct sizing, positioning and appearance
+of the trigger. Defaults to:</p>
+
+<pre><code>{tag: <em>"img"</em>, src: Ext.BLANK_IMAGE_URL, cls: <em>"x-form-trigger "</em> + this.triggerClass}</code>
+</pre>
+]]>    </description>	<name>triggerConfig</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<tt>true</tt> to populate and autoselect theremainder of the text being typed after a configurable delay (<a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-typeAheadDelay" ext:member="typeAheadDelay" ext:cls="Ext.form.ComboBox">typeAheadDelay</a>) if it matches a
+known value (defaults to <tt>false</tt>)]]>    </description>	<name>typeAhead</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The length of time in milliseconds to wait untilthe typeahead text is displayed if <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-typeAhead" ext:member="typeAhead" ext:cls="Ext.form.ComboBox">typeAhead</a> =
+true</tt> (defaults to <tt>250</tt>)]]>    </description>	<name>typeAheadDelay</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[Whether the field should validate when it losesfocus (defaults to true).]]>    </description>	<name>validateOnBlur</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The length of time in milliseconds after userinput begins until validation is initiated (defaults to 250)]]>    </description>	<name>validationDelay</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The event that should initiate field validation.Set to false to disable automatic validation (defaults to
+'keyup').]]>    </description>	<name>validationEvent</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>A custom validation function to be called during field
+validation (<a href="output/Ext.form.TextField.html#Ext.form.TextField-validateValue" ext:member="validateValue" ext:cls="Ext.form.TextField">validateValue</a>) (defaults to
+<tt>null</tt>). If specified, this function will be called first,
+allowing the developer to override the default validation
+process.</p>
+
+<br>
+<p>This function will be passed the following Parameters:</p>
+
+<div class="mdetail-params">
+<ul>
+<li><code>value</code>: <i>Mixed</i> 
+
+<div class="sub-desc">The current field value</div>
+</li>
+</ul>
+</div>
+
+<br>
+<p>This function is to Return:</p>
+
+<div class="mdetail-params">
+<ul>
+<li><code>true</code>: <i>Boolean</i> 
+
+<div class="sub-desc"><code>true</code> if the value is valid</div>
+</li>
+
+<li><code>msg</code>: <i>String</i> 
+
+<div class="sub-desc">An error message if the value is
+invalid</div>
+</li>
+</ul>
+</div>
+]]>    </description>	<name>validator</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[A value to initialize this field with (defaultsto undefined).]]>    </description>	<name>value</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The underlying <a href="output/Ext.data.Field.html#Ext.data.Field-name" ext:member="name" ext:cls="Ext.data.Field">data value name</a> tobind to this ComboBox (defaults to undefined if <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-mode" ext:member="mode" ext:cls="Ext.form.ComboBox">mode</a> =
+'remote'</tt> or <tt>'field2'</tt> if <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-transform" ext:member="transform" ext:cls="Ext.form.ComboBox">transforming a
+select</a> or if the <a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-store" ext:member="store" ext:cls="Ext.form.ComboBox">field name is
+autogenerated based on the store configuration</a>). 
+
+<p><b>Note</b>: use of a <tt>valueField</tt> requires the user to
+make a selection in order for a value to be mapped. See also <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-hiddenName" ext:member="hiddenName" ext:cls="Ext.form.ComboBox">hiddenName</a></tt>, <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-hiddenValue" ext:member="hiddenValue" ext:cls="Ext.form.ComboBox">hiddenValue</a></tt>, and <tt><a href="output/Ext.form.ComboBox.html#Ext.form.ComboBox-displayField" ext:member="displayField" ext:cls="Ext.form.ComboBox">displayField</a></tt>.</p>
+]]>    </description>	<name>valueField</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[When using a name/value combo, if the valuepassed to setValue is not found in the store, valueNotFoundText
+will be displayed as the field text if defined (defaults to
+undefined). If this default text is used, it means there is no
+value set and no validation will occur on this field.]]>    </description>	<name>valueNotFoundText</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[A validation type name as defined in <a href="output/Ext.form.VTypes.html" ext:cls="Ext.form.VTypes">Ext.form.VTypes</a> (defaults to<tt>null</tt>)]]>    </description>	<name>vtype</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[A custom error message to display in place of thedefault message provided for the <b><code><a href="output/Ext.form.TextField.html#Ext.form.TextField-vtype" ext:member="vtype" ext:cls="Ext.form.TextField">vtype</a></code></b> currently set for
+this field (defaults to <tt>''</tt>). <b>Note</b>: only applies if
+<b><code><a href="output/Ext.form.TextField.html#Ext.form.TextField-vtype" ext:member="vtype" ext:cls="Ext.form.TextField">vtype</a></code></b> is set, else
+ignored.]]>    </description>	<name>vtypeText</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The width of this component in pixels (defaultsto auto). <b>Note</b> to express this dimension as a percentage or
+offset see <a href="output/Ext.Component.html#Ext.Component-anchor" ext:member="anchor" ext:cls="Ext.Component">Ext.Component.anchor</a>.]]>    </description>	<name>width</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The class added to the to the wrap of thetrigger element. Defaults to <tt>x-trigger-wrap-focus</tt>.]]>    </description>	<name>wrapFocusClass</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The local x (left) coordinate for this componentif contained within a positioning container.]]>    </description>	<name>x</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The registered <tt>xtype</tt> to create. Thisconfig option is not used when passing a config object into a
+constructor. This config option is used only when lazy
+instantiation is being used, and a child item of a Container is
+being specified not as a fully instantiated Component, but as a
+<i>Component config object</i>. The <tt>xtype</tt> will be looked
+up at render time up to determine what type of child Component to
+create.<br>
+<br>
+The predefined xtypes are listed <a href="output/Ext.Component.html" ext:cls="Ext.Component">here</a>.<br>
+<br>
+If you subclass Components to create your own Components, you may
+register them using <a href="output/Ext.ComponentMgr.html#Ext.ComponentMgr-registerType" ext:member="registerType" ext:cls="Ext.ComponentMgr">Ext.ComponentMgr.registerType</a> in
+order to be able to take advantage of lazy instantiation and
+rendering.]]>    </description>	<name>xtype</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The local y (top) coordinate for this componentif contained within a positioning container.]]>    </description>	<name>y</name>	<required>false</required></attribute></tag>

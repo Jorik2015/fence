@@ -1,0 +1,17 @@
+<tag><description>    <![CDATA[A specific <a href="output/Ext.data.Record.html" ext:cls="Ext.data.Record">Ext.data.Record</a> type that represents
+a name/value pair and is made to work with the <a href="output/Ext.grid.PropertyGrid.html" ext:cls="Ext.grid.PropertyGrid">Ext.grid.PropertyGrid</a>.
+Typically, PropertyRecords do not need to be created directly as
+they can be created implicitly by simply using the appropriate data
+configs either via the <a href="output/Ext.grid.PropertyGrid.html#Ext.grid.PropertyGrid-source" ext:member="source" ext:cls="Ext.grid.PropertyGrid">Ext.grid.PropertyGrid.source</a>
+config property or by calling <a href="output/Ext.grid.PropertyGrid.html#Ext.grid.PropertyGrid-setSource" ext:member="setSource" ext:cls="Ext.grid.PropertyGrid">Ext.grid.PropertyGrid.setSource</a>.
+However, if the need arises, these records can also be created
+explicitly as shwon below. Example usage: 
+
+<pre><code><b>var</b> rec = <b>new</b> Ext.grid.PropertyRecord({
+    name: <em>'Birthday'</em>,
+    value: <b>new</b> Date(Date.parse(<em>'05/26/1972'</em>))
+});
+<i>// Add record to an already populated grid</i>
+grid.store.addSorted(rec);</code>
+</pre>
+]]></description><name>propertyrecord</name><tag-class></tag-class><body-content>JSP</body-content></tag>

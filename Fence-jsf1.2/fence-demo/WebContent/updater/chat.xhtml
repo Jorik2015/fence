@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/layout/part.xhtml">
+	<ui:define name="pageTitle">Updater</ui:define>
+	<ui:define name="pageHeader">
+		<script type="text/javascript">
+	</script>
+	</ui:define>
+	<ui:define name="body">
+		<table class="demoTable" cellpadding="0" cellspacing="0">
+			<tr>
+				<td><s:panel id="chatPanel" frame="false"
+					bodyStyle="padding:5px;" title="Chat window" width="455"
+					height="200" autoScroll="true">
+					<div class="chat"><s:updater id="chatUpdater">
+						<s:updateoptions interval="1" refreshNow="true"
+							callback="function(){
+							chatPanel.body.scroll('down',30,true);
+						}" />
+						<c:forEach items="#{chatAction.chatContent}" var="item">
+							#{item}<br />
+						</c:forEach>
+					</s:updater></div>
+				</s:panel></td>
+			</tr>
+			<tr>
+				<td><s:formpanel border="false" width="455" buttonAlign="left"
+					waitMsgTarget="true">
+					<s:textfield name="sayInput" id="sayInput" width="350"
+						enableKeyEvents="true" fieldLabel="Please say">
+						<s:event name="keyup"
+							handler="function(t,e){
+						say.setValue(t.getValue());
+					}" />
+					</s:textfield>
+					<s:button text="Send" iconCls="user" type="submit"	action="#{chatAction.send}">
+						<s:hidden name="say" id="say"></s:hidden>
+					</s:button>
+				</s:formpanel></td>
+			</tr>
+		</table>
+	</ui:define>
+</ui:composition>

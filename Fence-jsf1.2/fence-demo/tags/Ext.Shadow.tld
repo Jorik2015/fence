@@ -1,0 +1,21 @@
+<tag><description>    <![CDATA[Simple class that can provide a shadow
+effect for any element. Note that the element MUST be absolutely
+positioned, and the shadow does not provide any shimming. This
+should be used only in simple cases -- for more advanced
+functionality that can also provide the same shadow effect, see the
+<a href="output/Ext.Layer.html" ext:cls="Ext.Layer">Ext.Layer</a>
+class.]]></description><name>shadow</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[The shadow display mode. Supports the followingoptions:
+
+<div class="mdetail-params">
+<ul>
+<li><b><tt>sides</tt></b> : Shadow displays on both sides and
+bottom only</li>
+
+<li><b><tt>frame</tt></b> : Shadow displays equally on all four
+sides</li>
+
+<li><b><tt>drop</tt></b> : Traditional bottom-right drop
+shadow</li>
+</ul>
+</div>
+]]>    </description>	<name>mode</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The number of pixels to offset the shadow fromthe element (defaults to <tt>4</tt>)]]>    </description>	<name>offset</name>	<required>false</required></attribute></tag>

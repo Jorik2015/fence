@@ -1,0 +1,38 @@
+<tag><description>    <![CDATA[GridPanel plugin to add a column with
+check boxes to a grid. 
+
+<p>Example usage:</p>
+
+<pre><code><i>// create the column
+</i>
+<b>var</b> checkColumn = <b>new</b> Ext.grid.CheckColumn({
+   header: <em>'Indoor?'</em>,
+   dataIndex: <em>'indoor'</em>,
+   id: <em>'check'</em>,
+   width: 55
+});
+
+<i>// add the column to the column model
+</i>
+<b>var</b> cm = <b>new</b> Ext.grid.ColumnModel([{
+       header: <em>'Foo'</em>,
+       ...
+    },
+    checkColumn
+]);
+
+<i>// create the grid
+</i>
+<b>var</b> grid = <b>new</b> Ext.grid.EditorGridPanel({
+    ...
+    cm: cm,
+    plugins: [checkColumn], <i>// include plugin
+</i>
+    ...
+});</code>
+</pre>
+
+In addition to storing a Boolean value within the record data, this
+class toggles a css class between <tt>'x-grid3-check-col'</tt> and
+<tt>'x-grid3-check-col-on'</tt> to alter the background image used
+for a column.]]></description><name>checkcolumn</name><tag-class></tag-class><body-content>JSP</body-content></tag>

@@ -1,0 +1,178 @@
+<tag><description>    <![CDATA[
+<p>This is a specialized type of <a href="output/Ext.layout.BorderLayout.Region.html" ext:cls="Ext.layout.BorderLayout.Region">BorderLayout region</a>
+that has a built-in <a href="output/Ext.SplitBar.html" ext:cls="Ext.SplitBar">Ext.SplitBar</a> for user resizing of
+regions. The movement of the split bar is configurable to move
+either <a href="output/Ext.layout.BorderLayout.SplitRegion.html#Ext.layout.BorderLayout.SplitRegion-tickSize" ext:member="tickSize" ext:cls="Ext.layout.BorderLayout.SplitRegion">smooth or
+incrementally</a>.</p>
+]]></description><name>splitregion</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[When a collapsed region's bar is clicked, theregion's panel will be displayed as a floated panel that will close
+again once the user mouses out of that panel (or clicks out if
+<tt><a href="output/Ext.layout.BorderLayout.Region.html#Ext.layout.BorderLayout.Region-autoHide" ext:member="autoHide" ext:cls="Ext.layout.BorderLayout.Region">autoHide</a> =
+false</tt>). Setting <tt><a href="output/Ext.layout.BorderLayout.Region.html#Ext.layout.BorderLayout.Region-animFloat" ext:member="animFloat" ext:cls="Ext.layout.BorderLayout.Region">animFloat</a> = false</tt>
+will prevent the open and close of these floated panels from being
+animated (defaults to <tt>true</tt>).]]>    </description>	<name>animFloat</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[When a collapsed region's bar is clicked, theregion's panel will be displayed as a floated panel. If
+<tt>autoHide = true</tt>, the panel will automatically hide after
+the user mouses out of the panel. If <tt>autoHide = false</tt>, the
+panel will continue to display until the user clicks outside of the
+panel (defaults to <tt>true</tt>).]]>    </description>	<name>autoHide</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[An object containing margins to apply to theregion when in the collapsed state in the format:
+
+<pre><code>{
+    top: (top margin),
+    right: (right margin),
+    bottom: (bottom margin),
+    left: (left margin)
+}</code>
+</pre>
+
+<p>May also be a string containing space-separated, numeric margin
+values. The order of the sides associated with each value matches
+the way CSS processes margin values.</p>
+
+<ul>
+<li>If there is only one value, it applies to all sides.</li>
+
+<li>If there are two values, the top and bottom borders are set to
+the first value and the right and left are set to the second.</li>
+
+<li>If there are three values, the top is set to the first value,
+the left and right are set to the second, and the bottom is set to
+the third.</li>
+
+<li>If there are four values, they apply to the top, right, bottom,
+and left, respectively.</li>
+</ul>
+
+<br>
+<br>
+]]>    </description>	<name>cmargins</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<tt>collapseMode</tt> supports two configurationvalues:
+
+<div class="mdetail-params">
+<ul>
+<li><b><tt>undefined</tt></b> (default)
+
+<div class="sub-desc">By default, <a href="output/Ext.layout.BorderLayout.Region.html#Ext.layout.BorderLayout.Region-collapsible" ext:member="collapsible" ext:cls="Ext.layout.BorderLayout.Region">collapsible</a> regions
+are collapsed by clicking the expand/collapse tool button that
+renders into the region's title bar.</div>
+</li>
+
+<li><b><tt>'mini'</tt></b>
+<div class="sub-desc">Optionally, when <tt>collapseMode</tt> is set
+to <tt>'mini'</tt> the region's split bar will also display a small
+collapse button in the center of the bar. In <tt>'mini'</tt> mode
+the region will collapse to a thinner bar than in normal
+mode.</div>
+</li>
+</ul>
+</div>
+
+<br>
+<br>
+ 
+
+<p><b>Note</b>: if a collapsible region does not have a title bar,
+then set <tt>collapseMode = 'mini'</tt> and <tt><a href="output/Ext.layout.BorderLayout.Region.html#Ext.layout.BorderLayout.Region-split" ext:member="split" ext:cls="Ext.layout.BorderLayout.Region">split</a> = true</tt> in
+order for the region to be <a href="output/Ext.layout.BorderLayout.Region.html#Ext.layout.BorderLayout.Region-collapsible" ext:member="collapsible" ext:cls="Ext.layout.BorderLayout.Region">collapsible</a> by the
+user as the expand/collapse tool button (that would go in the title
+bar) will not be rendered.</p>
+
+<p>See also <tt><a href="output/Ext.layout.BorderLayout.Region.html#Ext.layout.BorderLayout.Region-cmargins" ext:member="cmargins" ext:cls="Ext.layout.BorderLayout.Region">cmargins</a></tt>.</p>
+]]>    </description>	<name>collapseMode</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p><tt>true</tt> to allow the user to collapse this region
+(defaults to <tt>false</tt>). If <tt>true</tt>, an expand/collapse
+tool button will automatically be rendered into the title bar of
+the region, otherwise the button will not be shown.</p>
+
+<p><b>Note</b>: that a title bar is required to display the
+collapse/expand toggle button -- if no <tt>title</tt> is specified
+for the region's panel, the region will only be collapsible if
+<tt><a href="output/Ext.layout.BorderLayout.Region.html#Ext.layout.BorderLayout.Region-collapseMode" ext:member="collapseMode" ext:cls="Ext.layout.BorderLayout.Region">collapseMode</a> =
+'mini'</tt> and <tt><a href="output/Ext.layout.BorderLayout.Region.html#Ext.layout.BorderLayout.Region-split" ext:member="split" ext:cls="Ext.layout.BorderLayout.Region">split</a> = true</tt>.</p>
+]]>    </description>	<name>collapsible</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The tooltip to display when the user hovers overa <a href="output/Ext.layout.BorderLayout.Region.html#Ext.layout.BorderLayout.Region-collapsible" ext:member="collapsible" ext:cls="Ext.layout.BorderLayout.Region">collapsible</a> region's
+split bar (defaults to "Drag to resize. Double click to hide.").
+Only applies if <tt><a href="output/Ext.layout.BorderLayout.SplitRegion.html#Ext.layout.BorderLayout.SplitRegion-useSplitTips" ext:member="useSplitTips" ext:cls="Ext.layout.BorderLayout.SplitRegion">useSplitTips</a> =
+true</tt>.]]>    </description>	<name>collapsibleSplitTip</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<tt>true</tt> to allow clicking a collapsedregion's bar to display the region's panel floated above the
+layout, <tt>false</tt> to force the user to fully expand a
+collapsed region by clicking the expand button to see it again
+(defaults to <tt>true</tt>).]]>    </description>	<name>floatable</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[An object containing margins to apply to theregion when in the expanded state in the format:
+
+<pre><code>{
+    top: (top margin),
+    right: (right margin),
+    bottom: (bottom margin),
+    left: (left margin)
+}</code>
+</pre>
+
+<p>May also be a string containing space-separated, numeric margin
+values. The order of the sides associated with each value matches
+the way CSS processes margin values:</p>
+
+<div class="mdetail-params">
+<ul>
+<li>If there is only one value, it applies to all sides.</li>
+
+<li>If there are two values, the top and bottom borders are set to
+the first value and the right and left are set to the second.</li>
+
+<li>If there are three values, the top is set to the first value,
+the left and right are set to the second, and the bottom is set to
+the third.</li>
+
+<li>If there are four values, they apply to the top, right, bottom,
+and left, respectively.</li>
+</ul>
+</div>
+
+<br>
+<br>
+ 
+
+<p>Defaults to:</p>
+
+<pre><code>{top:0, right:0, bottom:0, left:0}</code>
+</pre>
+]]>    </description>	<name>margins</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The minimum allowable height in pixels for thisregion (defaults to <tt>50</tt>) <tt>maxHeight</tt> may also be
+specified.<br>
+<br>
+<br>
+<p><b>Note</b>: setting the <tt><a href="output/Ext.SplitBar.html#Ext.SplitBar-minSize" ext:member="minSize" ext:cls="Ext.SplitBar">minSize</a></tt> /
+<tt><a href="output/Ext.SplitBar.html#Ext.SplitBar-maxSize" ext:member="maxSize" ext:cls="Ext.SplitBar">maxSize</a></tt>
+supersedes any specified <tt>minHeight</tt> /
+<tt>maxHeight</tt>.</p>
+]]>    </description>	<name>minHeight</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>The minimum allowable width in pixels for this region (defaults
+to <tt>50</tt>). <tt>maxWidth</tt> may also be specified.</p>
+
+<br>
+<p><b>Note</b>: setting the <tt><a href="output/Ext.SplitBar.html#Ext.SplitBar-minSize" ext:member="minSize" ext:cls="Ext.SplitBar">minSize</a></tt> /
+<tt><a href="output/Ext.SplitBar.html#Ext.SplitBar-maxSize" ext:member="maxSize" ext:cls="Ext.SplitBar">maxSize</a></tt>
+supersedes any specified <tt>minWidth</tt> / <tt>maxWidth</tt>.</p>
+]]>    </description>	<name>minWidth</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p><tt>true</tt> to create a <a href="output/Ext.layout.BorderLayout.SplitRegion.html" ext:cls="Ext.layout.BorderLayout.SplitRegion">SplitRegion</a> and
+display a 5px wide <a href="output/Ext.SplitBar.html" ext:cls="Ext.SplitBar">Ext.SplitBar</a> between this region and its
+neighbor, allowing the user to resize the regions dynamically.
+Defaults to <tt>false</tt> creating a <a href="output/Ext.layout.BorderLayout.Region.html" ext:cls="Ext.layout.BorderLayout.Region">Region</a>.</p>
+
+<br>
+<p><b>Notes</b>:</p>
+
+<div class="mdetail-params">
+<ul>
+<li>this configuration option is ignored if
+<tt>region='center'</tt></li>
+
+<li>when <tt>split == true</tt>, it is common to specify a <tt><a href="output/Ext.SplitBar.html#Ext.SplitBar-minSize" ext:member="minSize" ext:cls="Ext.SplitBar">minSize</a></tt> and
+<tt><a href="output/Ext.SplitBar.html#Ext.SplitBar-maxSize" ext:member="maxSize" ext:cls="Ext.SplitBar">maxSize</a></tt> for
+the <a href="output/Ext.BoxComponent.html" ext:cls="Ext.BoxComponent">BoxComponent</a> representing the
+region. These are not native configs of <a href="output/Ext.BoxComponent.html" ext:cls="Ext.BoxComponent">BoxComponent</a>, and are used only by
+this class.</li>
+
+<li>if <tt><a href="output/Ext.layout.BorderLayout.Region.html#Ext.layout.BorderLayout.Region-collapseMode" ext:member="collapseMode" ext:cls="Ext.layout.BorderLayout.Region">collapseMode</a> =
+'mini'</tt> requires <tt>split = true</tt> to reserve space for the
+collapse tool</li>
+</ul>
+</div>
+]]>    </description>	<name>split</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The tooltip to display when the user hovers overa <a href="output/Ext.layout.BorderLayout.Region.html#Ext.layout.BorderLayout.Region-collapsible" ext:member="collapsible" ext:cls="Ext.layout.BorderLayout.Region">non-collapsible</a>
+region's split bar (defaults to <tt>"Drag to resize."</tt>). Only
+applies if <tt><a href="output/Ext.layout.BorderLayout.SplitRegion.html#Ext.layout.BorderLayout.SplitRegion-useSplitTips" ext:member="useSplitTips" ext:cls="Ext.layout.BorderLayout.SplitRegion">useSplitTips</a> =
+true</tt>.]]>    </description>	<name>splitTip</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The increment, in pixels by which to move thisRegion's <a href="output/Ext.SplitBar.html" ext:cls="Ext.SplitBar">SplitBar</a>. By default, the <a href="output/Ext.SplitBar.html" ext:cls="Ext.SplitBar">SplitBar</a>
+moves smoothly.]]>    </description>	<name>tickSize</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<tt>true</tt> to display a tooltip when the userhovers over a region's split bar (defaults to <tt>false</tt>). The
+tooltip text will be the value of either <tt><a href="output/Ext.layout.BorderLayout.SplitRegion.html#Ext.layout.BorderLayout.SplitRegion-splitTip" ext:member="splitTip" ext:cls="Ext.layout.BorderLayout.SplitRegion">splitTip</a></tt> or
+<tt><a href="output/Ext.layout.BorderLayout.SplitRegion.html#Ext.layout.BorderLayout.SplitRegion-collapsibleSplitTip" ext:member="collapsibleSplitTip" ext:cls="Ext.layout.BorderLayout.SplitRegion">collapsibleSplitTip</a></tt>
+as appropriate.]]>    </description>	<name>useSplitTips</name>	<required>false</required></attribute></tag>

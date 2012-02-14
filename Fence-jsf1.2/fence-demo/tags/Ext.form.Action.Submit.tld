@@ -1,0 +1,138 @@
+<tag><description>    <![CDATA[
+<p>A class which handles submission of data from <a href="output/Ext.form.BasicForm.html" ext:cls="Ext.form.BasicForm">Form</a>s and processes the returned
+response.</p>
+
+<p>Instances of this class are only created by a <a href="output/Ext.form.BasicForm.html" ext:cls="Ext.form.BasicForm">Form</a> when <a href="output/Ext.form.BasicForm.html#Ext.form.BasicForm-submit" ext:member="submit" ext:cls="Ext.form.BasicForm">submit</a>ting.</p>
+
+<p><u><b>Response Packet Criteria</b></u></p>
+
+<p>A response packet may contain:</p>
+
+<div class="mdetail-params">
+<ul>
+<li><b><code>success</code></b> property : Boolean 
+
+<div class="sub-desc">The <code>success</code> property is
+required.</div>
+</li>
+
+<li><b><code>errors</code></b> property : Object 
+
+<div class="sub-desc">
+<div class="sub-desc">The <code>errors</code> property, which is
+optional, contains error messages for invalid fields.</div>
+</div>
+</li>
+</ul>
+</div>
+
+<p><u><b>JSON Packets</b></u></p>
+
+<p>By default, response packets are assumed to be JSON, so a
+typical response packet may look like this:</p>
+
+<pre><code>{
+    success: false,
+    errors: {
+        clientCode: <em>"Client not found"</em>,
+        portOfLoading: <em>"This field must not be null"</em>
+    }
+}</code>
+</pre>
+
+<p>Other data may be placed into the response for processing by the
+<a href="output/Ext.form.BasicForm.html" ext:cls="Ext.form.BasicForm">Ext.form.BasicForm</a>'s callback or
+event handler methods. The object decoded from this JSON is
+available in the <a href="output/Ext.form.Action.html#Ext.form.Action-result" ext:member="result" ext:cls="Ext.form.Action">result</a>
+property.</p>
+
+<p>Alternatively, if an <a href="output/Ext.form.Action.Submit.html#Ext.form.Action.Submit-errorReader" ext:member="errorReader" ext:cls="Ext.form.Action.Submit">errorReader</a> is specified as an
+<a href="output/Ext.data.XmlReader.html" ext:cls="Ext.data.XmlReader">XmlReader</a>:</p>
+
+<pre><code>errorReader: <b>new</b> Ext.data.XmlReader({
+            record : <em>'field'</em>,
+            success: <em>'@success'</em>
+        }, [
+            <em>'id'</em>, <em>'msg'</em>
+        ]
+    )</code>
+</pre>
+
+<p>then the results may be sent back in XML format:</p>
+
+<pre><code>&lt;?xml version=<em>"1.0"</em> encoding=<em>"UTF-8"</em>?&gt;
+&lt;message success=<em>"false"</em>&gt;
+&lt;errors&gt;
+    &lt;field&gt;
+        &lt;id&gt;clientCode&lt;/id&gt;
+        &lt;msg&gt;&lt;![CDATA[Code not found. &lt;br /&gt;&lt;i&gt;This is a test validation message from the server &lt;/i&gt;]]&gt;&lt;/msg&gt;
+    &lt;/field&gt;
+    &lt;field&gt;
+        &lt;id&gt;portOfLoading&lt;/id&gt;
+        &lt;msg&gt;&lt;![CDATA[Port not found. &lt;br /&gt;&lt;i&gt;This is a test validation message from the server &lt;/i&gt;]]&gt;&lt;/msg&gt;
+    &lt;/field&gt;
+&lt;/errors&gt;
+&lt;/message&gt;</code>
+</pre>
+
+<p>Other elements may be placed into the response XML for
+processing by the <a href="output/Ext.form.BasicForm.html" ext:cls="Ext.form.BasicForm">Ext.form.BasicForm</a>'s callback or
+event handler methods. The XML document is available in the <a href="output/Ext.form.Action.Submit.html#Ext.form.Action.Submit-errorReader" ext:member="errorReader" ext:cls="Ext.form.Action.Submit">errorReader</a>'s <a href="output/Ext.data.XmlReader.html#Ext.data.XmlReader-xmlData" ext:member="xmlData" ext:cls="Ext.data.XmlReader">xmlData</a>
+property.</p>
+]]></description><name>submit</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[Determines whether a Form's fields are validatedin a final call to <a href="output/Ext.form.BasicForm.html#Ext.form.BasicForm-isValid" ext:member="isValid" ext:cls="Ext.form.BasicForm">isValid</a> prior
+to submission. Pass <tt>false</tt> in the Form's submit options to
+prevent this. If not defined, pre-submission field validation is
+performed.]]>    </description>	<name>clientValidation</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p><b>Optional. JSON is interpreted with no need for an
+errorReader.</b></p>
+
+<p>A Reader which reads a single record from the returned data. The
+DataReader's <b>success</b> property specifies how submission
+success is determined. The Record's data provides the error
+messages to apply to any invalid form Fields.</p>
+]]>    </description>	<name>errorReader</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The function to call when a failure packet wasrecieved, or when an error ocurred in the Ajax communication. The
+function is passed the following parameters:
+
+<ul class="mdetail-params">
+<li><b>form</b> : Ext.form.BasicForm
+
+<div class="sub-desc">The form that requested the action</div>
+</li>
+
+<li><b>action</b> : Ext.form.Action
+
+<div class="sub-desc">The Action class. If an Ajax error ocurred,
+the failure type will be in <a href="output/Ext.form.Action.html#Ext.form.Action-failureType" ext:member="failureType" ext:cls="Ext.form.Action">failureType</a>.
+The <a href="output/Ext.form.Action.html#Ext.form.Action-result" ext:member="result" ext:cls="Ext.form.Action">result</a> property
+of this object may be examined to perform custom
+postprocessing.</div>
+</li>
+</ul>
+]]>    </description>	<name>failure</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The HTTP method to use to access the requestedURL. Defaults to the <a href="output/Ext.form.BasicForm.html" ext:cls="Ext.form.BasicForm">Ext.form.BasicForm</a>'s method, or if
+that is not specified, the underlying DOM form's method.]]>    </description>	<name>method</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>Extra parameter values to pass. These are added to the Form's <a href="output/Ext.form.BasicForm.html#Ext.form.BasicForm-baseParams" ext:member="baseParams" ext:cls="Ext.form.BasicForm">Ext.form.BasicForm.baseParams</a> and
+passed to the specified URL along with the Form's input fields.</p>
+
+<p>Parameters are encoded as standard HTTP parameters using <a href="output/Ext.html#Ext-urlEncode" ext:member="urlEncode" ext:cls="Ext">Ext.urlEncode</a>.</p>
+]]>    </description>	<name>params</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[When set to <tt><b>true</b></tt>, causes the Formto be <a href="output/Ext.form.BasicForm.reset.html" ext:cls="Ext.form.BasicForm.reset">reset</a> on Action success. If
+specified, this happens <b>before</b> the <a href="output/Ext.form.Action.html#Ext.form.Action-success" ext:member="success" ext:cls="Ext.form.Action">success</a> callback
+is called and before the Form's <a href="output/Ext.form.BasicForm.actioncomplete.html" ext:cls="Ext.form.BasicForm.actioncomplete">actioncomplete</a>
+event fires.]]>    </description>	<name>reset</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The scope in which to call the callbackfunctions (The <tt>this</tt> reference for the callback
+functions).]]>    </description>	<name>scope</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The function to call when a valid success returnpacket is recieved. The function is passed the following
+parameters:
+
+<ul class="mdetail-params">
+<li><b>form</b> : Ext.form.BasicForm
+
+<div class="sub-desc">The form that requested the action</div>
+</li>
+
+<li><b>action</b> : Ext.form.Action
+
+<div class="sub-desc">The Action class. The <a href="output/Ext.form.Action.html#Ext.form.Action-result" ext:member="result" ext:cls="Ext.form.Action">result</a> property
+of this object may be examined to perform custom
+postprocessing.</div>
+</li>
+</ul>
+]]>    </description>	<name>success</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The number of seconds to wait for a serverresponse before failing with the <a href="output/Ext.form.Action.html#Ext.form.Action-failureType" ext:member="failureType" ext:cls="Ext.form.Action">failureType</a>
+as <a href="output/Ext.form.Action.html#Ext.form.Action-Action.CONNECT_FAILURE" ext:member="Action.CONNECT_FAILURE" ext:cls="Ext.form.Action">Action.CONNECT_FAILURE</a>. If not
+specified, defaults to the configured <tt><a href="output/Ext.form.BasicForm.html#Ext.form.BasicForm-timeout" ext:member="timeout" ext:cls="Ext.form.BasicForm">timeout</a></tt>
+of the <a href="output/Ext.form.BasicForm.html" ext:cls="Ext.form.BasicForm">form</a>.]]>    </description>	<name>timeout</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The URL that the Action is to invoke.]]>    </description>	<name>url</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The message to be displayed by a call to <a href="output/Ext.MessageBox.html#Ext.MessageBox-wait" ext:member="wait" ext:cls="Ext.MessageBox">Ext.MessageBox.wait</a>during the time the action is being processed.]]>    </description>	<name>waitMsg</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The title to be displayed by a call to <a href="output/Ext.MessageBox.html#Ext.MessageBox-wait" ext:member="wait" ext:cls="Ext.MessageBox">Ext.MessageBox.wait</a>during the time the action is being processed.]]>    </description>	<name>waitTitle</name>	<required>false</required></attribute></tag>

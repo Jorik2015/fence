@@ -1,0 +1,16 @@
+<tag><description>    <![CDATA[
+<p>A plugin for Field Components which renders standard Ext form
+wrapping and labels round the Field at render time regardless of
+the layout of the Container.</p>
+
+<p>Usage:</p>
+
+<pre><code>{
+        xtype: <em>'combo'</em>,
+        plugins: [ Ext.ux.FieldLabeler ],
+        triggerAction: <em>'all'</em>,
+        fieldLabel: <em>'Select type'</em>,
+        store: typeStore
+    }</code>
+</pre>
+]]></description><name>fieldlabeler</name><tag-class></tag-class><body-content>JSP</body-content></tag>

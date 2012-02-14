@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/layout/part.xhtml">
+	<ui:define name="pageTitle">Panel Overview</ui:define>
+	<ui:define name="pageHeader">
+		<script type="text/javascript"> //<![CDATA[
+	//]]> </script>
+	</ui:define>
+	<ui:define name="body">
+		<div class="introduction">
+		<h1>Panel有关说明</h1>
+		<p>
+		Panel是最常用的布局容器，任何一个界面框架似乎都不可缺少。Panel通常是组合使用，不同的布局组合方式和设置方式都不尽相同，所以Panel组件也是一个难缠的组件。
+		特别是在和其他输出静态Html内容的组件混合使用的时候。<br />
+		在Ext中Panel可以有html和contentEl这两个config来设置panel内部的内容。而有些Layout的Panel对于设置的静态内容是无意义的，如Fit。
+		所以Fence在渲染这类组件时需要注意以下几点： <br />
+		1、按照Ext的书写规则,界面中所有布局都采用Ext组件，而如果要显示静态内容，则将Dom的id赋值给Panel的contentEl即可。
+		在本组件库中支持这样的组合模式，当然这是自动处理的。也就是说Fence的所有组件你都可以和其他组件包（当然包括JSF本身的组件实现）混合使用。取决于你对界面的需求。
+		<br />
+		2、和非Fence组件混合使用时处理方式，如果Panel直接子元素中包含至少一个非Fence组件，则Panel中的所有子元素都将脱离此Panel的关系，而独立渲染；而此时Panel将输出一个额外的div,并将Div的id赋值给panel的contentEl属性，内部的组件将渲染到这个div中。
+		<br />
+		3、在以下情况下，Panel将忽略内部的静态内容，即表示，当满足这些条件时Panel内部的非Fence组件有可能被忽略。
+		gridpanel及treepanel将忽略内部html;基本上设置了layout属性的容器都将忽略内部的非Fence组件输出内容，纵观Ext的容器写法，一旦设置了layout属性，则容器只会用作布局使用，而显示实际内容则由布局内部的panel显示。
+		<br />
+		4、panel的嵌套处理，子元素渲染成父组件的item成员，如果panel内部存在非Fence组件，同时也有Fence组件，则内部的Fence组件不会作为item成员，而是如1中所述渲染。
+		<br />
+		5、Panel有个很重要的属性autoLoad,这是一个复杂的属性，在Ext中解释为Panel渲染之后立即通过autoLoad的设置加载内容到Panel中，属性可以为String/Object/Function,只所以重要是因为，此属性关心到Panel内部显示的内容。当然此属性不是随便设置的，只有Panel显示静态内同的时候才会有意义，而对于只用作布局的Panel来说是毫无意义的。
+		Fence处理，在写JSF组件时，这个属性可以设置为Boolean型，true或者false，当为true时，为自动通过Ajax方式加载panel内部内容，当为false时和保持为空一样；你也可以设置一个地址字符串，这时将加载设置的地址内容；你还可以设置一个Json格式的对象，这个对象的写法参考Ext中autoLoad属性说明（Updater的参数）；你也可以写一个Function返回字符串。无论怎么写，这个属性应该返回的是一个字符串。
+		</p>
+		</div>
+	</ui:define>
+</ui:composition>

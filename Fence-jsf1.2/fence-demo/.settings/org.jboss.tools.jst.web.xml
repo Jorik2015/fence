@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file-systems VERSION="2.0.0" application-name="fence-demo"
+ model-entity="FileSystems" workspace-home="./WebContent/WEB-INF">
+ <file-system NAME="WEB-INF" location="%workspace.home%" model-entity="FileSystemFolder"/>
+ <file-system NAME="WEB-ROOT" info="Content-Type=Web"
+  location="%workspace.home%/.." model-entity="FileSystemFolder"/>
+ <file-system NAME="lib" location="%workspace.home%/lib" model-entity="FileSystemFolder"/>
+ <file-system NAME="lib-annotations-api.jar"
+  location="E:\springsource\tomcat-6.0\lib\annotations-api.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-catalina-ant.jar"
+  location="E:\springsource\tomcat-6.0\lib\catalina-ant.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-catalina-ha.jar"
+  location="E:\springsource\tomcat-6.0\lib\catalina-ha.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-catalina-tribes.jar"
+  location="E:\springsource\tomcat-6.0\lib\catalina-tribes.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-catalina.jar"
+  location="E:\springsource\tomcat-6.0\lib\catalina.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-el-api.jar"
+  location="E:\springsource\tomcat-6.0\lib\el-api.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jasper-el.jar"
+  location="E:\springsource\tomcat-6.0\lib\jasper-el.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jasper-jdt.jar"
+  location="E:\springsource\tomcat-6.0\lib\jasper-jdt.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jasper.jar"
+  location="E:\springsource\tomcat-6.0\lib\jasper.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jsp-api.jar"
+  location="E:\springsource\tomcat-6.0\lib\jsp-api.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-servlet-api.jar"
+  location="E:\springsource\tomcat-6.0\lib\servlet-api.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-tomcat-coyote.jar"
+  location="E:\springsource\tomcat-6.0\lib\tomcat-coyote.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-tomcat-dbcp.jar"
+  location="E:\springsource\tomcat-6.0\lib\tomcat-dbcp.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-tomcat-i18n-es.jar"
+  location="E:\springsource\tomcat-6.0\lib\tomcat-i18n-es.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-tomcat-i18n-fr.jar"
+  location="E:\springsource\tomcat-6.0\lib\tomcat-i18n-fr.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-tomcat-i18n-ja.jar"
+  location="E:\springsource\tomcat-6.0\lib\tomcat-i18n-ja.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="src"
+  location="%workspace.home%/../../src/main/resources" model-entity="FileSystemFolder"/>
+ <file-system NAME="src-1"
+  location="%workspace.home%/../../src/main/java" model-entity="FileSystemFolder"/>
+ <file-system NAME="fence-demo" location="%eclipse.project%" model-entity="FileSystemFolder"/>
+ <file-system NAME="lib-json-lib-2.3-jdk15.jar"
+  location="D:\m2\repository\net\sf\json-lib\json-lib\2.3\json-lib-2.3-jdk15.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-commons-logging-1.1.1.jar"
+  location="D:\m2\repository\commons-logging\commons-logging\1.1.1\commons-logging-1.1.1.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-commons-lang-2.4.jar"
+  location="D:\m2\repository\commons-lang\commons-lang\2.4\commons-lang-2.4.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-ezmorph-1.0.6.jar"
+  location="D:\m2\repository\net\sf\ezmorph\ezmorph\1.0.6\ezmorph-1.0.6.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jsf-api-1.2_12.jar"
+  location="D:\m2\repository\javax\faces\jsf-api\1.2_12\jsf-api-1.2_12.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-xml-apis-1.0.b2.jar"
+  location="D:\m2\repository\xml-apis\xml-apis\1.0.b2\xml-apis-1.0.b2.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-Tidy.jar"
+  location="E:\stsws\fence-demo\WebContent\WEB-INF\lib\Tidy.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-dnsns.jar"
+  location="D:\Program Files\Java\jdk1.5.0_18\jre\lib\ext\dnsns.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-localedata.jar"
+  location="D:\Program Files\Java\jdk1.5.0_18\jre\lib\ext\localedata.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-sunjce_provider.jar"
+  location="D:\Program Files\Java\jdk1.5.0_18\jre\lib\ext\sunjce_provider.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-sunpkcs11.jar"
+  location="D:\Program Files\Java\jdk1.5.0_18\jre\lib\ext\sunpkcs11.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-commons-beanutils-1.7.0.jar"
+  location="E:\stsws\fence-demo\WebContent\WEB-INF\lib\commons-beanutils-1.7.0.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-commons-collections-3.2.jar"
+  location="E:\stsws\fence-demo\WebContent\WEB-INF\lib\commons-collections-3.2.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jsf-facelets.jar"
+  location="E:\stsws\fence-demo\WebContent\WEB-INF\lib\jsf-facelets.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jsf-impl-1.2_12.jar"
+  location="E:\stsws\fence-demo\WebContent\WEB-INF\lib\jsf-impl-1.2_12.jar" model-entity="FileSystemJar"/>
+ <web SERVLET_VERSION="2.4" model-entity="JstWeb" model-path="/web.xml">
+  <module URI="/WEB-INF/faces-config.xml" model-entity="WebJSFModule"
+   model-path="/faces-config.xml" src="src" web-root="WEB-ROOT"/>
+ </web>
+</file-systems>

@@ -1,0 +1,16 @@
+<tag><description>    <![CDATA[
+<p>A plugin for Field Components which creates clones of the Field
+for as long as the user keeps filling them. Leaving the final one
+blank ends the repeating series.</p>
+
+<p>Usage:</p>
+
+<pre><code>{
+        xtype: <em>'combo'</em>,
+        plugins: [ Ext.ux.FieldReplicator ],
+        triggerAction: <em>'all'</em>,
+        fieldLabel: <em>'Select recipient'</em>,
+        store: recipientStore
+    }</code>
+</pre>
+]]></description><name>fieldreplicator</name><tag-class></tag-class><body-content>JSP</body-content></tag>

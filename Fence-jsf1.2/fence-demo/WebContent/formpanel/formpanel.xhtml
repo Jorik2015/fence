@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/layout/part.xhtml">
+	<ui:define name="pageTitle">Button</ui:define>
+	<ui:define name="pageHeader">
+		<script type="text/javascript"> //<![CDATA[
+	var fun1 = function(src,e){
+		alert("fun1" +src);
+	};
+	//]]> </script>
+	</ui:define>
+	<ui:define name="body">
+		<table class="demoTable" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="td" width="220"><s:formpanel id="formpanel"
+					standardSubmit="false" frame="false" labelWidth="79"
+					title="Form Panel" width="300" height="250">
+					<s:toolbar>
+						<s:button id="toolbarButton" type="submit"
+							confirmText="This tbButton has a successFn,It's execute when the action return success."
+							successFn="function(form,action){alert('this is successFn :' + action.type);}"
+							render="renderPanel,jsfpanel" action="#{userAction.login}" text="tbsubmit" />
+						<s:splitbutton text="tb split Submit" type="submit">
+							<s:menu>
+								<s:textitem text="menu text item button" type="button"
+									render="renderPanel" />
+							</s:menu>
+						</s:splitbutton>
+						<s:tbfill />
+						<s:tbtextitem text="textItem2" />
+					</s:toolbar>
+					<s:statusbar position="bbar" defaultText="Ready">
+						<s:vstatus form="formpanel" />
+					</s:statusbar>
+					<div><s:button id="inhtmlsubmit" type="submit"
+						confirmText="are you sure?" render="renderPanel,jsfpanel"
+						text="Submit with confirms" handler="alert('handler');"
+						action="#{userAction.login}">
+						<s:event name="click" handler="alert('event click 1');" />
+						<s:event name="click" handler="alert('event click 2' + src);" />
+						<s:event name="click" handler="fun1" />
+					</s:button></div>
+					<s:textfield fieldLabel="UserName" width="120" required="true"
+						name="username" value="#{userAction.user.username}"
+						allowBlank="false" />
+					<s:textfield fieldLabel="Password" width="120" name="password"
+						value="#{userAction.user.password}">
+					</s:textfield>
+					<s:datefield fieldLabel="Birthdate" width="120" name="birthdate"
+						value="#{userAction.user.birthDate}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</s:datefield>
+					<s:button text="Button" type="button" action="#{userAction.login}"
+						render="renderPanel,jsfpanel">
+					</s:button>
+					<s:button text="Submit" type="submit" value="form button"
+						actionListener="#{userAction.login}" render="fitPanel,jsfpanel">
+						<s:submit reset="false" />
+					</s:button>
+				</s:formpanel></td>
+				<td class="td"><s:panel id="renderPanel" layout="border"
+					width="400" height="200" title="border layout panel">
+					<s:panel id="renderwest" width="150" layout="fit" region="west">
+						<s:panel id="fitPanel" title="w#{userAction.labelText}">
+							west#{userAction.labelText}
+							</s:panel>
+					</s:panel>
+					<s:panel title="center" region="center" />
+					<s:panel title="east" region="east" />
+				</s:panel></td>
+			</tr>
+		</table>
+		<hr />
+		<h:panelGroup id="jsfpanel" styleClass="red">
+			this jsf panel will be rerendered when the up actions execute success
+			<br />
+			<s:button id="extButton" type="button" text="not in form button"
+				render="renderPanel" />
+			<h:outputText id="inputText2" value="#{userAction.labelText}" />
+		</h:panelGroup>
+		<hr />
+	</ui:define>
+</ui:composition>

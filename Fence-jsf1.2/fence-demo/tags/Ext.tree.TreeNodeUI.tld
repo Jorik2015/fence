@@ -1,0 +1,12 @@
+<tag><description>    <![CDATA[This class provides the default UI
+implementation for Ext TreeNodes. The TreeNode UI implementation is
+separate from the tree implementation, and allows customizing of
+the appearance of tree nodes.<br>
+<p>If you are customizing the Tree's user interface, you may need
+to extend this class, but you should never need to instantiate this
+class.<br>
+</p>
+
+<p>This class provides access to the user interface components of
+an Ext TreeNode, through <a href="output/Ext.tree.TreeNode.html#Ext.tree.TreeNode-getUI" ext:member="getUI" ext:cls="Ext.tree.TreeNode">Ext.tree.TreeNode.getUI</a></p>
+]]></description><name>treenodeui</name><tag-class></tag-class><body-content>JSP</body-content></tag>

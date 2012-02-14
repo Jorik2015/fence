@@ -1,0 +1,89 @@
+<tag><description>    <![CDATA[
+<p>Encapsulates a DOM element, adding simple DOM manipulation
+facilities, normalizing for browser differences.</p>
+
+<p>All instances of this class inherit the methods of <a href="output/Ext.Fx.html" ext:cls="Ext.Fx">Ext.Fx</a> making visual
+effects easily available to all DOM elements.</p>
+
+<p>Note that the events documented in this class are not Ext
+events, they encapsulate browser events. To access the underlying
+browser event, see <a href="output/Ext.EventObject.html#Ext.EventObject-browserEvent" ext:member="browserEvent" ext:cls="Ext.EventObject">Ext.EventObject.browserEvent</a>. Some
+older browsers may not support the full range of events. Which
+events are supported is beyond the control of ExtJs.</p>
+
+Usage:<br>
+<pre><code><i>// by id
+</i>
+<b>var</b> el = Ext.get(<em>"my-div"</em>);
+
+<i>// by DOM element reference
+</i>
+<b>var</b> el = Ext.get(myDivElement);</code>
+</pre>
+
+<b>Animations</b><br>
+<p>When an element is manipulated, by default there is no
+animation.</p>
+
+<pre><code><b>var</b> el = Ext.get(<em>"my-div"</em>);
+
+<i>// no animation
+</i>
+el.setWidth(100);</code>
+</pre>
+
+<p>Many of the functions for manipulating an element have an
+optional "animate" parameter. This parameter can be specified as
+boolean (<tt>true</tt>) for default animation effects.</p>
+
+<pre><code><i>// <b>default</b> animation
+</i>
+el.setWidth(100, true);</code>
+</pre>
+
+<p>To configure the effects, an object literal with animation
+options to use as the Element animation configuration object can
+also be specified. Note that the supported Element animation
+configuration options are a subset of the <a href="output/Ext.Fx.html" ext:cls="Ext.Fx">Ext.Fx</a> animation
+options specific to Fx effects. The supported Element animation
+configuration options are:</p>
+
+<pre>Option    Default   Description
+--------- --------  ---------------------------------------------
+<a href="output/Ext.Fx.html#Ext.Fx-duration" ext:member="duration" ext:cls="Ext.Fx">duration</a>  .35       The duration of the animation in seconds
+<a href="output/Ext.Fx.html#Ext.Fx-easing" ext:member="easing" ext:cls="Ext.Fx">easing</a>    easeOut   The easing method
+<a href="output/Ext.Fx.html#Ext.Fx-callback" ext:member="callback" ext:cls="Ext.Fx">callback</a>  none      A function to execute when the anim completes
+<a href="output/Ext.Fx.html#Ext.Fx-scope" ext:member="scope" ext:cls="Ext.Fx">scope</a>     this      The scope (this) of the callback function
+</pre>
+
+<pre><code><i>// Element animation options object
+</i>
+<b>var</b> opt = {
+    <a href="output/Ext.Fx.html#Ext.Fx-duration" ext:member="duration" ext:cls="Ext.Fx">duration</a>: 1,
+    <a href="output/Ext.Fx.html#Ext.Fx-easing" ext:member="easing" ext:cls="Ext.Fx">easing</a>: <em>'elasticIn'</em>,
+    <a href="output/Ext.Fx.html#Ext.Fx-callback" ext:member="callback" ext:cls="Ext.Fx">callback</a>: this.foo,
+    <a href="output/Ext.Fx.html#Ext.Fx-scope" ext:member="scope" ext:cls="Ext.Fx">scope</a>: this
+};
+<i>// animation <b>with</b> some options set
+</i>
+el.setWidth(100, opt);</code>
+</pre>
+
+<p>The Element animation object being used for the animation will
+be set on the options object as "anim", which allows you to stop or
+manipulate the animation. Here is an example:</p>
+
+<pre><code><i>// using the <em>"anim"</em> property to get the Anim object
+</i>
+<b>if</b>(opt.anim.isAnimated()){
+    opt.anim.stop();
+}</code>
+</pre>
+
+<p>Also see the <tt><a href="output/Ext.Element.html#Ext.Element-animate" ext:member="animate" ext:cls="Ext.Element">animate</a></tt> method
+for another animation technique.</p>
+
+<p><b>Composite (Collections of) Elements</b></p>
+
+<p>For working with collections of Elements, see <a href="output/Ext.CompositeElement.html" ext:cls="Ext.CompositeElement">Ext.CompositeElement</a></p>
+]]></description><name>element</name><tag-class></tag-class><body-content>JSP</body-content></tag>

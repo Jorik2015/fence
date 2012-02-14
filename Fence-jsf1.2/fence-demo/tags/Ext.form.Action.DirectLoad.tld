@@ -1,0 +1,131 @@
+<tag><description>    <![CDATA[
+<p>Provides Ext.direct support for loading form data.</p>
+
+<p>This example illustrates usage of Ext.Direct to <b>load</b> a
+form through Ext.Direct.</p>
+
+<pre><code><b>var</b> myFormPanel = <b>new</b> Ext.form.FormPanel({
+    <i>// configs <b>for</b> FormPanel
+</i>
+    title: <em>'Basic Information'</em>,
+    renderTo: document.body,
+    width: 300, height: 160,
+    padding: 10,
+
+    <i>// configs apply to child items
+</i>
+    defaults: {anchor: <em>'100%'</em>},
+    defaultType: <em>'textfield'</em>,
+    items: [{
+        fieldLabel: <em>'Name'</em>,
+        name: <em>'name'</em>
+    },{
+        fieldLabel: <em>'Email'</em>,
+        name: <em>'email'</em>
+    },{
+        fieldLabel: <em>'Company'</em>,
+        name: <em>'company'</em>
+    }],
+
+    <i>// configs <b>for</b> BasicForm
+</i>
+    api: {
+        <i>// The server-side method to call <b>for</b> load() requests
+</i>
+        load: Profile.getBasicInfo,
+        <i>// The server-side must mark the submit handler as a <em>'formHandler'</em>
+</i>
+        submit: Profile.updateBasicInfo
+    },
+    <i>// specify the order <b>for</b> the passed params
+</i>
+    paramOrder: [<em>'uid'</em>, <em>'foo'</em>]
+});
+
+<i>// load the form
+</i>
+myFormPanel.getForm().load({
+    <i>// pass 2 arguments to server side getBasicInfo method (len=2)
+</i>
+    params: {
+        foo: <em>'bar'</em>,
+        uid: 34
+    }
+});</code>
+</pre>
+
+The data packet sent to the server will resemble something like: 
+
+<pre><code>[
+    {
+        <em>"action"</em>:<em>"Profile"</em>,<em>"method"</em>:<em>"getBasicInfo"</em>,<em>"type"</em>:<em>"rpc"</em>,<em>"tid"</em>:2,
+        <em>"data"</em>:[34,<em>"bar"</em>] <i>// note the order of the params
+</i>
+    }
+]</code>
+</pre>
+
+The form will process a data packet returned by the server that is
+similar to the following format: 
+
+<pre><code>[
+    {
+        <em>"action"</em>:<em>"Profile"</em>,<em>"method"</em>:<em>"getBasicInfo"</em>,<em>"type"</em>:<em>"rpc"</em>,<em>"tid"</em>:2,
+        <em>"result"</em>:{
+            <em>"success"</em>:true,
+            <em>"data"</em>:{
+                <em>"name"</em>:<em>"Fred Flintstone"</em>,
+                <em>"company"</em>:<em>"Slate Rock and Gravel"</em>,
+                <em>"email"</em>:<em>"fred.flintstone@slaterg.com"</em>
+            }
+        }
+    }
+]</code>
+</pre>
+]]></description><name>directload</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[The function to call when a failure packet wasrecieved, or when an error ocurred in the Ajax communication. The
+function is passed the following parameters:
+
+<ul class="mdetail-params">
+<li><b>form</b> : Ext.form.BasicForm
+
+<div class="sub-desc">The form that requested the action</div>
+</li>
+
+<li><b>action</b> : Ext.form.Action
+
+<div class="sub-desc">The Action class. If an Ajax error ocurred,
+the failure type will be in <a href="output/Ext.form.Action.html#Ext.form.Action-failureType" ext:member="failureType" ext:cls="Ext.form.Action">failureType</a>.
+The <a href="output/Ext.form.Action.html#Ext.form.Action-result" ext:member="result" ext:cls="Ext.form.Action">result</a> property
+of this object may be examined to perform custom
+postprocessing.</div>
+</li>
+</ul>
+]]>    </description>	<name>failure</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The HTTP method to use to access the requestedURL. Defaults to the <a href="output/Ext.form.BasicForm.html" ext:cls="Ext.form.BasicForm">Ext.form.BasicForm</a>'s method, or if
+that is not specified, the underlying DOM form's method.]]>    </description>	<name>method</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[<p>Extra parameter values to pass. These are added to the Form's <a href="output/Ext.form.BasicForm.html#Ext.form.BasicForm-baseParams" ext:member="baseParams" ext:cls="Ext.form.BasicForm">Ext.form.BasicForm.baseParams</a> and
+passed to the specified URL along with the Form's input fields.</p>
+
+<p>Parameters are encoded as standard HTTP parameters using <a href="output/Ext.html#Ext-urlEncode" ext:member="urlEncode" ext:cls="Ext">Ext.urlEncode</a>.</p>
+]]>    </description>	<name>params</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[When set to <tt><b>true</b></tt>, causes the Formto be <a href="output/Ext.form.BasicForm.reset.html" ext:cls="Ext.form.BasicForm.reset">reset</a> on Action success. If
+specified, this happens <b>before</b> the <a href="output/Ext.form.Action.html#Ext.form.Action-success" ext:member="success" ext:cls="Ext.form.Action">success</a> callback
+is called and before the Form's <a href="output/Ext.form.BasicForm.actioncomplete.html" ext:cls="Ext.form.BasicForm.actioncomplete">actioncomplete</a>
+event fires.]]>    </description>	<name>reset</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The scope in which to call the callbackfunctions (The <tt>this</tt> reference for the callback
+functions).]]>    </description>	<name>scope</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The function to call when a valid success returnpacket is recieved. The function is passed the following
+parameters:
+
+<ul class="mdetail-params">
+<li><b>form</b> : Ext.form.BasicForm
+
+<div class="sub-desc">The form that requested the action</div>
+</li>
+
+<li><b>action</b> : Ext.form.Action
+
+<div class="sub-desc">The Action class. The <a href="output/Ext.form.Action.html#Ext.form.Action-result" ext:member="result" ext:cls="Ext.form.Action">result</a> property
+of this object may be examined to perform custom
+postprocessing.</div>
+</li>
+</ul>
+]]>    </description>	<name>success</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The number of seconds to wait for a serverresponse before failing with the <a href="output/Ext.form.Action.html#Ext.form.Action-failureType" ext:member="failureType" ext:cls="Ext.form.Action">failureType</a>
+as <a href="output/Ext.form.Action.html#Ext.form.Action-Action.CONNECT_FAILURE" ext:member="Action.CONNECT_FAILURE" ext:cls="Ext.form.Action">Action.CONNECT_FAILURE</a>. If not
+specified, defaults to the configured <tt><a href="output/Ext.form.BasicForm.html#Ext.form.BasicForm-timeout" ext:member="timeout" ext:cls="Ext.form.BasicForm">timeout</a></tt>
+of the <a href="output/Ext.form.BasicForm.html" ext:cls="Ext.form.BasicForm">form</a>.]]>    </description>	<name>timeout</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The URL that the Action is to invoke.]]>    </description>	<name>url</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The message to be displayed by a call to <a href="output/Ext.MessageBox.html#Ext.MessageBox-wait" ext:member="wait" ext:cls="Ext.MessageBox">Ext.MessageBox.wait</a>during the time the action is being processed.]]>    </description>	<name>waitMsg</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The title to be displayed by a call to <a href="output/Ext.MessageBox.html#Ext.MessageBox-wait" ext:member="wait" ext:cls="Ext.MessageBox">Ext.MessageBox.wait</a>during the time the action is being processed.]]>    </description>	<name>waitTitle</name>	<required>false</required></attribute></tag>

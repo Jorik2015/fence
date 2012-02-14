@@ -1,0 +1,16 @@
+<tag><description>    <![CDATA[
+<p>A customized implementation of a <a href="output/Ext.dd.DragZone.html" ext:cls="Ext.dd.DragZone">DragZone</a> which provides default
+implementations of two of the template methods of DragZone to
+enable dragging of the selected rows of a GridPanel.</p>
+
+<p>A cooperating <a href="output/Ext.dd.DropZone.html" ext:cls="Ext.dd.DropZone">DropZone</a> must be created who's
+template method implementations of <a href="output/Ext.dd.DropZone.html#Ext.dd.DropZone-onNodeEnter" ext:member="onNodeEnter" ext:cls="Ext.dd.DropZone">onNodeEnter</a>,
+<a href="output/Ext.dd.DropZone.html#Ext.dd.DropZone-onNodeOver" ext:member="onNodeOver" ext:cls="Ext.dd.DropZone">onNodeOver</a>,
+<a href="output/Ext.dd.DropZone.html#Ext.dd.DropZone-onNodeOut" ext:member="onNodeOut" ext:cls="Ext.dd.DropZone">onNodeOut</a> and
+<a href="output/Ext.dd.DropZone.html#Ext.dd.DropZone-onNodeDrop" ext:member="onNodeDrop" ext:cls="Ext.dd.DropZone">onNodeDrop</a></p>
+
+are able to process the <a href="output/Ext.grid.GridDragZone.html#Ext.grid.GridDragZone-getDragData" ext:member="getDragData" ext:cls="Ext.grid.GridDragZone">data</a>
+which is provided.]]></description><name>griddragzone</name><tag-class></tag-class><body-content>JSP</body-content><attribute>	<description>        <![CDATA[True to register this container with theScrollmanager for auto scrolling during drag operations.]]>    </description>	<name>containerScroll</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[A named drag drop group to which this objectbelongs. If a group is specified, then this object will only
+interact with other drag drop objects in the same group (defaults
+to undefined).]]>    </description>	<name>ddGroup</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The CSS class returned to the drag source whendrop is allowed (defaults to "x-dd-drop-ok").]]>    </description>	<name>dropAllowed</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The CSS class returned to the drag source whendrop is not allowed (defaults to "x-dd-drop-nodrop").]]>    </description>	<name>dropNotAllowed</name>	<required>false</required></attribute><attribute>	<description>        <![CDATA[The color to use when visually highlighting thedrag source in the afterRepair method after a failed drop (defaults
+to "c3daf9" - light blue)]]>    </description>	<name>hlColor</name>	<required>false</required></attribute></tag>

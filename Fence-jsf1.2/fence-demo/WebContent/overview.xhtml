@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/layout/part.xhtml">
+	<ui:define name="pageTitle">Button</ui:define>
+	<ui:define name="body">
+		<div id="overview">
+		<h1>Welcome to Fence Components</h1>
+		<p>Fence Components
+		是一套基于Extjs的JSF的组件，Extjs是一套优秀的界面表现框架，加上之稳定的基础框架，使得其流程程度非常高，很多公司也都在尝试使用ext作为项目中的表现层；加上其成熟的Api和技术文档，
+		让很多写java的朋友都佩服。甚至有很多产品也都是建立在Extjs之上。</p>
+		<p>Fence就基于extjs开发一套组件，因为面对开发这来说，用js些页面确实并不是很理想，而换成标记语言来写，
+		界面将更加友好，加之ext本身的一些包装，如ajax，可以让开发变得高效快速。</p>
+		<p>Fence设计思想，在尽量遵循Ext书写规范的基础上，Fence组件尽量保持JSF组件的书写规范，同时遵循Ext的规范，对于Ext来讲，所有返回到客户端的脚本将以两种形式：加引号“”和不加引号，加引号即代表这是是一个字符串，而不加引号则代表是一个javascript对象，
+		这个对象可能是一个变量，一段规范的javascript脚本，也可能是number，boolean类型的数据等。但总的来说只有这样两种情况，而对于ext的灵活性来说，在jsf组件上将做一些取舍，主要是在处理Ext中标识为Mixed的对象，在自动生成的代码中，多数以Object类型来处理，即生成javascript后是保持原状，不带引号。
+		在纵观Ext
+		api中发现，其实这个类型的config并不多，也不会造成jsf组件无法书写的情况。所以Fence组件在使用过程中你不需要学习，只要你熟悉ExtApi即可。如果有时间，将会生成Schema以便于Eclipse中有属性提示。
+		</p>
+		<p>Ajax的处理，Ext的一些组件已经有很好的Ajax支持，如FormPanel、Store、TreePanel等，对于这些本身已经支持ajax处理的组件来说，Fence是完全遵守Ext的写法，并做了基础的包装，让写Fence组件时零Javascript即可实现与服务端的交互和网页局部的更新。
+		同时如果你需要发送自定义的Ajax请求，你可以使用Fence.Actions.request(obj)静态方法发送请求，参数对象参考Ext的RequestOptions；也可以使用Fence.call(str,callback)方法执行服务端的一个方法，并返回服务端方法返回值的Json格式数据，callback为执行成功后的会调函数，参数为（options、response）。
+		如果你是要更新网页局部内容，你可以使用以下任何一种方式：
+		<br/>
+		1、直接在执行动作按钮中设置属性render为需要更新的组件Id，同时可以为多个,使用英文逗号分隔，这种更新方式只在动作按钮type为button、submit时有效。
+		<br/>
+		2、使用s:updater组件，将需要更新的区域包含在s:updater组件内部，然后在客户端直接使用组件id来调用update方法即可，详细使用方法请参见s:updater组件说明。此种方式支持客户端任何事件调用，同时可以设置自动更新频率，方便简单。
+		<br/>有关Fence组件网页局部更新的局限性说明：
+		</p>
+		
+		<p>本组件在Ext3.0.3基础上开发，所以使用本组件集合，需要Ext3.0.3支持。</p>
+		<br />
+		
+		<p>本项目暂时讨论地址：<a href="http://www.javaeye.com/topic/548626"
+			target="_blank">http://www.javaeye.com/topic/548626</a></p>
+		<p>本项目Google地址：http://code.google.com/p/fence/</p>
+		<p>本项目演示地址：http://www.5base.net/fence-demo</p>
+		</div>
+	</ui:define>
+</ui:composition>

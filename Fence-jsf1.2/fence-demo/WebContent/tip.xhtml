@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext">
+
+<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+<ui:composition template="/layout/temp.xhtml">
+	<ui:define name="pageTitle">Button</ui:define>
+	<ui:define name="pageHeader">
+		<s:script var="script" />
+		<style type="text/css">
+        .tip-target {
+            width: 100px;
+            text-align:center;
+            padding: 5px 0;
+            border:1px dotted #99bbe8;
+            background:#dfe8f6;
+            color: #15428b;
+            cursor:default;
+            margin:10px;
+            font:bold 11px tahoma,arial,sans-serif;
+            float:left;
+        }
+    </style>
+
+	</ui:define>
+	<ui:define name="body">
+		<h3>Easiest Tip</h3>
+		<s:tip target="tip1" html="asdfsadf" />
+		<s:tooltip target="tip2" autoHide="false"
+        closable="true"
+        draggable="true" html="sfsdfsdf2" />
+		<s:tooltip target="ajax-tip" html="ajax-tip" />
+		<div id="tip1" class="tip-target">Basic ToolTip</div>
+		<div id="tip2" class="tip-target">autoHide disabled</div>
+		<div id="ajax-tip" class="tip-target">Ajax ToolTip</div>
+		<div id="track-tip" class="tip-target">Mouse Track</div>
+	</ui:define>
+</ui:composition>
+</html>

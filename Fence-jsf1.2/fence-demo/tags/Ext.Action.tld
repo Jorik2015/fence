@@ -1,0 +1,125 @@
+<tag>
+	<description>    <![CDATA[
+<p>An Action is a piece of reusable functionality that can be
+abstracted out of any particular component so that it can be
+usefully shared among multiple components. Actions let you share
+handlers, configuration options and UI updates across any
+components that support the Action interface (primarily <a href="output/Ext.Toolbar.html" ext:cls="Ext.Toolbar">Ext.Toolbar</a>, <a href="output/Ext.Button.html" ext:cls="Ext.Button">Ext.Button</a>
+and <a href="output/Ext.menu.Menu.html" ext:cls="Ext.menu.Menu">Ext.menu.Menu</a> components).</p>
+
+<p>Aside from supporting the config object interface, any component
+that needs to use Actions must also support the following method
+list, as these will be called as needed by the Action class:
+setText(string), setIconCls(string), setDisabled(boolean),
+setVisible(boolean) and setHandler(function).</p>
+
+Example usage:<br>
+<pre><code><i>// Define the shared action.  Each component below will have the same
+</i>
+<i>// display text and icon, and will display the same message on click.
+</i>
+<b>var</b> action = <b>new</b> Ext.Action({
+    <a href="output/Ext.Action.html#Ext.Action-text" ext:member="text" ext:cls="Ext.Action">text</a>: <em>'Do something'</em>,
+    <a href="output/Ext.Action.html#Ext.Action-handler" ext:member="handler" ext:cls="Ext.Action">handler</a>: <b>function</b>(){
+        Ext.Msg.alert(<em>'Click'</em>, <em>'You did something.'</em>);
+    },
+    <a href="output/Ext.Action.html#Ext.Action-iconCls" ext:member="iconCls" ext:cls="Ext.Action">iconCls</a>: <em>'<b>do</b>-something'</em>,
+    <a href="output/Ext.Action.html#Ext.Action-itemId" ext:member="itemId" ext:cls="Ext.Action">itemId</a>: <em>'myAction'</em>
+});
+
+<b>var</b> panel = <b>new</b> Ext.Panel({
+    title: <em>'Actions'</em>,
+    width: 500,
+    height: 300,
+    tbar: [
+        <i>// Add the action directly to a toolbar as a menu button
+</i>
+        action,
+        {
+            text: <em>'Action Menu'</em>,
+            <i>// Add the action to a menu as a text item
+</i>
+            menu: [action]
+        }
+    ],
+    items: [
+        <i>// Add the action to the panel body as a standard button
+</i>
+        <b>new</b> Ext.Button(action)
+    ],
+    renderTo: Ext.getBody()
+});
+
+<i>// Change the text <b>for</b> all components using the action
+</i>
+action.setText(<em>'Something <b>else</b>'</em>);
+
+<i>// Reference an action through a container using the itemId
+</i>
+<b>var</b> btn = panel.getComponent(<em>'myAction'</em>);
+<b>var</b> aRef = btn.baseAction;
+aRef.setText(<em>'New text'</em>);</code>
+</pre>
+]]></description>
+	<name>action</name>
+	<tag-class></tag-class>
+	<body-content>JSP</body-content>
+	<attribute>
+		<description>        <![CDATA[True to disable all components using thisaction, false to enable them (defaults to false).]]>
+		</description>
+		<name>disabled</name>
+		<required>false</required>
+	</attribute>
+	<attribute>
+		<description>        <![CDATA[The function that will be invoked by eachcomponent tied to this action when the component's primary event is
+triggered (defaults to undefined).]]>
+		</description>
+		<name>handler</name>
+		<required>false</required>
+	</attribute>
+	<attribute>
+		<description>        <![CDATA[True to hide all components using this action,false to show them (defaults to false).]]>
+		</description>
+		<name>hidden</name>
+		<required>false</required>
+	</attribute>
+	<attribute>
+		<description>        <![CDATA[The CSS class selector that specifies abackground image to be used as the header icon for all components
+using this action (defaults to ''). 
+
+<p>An example of specifying a custom icon class would be something
+like:</p>
+
+<pre><code><i>// specify the property <b>in</b> the config <b>for</b> the class:
+</i>
+     ...
+     iconCls: <em>'<b>do</b>-something'</em>
+
+<i>// css class that specifies background image to be used as the icon image:
+</i>
+.<b>do</b>-something { background-image: url(../images/my-icon.gif) 0 6px no-repeat !important; }</code>
+</pre>
+]]>
+		</description>
+		<name>iconCls</name>
+		<required>false</required>
+	</attribute>
+	<attribute>
+		<description>        <![CDATA[See <a href="output/Ext.Component.html" ext:cls="Ext.Component">Ext.Component</a>.<a href="output/Ext.Component.html#Ext.Component-itemId" ext:member="itemId" ext:cls="Ext.Component">itemId</a>.]]>
+		</description>
+		<name>itemId</name>
+		<required>false</required>
+	</attribute>
+	<attribute>
+		<description>        <![CDATA[The scope in which the <a href="output/Ext.Action.html#Ext.Action-handler" ext:member="handler" ext:cls="Ext.Action">handler</a> function willexecute.]]>
+		</description>
+		<name>scope</name>
+		<required>false</required>
+	</attribute>
+	<attribute>
+		<description>        <![CDATA[The text to set for all components using thisaction (defaults to '').]]>
+		</description>
+		<name>text</name>
+		<required>false</required>
+	</attribute>
+</tag>
