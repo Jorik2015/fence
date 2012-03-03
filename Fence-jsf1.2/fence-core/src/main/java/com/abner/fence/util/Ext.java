@@ -18,7 +18,7 @@ import ext.util.JsonUtils;
 import ext.util.StringUtil;
 
 public class Ext {
-	public static final String VERSION = "310";
+	public static final String VERSION = "340";
 	public static final String NULL = null;
 	public static final String PREFIX_RAW_VALUE = "@";
 	public static final String SUFFIX_HTML_ID = "_html";

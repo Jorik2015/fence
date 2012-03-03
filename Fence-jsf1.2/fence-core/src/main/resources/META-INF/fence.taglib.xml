@@ -5,6 +5,13 @@
 <facelet-taglib xmlns="http://java.sun.com/JSF/Facelet">
 	<namespace>http://fence.com/ext</namespace>
 	<tag>
+		<tag-name>resource</tag-name>
+		<component>
+			<component-type>Ext.ExtIncludeResource</component-type>
+			<renderer-type>Ext.ExtIncludeResource</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>config</tag-name>
 		<component>
 			<component-type>Ext.Config</component-type>

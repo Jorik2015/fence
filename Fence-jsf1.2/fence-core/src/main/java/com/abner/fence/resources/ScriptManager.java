@@ -43,6 +43,7 @@ public class ScriptManager extends ExtOutput {
 	public static final String MESSAGE_WIN_VAR = "Fence_MW";
 	public static final String All_HTML_CONTENT_DIV_VAR = "FenceHtmlContentDiv";
 
+	private String library;
 	private String adapter;
 	private boolean debug;
 	private String theme;
@@ -56,29 +57,32 @@ public class ScriptManager extends ExtOutput {
 		this.setRendererType(ComponentType);
 		return (ComponentType);
 	}
-	
+
 	@Override
 	public void encodeAll(FacesContext context) throws IOException {
 		scriptReository = JSUtils.getScriptReository();
-		ScriptManager manager =  (ScriptManager)RequestContext.instance().get(ComponentType);
-		if(manager != null)
+		ScriptManager manager = (ScriptManager) RequestContext.instance().get(ComponentType);
+		if (manager != null)
 			throw new IllegalArgumentException("The ScriptManager only one in page.");
-		
+
 		RequestContext.instance().put(ComponentType, this);
-		
+
 		scriptReository.RegisterGlobalClientScript("Fence.AppPath = '" + FacesUtils.getHostAppPath() + "';");
 		scriptReository.RegisterGlobalClientScript(AJAX_PATH + " = '" + RequestUtils.getAjaxActionPath() + "';");
-		scriptReository.RegisterGlobalClientScript("Ext.BLANK_IMAGE_URL = '"+ FacesUtils.extContext().getRequestContextPath() + MessageFormat.format(ExtResources.BLANK_IMAGE_URL,version) +"';");
-		scriptReository.RegisterGlobalClientScript(CHART_URL_KEY + " = '"+ FacesUtils.extContext().getRequestContextPath() + MessageFormat.format(ExtResources.CHART_URL,version) +"';");
+		scriptReository.RegisterGlobalClientScript("Ext.BLANK_IMAGE_URL = '"
+				+ FacesUtils.extContext().getRequestContextPath()
+				+ MessageFormat.format(ExtResources.BLANK_IMAGE_URL, version) + "';");
+		scriptReository.RegisterGlobalClientScript(CHART_URL_KEY + " = '" + FacesUtils.extContext().getRequestContextPath()
+				+ MessageFormat.format(ExtResources.CHART_URL, version) + "';");
 		scriptReository.RegisterGlobalClientScript(JSUtils.getGlobalScript());
-		
-		//show all the content div
-		if(!RequestUtils.isAjaxRequest()){
+
+		// show all the content div
+		if (!RequestUtils.isAjaxRequest()) {
 			scriptReository.putGlobalVar(All_HTML_CONTENT_DIV_VAR);
 			scriptReository.RegisterBeforeClientInitScript(All_HTML_CONTENT_DIV_VAR + " = new Ext.util.MixedCollection();");
 			AjaxJSUtils.showAllContentDiv();
 		}
-		
+
 		super.encodeAll(context);
 	}
 
@@ -113,14 +117,22 @@ public class ScriptManager extends ExtOutput {
 	public void setVersion(String version) {
 		this.version = version;
 	}
-	
+
 	public boolean isUx() {
 		return ux;
 	}
 
 	public void setUx(boolean ux) {
-		RequestContext.instance().put("ux",ux);
+		RequestContext.instance().put("ux", ux);
 		this.ux = ux;
+	}
+
+	public String getLibrary() {
+		return library;
+	}
+
+	public void setLibrary(String library) {
+		this.library = library;
 	}
 
 	private Object[] _values;
@@ -135,12 +147,13 @@ public class ScriptManager extends ExtOutput {
 		this.version = (String) _values[4];
 		this.jsSingleFile = Boolean.parseBoolean(_values[5].toString());
 		this.ux = Boolean.parseBoolean(_values[6].toString());
+		this.library = (String) _values[7];
 	}
 
 	@Override
 	public Object saveState(FacesContext context) {
 		if (_values == null)
-			_values = new Object[7];
+			_values = new Object[8];
 
 		_values[0] = super.saveState(context);
 		_values[1] = adapter;
@@ -149,6 +162,7 @@ public class ScriptManager extends ExtOutput {
 		_values[4] = version;
 		_values[5] = jsSingleFile;
 		_values[6] = ux;
+		_values[7] = library;
 		return _values;
 	}
 

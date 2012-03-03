@@ -10,6 +10,10 @@
 		</component-extension>
 	</component>
 	<component>
+		<component-type>Ext.ExtIncludeResource</component-type>
+		<component-class>com.abner.fence.resources.ExtIncludeResource</component-class>
+	</component>
+	<component>
 		<component-type>Ext.Config</component-type>
 		<component-class>ext.base.Config</component-class>
 	</component>
@@ -292,10 +296,6 @@
 	<component>
 		<component-type>Ext.FlashComponent</component-type>
 		<component-class>ext.FlashComponent</component-class>
-	</component>
-	<component>
-		<component-type>Ext.form.Action</component-type>
-		<component-class>ext.form.Action</component-class>
 	</component>
 	<component>
 		<component-type>Ext.form.Action</component-type>
@@ -896,6 +896,11 @@
 	</component>
 	<render-kit>
 		<renderer>
+			<component-family>Ext.ExtIncludeResource</component-family>
+			<renderer-type>Ext.ExtIncludeResource</renderer-type>
+			<renderer-class>com.abner.fence.renderkit.ExtIncludeResourceRenderer</renderer-class>
+		</renderer>
+		<renderer>
 			<component-family>Ext.Config</component-family>
 			<renderer-type>Ext.Config</renderer-type>
 			<renderer-class>com.abner.fence.renderkit.ExtConfigRenderer</renderer-class>
@@ -956,8 +961,7 @@
 			<renderer-type>Ext.ux.TaskBar.TaskButton</renderer-type>
 			<renderer-class>com.abner.fence.renderkit.ExtButtonRenderer</renderer-class>
 		</renderer>
-		<!-- button and action end   
- layout start -->
+		<!-- button and action end layout start -->
 		<renderer>
 			<component-family>Ext.layout.AbsoluteLayout</component-family>
 			<renderer-type>Ext.layout.AbsoluteLayout</renderer-type>
@@ -1053,8 +1057,7 @@
 			<renderer-type>Ext.ux.layout.RowLayout</renderer-type>
 			<renderer-class>com.abner.fence.renderkit.ExtLayoutRenderer</renderer-class>
 		</renderer>
-		<!-- layout end   
- panel start -->
+		<!-- layout end panel start -->
 		<renderer>
 			<component-family>Ext.BoxComponent</component-family>
 			<renderer-type>Ext.BoxComponent</renderer-type>
@@ -1150,8 +1153,7 @@
 			<renderer-type>Ext.ux.ManagedIFrame.Portlet</renderer-type>
 			<renderer-class>com.abner.fence.renderkit.ExtPanelRenderer</renderer-class>
 		</renderer>
-		<!-- panel end   
- chart start use the panel render -->
+		<!-- panel end chart start use the panel render -->
 		<renderer>
 			<component-family>Ext.chart.BarChart</component-family>
 			<renderer-type>Ext.chart.BarChart</renderer-type>
@@ -1192,8 +1194,7 @@
 			<renderer-type>Ext.chart.StackedColumnChart</renderer-type>
 			<renderer-class>com.abner.fence.renderkit.ExtPanelRenderer</renderer-class>
 		</renderer>
-		<!-- chart end 
- store start -->
+		<!-- chart end store start -->
 		<renderer>
 			<component-family>Ext.data.ArrayStore</component-family>
 			<renderer-type>Ext.data.ArrayStore</renderer-type>
@@ -1355,8 +1356,7 @@
 			<renderer-type>Ext.ux.form.CheckTreeComboBox</renderer-type>
 			<renderer-class>com.abner.fence.renderkit.ExtInputRenderer</renderer-class>
 		</renderer>
-		<!-- form end 
- window start -->
+		<!-- form end window start -->
 		<renderer>
 			<component-family>Ext.Window</component-family>
 			<renderer-type>Ext.Window</renderer-type>
@@ -1367,8 +1367,7 @@
 			<renderer-type>Ext.Message</renderer-type>
 			<renderer-class>com.abner.fence.renderkit.ExtMessageRenderer</renderer-class>
 		</renderer>
-		<!-- window end   
- toolbar start -->
+		<!-- window end toolbar start -->
 		<renderer>
 			<component-family>Ext.PagingToolbar</component-family>
 			<renderer-type>Ext.PagingToolbar</renderer-type>
@@ -1384,7 +1383,7 @@
 			<renderer-type>Ext.ux.StatusBar</renderer-type>
 			<renderer-class>com.abner.fence.renderkit.ExtToolbarRenderer</renderer-class>
 		</renderer>
-		<!-- toolbar end   -->
+		<!-- toolbar end -->
 
 		<!-- menu item start -->
 		<renderer>
@@ -1421,13 +1420,13 @@
 			<renderer-class>com.abner.fence.renderkit.ExtTreeLoaderRenderer</renderer-class>
 		</renderer>
 
-		<!-- ext ux plugins start-->
+		<!-- ext ux plugins start -->
 		<renderer>
 			<component-family>Ext.ux.TabCloseMenu</component-family>
 			<renderer-type>Ext.ux.TabCloseMenu</renderer-type>
 			<renderer-class>com.abner.fence.renderkit.ExtPluginRenderer</renderer-class>
 		</renderer>
-		<!-- ext ux plugins end-->
+		<!-- ext ux plugins end -->
 	</render-kit>
 	<application>
 		<state-manager>com.abner.fence.application.DeferredStateManager</state-manager>
@@ -1435,4 +1434,24 @@
 	<factory>
 		<lifecycle-factory>com.abner.fence.lifecycle.ExtLifecycleFactoryImpl</lifecycle-factory>
 	</factory>
+	<managed-bean>
+		<managed-bean-name>storeHandler</managed-bean-name>
+		<managed-bean-class>com.abner.fence.handler.StoreHandler</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>treeLoaderHandler</managed-bean-name>
+		<managed-bean-class>com.abner.fence.handler.TreeLoaderHandler</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>actionHandler</managed-bean-name>
+		<managed-bean-class>com.abner.fence.handler.ActionHandler</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>formHandler</managed-bean-name>
+		<managed-bean-class>com.abner.fence.handler.FormHandler</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
 </faces-config>
