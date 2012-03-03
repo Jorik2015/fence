@@ -37,12 +37,11 @@ public class JsonLevelFilter implements PropertyFilter {
 			methodName = "is" + StringUtil.upperFirstChar(name);
 			m = ClassUtils.lookupMethod(source.getClass(), methodName);
 		}
-		Class<?> clazz = m.getReturnType();
-
+		
 		if (m == null) {
 			return false;
 		}
-
+		Class<?> clazz = m.getReturnType();
 		// 第一次进入
 		if (sourceLevel < 0) {
 			Set<Object> sourceCache = cache.get(1);
