@@ -39,6 +39,10 @@ public class JsonLevelFilter implements PropertyFilter {
 		}
 		Class<?> clazz = m.getReturnType();
 
+		if (m == null) {
+			return false;
+		}
+
 		// 第一次进入
 		if (sourceLevel < 0) {
 			Set<Object> sourceCache = cache.get(1);
@@ -46,7 +50,7 @@ public class JsonLevelFilter implements PropertyFilter {
 				sourceCache = new HashSet<Object>();
 			sourceCache.add(source);
 			cache.put(1, sourceCache);
-			
+
 			sourceCache = cache.get(2);
 			if (sourceCache == null)
 				sourceCache = new HashSet<Object>();
@@ -55,9 +59,7 @@ public class JsonLevelFilter implements PropertyFilter {
 
 			if (level < 2) {
 				// 如果是基本类型等，则不缓存,
-				if (!clazz.isPrimitive()
-						&& !clazz.getName().equals("java.lang.String")
-						&& !ClassUtils.isRepresentsPrimitive(clazz)
+				if (!clazz.isPrimitive() && !clazz.getName().equals("java.lang.String") && !ClassUtils.isRepresentsPrimitive(clazz)
 						&& !ClassUtils.isDate(clazz)) {
 					// 否则缓存，将在下一步中不处理。
 					Set<String> levelKey = cacheKey.get(1);
@@ -72,9 +74,7 @@ public class JsonLevelFilter implements PropertyFilter {
 			if (keyLevel > 0) {
 				return true;
 			}
-			if (clazz.isPrimitive()
-					|| clazz.getName().equals("java.lang.String")
-					|| ClassUtils.isRepresentsPrimitive(clazz)
+			if (clazz.isPrimitive() || clazz.getName().equals("java.lang.String") || ClassUtils.isRepresentsPrimitive(clazz)
 					|| ClassUtils.isDate(clazz)) {
 				return false;
 			} else {
@@ -96,9 +96,7 @@ public class JsonLevelFilter implements PropertyFilter {
 	}
 
 	private boolean isSimple(Class<?> clazz) {
-		return clazz.isPrimitive()
-				|| clazz.getName().equals("java.lang.String")
-				|| ClassUtils.isRepresentsPrimitive(clazz)
+		return clazz.isPrimitive() || clazz.getName().equals("java.lang.String") || ClassUtils.isRepresentsPrimitive(clazz)
 				|| ClassUtils.isDate(clazz);
 	}
 
