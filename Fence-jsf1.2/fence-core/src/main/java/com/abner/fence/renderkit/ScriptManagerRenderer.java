@@ -13,7 +13,6 @@ import com.abner.fence.resources.ScriptManager;
 import com.abner.fence.util.AdapterType;
 import com.abner.fence.util.Ext;
 import com.abner.fence.util.JSUtils;
-import com.abner.fence.web.RequestContext;
 
 import ext.util.FacesUtils;
 import ext.util.StringUtil;
@@ -70,27 +69,10 @@ public class ScriptManagerRenderer extends Renderer {
 	@Override
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
 		String prefix = FacesUtils.getAppPath();
-
 		ResponseWriter writer = context.getResponseWriter();
 
 		ScriptManager scriptManager = (ScriptManager) component;
 		String temp = ScriptManager.ScriptIncludeTemplate;
-		
-		String library = scriptManager.getLibrary();
-		prefix += library;
-		
-		if (scriptManager.isDebug()) {
-			writer.write(MessageFormat.format(temp, prefix + ExtResources.FENCE_BASE_DEBUG));
-		} else {
-			writer.write(MessageFormat.format(temp, prefix + ExtResources.FENCE_BASE));
-		}
-
-		writer.write(MessageFormat.format(temp, prefix + ExtResources.PREFIX + ScriptManager.ScriptManager + "?key=" + JSUtils.getKey() + "&debug="
-				+ scriptManager.isDebug() + "&st=" + System.currentTimeMillis()));
-
-		temp = ScriptManager.StyleIncludeTemplate;
-		// writer css
-		writer.write("\n");
 
 		String version = scriptManager.getVersion();
 		if (StringUtil.isEmpty(version)) {
@@ -99,12 +81,27 @@ public class ScriptManagerRenderer extends Renderer {
 		}
 		version = version.replaceAll("\\.", "");
 
+		String library = scriptManager.getLibrary();
+		library = prefix + library;
+
+		if (scriptManager.isDebug()) {
+			writer.write(MessageFormat.format(temp, prefix + ExtResources.INNER_PROFIX + ExtResources.FENCE_BASE_DEBUG));
+		} else {
+			writer.write(MessageFormat.format(temp, prefix + ExtResources.INNER_PROFIX + ExtResources.FENCE_BASE));
+		}
+		writer.write(MessageFormat.format(temp, prefix + ExtResources.INNER_PROFIX + ScriptManager.ScriptManager + "?key=" + JSUtils.getKey()
+				+ "&debug=" + scriptManager.isDebug() + "&st=" + System.currentTimeMillis()));
+
+		// writer css
+		temp = ScriptManager.StyleIncludeTemplate;
+		writer.write("\n");
+
 		String theme = scriptManager.getTheme();
 		if (!StringUtil.isEmpty(theme)) {
-			writer.write(MessageFormat.format(temp, prefix + MessageFormat.format(ExtResources.EXT_CSS_NOTHEME, version)));
-			writer.write(MessageFormat.format(temp, prefix + MessageFormat.format(ExtResources.EXT_CSS_THEME, version, theme.toLowerCase())));
+			writer.write(MessageFormat.format(temp, library + MessageFormat.format(ExtResources.EXT_CSS_NOTHEME, version)));
+			writer.write(MessageFormat.format(temp, library + MessageFormat.format(ExtResources.EXT_CSS_THEME, version, theme.toLowerCase())));
 		} else {
-			writer.write(MessageFormat.format(temp, prefix + MessageFormat.format(ExtResources.EXT_CSS_ALL, version)));
+			writer.write(MessageFormat.format(temp, library + MessageFormat.format(ExtResources.EXT_CSS_ALL, version)));
 		}
 	}
 }
