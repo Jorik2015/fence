@@ -1,0 +1,158 @@
+.x-multitextfield
+{
+	position:relative;
+	height:auto !important;
+	margin:0px;
+	overflow:hidden;
+	padding:2px;
+	display:block;
+	outline:none !important;
+}
+
+.x-multitextfield ul
+{
+	overflow:hidden;
+	cursor:default;
+}
+
+.x-multitextfield-display-btns
+{
+	padding-right:33px !important;
+}
+
+.x-multitextfield-btns
+{
+	position:absolute;
+	right:1px;
+	top:0;
+	overflow:hidden;
+	padding:2px;
+}
+
+.x-multitextfield-btns div
+{
+	float:left;
+	width:16px;
+	height:16px;
+	margin-top:4px;
+	cursor:pointer;
+}
+
+.x-multitextfield-btn-clear
+{
+	background:url("images/clear.png") no-repeat scroll left 0px;
+}
+
+.x-multitextfield-btn-expand
+{
+	background:url("images/expand.png") no-repeat scroll left 0px;
+}
+
+.x-multitextfield-btn-over
+{
+	background-position:left -16px
+}
+
+.x-multitextfield-btn-hide
+{
+	display:none;
+}
+
+.x-multitextfield li
+{
+	float:left;
+	margin:1px 1px 2px 1px;
+	padding:0;
+	line-height:18px;
+}
+
+.x-multitextfield-stacked li
+{
+	float:none !important;
+}
+
+.x-multitextfield-input input
+{
+	border:none;
+	outline:none;
+	margin-top:4px;
+	margin-bottom:4px;
+	background-color:#FFF;
+}
+
+body.ext-ie .x-multitextfield-input input
+{
+	background:none;
+	border:none;
+	margin-top:3px;
+}
+
+.x-multitextfield-item
+{
+	position:relative;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	o-border-radius:6px;
+	khtml-border-radius:6px;
+	border:1px solid #D7D7D7;
+	background-color:#E7E7E7;
+	padding:1px 15px 1px 5px !important;
+}
+
+body.ext-ie7 .x-multitextfield-item
+{
+	margin:2px 1px 2px 1px;
+	line-height:1.2em;
+	padding:2px 17px 4px 5px !important;
+}
+
+body.ext-ie6 .x-multitextfield-item
+{
+	margin:2px 1px 2px 1px;
+	line-height:1.2em;
+	padding:2px 19px 4px 5px !important;
+}
+
+.x-multitextfield-item-hover
+{
+	background:#CDCDCD;
+	border:1px solid #949494;
+}
+
+.x-multitextfield-item-focus
+{
+	border-color:#8B8B8B;
+	background:#8B8B8B;
+	color:#FFF;
+}
+
+.x-multitextfield-item-close
+{
+	background:url("images/close.png") no-repeat scroll left 0px;
+	border:none;
+	cursor:pointer;
+	font-size:1px;
+	height:16px;
+	padding:0;
+	position:absolute;
+	right:0px;
+	top:2px;
+	width:13px;
+	display:block;
+}
+
+.x-multitextfield-item-close:hover, .x-multitextfield-item-close:active
+{
+	background-position:left -12px;
+}
+
+.x-multitextfield-item-focus .x-multitextfield-item-close
+{
+	background-position:left -24px;
+}
+
+.x-item-disabled .x-multitextfield-item-close
+{
+	background-position:left -36px;
+}
