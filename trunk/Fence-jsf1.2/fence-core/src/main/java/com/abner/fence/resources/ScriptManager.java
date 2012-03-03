@@ -67,12 +67,11 @@ public class ScriptManager extends ExtOutput {
 
 		RequestContext.instance().put(ComponentType, this);
 
-		scriptReository.RegisterGlobalClientScript("Fence.AppPath = '" + FacesUtils.getHostAppPath() + "';");
+		scriptReository.RegisterGlobalClientScript("Fence.AppPath = '" + FacesUtils.getAppPath() + "';");
 		scriptReository.RegisterGlobalClientScript(AJAX_PATH + " = '" + RequestUtils.getAjaxActionPath() + "';");
-		scriptReository.RegisterGlobalClientScript("Ext.BLANK_IMAGE_URL = '"
-				+ FacesUtils.extContext().getRequestContextPath()
+		scriptReository.RegisterGlobalClientScript("Ext.BLANK_IMAGE_URL = '" + FacesUtils.getAppPath() + this.library
 				+ MessageFormat.format(ExtResources.BLANK_IMAGE_URL, version) + "';");
-		scriptReository.RegisterGlobalClientScript(CHART_URL_KEY + " = '" + FacesUtils.extContext().getRequestContextPath()
+		scriptReository.RegisterGlobalClientScript(CHART_URL_KEY + " = '" + FacesUtils.getAppPath() + this.library
 				+ MessageFormat.format(ExtResources.CHART_URL, version) + "';");
 		scriptReository.RegisterGlobalClientScript(JSUtils.getGlobalScript());
 
