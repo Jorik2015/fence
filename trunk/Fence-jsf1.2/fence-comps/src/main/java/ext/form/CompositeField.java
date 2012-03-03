@@ -166,15 +166,46 @@ public class CompositeField extends Field {
 		this.defaults = defaults;
 		this.handleConfig("defaults", defaults);
 	}
+	
+	private Object items;
+
+	/**
+	 * An Array of <a href="output/Ext.form.Checkbox.html"
+	 * ext:cls="Ext.form.Checkbox">Checkbox</a>es or Checkbox configobjects to
+	 * arrange in the group.
+	 */
+	@ClientConfig(JsonMode.Array)
+	public Object getItems() {
+		if (null != this.items) {
+			return this.items;
+		}
+		ValueExpression _ve = getValueExpression("items");
+		if (_ve != null) {
+			return (Object) _ve.getValue(getFacesContext().getELContext());
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * <p>
+	 * Set the value of the <code>items</code> property.
+	 * </p>
+	 */
+	public void setItems(Object items) {
+		this.items = items;
+		this.handleConfig("items", items);
+	}
         
   	private Object[] _values;
 		public Object saveState(FacesContext _context) {
 		if (_values == null) {
-			_values = new Object[3];
+			_values = new Object[4];
 		}
 		_values[0] = super.saveState(_context);
 				_values[1] = labelConnector;	
 				_values[2] = defaults;	
+				_values[3] = items;	
 				return _values;
 	}
 
@@ -185,5 +216,7 @@ public class CompositeField extends Field {
 		this.handleConfig("labelConnector", this.labelConnector);
 				this.defaults = (Object) _values[2];
 		this.handleConfig("defaults", this.defaults);
+		this.items = (Object) _values[3];
+		this.handleConfig("items", this.items);
 			}
 }
