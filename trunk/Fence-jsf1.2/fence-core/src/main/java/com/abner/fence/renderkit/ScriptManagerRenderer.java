@@ -43,19 +43,31 @@ public class ScriptManagerRenderer extends Renderer {
 		prefix += library;
 
 		String temp = ScriptManager.ScriptIncludeTemplate;
+		
+		//Ext css styles
+		String theme = scriptManager.getTheme();
+		if (!StringUtil.isEmpty(theme)) {
+			writer.write(MessageFormat.format(temp, library + MessageFormat.format(ExtResources.EXT_CSS_NOTHEME, version)));
+			writer.write(MessageFormat.format(temp, library + MessageFormat.format(ExtResources.EXT_CSS_THEME, version, theme.toLowerCase())));
+		} else {
+			writer.write(MessageFormat.format(temp, library + MessageFormat.format(ExtResources.EXT_CSS_ALL, version)));
+		}
 
+		//Ext adapter
 		String path = prefix + MessageFormat.format(ExtResources.ADAPTER_BASE, version, adapter.toLowerCase());
 		writer.write(MessageFormat.format(temp, path));
 
 		path = prefix + MessageFormat.format(ExtResources.ADAPTER_EXT, version, adapter.toLowerCase());
 		writer.write(MessageFormat.format(temp, path));
 
+		//Ext js
 		if (scriptManager.isDebug()) {
 			writer.write(MessageFormat.format(temp, prefix + MessageFormat.format(ExtResources.EXT_ALL_DEBUG, version)));
 		} else {
 			writer.write(MessageFormat.format(temp, prefix + MessageFormat.format(ExtResources.EXT_ALL, version)));
 		}
 
+		//Ext ux js and css
 		if (scriptManager.isUx()) {
 			if (scriptManager.isDebug()) {
 				writer.write(MessageFormat.format(temp, prefix + MessageFormat.format(ExtResources.EXT_UX_JS_DEBUG, version)));
@@ -95,13 +107,5 @@ public class ScriptManagerRenderer extends Renderer {
 		// writer css
 		temp = ScriptManager.StyleIncludeTemplate;
 		writer.write("\n");
-
-		String theme = scriptManager.getTheme();
-		if (!StringUtil.isEmpty(theme)) {
-			writer.write(MessageFormat.format(temp, library + MessageFormat.format(ExtResources.EXT_CSS_NOTHEME, version)));
-			writer.write(MessageFormat.format(temp, library + MessageFormat.format(ExtResources.EXT_CSS_THEME, version, theme.toLowerCase())));
-		} else {
-			writer.write(MessageFormat.format(temp, library + MessageFormat.format(ExtResources.EXT_CSS_ALL, version)));
-		}
 	}
 }
