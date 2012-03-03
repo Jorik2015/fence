@@ -22,22 +22,22 @@ public class ExtDataReaderRenderer extends ExtBasicRenderer<DataReader> {
 		if (dataReader instanceof JsonReader) {
 			JsonReader jsonReader = (JsonReader) dataReader;
 			if (StringUtil.isEmpty(jsonReader.getIdProperty())) {
-				jsonReader.setIdProperty("id");
+				jsonReader.handleConfig("idProperty", "id");
 			}
 
 			if (StringUtil.isEmpty(jsonReader.getRoot())) {
-				jsonReader.setRoot("data");
+				jsonReader.handleConfig("root", "data");
 			}
 		}
 
 		if (dataReader instanceof ArrayReader) {
 			ArrayReader arrayReader = (ArrayReader) dataReader;
 			if (StringUtil.isEmpty(arrayReader.getIdProperty())) {
-				arrayReader.setIdProperty("id");
+				arrayReader.handleConfig("idProperty", "id");
 			}
 
 			if (StringUtil.isEmpty(arrayReader.getRoot())) {
-				arrayReader.setRoot("data");
+				arrayReader.handleConfig("root", "data");
 			}
 		}
 	}
