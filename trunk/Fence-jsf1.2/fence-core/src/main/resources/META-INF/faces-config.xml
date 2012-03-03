@@ -1196,6 +1196,24 @@
 		</renderer>
 		<!-- chart end store start -->
 		<renderer>
+			<component-family>Ext.data.DataReader</component-family>
+			<renderer-type>Ext.data.DataReader</renderer-type>
+			<renderer-class>com.abner.fence.renderkit.ExtDataReaderRenderer</renderer-class>
+		</renderer>
+		
+		<renderer>
+			<component-family>Ext.data.JsonReader</component-family>
+			<renderer-type>Ext.data.JsonReader</renderer-type>
+			<renderer-class>com.abner.fence.renderkit.ExtDataReaderRenderer</renderer-class>
+		</renderer>
+		
+		<renderer>
+			<component-family>Ext.data.ArrayReader</component-family>
+			<renderer-type>Ext.data.ArrayReader</renderer-type>
+			<renderer-class>com.abner.fence.renderkit.ExtDataReaderRenderer</renderer-class>
+		</renderer>
+		
+		<renderer>
 			<component-family>Ext.data.ArrayStore</component-family>
 			<renderer-type>Ext.data.ArrayStore</renderer-type>
 			<renderer-class>com.abner.fence.renderkit.ExtArrayStoreRenderer</renderer-class>
@@ -1225,6 +1243,12 @@
 			<renderer-type>Ext.data.XmlStore</renderer-type>
 			<renderer-class>com.abner.fence.renderkit.ExtStoreRenderer</renderer-class>
 		</renderer>
+		<renderer>
+			<component-family>Ext.grid.PropertyStore</component-family>
+			<renderer-type>Ext.grid.PropertyStore</renderer-type>
+			<renderer-class>com.abner.fence.renderkit.ExtStoreRenderer</renderer-class>
+		</renderer>
+		
 		<renderer>
 			<component-family>Ext.grid.PropertyStore</component-family>
 			<renderer-type>Ext.grid.PropertyStore</renderer-type>
