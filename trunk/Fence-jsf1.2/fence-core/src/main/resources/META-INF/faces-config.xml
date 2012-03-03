@@ -390,6 +390,14 @@
 		<component-class>ext.form.TimeField</component-class>
 	</component>
 	<component>
+		<component-type>Ext.form.CompositeField</component-type>
+		<component-class>ext.form.CompositeField</component-class>
+	</component>
+	<component>
+		<component-type>Ext.form.SliderField</component-type>
+		<component-class>ext.form.SliderField</component-class>
+	</component>
+	<component>
 		<component-type>Ext.form.TriggerField</component-type>
 		<component-class>ext.form.TriggerField</component-class>
 	</component>
@@ -741,6 +749,10 @@
 	<component>
 		<component-type>Ext.ux.form.SearchField</component-type>
 		<component-class>ext.ux.form.SearchField</component-class>
+	</component>
+	<component>
+		<component-type>Ext.ux.form.SuperBoxSelect</component-type>
+		<component-class>ext.ux.form.SuperBoxSelect</component-class>
 	</component>
 	<component>
 		<component-type>Ext.ux.GMapPanel</component-type>
@@ -1248,12 +1260,6 @@
 			<renderer-type>Ext.grid.PropertyStore</renderer-type>
 			<renderer-class>com.abner.fence.renderkit.ExtStoreRenderer</renderer-class>
 		</renderer>
-		
-		<renderer>
-			<component-family>Ext.grid.PropertyStore</component-family>
-			<renderer-type>Ext.grid.PropertyStore</renderer-type>
-			<renderer-class>com.abner.fence.renderkit.ExtStoreRenderer</renderer-class>
-		</renderer>
 
 		<renderer>
 			<component-family>Ext.form.Checkbox</component-family>
@@ -1331,6 +1337,16 @@
 			<renderer-class>com.abner.fence.renderkit.ExtInputRenderer</renderer-class>
 		</renderer>
 		<renderer>
+			<component-family>Ext.form.CompositeField</component-family>
+			<renderer-type>Ext.form.CompositeField</renderer-type>
+			<renderer-class>com.abner.fence.renderkit.ExtInputRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>Ext.form.SliderField</component-family>
+			<renderer-type>Ext.form.SliderField</renderer-type>
+			<renderer-class>com.abner.fence.renderkit.ExtInputRenderer</renderer-class>
+		</renderer>
+		<renderer>
 			<component-family>Ext.form.TriggerField</component-family>
 			<renderer-type>Ext.form.TriggerField</renderer-type>
 			<renderer-class>com.abner.fence.renderkit.ExtInputRenderer</renderer-class>
@@ -1378,6 +1394,11 @@
 		<renderer>
 			<component-family>Ext.ux.form.CheckTreeComboBox</component-family>
 			<renderer-type>Ext.ux.form.CheckTreeComboBox</renderer-type>
+			<renderer-class>com.abner.fence.renderkit.ExtInputRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>Ext.ux.form.SuperBoxSelect</component-family>
+			<renderer-type>Ext.ux.form.SuperBoxSelect</renderer-type>
 			<renderer-class>com.abner.fence.renderkit.ExtInputRenderer</renderer-class>
 		</renderer>
 		<!-- form end window start -->

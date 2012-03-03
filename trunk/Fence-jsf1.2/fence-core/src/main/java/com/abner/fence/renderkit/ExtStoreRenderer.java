@@ -21,6 +21,7 @@ import net.sf.json.JsonConfig;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
+import org.apache.commons.lang.StringUtils;
 
 import com.abner.fence.event.StoreEvent;
 import com.abner.fence.handler.StoreHandler;
@@ -68,13 +69,12 @@ public class ExtStoreRenderer extends ExtBasicRenderer<Store> {
 	}
 
 	@Override
-	public void beforeEncodeBegin(FacesContext context, Store store)
-			throws IOException {
+	public void beforeEncodeBegin(FacesContext context, Store store) throws IOException {
 		AsyncResponse async = AsyncResponse.getInstance();
 		isRenderRoot = async.isRenderRoot(store);
 
 		this.createDataProxy(context, store);
-		this.createDataWriter(context, store);
+		// this.createDataWriter(context, store);
 
 		if (store instanceof JsonStore) {
 			JsonStore jsonStore = (JsonStore) store;
@@ -93,8 +93,7 @@ public class ExtStoreRenderer extends ExtBasicRenderer<Store> {
 
 		String url = store.getUrl();
 
-		DataProxy proxy = ComponentUtil
-				.getFirstExtChild(store, DataProxy.class);
+		DataProxy proxy = ComponentUtil.getFirstExtChild(store, DataProxy.class);
 		if (proxy == null)
 			proxy = new HttpProxy();
 		else {
@@ -110,8 +109,7 @@ public class ExtStoreRenderer extends ExtBasicRenderer<Store> {
 		if (store.getWriter() != null)
 			return;
 
-		DataWriter writer = ComponentUtil.getFirstExtChild(store,
-				DataWriter.class);
+		DataWriter writer = ComponentUtil.getFirstExtChild(store, DataWriter.class);
 		if (writer == null)
 			writer = new JsonWriter();
 
@@ -119,8 +117,7 @@ public class ExtStoreRenderer extends ExtBasicRenderer<Store> {
 	}
 
 	@Override
-	public void beforeEncodeEnd(FacesContext context, Store store)
-			throws IOException {
+	public void beforeEncodeEnd(FacesContext context, Store store) throws IOException {
 		AjaxJSUtils.handleEvent(store, "exception", JSUtils.StoreException);
 
 		encodeStoreBaseParams(context, store);
@@ -143,20 +140,17 @@ public class ExtStoreRenderer extends ExtBasicRenderer<Store> {
 	}
 
 	@Override
-	public void afterEncodeEnd(FacesContext context, Store component)
-			throws IOException {
+	public void afterEncodeEnd(FacesContext context, Store component) throws IOException {
 		if (!RequestUtils.hasRenderViewState()) {
 			ViewHandler viewHandler = context.getApplication().getViewHandler();
 			viewHandler.writeState(context);
-			RequestContext.instance().put(RequestUtils.VIEW_STATE_RENDER,
-					Boolean.TRUE);
+			RequestContext.instance().put(RequestUtils.VIEW_STATE_RENDER, Boolean.TRUE);
 		}
 
 		if (!RequestUtils.isAjaxRequest()) {
 			String actionEl = getActionEl(component);
 			if (actionEl != null) {
-				ActionListener listener = FacesUtils
-						.createActionListener(actionEl);
+				ActionListener listener = FacesUtils.createActionListener(actionEl);
 				component.addActionListener(listener);
 			}
 		}
@@ -168,6 +162,7 @@ public class ExtStoreRenderer extends ExtBasicRenderer<Store> {
 		Store store = (Store) component;
 
 		String xaction = StoreHelper.getActionType();
+		xaction = StringUtils.isBlank(xaction) ? Api.ACTION_READ : xaction;
 
 		if (!this.wasHandler(context, store))
 			return;
@@ -175,10 +170,8 @@ public class ExtStoreRenderer extends ExtBasicRenderer<Store> {
 		String actionEl = getActionEl(store);
 		StoreAction storeAction = StoreHelper.getStoreAction(store);
 
-		if (actionEl == null && storeAction == null
-				&& !Api.ACTION_READ.equals(xaction)) {
-			throw new RuntimeException(
-					"You must set the beanMethod or beanAction when CURD data。");
+		if (actionEl == null && storeAction == null && !Api.ACTION_READ.equals(xaction)) {
+			throw new RuntimeException("You must set the beanMethod or beanAction when CURD data。");
 		}
 
 		StoreEvent storeEvent = getStoreEvent(store);
@@ -220,8 +213,7 @@ public class ExtStoreRenderer extends ExtBasicRenderer<Store> {
 			store.queueEvent(storeEvent);
 
 			if (storeAction != null) {
-				storeAction
-						.execute(storeEvent.getRemoved(), Api.ACTION_DESTORY);
+				storeAction.execute(storeEvent.getRemoved(), Api.ACTION_DESTORY);
 			}
 			return;
 		}
@@ -276,25 +268,21 @@ public class ExtStoreRenderer extends ExtBasicRenderer<Store> {
 
 		List result = new ArrayList();
 		if (ids == null)
-			throw new IllegalArgumentException(
-					"you must select data record when delete.");
+			throw new IllegalArgumentException("you must select data record when delete.");
 
 		for (Object id : ids) {
 			Predicate pred = new StringPredicate(idProp, id.toString());
 			if (data instanceof Collection<?>) {
-				Object origObj = CollectionUtils.find((Collection<?>) data,
-						pred);
+				Object origObj = CollectionUtils.find((Collection<?>) data, pred);
 				if (origObj == null)
-					throw new IllegalStateException("The object with id :" + id
-							+ " is not exist.");
+					throw new IllegalStateException("The object with id :" + id + " is not exist.");
 
 				result.add(origObj);
 			} else if (data.getClass().isArray()) {
 				List<?> origObjs = Arrays.asList((Object[]) data);
 				Object origObj = CollectionUtils.find(origObjs, pred);
 				if (origObj == null)
-					throw new IllegalStateException("The object with id :" + id
-							+ " is not exist.");
+					throw new IllegalStateException("The object with id :" + id + " is not exist.");
 
 				result.add(origObj);
 			} else if (data instanceof String) {
@@ -321,8 +309,7 @@ public class ExtStoreRenderer extends ExtBasicRenderer<Store> {
 
 		List result = new ArrayList();
 		if (jsonArray == null)
-			throw new IllegalArgumentException(
-					"you must select data record when update.");
+			throw new IllegalArgumentException("you must select data record when update.");
 
 		for (Iterator<?> iter = jsonArray.iterator(); iter.hasNext();) {
 			JSONObject jsonObj = (JSONObject) iter.next();
@@ -333,11 +320,9 @@ public class ExtStoreRenderer extends ExtBasicRenderer<Store> {
 
 			Predicate pred = new StringPredicate(idProp, id);
 			if (data instanceof Collection<?>) {
-				Object origObj = CollectionUtils.find((Collection<?>) data,
-						pred);
+				Object origObj = CollectionUtils.find((Collection<?>) data, pred);
 				if (origObj == null)
-					throw new IllegalStateException("The object with id :" + id
-							+ " is not exist.");
+					throw new IllegalStateException("The object with id :" + id + " is not exist.");
 
 				Ext.applyBean(origObj, jsonObj);
 				result.add(origObj);
@@ -345,8 +330,7 @@ public class ExtStoreRenderer extends ExtBasicRenderer<Store> {
 				List<?> origObjs = Arrays.asList((Object[]) data);
 				Object origObj = CollectionUtils.find(origObjs, pred);
 				if (origObj == null)
-					throw new IllegalStateException("The object with id :" + id
-							+ " is not exist.");
+					throw new IllegalStateException("The object with id :" + id + " is not exist.");
 
 				Ext.applyBean(origObj, jsonObj);
 				result.add(origObj);
@@ -427,8 +411,7 @@ public class ExtStoreRenderer extends ExtBasicRenderer<Store> {
 			data = jsonArray;
 			size = jsonArray.size();
 		} else {
-			throw new IllegalArgumentException(
-					"Unable to identify the data type，The type maybe Collection,Map or array.");
+			throw new IllegalArgumentException("Unable to identify the data type，The type maybe Collection,Map or array.");
 		}
 
 		if (count == null)
@@ -443,8 +426,7 @@ public class ExtStoreRenderer extends ExtBasicRenderer<Store> {
 
 	public StoreEvent getStoreEvent(Store store) {
 		String eventKey = store.getClientId(FacesUtils.context()) + "_event";
-		StoreEvent storeEvent = (StoreEvent) RequestContext.instance().get(
-				eventKey);
+		StoreEvent storeEvent = (StoreEvent) RequestContext.instance().get(eventKey);
 		if (storeEvent == null) {
 			storeEvent = new StoreEvent(store);
 			RequestContext.instance().put(eventKey, storeEvent);

@@ -19,6 +19,7 @@ import ext.Toolbar;
 import ext.base.ExtInput;
 import ext.base.IExt;
 import ext.form.CheckboxGroup;
+import ext.form.CompositeField;
 import ext.form.Field;
 import ext.form.FieldSet;
 import ext.form.FormPanel;
@@ -27,6 +28,7 @@ import ext.grid.Column;
 import ext.util.ComponentUtil;
 import ext.util.ExtFacesMessage;
 import ext.util.FacesUtils;
+import ext.ux.form.ItemSelector;
 
 public class ExtInputRenderer extends ExtBasicRenderer<ExtInput> {
 
@@ -49,6 +51,12 @@ public class ExtInputRenderer extends ExtBasicRenderer<ExtInput> {
 			toComp = fieldSet;
 		}
 		
+		CompositeField  compField = ComponentUtil.inNested(CompositeField.class, component);
+		if (compField != null) {
+			configTo = "items";
+			toComp = compField;
+		}
+		
 		CheckboxGroup chkGroup = ComponentUtil.inNested(CheckboxGroup.class,component);
 		if(chkGroup != null){
 			configTo = "items";
@@ -66,6 +74,12 @@ public class ExtInputRenderer extends ExtBasicRenderer<ExtInput> {
 			toComp = col;
 		}
 
+		ItemSelector itemSelector =ComponentUtil.inNested(ItemSelector.class, component, true);
+		if(itemSelector != null){
+			configTo = "multiselects";
+			toComp = itemSelector;
+		}
+		
 		if (configTo != null)
 			ConfigHelper.configTo(configTo, component.getVar(), component,toComp);
 	}
