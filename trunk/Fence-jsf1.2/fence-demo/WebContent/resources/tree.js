@@ -191,6 +191,14 @@ Docs.classData = {
 			"iconCls" : "icon-cmp",
 			"cls" : "cls",
 			"leaf" : true
+		},{
+			"href" : "formpanel/uxfield.xhtml",
+			"text" : "Form Field UX",
+			"id" : "Ext.UxField",
+			"isClass" : true,
+			"iconCls" : "icon-cmp",
+			"cls" : "cls",
+			"leaf" : true
 		}, {
 			"href" : "formpanel/curd.xhtml",
 			"text" : "Form Curd",
@@ -235,6 +243,14 @@ Docs.classData = {
 			"href" : "formpanel/multiselect.xhtml",
 			"text" : "Multiselect",
 			"id" : "Ext.Multiselect",
+			"isClass" : true,
+			"iconCls" : "icon-cmp",
+			"cls" : "cls",
+			"leaf" : true
+		} , {
+			"href" : "formpanel/itemselector.xhtml",
+			"text" : "ItemSelector",
+			"id" : "Ext.ItemSelector",
 			"isClass" : true,
 			"iconCls" : "icon-cmp",
 			"cls" : "cls",
