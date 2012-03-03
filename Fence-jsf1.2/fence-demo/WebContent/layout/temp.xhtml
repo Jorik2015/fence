@@ -8,10 +8,10 @@
 <f:view>
 	<head>
 	<title><ui:insert name="pageTitle" /></title>
-	<s:script var="script" debug="false" theme="blue"/>
-	<script type="text/javascript" src="#{app.appPath}/resources/tree.js"></script>
-	<link rel="stylesheet" type="text/css"
-		href="#{app.appPath}/resources/styles.css" />
+	<s:script var="script" library="/resources" debug="false" ux="true" theme="blue">
+		<s:resource library="/resources/ext340/uux/" src="miframe.js"/>
+		<s:resource library="/resources/" src="tree.js;styles.css"/>
+	</s:script>
 	<ui:insert name="pageHeader" />
 	<s:onready>
 		mainPanel.loadClass = function(href, cls){

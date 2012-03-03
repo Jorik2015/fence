@@ -1,62 +1,57 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext">
 <f:view>
 	<head>
-	<title><ui:insert name="pageTitle" /></title>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-	<s:script var="script" debug="true" jsSingleFile="true" />
-	<link rel="stylesheet" type="text/css" href="#{app.appPath}/resources/styles.css" />
-	<link type="text/css" rel="stylesheet" href="#{app.appPath}/resources/styles/shCore.css"/>
-	<link type="text/css" rel="stylesheet" href="#{app.appPath}/resources/styles/shThemeDefault.css"/>
-	<script type="text/javascript" src="#{app.appPath}/resources/shCore.js"></script>
-	<script type="text/javascript" src="#{app.appPath}/resources/shBrushJava.js"></script>
-	<script type="text/javascript" src="#{app.appPath}/resources/shBrushXml.js"></script>
-	<ui:insert name="pageHeader" />
+<title><ui:insert name="pageTitle" /></title>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<s:script var="script" library="/resources" debug="true" jsSingleFile="true" ux="true">
+	<s:resource library="/resources/sh/styles/" src="shCore.css;shThemeDefault.css" />
+	<s:resource library="/resources/sh/scripts/" src="shCore.js;shBrushXml.js;shBrushJava.js;shBrushJScript.js" />
+	<s:resource library="/resources/" src="styles.css" />
+</s:script>
+<ui:insert name="pageHeader" />
 	<s:onready>
-		SyntaxHighlighter.config.clipboardSwf = '#{app.appPath}/resources/clipboard.swf';
-		SyntaxHighlighter.defaults['toolbar'] = false;
+		SyntaxHighlighter.defaults['toolbar'] = true;
 		SyntaxHighlighter.highlight('code');
 	</s:onready>
+<script type="text/javascript">
+	//<![CDATA[
+		Fence.loadSource = function(btn,e){
+			Fence.call('loadSourceAction.loadSource()',function(res,opts){
+				sourceWin.show();
+				var sourceContent = Ext.get('sourceContent');
+				var bhtml = res.value;
+				var pre = sourceContent.query('pre:only-child')[0];
+				if(!pre) return;
+				pre.className = 'brush: xhtml;';
+				pre.innerHTML = bhtml;
+				SyntaxHighlighter.highlight();
+				sourceContent.show();
+			},btn);
+		}
+	//]]>
+	</script>
 	</head>
 	<body style="background: #FFFFFF">
 
-	<s:viewport layout="border">
-		<s:panel id="content" border="false" autoScroll="true" region="center">
-			<s:toolbar>
-				<s:button text="Xhtml Source" iconCls="icon-html">
-					<s:event name="click"
-						handler="function(btn,e){
-						Fence.call('loadSourceAction.loadSource()',function(res,opts){
-							sourceWin.show();
-							var sourceContent = Ext.get('sourceContent');
-							var bhtml = escapeHTML(res.value);
-							var pre = sourceContent.query('pre:only-child')[0];
-							if(!pre) return;
-							pre.className = 'brush: xhtml;';
-							pre.innerHTML = bhtml;
-							SyntaxHighlighter.highlight();
-							sourceContent.show();
-						},btn);
-					}" />
-				</s:button>
-			</s:toolbar>
-			<ui:insert name="body" />
-		</s:panel>
-		<s:window id="sourceWin" ns="" modal="true" constrain="true"
-			maximizable="true" minimizable="true" closeAction="hide"
-			iconCls="source" title="Source" width="600" height="350" layout="fit">
-			<s:panel id="sourcePanel" border="false" autoScroll="true">
-				<div id="sourceContent" name="sourceContent"
-					style="font-size:12px;display:none">
-				<pre class="">
-				</pre> 
-				</div>
+		<s:viewport layout="border">
+			<s:panel id="content" border="false" autoScroll="true" region="center">
+				<s:toolbar>
+					<s:button text="Xhtml Source" iconCls="icon-html">
+						<s:event name="click" handler="Fence.loadSource" />
+					</s:button>
+				</s:toolbar>
+				<ui:insert name="body" />
 			</s:panel>
-		</s:window>
-	</s:viewport>
+			<s:window id="sourceWin" ns="" modal="true" constrain="true" maximizable="true" minimizable="true" closeAction="hide" iconCls="source"
+				title="Source" width="800" height="450" autoScroll="true">
+				<div id="sourceContent" style="font-size: 12px; display: none;">
+					<pre class="">
+					</pre>
+				</div>
+			</s:window>
+		</s:viewport>
 	</body>
 </f:view>
 </html>
