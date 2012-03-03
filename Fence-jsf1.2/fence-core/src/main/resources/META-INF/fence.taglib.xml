@@ -692,6 +692,20 @@
 		</component>
 	</tag>
 	<tag>
+		<tag-name>compositefield</tag-name>
+		<component>
+			<component-type>Ext.form.CompositeField</component-type>
+			<renderer-type>Ext.form.CompositeField</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>sliderfield</tag-name>
+		<component>
+			<component-type>Ext.form.SliderField</component-type>
+			<renderer-type>Ext.form.SliderField</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>triggerfield</tag-name>
 		<component>
 			<component-type>Ext.form.TriggerField</component-type>
@@ -1361,6 +1375,13 @@
 		<component>
 			<component-type>Ext.ux.form.CheckTreeComboBox</component-type>
 			<renderer-type>Ext.ux.form.CheckTreeComboBox</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>superboxselect</tag-name>
+		<component>
+			<component-type>Ext.ux.form.SuperBoxSelect</component-type>
+			<renderer-type>Ext.ux.form.SuperBoxSelect</renderer-type>
 		</component>
 	</tag>
 	<tag>
