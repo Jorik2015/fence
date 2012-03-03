@@ -24,8 +24,9 @@ public class ExtResources {
 	public static final String ADAPTER_BASE = PREFIX + "ext{0}/adapter/{1}/{1}.js";
 	public static final String ADAPTER_EXT = PREFIX + "ext{0}/adapter/{1}/ext-{1}-adapter.js";
 
-	public static final String FENCE_BASE = PREFIX + "fencebase.js";
-	public static final String FENCE_BASE_DEBUG = PREFIX + "fencebase-debug.js";
+	public static final String FENCE_BASE = "fencebase.js";
+	public static final String FENCE_BASE_DEBUG = "fencebase-debug.js";
+	
 	public static final String EXT_CSS_NOTHEME = PREFIX + "ext{0}/resources/css/ext-all-notheme.css";
 	public static final String EXT_CSS_ALL = PREFIX + "ext{0}/resources/css/ext-all.css";
 	public static final String EXT_CSS_THEME = PREFIX + "ext{0}/resources/css/xtheme-{1}.css";
