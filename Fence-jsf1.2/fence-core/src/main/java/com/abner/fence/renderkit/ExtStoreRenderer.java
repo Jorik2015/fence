@@ -81,6 +81,9 @@ public class ExtStoreRenderer extends ExtBasicRenderer<Store> {
 			if (StringUtil.isEmpty(jsonStore.getRoot())) {
 				jsonStore.setRoot(StoreHelper.getRoot(jsonStore));
 			}
+			if (StringUtil.isEmpty(jsonStore.getIdProperty())) {
+				jsonStore.setRoot(StoreHelper.getIdProperty(jsonStore));
+			}
 		}
 	}
 
