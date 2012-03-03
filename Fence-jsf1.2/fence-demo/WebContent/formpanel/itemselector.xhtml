@@ -1,29 +1,25 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
-	template="/layout/part.xhtml">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext" template="/layout/part.xhtml">
 	<ui:define name="pageTitle">Button</ui:define>
 	<ui:define name="pageHeader">
 		<script type="text/javascript"> //<![CDATA[
 	//]]> </script>
 	</ui:define>
 	<ui:define name="body">
-		<table class="demoTable" cellpadding="0" cellspacing="0">
+		<table class="demoTable">
 			<tr>
-				<td><s:jsonstore id="userStore" data="#{userAction.users}"
-					autoLoad="true">
-					<s:dfield name="username" />
-					<s:dfield name="id" />
-				</s:jsonstore> ItemSelector One: 
-				<s:itemSelector id="mOne" valueField="id"
-					width="200" displayField="username">
-				</s:itemSelector> <br />
-				<s:button text="Get Value"
-					handler="function(){
-					Fence.info('One:' + mOne.getValue());
-				}"></s:button>
-				</td>
+				<td><s:jsonstore id="userStore" data="#{userAction.users}" autoLoad="true">
+						<s:dfield name="username" />
+						<s:dfield name="id" />
+					</s:jsonstore> ItemSelector One: <s:itemselector id="iOne" valueField="id" imagePath="#{app.appPath}/resources/ext340/ux/images/" displayField="username">
+						<s:multiselect id="mOne" valueField="id" width="200" height="150" store="userStore" displayField="username">
+						</s:multiselect>
+						<s:multiselect id="mTwo" valueField="id" width="200" height="150" store="userStore" displayField="username">
+						</s:multiselect>
+					</s:itemselector> <br /> 
+					<s:button text="Get Value" handler="function(){
+					Fence.info('One:' + iOne.getValue());
+				}"></s:button></td>
 			</tr>
 		</table>
 	</ui:define>

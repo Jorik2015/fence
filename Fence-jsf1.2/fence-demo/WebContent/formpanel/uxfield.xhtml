@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext" template="/layout/part.xhtml">
+	<ui:define name="pageTitle">Button</ui:define>
+	<ui:define name="pageHeader">
+		<s:resource library="/resources/ext340/uux/" src="DateTimeField.js" />
+		<s:resource library="/resources/ext340/uux/SuperBoxSelect/" src="superboxselect.css;SuperBoxSelect.js" />
+		<script type="text/javascript"> //<![CDATA[
+	//]]> </script>
+	</ui:define>
+	<ui:define name="body">
+		<table class="demoTable">
+			<tr>
+				<td><s:jsonstore id="userStore" data="#{userAction.users}" autoLoad="true">
+						<s:dfield name="username" />
+						<s:dfield name="id" />
+					</s:jsonstore> <s:formpanel width="550" height="550" title="Form UX Fields" bodyStyle="padding:10px;">
+						<s:multiselect id="mOne" valueField="id" width="200" store="userStore" fieldLabel="Multiselect" displayField="username" />
+						<s:selectbox store="userStore" valueField="id" displayField="username" fieldLabel="SelectBox" />
+						<s:datetime fieldLabel="DateTime" hiddenFormat="Y/m/d H:i:s" dateFormat="Y-m-d" timeFormat="H:i:s" />
+						<s:timefield fieldLabel="TimeField" />
+						<s:triggerfield fieldLabel="TriggerField" />
+						<s:twintriggerfield fieldLabel="TwinTriggerField" />
+						<s:sliderfield fieldLabel="SliderField" />
+						<s:compositefield fieldLabel="CompositeField">
+							<s:displayfield html="Pre:" />
+							<s:textfield />
+							<s:displayfield html="End:" />
+							<s:textfield />
+						</s:compositefield>
+						<s:searchfield fieldLabel="SearchField" />
+						<!-- <s:checktreecombobox fieldLabel="CheckTreeComboBox" />-->
+						<s:superboxselect valueField="id" store="userStore" displayField="username" typeAhead="true" triggerAction="all" mode="local" />
+					</s:formpanel></td>
+			</tr>
+		</table>
+	</ui:define>
+</ui:composition>
