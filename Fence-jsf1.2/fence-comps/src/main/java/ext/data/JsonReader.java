@@ -182,7 +182,7 @@ public class JsonReader extends DataReader {
 		this.handleConfig("idProperty", idProperty);
 	}
 
-	private String root = JsonStore.ROOT_KEY;
+	private String root;
 
 	/**
 	 * [undefined] <b>Required</b>. The name of theproperty which contains the
