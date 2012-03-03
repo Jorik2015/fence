@@ -15,7 +15,6 @@ import ext.base.IExt;
 import ext.util.FacesUtils;
 import ext.util.StringUtil;
 
-@SuppressWarnings("unchecked")
 public class ExtPluginRenderer extends ExtBasicRenderer {
 	private static final String includeJSTemp = "Fence.includeJS(''{0}'');";
 	private static final String includeCssTemp = "Fence.includeCss(''{0}'');";
@@ -34,8 +33,10 @@ public class ExtPluginRenderer extends ExtBasicRenderer {
 		Class<?> clazz = component.getClass();
 		UXResources resources = clazz.getAnnotation(UXResources.class);
 		if (resources != null) {
-			String[] jss = resources.js();
 			String css = resources.css();
+
+			/*
+			String[] jss = resources.js();
 			for (String js : jss) {
 				if (!StringUtil.isEmpty(js)) {
 					js = FacesUtils.extContext().getRequestContextPath()
@@ -46,6 +47,7 @@ public class ExtPluginRenderer extends ExtBasicRenderer {
 							.RegisterGlobalClientScript(js);
 				}
 			}
+			*/
 
 			if (!StringUtil.isEmpty(css)) {
 				css = FacesUtils.extContext().getRequestContextPath()

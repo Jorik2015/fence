@@ -20,10 +20,9 @@ import ext.util.StringUtil;
 
 public class ScriptManagerRenderer extends Renderer {
 
-	@Override 
-	public void encodeEnd(FacesContext context, UIComponent component)
-			throws IOException {
-		String prefix = FacesUtils.getHostAppPath();
+	@Override
+	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
+		String prefix = FacesUtils.getAppPath();
 
 		ResponseWriter writer = context.getResponseWriter();
 
@@ -33,87 +32,79 @@ public class ScriptManagerRenderer extends Renderer {
 			adapter = AdapterType.EXT.toString();
 			scriptManager.setAdapter(adapter);
 		}
-		
+
 		String version = scriptManager.getVersion();
 		if (StringUtil.isEmpty(version)) {
 			version = Ext.VERSION;
 			scriptManager.setVersion(version);
 		}
-		version = version.replaceAll("\\.","");
-		
+		version = version.replaceAll("\\.", "");
+
+		String library = scriptManager.getLibrary();
+		prefix += library;
+
 		String temp = ScriptManager.ScriptIncludeTemplate;
-		if (adapter.equalsIgnoreCase(AdapterType.YUI.toString())) {
-			writer.write(MessageFormat.format(temp, prefix
-					+ MessageFormat.format(ExtResources.YUI_UTILITIES,version,AdapterType.YUI.toString().toLowerCase())));
-			writer.write(MessageFormat.format(temp, prefix
-					+ MessageFormat.format(ExtResources.YUI_ADAPTER,version,
-							AdapterType.YUI.toString().toLowerCase())));
-		} else if (adapter.equalsIgnoreCase(AdapterType.JQUERY.toString())) {
-			writer.write(MessageFormat.format(temp, prefix
-					+ MessageFormat.format(ExtResources.JQUERY,version,
-							AdapterType.JQUERY.toString().toLowerCase())));
-			writer.write(MessageFormat.format(temp, prefix
-					+ MessageFormat.format(ExtResources.JQUERY_ADAPTER,version,
-							AdapterType.JQUERY.toString().toLowerCase())));
-		} else if (adapter.equalsIgnoreCase(AdapterType.PROTOTYPE.toString())) {
-			writer.write(MessageFormat.format(temp, prefix
-					+ MessageFormat.format(ExtResources.PROTOTYPE,version,
-							AdapterType.PROTOTYPE.toString().toLowerCase())));
-			writer.write(MessageFormat.format(temp, prefix
-					+ MessageFormat.format(ExtResources.PROTOTYPE_ADAPTER,version,
-							AdapterType.PROTOTYPE.toString().toLowerCase())));
+
+		String path = prefix + MessageFormat.format(ExtResources.ADAPTER_BASE, version, adapter.toLowerCase());
+		writer.write(MessageFormat.format(temp, path));
+
+		path = prefix + MessageFormat.format(ExtResources.ADAPTER_EXT, version, adapter.toLowerCase());
+		writer.write(MessageFormat.format(temp, path));
+
+		if (scriptManager.isDebug()) {
+			writer.write(MessageFormat.format(temp, prefix + MessageFormat.format(ExtResources.EXT_ALL_DEBUG, version)));
 		} else {
-			if (scriptManager.isDebug()){
-				writer.write(MessageFormat.format(temp, prefix
-						+ MessageFormat.format(ExtResources.EXT_BASE_DEBUG,version,
-								AdapterType.EXT.toString().toLowerCase())));
-			}else{
-				writer.write(MessageFormat.format(temp, prefix
-						+ MessageFormat.format(ExtResources.EXT_BASE,version,
-								AdapterType.EXT.toString().toLowerCase())));
-			}
-		}
-		if (scriptManager.isDebug())
-			writer.write(MessageFormat.format(temp, prefix
-					+ MessageFormat.format(ExtResources.EXT_ALL_DEBUG,version)));
-		else
-			writer.write(MessageFormat.format(temp, prefix
-					+ MessageFormat.format(ExtResources.EXT_ALL,version)));
-		
-		if(scriptManager.isUx()){
-			if (scriptManager.isDebug()){
-			writer.write(MessageFormat.format(temp, prefix
-					+ MessageFormat.format(ExtResources.EXT_UX_JS_DEBUG,version)));
-			}else{
-				writer.write(MessageFormat.format(temp, prefix
-						+ MessageFormat.format(ExtResources.EXT_UX_JS,version)));
-			}
-			writer.write(MessageFormat.format(ScriptManager.StyleIncludeTemplate, prefix
-					+ MessageFormat.format(ExtResources.EXT_UX_CSS,version)));
+			writer.write(MessageFormat.format(temp, prefix + MessageFormat.format(ExtResources.EXT_ALL, version)));
 		}
 
-		if (scriptManager.isDebug())
+		if (scriptManager.isUx()) {
+			if (scriptManager.isDebug()) {
+				writer.write(MessageFormat.format(temp, prefix + MessageFormat.format(ExtResources.EXT_UX_JS_DEBUG, version)));
+			} else {
+				writer.write(MessageFormat.format(temp, prefix + MessageFormat.format(ExtResources.EXT_UX_JS, version)));
+			}
+			writer.write(MessageFormat.format(ScriptManager.StyleIncludeTemplate, prefix + MessageFormat.format(ExtResources.EXT_UX_CSS, version)));
+		}
+	}
+
+	@Override
+	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
+		String prefix = FacesUtils.getAppPath();
+
+		ResponseWriter writer = context.getResponseWriter();
+
+		ScriptManager scriptManager = (ScriptManager) component;
+		String temp = ScriptManager.ScriptIncludeTemplate;
+		
+		String library = scriptManager.getLibrary();
+		prefix += library;
+		
+		if (scriptManager.isDebug()) {
 			writer.write(MessageFormat.format(temp, prefix + ExtResources.FENCE_BASE_DEBUG));
-		else
+		} else {
 			writer.write(MessageFormat.format(temp, prefix + ExtResources.FENCE_BASE));
-		
-		writer.write(MessageFormat.format(temp, prefix + ExtResources.PREFIX 
-								+ ScriptManager.ScriptManager 
-								+ "?key=" + JSUtils.getKey() 
-								+ "&debug=" + scriptManager.isDebug()
-								+ "&st=" + System.currentTimeMillis()));
-		
+		}
+
+		writer.write(MessageFormat.format(temp, prefix + ExtResources.PREFIX + ScriptManager.ScriptManager + "?key=" + JSUtils.getKey() + "&debug="
+				+ scriptManager.isDebug() + "&st=" + System.currentTimeMillis()));
+
 		temp = ScriptManager.StyleIncludeTemplate;
-		//writer css
+		// writer css
 		writer.write("\n");
-		
+
+		String version = scriptManager.getVersion();
+		if (StringUtil.isEmpty(version)) {
+			version = Ext.VERSION;
+			scriptManager.setVersion(version);
+		}
+		version = version.replaceAll("\\.", "");
 
 		String theme = scriptManager.getTheme();
 		if (!StringUtil.isEmpty(theme)) {
-			writer.write(MessageFormat.format(temp, prefix	+ MessageFormat.format(ExtResources.EXT_CSS_NOTHEME,version)));
-			writer.write(MessageFormat.format(temp, prefix	+ MessageFormat.format(ExtResources.EXT_CSS_THEME,version, theme.toLowerCase())));
-		}else{
-			writer.write(MessageFormat.format(temp, prefix	+ MessageFormat.format(ExtResources.EXT_CSS_ALL,version)));
+			writer.write(MessageFormat.format(temp, prefix + MessageFormat.format(ExtResources.EXT_CSS_NOTHEME, version)));
+			writer.write(MessageFormat.format(temp, prefix + MessageFormat.format(ExtResources.EXT_CSS_THEME, version, theme.toLowerCase())));
+		} else {
+			writer.write(MessageFormat.format(temp, prefix + MessageFormat.format(ExtResources.EXT_CSS_ALL, version)));
 		}
 	}
 }
