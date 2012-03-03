@@ -1,5 +1,6 @@
 package com.abner;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
@@ -16,7 +17,12 @@ import ext.util.FacesUtils;
 
 @Component("app")
 @Scope("globalSession")
-public class App {
+public class App implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3758418073764761968L;
+
 	public String getAppPath() {
 		HttpServletRequest req = (HttpServletRequest) FacesUtils.extContext().getRequest();
 		String url = req.getRequestURL().toString();
