@@ -2,6 +2,8 @@
 	color: red;
 }
 
+.htmlcontainer{height: 100%;}
+
 #top {
 	height: 39px;
 	border-bottom: 1px solid #135c8a;
