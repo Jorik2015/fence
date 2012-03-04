@@ -54,7 +54,7 @@ import ext.annotation.UXResources;
  */
 @InstanceOf("Ext.ux.grid.filter.DateFilter")
 @UXResources(js = "ext[version]/ux/gridfilters/filter/DateFilter.js")
-@ParseConfigMode(ui = false, name = "filters", pmode = PersistenceMode.ParentProperty, rmode = ReferenceMode.Var)
+@ParseConfigMode(ui = false, name = "filters", pmode = PersistenceMode.ParentProperty, rmode = ReferenceMode.Config)
 public class DateFilter extends Filter {
 	public static final String COMPONENT_TYPE = "Ext.ux.grid.filter.DateFilter";
 	public static final String COMPONENT_FAMILY = "Ext.ux.grid.filter.DateFilter";

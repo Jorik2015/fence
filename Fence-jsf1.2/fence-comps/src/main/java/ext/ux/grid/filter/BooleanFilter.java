@@ -40,7 +40,7 @@ import ext.annotation.UXResources;
  */
 @InstanceOf("Ext.ux.grid.filter.BooleanFilter")
 @UXResources(js = "ext[version]/ux/gridfilters/filter/BooleanFilter.js")
-@ParseConfigMode(ui = false, name = "filters", pmode = PersistenceMode.ParentProperty, rmode = ReferenceMode.Var)
+@ParseConfigMode(ui = false, name = "filters", pmode = PersistenceMode.ParentProperty, rmode = ReferenceMode.Config)
 public class BooleanFilter extends Filter {
 	public static final String COMPONENT_TYPE = "Ext.ux.grid.filter.BooleanFilter";
 	public static final String COMPONENT_FAMILY = "Ext.ux.grid.filter.BooleanFilter";
