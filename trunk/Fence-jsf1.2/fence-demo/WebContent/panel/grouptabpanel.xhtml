@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext" template="/layout/part.xhtml">
+	<ui:define name="pageTitle">Button</ui:define>
+	<ui:define name="pageHeader">
+		<script type="text/javascript">
+		</script>
+	</ui:define>
+	<ui:define name="body">
+		<table class="demoTable">
+			<tr>
+				<td class="td"><s:grouptabpanel id="grouptabpanel" width="850" height="550" activeGroup="0">
+						<s:grouptab mainItem="0">
+							<s:panel title="Asset">
+								<s:tabpanel id="borderPanel" width="650" height="250" activeTab="0">
+									<s:panel id="panel1" border="false" title="panel1" layout="border">
+										<s:panel region="west" title="West" width="100"></s:panel>
+										<s:panel title="Center The Content Auto Load Use Ajax" autoLoad="function(){return '#{app.appPath}/panel/ajax.html';}" autoScroll="true"
+											region="center"></s:panel>
+										<s:panel id="eastPanel" title="East Panel" region="east" collapsed="true" collapsible="true" width="100">
+							#{userAction.labelText},#{userAction.labelText}
+						</s:panel>
+									</s:panel>
+									<s:panel title="Static Html" id="panel2">some static html<br />
+										<h:outputText value="#{userAction.labelText}"></h:outputText>
+									</s:panel>
+									<s:panel title="Ajax (URL)" autoScroll="true" id="panelAjax1" autoLoad="#{app.appPath}/panel/ajax.html">
+									</s:panel>
+									<s:panel title="Ajax (Fun)" autoScroll="true" id="panelAjax2" autoLoad="function(){return '#{app.appPath}/panel/ajax.html';}">
+									</s:panel>
+									<s:panel title="Ajax (Config)" autoScroll="true" id="panelAjax3" autoLoad="{url:'#{app.appPath}/panel/ajax.html'}">
+									</s:panel>
+									<s:panel title="Ajax (Auto-true)" autoScroll="true" id="panelAjax4" autoLoad="true">
+						The content is update from server by ajax when the tab actived;
+						<br />
+						#{userAction.labelText},#{userAction.labelText}
+						<br />
+										<s:panel title="Nest" width="150" height="80">this panel is nested in the tabpanel.</s:panel>
+									</s:panel>
+									<s:formpanel title="FormPanel" id="panel3">
+										<s:textfield fieldLabel="Username"></s:textfield>
+										<s:textfield fieldLabel="Password"></s:textfield>
+									</s:formpanel>
+								</s:tabpanel>
+							</s:panel>
+							<s:panel title="Log" />
+							<s:panel title="Upload" />
+						</s:grouptab>
+						<s:grouptab>
+							<s:panel title="User Management" />
+							<s:panel title="User List" />
+							<s:panel title="Role List" />
+						</s:grouptab>
+					</s:grouptabpanel></td>
+			</tr>
+		</table>
+	</ui:define>
+</ui:composition>
