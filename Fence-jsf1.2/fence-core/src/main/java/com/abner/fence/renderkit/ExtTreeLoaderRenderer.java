@@ -6,19 +6,28 @@ import java.util.Map;
 
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.abner.fence.handler.TreeLoaderHandler;
 import com.abner.fence.util.RequestUtils;
 
 import ext.tree.TreeLoader;
+import ext.util.FacesUtils;
 import ext.util.StringUtil;
 
 public class ExtTreeLoaderRenderer extends ExtBasicRenderer<TreeLoader> {
 
 	@Override
-	public void afterEncodeBegin(FacesContext context, TreeLoader component)
-			throws IOException {
-		component.handleConfig("baseParams", encodeBaseParams(context,
-				component));
+	public void afterEncodeBegin(FacesContext context, TreeLoader component) throws IOException {
+		component.handleConfig("baseParams", encodeBaseParams(context, component));
+		String dataUrl = component.getDataUrl();
+		if (StringUtils.isBlank(dataUrl)) {
+			dataUrl = component.getUrl();
+		}
+
+		if (StringUtils.isBlank(dataUrl)) {
+			component.handleConfig("dataUrl", FacesUtils.getCurrentRequestPath());
+		}
 	}
 
 	private String encodeBaseParams(FacesContext context, TreeLoader loader) {
