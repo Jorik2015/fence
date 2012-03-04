@@ -24,20 +24,24 @@ public final class FacesUtils {
 	public static ExternalContext extContext() {
 		return context().getExternalContext();
 	}
-	
-	public static String getHostPath(){
+
+	public static String getHostPath() {
 		HttpServletRequest req = (HttpServletRequest) extContext().getRequest();
 		String url = req.getRequestURL().toString();
-		int end = url.indexOf("/",8);
-		url = url.substring(0,end);
+		int end = url.indexOf("/", 8);
+		url = url.substring(0, end);
 		return url;
 	}
-	
-	public static String getAppPath(){
+
+	public static String getAppPath() {
 		return extContext().getRequestContextPath();
 	}
-	
-	public static String getHostAppPath(){
+
+	public static String getCurrentRequestPath() {
+		return getRequest().getRequestURI();
+	}
+
+	public static String getHostAppPath() {
 		return getHostPath() + getAppPath();
 	}
 
@@ -53,10 +57,8 @@ public final class FacesUtils {
 	public static MethodExpression createMethodExpression(String expr) {
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		ELContext elContext = context().getELContext();
-		ExpressionFactory elFactory = ctx.getApplication()
-				.getExpressionFactory();
-		return elFactory.createMethodExpression(elContext, expr, void.class,
-				new Class<?>[] { ActionEvent.class });
+		ExpressionFactory elFactory = ctx.getApplication().getExpressionFactory();
+		return elFactory.createMethodExpression(elContext, expr, void.class, new Class<?>[] { ActionEvent.class });
 	}
 
 	public static ActionListener createActionListener(String expr) {
