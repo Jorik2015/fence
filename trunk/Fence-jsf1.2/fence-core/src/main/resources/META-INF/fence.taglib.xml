@@ -1371,6 +1371,20 @@
 		</component>
 	</tag>
 	<tag>
+		<tag-name>searchbox</tag-name>
+		<component>
+			<component-type>Ext.ux.form.SearchBox</component-type>
+			<renderer-type>Ext.ux.form.SearchBox</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>extendedcomboBox</tag-name>
+		<component>
+			<component-type>Ext.ux.form.ExtendedComboBox</component-type>
+			<renderer-type>Ext.ux.form.ExtendedComboBox</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>checktreecombobox</tag-name>
 		<component>
 			<component-type>Ext.ux.form.CheckTreeComboBox</component-type>
@@ -1391,6 +1405,8 @@
 			<renderer-type>Ext.ux.GMapPanel</renderer-type>
 		</component>
 	</tag>
+
+	<!-- grid plugins -->
 	<tag>
 		<tag-name>bufferview</tag-name>
 		<component>
@@ -1440,6 +1456,50 @@
 			<renderer-type>Ext.ux.grid.TableGrid</renderer-type>
 		</component>
 	</tag>
+	<tag>
+		<tag-name>gridfilters</tag-name>
+		<component>
+			<component-type>Ext.ux.grid.GridFilters</component-type>
+			<renderer-type>Ext.ux.grid.GridFilters</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>booleanfilter</tag-name>
+		<component>
+			<component-type>Ext.ux.grid.filter.BooleanFilter</component-type>
+			<renderer-type>Ext.ux.grid.filter.BooleanFilter</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>datefilter</tag-name>
+		<component>
+			<component-type>Ext.ux.grid.filter.DateFilter</component-type>
+			<renderer-type>Ext.ux.grid.filter.DateFilter</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>listfilter</tag-name>
+		<component>
+			<component-type>Ext.ux.grid.filter.ListFilter</component-type>
+			<renderer-type>Ext.ux.grid.filter.ListFilter</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>numericfilter</tag-name>
+		<component>
+			<component-type>Ext.ux.grid.filter.NumericFilter</component-type>
+			<renderer-type>Ext.ux.grid.filter.NumericFilter</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>stringfilter</tag-name>
+		<component>
+			<component-type>Ext.ux.grid.filter.StringFilter</component-type>
+			<renderer-type>Ext.ux.grid.filter.StringFilter</renderer-type>
+		</component>
+	</tag>
+	<!-- grid plugins -->
+
 	<tag>
 		<tag-name>centerlayout</tag-name>
 		<component>
