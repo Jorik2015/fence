@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/layout/part.xhtml">
+	<ui:define name="pageTitle">GridFilters</ui:define>
+	<ui:define name="body">
+		<table class="demoTable">
+			<tr>
+				<td class="td"><s:gridpanel id="gridpanel" loadMask="true"
+					title="Simple Gridpanel(Data Array)" height="350" width="500">
+					<s:toolbar>
+						<s:button text="R(GridPanel)" type="button" iconCls="rerender"
+							render="gridpanel3" tooltip="Rerender the GridPanel"></s:button>
+						<s:button text="R(Store)" type="button" iconCls="rerender"
+							render="store3" tooltip="Rerender the Store"></s:button>
+						<s:button text="R(Load)" type="button" iconCls="rerender"
+							handler="store3.load();" tooltip="ReLoad the Store"></s:button>
+					</s:toolbar>
+					<s:cm>
+						<s:rownumber />
+						<s:column header="username" dataIndex="username" width="100"
+							sortable="true" />
+						<s:column header="password" dataIndex="password" width="100" />
+						<s:datecolumn header="BirthDate" dataIndex="birthDate" width="100" />
+						<s:column header="Salary" dataIndex="salary" width="100" />
+					</s:cm>
+					<s:gridfilters>
+						<s:stringfilter dataIndex="username" type="string"/>
+						<s:datefilter dataIndex="birthDate" type="date"/>
+					</s:gridfilters>
+					<s:store id="store3" data="#{userAction.userArray}">
+						<s:jsonreader>
+							<s:dfield name="username" />
+							<s:dfield name="password" />
+							<s:dfield name="birthDate" type="date" dateFormat="Y-m-d H:i:s" />
+							<s:dfield name="salary" type="float" />
+						</s:jsonreader>
+					</s:store>
+				</s:gridpanel></td>
+			</tr>
+		</table>
+	</ui:define>
+</ui:composition>
