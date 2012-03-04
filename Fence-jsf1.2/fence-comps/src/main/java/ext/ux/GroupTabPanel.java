@@ -8,7 +8,7 @@ import ext.annotation.InstanceOf;
 import ext.annotation.UXResources;
 import ext.annotation.XType;
 
-@XType("spinnerfield")
+@XType("grouptabpanel")
 @InstanceOf("Ext.ux.GroupTabPanel")
 @UXResources(js = { "ext[version]/ux/GroupTab.js", "ext30/ux/GroupTabPanel.js" }, css = "ext30/ux/css/GroupTab.css")
 public class GroupTabPanel extends TabPanel {
