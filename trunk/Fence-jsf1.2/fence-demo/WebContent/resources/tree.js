@@ -397,7 +397,15 @@ Docs.classData = {
 			"iconCls" : "icon-cmp",
 			"cls" : "cls",
 			"leaf" : true
-		}  ]
+		} , {
+			"href" : "grid/treegrid.xhtml",
+			"text" : "TreeGrid",
+			"id" : "Ext.TreeGrid",
+			"isClass" : true,
+			"iconCls" : "icon-cmp",
+			"cls" : "cls",
+			"leaf" : true
+		} ]
 	}, {
 		"href" : "",
 		"text" : "Menu",

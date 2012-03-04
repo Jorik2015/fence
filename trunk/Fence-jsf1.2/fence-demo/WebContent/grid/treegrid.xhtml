@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext" template="/layout/part.xhtml">
+	<ui:define name="pageTitle">TreeGrid</ui:define>
+	<ui:define name="body">
+		<table class="demoTable">
+			<tr>
+				<td class="td"><s:treegrid id="treegrid" loadMask="true" title="TreeGrid" height="350" width="500">
+						<s:column header="menuName" dataIndex="menuName" width="100" />
+						<s:column header="auth" dataIndex="auth" width="100" />
+						<s:column header="order" dataIndex="order" width="100" />
+						<s:treegridloader data="#{treeAction.menus}" />
+					</s:treegrid></td>
+
+				<td><s:treegrid id="treegrid1" loadMask="true" title="TreeGrid Not remote" height="350" width="500">
+						<s:column header="menuName" dataIndex="menuName" width="100" />
+						<s:column header="auth" dataIndex="auth" width="100" />
+						<s:column header="order" dataIndex="order" width="100" />
+						<s:asynctreenode text="Fence Component" childs="#{treeAction.menus}" expanded="true" id="root">
+						</s:asynctreenode>
+					</s:treegrid></td>
+			</tr>
+		</table>
+	</ui:define>
+</ui:composition>
