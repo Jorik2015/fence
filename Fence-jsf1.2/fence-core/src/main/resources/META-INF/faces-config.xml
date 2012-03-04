@@ -751,6 +751,14 @@
 		<component-class>ext.ux.form.SearchField</component-class>
 	</component>
 	<component>
+		<component-type>Ext.ux.form.ExtendedComboBox</component-type>
+		<component-class>ext.ux.form.ExtendedComboBox</component-class>
+	</component>
+	<component>
+		<component-type>Ext.ux.form.SearchBox</component-type>
+		<component-class>ext.ux.form.SearchBox</component-class>
+	</component>
+	<component>
 		<component-type>Ext.ux.form.SuperBoxSelect</component-type>
 		<component-class>ext.ux.form.SuperBoxSelect</component-class>
 	</component>
@@ -758,6 +766,8 @@
 		<component-type>Ext.ux.GMapPanel</component-type>
 		<component-class>ext.ux.GMapPanel</component-class>
 	</component>
+	
+	<!-- Grid plugins -->
 	<component>
 		<component-type>Ext.ux.grid.BufferView</component-type>
 		<component-class>ext.ux.grid.BufferView</component-class>
@@ -786,6 +796,32 @@
 		<component-type>Ext.ux.grid.TableGrid</component-type>
 		<component-class>ext.ux.grid.TableGrid</component-class>
 	</component>
+	<component>
+		<component-type>Ext.ux.grid.GridFilters</component-type>
+		<component-class>ext.ux.grid.GridFilters</component-class>
+	</component>
+	<component>
+		<component-type>Ext.ux.grid.filter.BooleanFilter</component-type>
+		<component-class>ext.ux.grid.filter.BooleanFilter</component-class>
+	</component>
+	<component>
+		<component-type>Ext.ux.grid.filter.ListFilter</component-type>
+		<component-class>ext.ux.grid.filter.ListFilter</component-class>
+	</component>
+	<component>
+		<component-type>Ext.ux.grid.filter.NumericFilter</component-type>
+		<component-class>ext.ux.grid.filter.NumericFilter</component-class>
+	</component>
+	<component>
+		<component-type>Ext.ux.grid.filter.DateFilter</component-type>
+		<component-class>ext.ux.grid.filter.DateFilter</component-class>
+	</component>
+	<component>
+		<component-type>Ext.ux.grid.filter.StringFilter</component-type>
+		<component-class>ext.ux.grid.filter.StringFilter</component-class>
+	</component>
+	<!-- Grid plugins end -->
+	
 	<component>
 		<component-type>Ext.ux.layout.CenterLayout</component-type>
 		<component-class>ext.ux.layout.CenterLayout</component-class>
@@ -1379,6 +1415,16 @@
 		<renderer>
 			<component-family>Ext.ux.form.SelectBox</component-family>
 			<renderer-type>Ext.ux.form.SelectBox</renderer-type>
+			<renderer-class>com.abner.fence.renderkit.ExtInputRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>Ext.ux.form.SearchBox</component-family>
+			<renderer-type>Ext.ux.form.SearchBox</renderer-type>
+			<renderer-class>com.abner.fence.renderkit.ExtInputRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>Ext.ux.form.ExtendedComboBox</component-family>
+			<renderer-type>Ext.ux.form.ExtendedComboBox</renderer-type>
 			<renderer-class>com.abner.fence.renderkit.ExtInputRenderer</renderer-class>
 		</renderer>
 		<renderer>
