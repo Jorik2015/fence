@@ -1408,6 +1408,20 @@
 
 	<!-- grid plugins -->
 	<tag>
+		<tag-name>columnheadergroup</tag-name>
+		<component>
+			<component-type>Ext.ux.grid.ColumnHeaderGroup</component-type>
+			<renderer-type>Ext.ux.grid.ColumnHeaderGroup</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>groupcolumn</tag-name>
+		<component>
+			<component-type>Ext.ux.grid.GroupColumn</component-type>
+			<renderer-type>Ext.ux.grid.GroupColumn</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>bufferview</tag-name>
 		<component>
 			<component-type>Ext.ux.grid.BufferView</component-type>

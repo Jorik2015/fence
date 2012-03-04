@@ -808,6 +808,14 @@
 	
 	<!-- Grid plugins -->
 	<component>
+		<component-type>Ext.ux.grid.ColumnHeaderGroup</component-type>
+		<component-class>ext.ux.grid.ColumnHeaderGroup</component-class>
+	</component>
+	<component>
+		<component-type>Ext.ux.grid.GroupColumn</component-type>
+		<component-class>ext.ux.grid.GroupColumn</component-class>
+	</component>
+	<component>
 		<component-type>Ext.ux.grid.BufferView</component-type>
 		<component-class>ext.ux.grid.BufferView</component-class>
 	</component>
