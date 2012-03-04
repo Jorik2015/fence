@@ -48,8 +48,7 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void encodeBegin(FacesContext context, UIComponent component)
-			throws IOException {
+	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
 		super.encodeBegin(context, component);
 
 		this.tagAttributes = new HashMap<String, String>();
@@ -98,7 +97,7 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 						ConfigHelper.appendConfig(comp, (IExt) child);
 					} else {
 						String configValue = ConfigHelper.interpretConfig(comp);
-						ConfigHelper.configTo(name, configValue, comp,(IExt) child);
+						ConfigHelper.configTo(name, configValue, comp, (IExt) child);
 					}
 				}
 			}
@@ -107,8 +106,7 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void encodeEnd(FacesContext context, UIComponent component)
-			throws IOException {
+	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
 		super.encodeEnd(context, component);
 		IExt comp = (IExt) component;
 
@@ -126,8 +124,7 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 				UIComponent parent = component.getParent();
 				if (parent instanceof IExt) {
 					comp.handleConfig("renderTo", null);
-					String configValue = ConfigHelper.getRefence(comp, metadata
-							.getRmode(), this.getStructureTemplate());
+					String configValue = ConfigHelper.getRefence(comp, metadata.getRmode(), this.getStructureTemplate());
 					ConfigHelper.configTo(name, configValue, comp);
 				}
 			}
@@ -135,9 +132,7 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 
 		this.afterEncodeEnd(context, (T) comp);
 
-		if (metadata != null
-				&& metadata.getPmode() == PersistenceMode.ParentProperty
-				&& metadata.getRmode() == ReferenceMode.Config
+		if (metadata != null && metadata.getPmode() == PersistenceMode.ParentProperty && metadata.getRmode() == ReferenceMode.Config
 				&& comp.getConfigValue("renderTo").getRawValue() != null) {
 			throw new IllegalStateException("the component <" + comp + "> is meaningless.");
 		}
@@ -149,6 +144,7 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 			script.append(this.buildInstanceWithTemplate(comp));
 		}
 		script.append(comp.getAfterScript());
+		script = this.processAfterReadyScript(component,script);
 		JSUtils.RegisterClientInitScript(script.toString());
 
 		// 此处条件应该和encodeBegin中保持一致
@@ -159,20 +155,21 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 		}
 	}
 
-	public void beforeEncodeBegin(FacesContext context, T component)
-			throws IOException {
+	protected StringBuilder processAfterReadyScript(UIComponent comp,StringBuilder script) {
+		// process the script after ready;
+		return script;
 	}
 
-	public void afterEncodeBegin(FacesContext context, T component)
-			throws IOException {
+	public void beforeEncodeBegin(FacesContext context, T component) throws IOException {
 	}
 
-	public void beforeEncodeEnd(FacesContext context, T component)
-			throws IOException {
+	public void afterEncodeBegin(FacesContext context, T component) throws IOException {
 	}
 
-	public void afterEncodeEnd(FacesContext context, T component)
-			throws IOException {
+	public void beforeEncodeEnd(FacesContext context, T component) throws IOException {
+	}
+
+	public void afterEncodeEnd(FacesContext context, T component) throws IOException {
 	}
 
 	@Override
@@ -188,8 +185,7 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 		Field field = (Field) component;
 
 		String submitParamName = null;
-		if (field instanceof ComboBox
-				&& ((ComboBox) field).getHiddenName() != null) {
+		if (field instanceof ComboBox && ((ComboBox) field).getHiddenName() != null) {
 			submitParamName = ((ComboBox) field).getHiddenName();
 		} else if (!StringUtil.isEmpty(field.getName()))
 			submitParamName = field.getName();
@@ -198,8 +194,7 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 
 		assert (submitParamName != null);
 
-		Map<String, String> requestMap = context.getExternalContext()
-				.getRequestParameterMap();
+		Map<String, String> requestMap = context.getExternalContext().getRequestParameterMap();
 		// Don't overwrite the value unless you have to!
 		String newValue = requestMap.get(submitParamName);
 		if (newValue != null) {
@@ -211,8 +206,7 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 		return ConfigHelper.buildInstanceWithTemplate(component, this.getStructureTemplate());
 	}
 
-	protected void rendererParamsNotNull(FacesContext context,
-			UIComponent component) {
+	protected void rendererParamsNotNull(FacesContext context, UIComponent component) {
 		Utils.notNull("context", context);
 		Utils.notNull("component", component);
 	}
@@ -271,9 +265,7 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 
 	}
 
-	protected String getFormattedValue(FacesContext context,
-			UIComponent component, Object currentValue)
-			throws ConverterException {
+	protected String getFormattedValue(FacesContext context, UIComponent component, Object currentValue) throws ConverterException {
 
 		return getFormattedValue(context, component, currentValue, null);
 	}
@@ -295,8 +287,7 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 	 * @throws ConverterException
 	 *             if the value cannot be converted
 	 */
-	protected String getFormattedValue(FacesContext context,
-			UIComponent component, Object currentValue, Converter converter)
+	protected String getFormattedValue(FacesContext context, UIComponent component, Object currentValue, Converter converter)
 			throws ConverterException {
 
 		// formatting is supported only for components that support
@@ -341,8 +332,7 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 		return converter.getAsString(context, component, currentValue);
 	}
 
-	protected Iterator<?> getMessageIter(FacesContext context,
-			String forComponent, UIComponent component) {
+	protected Iterator<?> getMessageIter(FacesContext context, String forComponent, UIComponent component) {
 
 		Iterator<?> messageIter;
 		// Attempt to use the "for" attribute to locate
@@ -356,13 +346,11 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 			if (forComponent.length() == 0) {
 				messageIter = context.getMessages(null);
 			} else {
-				UIComponent result = getForComponent(context, forComponent,
-						component);
+				UIComponent result = getForComponent(context, forComponent, component);
 				if (result == null) {
 					messageIter = Collections.EMPTY_LIST.iterator();
 				} else {
-					messageIter = context.getMessages(result
-							.getClientId(context));
+					messageIter = context.getMessages(result.getClientId(context));
 				}
 			}
 		} else {
@@ -384,8 +372,7 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 	 * @return the component with the the <code>id</code that matches
 	 *         <code>forComponent</code> otheriwse null if no match is found.
 	 */
-	protected UIComponent getForComponent(FacesContext context,
-			String forComponent, UIComponent component) {
+	protected UIComponent getForComponent(FacesContext context, String forComponent, UIComponent component) {
 
 		if (null == forComponent || forComponent.length() == 0) {
 			return null;
@@ -411,8 +398,7 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 			// no hit from above, scan for a NamingContainer
 			// that contains the component we're looking for from the root.
 			if (result == null) {
-				result = findUIComponentBelow(context.getViewRoot(),
-						forComponent);
+				result = findUIComponentBelow(context.getViewRoot(), forComponent);
 			}
 		} catch (Exception e) {
 			// ignore - log the warning
@@ -425,8 +411,7 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 
 	}
 
-	private static UIComponent findUIComponentBelow(UIComponent startPoint,
-			String forComponent) {
+	private static UIComponent findUIComponentBelow(UIComponent startPoint, String forComponent) {
 
 		UIComponent retComp = null;
 		if (startPoint.getChildCount() > 0) {
@@ -503,34 +488,37 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 			this.value = value;
 		}
 	}
+
 	/**
-     * @param command the command which may have parameters
-     *
-     * @return an array of parameters
-     */
-    @SuppressWarnings("unchecked")
-	public static Map<String,Object> getParamList(UIComponent command,boolean includeHidden) {
-        if (command.getChildCount() > 0) {
-        	Map<String,Object> parameterList = new HashMap<String,Object>();
-            for (UIComponent kid : command.getChildren()) {
-                if (kid instanceof UIParameter) {
-                    UIParameter uiParam = (UIParameter) kid;
-                    Object value = uiParam.getValue();
-                    parameterList.put(uiParam.getName(), value);
-                }
-                if(includeHidden && kid instanceof Hidden){
-                	Hidden hidden = (Hidden)kid;
-                	String name = hidden.getName();
-    				name = name == null ? hidden.getClientId(FacesUtils.context()) : name;
-    				parameterList.put(hidden.getName(), Ext.PREFIX_RAW_VALUE	+ hidden.getVar() + ".getValue()");
-                }
-            }
-            return parameterList;
-        } else {
-            return MapUtils.EMPTY_MAP;
-        }
-    }
-    public static Map<String,Object> getParamList(UIComponent command){
-    	return getParamList(command,false);
-    }
+	 * @param command
+	 *            the command which may have parameters
+	 * 
+	 * @return an array of parameters
+	 */
+	@SuppressWarnings("unchecked")
+	public static Map<String, Object> getParamList(UIComponent command, boolean includeHidden) {
+		if (command.getChildCount() > 0) {
+			Map<String, Object> parameterList = new HashMap<String, Object>();
+			for (UIComponent kid : command.getChildren()) {
+				if (kid instanceof UIParameter) {
+					UIParameter uiParam = (UIParameter) kid;
+					Object value = uiParam.getValue();
+					parameterList.put(uiParam.getName(), value);
+				}
+				if (includeHidden && kid instanceof Hidden) {
+					Hidden hidden = (Hidden) kid;
+					String name = hidden.getName();
+					name = name == null ? hidden.getClientId(FacesUtils.context()) : name;
+					parameterList.put(hidden.getName(), Ext.PREFIX_RAW_VALUE + hidden.getVar() + ".getValue()");
+				}
+			}
+			return parameterList;
+		} else {
+			return MapUtils.EMPTY_MAP;
+		}
+	}
+
+	public static Map<String, Object> getParamList(UIComponent command) {
+		return getParamList(command, false);
+	}
 }
