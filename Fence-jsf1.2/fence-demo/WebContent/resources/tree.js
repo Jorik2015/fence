@@ -139,6 +139,14 @@ Docs.classData = {
 			"iconCls" : "icon-cmp",
 			"cls" : "cls",
 			"leaf" : true
+		}, {
+			"href" : "panel/grouptabpanel.xhtml",
+			"text" : "GroupTabPanel",
+			"id" : "Ext.GroupTabPanel",
+			"isClass" : true,
+			"iconCls" : "icon-cmp",
+			"cls" : "cls",
+			"leaf" : true
 		} ]
 	}, {
 		"href" : "",
