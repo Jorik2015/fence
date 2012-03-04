@@ -64,7 +64,7 @@
 			</tr>
 			<tr>
 				<td class="td"><s:gridpanel id="gridpanel3" loadMask="true"
-					title="Simple Gridpanel(Data Array)" height="150" width="500">
+					title="Simple Gridpanel(Data Array)" height="350" width="500">
 					<s:toolbar>
 						<s:button text="R(GridPanel)" type="button" iconCls="rerender"
 							render="gridpanel3" tooltip="Rerender the GridPanel"></s:button>
@@ -73,15 +73,20 @@
 						<s:button text="R(Load)" type="button" iconCls="rerender"
 							handler="store3.load();" tooltip="ReLoad the Store"></s:button>
 					</s:toolbar>
+					<s:rowexpander var="expander" tpl="@rowTpl">
+						<s:template var="rowTpl">
+							<p><b>Username:</b> {username}</p><br/>
+							<p><b>BirthDate:</b> {birthDate}</p><br/>
+						</s:template>
+					</s:rowexpander>
 					<s:cm>
-						<s:rownumber />
+						<s:column refer="expander"  />
 						<s:column header="username" dataIndex="username" width="100"
 							sortable="true" />
 						<s:column header="password" dataIndex="password" width="100" />
 						<s:datecolumn header="BirthDate" dataIndex="birthDate" width="100" />
 						<s:column header="Salary" dataIndex="salary" width="100" />
 					</s:cm>
-
 					<s:store id="store3" data="#{userAction.userArray}">
 						<s:jsonreader>
 							<s:dfield name="username" />
