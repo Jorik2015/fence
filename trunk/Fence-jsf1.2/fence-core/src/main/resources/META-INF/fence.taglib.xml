@@ -1713,6 +1713,29 @@
 		</component>
 	</tag>
 	<!-- data view list -->
+	<tag>
+		<tag-name>umenu</tag-name>
+		<component>
+			<component-type>Ext.ux.Menu</component-type>
+			<renderer-type>Ext.ux.Menu</renderer-type>
+		</component>
+	</tag>
+	
+	<tag>
+		<tag-name>template</tag-name>
+		<component>
+			<component-type>Ext.Template</component-type>
+			<renderer-type>Ext.Template</renderer-type>
+		</component>
+	</tag>
+	
+	<tag>
+		<tag-name>xtemplate</tag-name>
+		<component>
+			<component-type>Ext.XTemplate</component-type>
+			<renderer-type>Ext.XTemplate</renderer-type>
+		</component>
+	</tag>
 	
 	<tag>
 		<tag-name>region</tag-name>
@@ -1775,13 +1798,6 @@
 		<component>
 			<component-type>Ext.ux.DataViewTransition</component-type>
 			<renderer-type>Ext.ux.DataViewTransition</renderer-type>
-		</component>
-	</tag>
-	<tag>
-		<tag-name>umenu</tag-name>
-		<component>
-			<component-type>Ext.ux.Menu</component-type>
-			<renderer-type>Ext.ux.Menu</renderer-type>
 		</component>
 	</tag>
 </facelet-taglib>

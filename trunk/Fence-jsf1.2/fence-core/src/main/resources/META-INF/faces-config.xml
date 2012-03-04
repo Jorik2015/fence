@@ -754,6 +754,16 @@
 	</component>
 
 	<component>
+		<component-type>Ext.Template</component-type>
+		<component-class>ext.Template</component-class>
+	</component>
+
+	<component>
+		<component-type>Ext.XTemplate</component-type>
+		<component-class>ext.XTemplate</component-class>
+	</component>
+
+	<component>
 		<component-type>Ext.ux.data.PagingMemoryProxy</component-type>
 		<component-class>ext.ux.data.PagingMemoryProxy</component-class>
 	</component>
@@ -1557,6 +1567,18 @@
 			<renderer-class>com.abner.fence.renderkit.ExtPluginRenderer</renderer-class>
 		</renderer>
 		<!-- ext ux plugins end -->
+
+		<renderer>
+			<component-family>Ext.Template</component-family>
+			<renderer-type>Ext.Template</renderer-type>
+			<renderer-class>com.abner.fence.renderkit.ExtTemplateRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>Ext.XTemplate</component-family>
+			<renderer-type>Ext.XTemplate</renderer-type>
+			<renderer-class>com.abner.fence.renderkit.ExtTemplateRenderer</renderer-class>
+		</renderer>
+
 	</render-kit>
 	<application>
 		<state-manager>com.abner.fence.application.DeferredStateManager</state-manager>
