@@ -996,12 +996,41 @@ public class Column extends ExtOutput {
 		this.xtype = xtype;
 		this.handleConfig("xtype", xtype);
 	}
+	
+	
+	private Boolean locked;
+
+	/**
+	 * Optional. <tt>false</tt> to disable columnresizing. Defaults to
+	 * <tt>true</tt>.
+	 */
+	public Boolean getLocked() {
+		if (null != this.locked) {
+			return this.locked;
+		}
+		ValueExpression _ve = getValueExpression("locked");
+		if (_ve != null) {
+			return (Boolean) _ve.getValue(getFacesContext().getELContext());
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * <p>
+	 * Set the value of the <code>locked</code> property.
+	 * </p>
+	 */
+	public void setLocked(Boolean locked) {
+		this.locked = locked;
+		this.handleConfig("locked", locked);
+	}
 
 	private Object[] _values;
 
 	public Object saveState(FacesContext _context) {
 		if (_values == null) {
-			_values = new Object[23];
+			_values = new Object[24];
 		}
 		_values[0] = super.saveState(_context);
 		_values[1] = align;
@@ -1026,7 +1055,7 @@ public class Column extends ExtOutput {
 		_values[20] = tooltip;
 		_values[21] = width;
 		_values[22] = xtype;
-
+		_values[23] = locked;
 		return _values;
 	}
 
@@ -1077,6 +1106,7 @@ public class Column extends ExtOutput {
 		this.handleConfig("width", this.width);
 		this.xtype = (String) _values[22];
 		this.handleConfig("xtype", this.xtype);
-
+		this.locked = (Boolean) _values[23];
+		this.handleConfig("locked", this.locked);
 	}
 }
