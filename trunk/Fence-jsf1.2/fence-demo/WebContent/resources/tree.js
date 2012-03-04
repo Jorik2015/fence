@@ -389,7 +389,15 @@ Docs.classData = {
 			"iconCls" : "icon-cmp",
 			"cls" : "cls",
 			"leaf" : true
-		} ]
+		}, {
+			"href" : "grid/gridfilter.xhtml",
+			"text" : "GridFilters",
+			"id" : "Ext.GridFilters",
+			"isClass" : true,
+			"iconCls" : "icon-cmp",
+			"cls" : "cls",
+			"leaf" : true
+		}  ]
 	}, {
 		"href" : "",
 		"text" : "Menu",
