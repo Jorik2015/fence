@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext" template="/layout/part.xhtml">
+	<ui:define name="pageTitle">GridPanel</ui:define>
+	<ui:define name="body">
+		<table class="demoTable">
+			<tr>
+				<td><s:panel id="panel" loadMask="true" layout="fit" title="Simple store use JsonReader" height="350" width="800">
+						<s:toolbar>
+							<s:tbfill />
+							<s:button text="R(GridPanel)" type="button" iconCls="rerender" render="panel" tooltip="Rerender the GridPanel"></s:button>
+							<s:button text="R(Store)" type="button" iconCls="rerender" render="store" tooltip="Rerender the Store"></s:button>
+							<s:button text="R(Load)" iconCls="rerender" handler="store.load();" tooltip="ReLoad the Store"></s:button>
+						</s:toolbar>
+						<s:datalistview>
+							<s:store id="store" autoLoad="true" beanAction="#{userAction}" autoSave="false">
+								<s:jsonreader>
+									<s:dfield name="id" type="int" />
+									<s:dfield name="username" />
+									<s:dfield name="age" type="int" />
+									<s:dfield name="mobile" />
+									<s:dfield name="salary" type="float" />
+									<s:dfield name="birthDate" type="date" dateFormat="Y-m-d H:i:s" />
+								</s:jsonreader>
+							</s:store>
+							<s:listcolumn header="Id" dataIndex="id" sortable="true" />
+							<s:listcolumn header="username" dataIndex="username" sortable="true" />
+							<s:listcolumn header="Age" dataIndex="age" />
+							<s:listcolumn header="Mobile" dataIndex="mobile" />
+							<s:listcolumn header="Salary" dataIndex="salary"  />
+							<s:listdatecolumn header="BirthDate" dataIndex="birthDate" format="m/d/Y" />
+						</s:datalistview>
+					</s:panel></td>
+			</tr>
+		</table>
+	</ui:define>
+</ui:composition>

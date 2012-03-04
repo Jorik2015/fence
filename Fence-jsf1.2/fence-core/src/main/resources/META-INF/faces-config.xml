@@ -714,6 +714,45 @@
 		<component-type>Ext.tree.TreeSorter</component-type>
 		<component-class>ext.tree.TreeSorter</component-class>
 	</component>
+	
+	<component>
+		<component-type>Ext.Viewport</component-type>
+		<component-class>ext.Viewport</component-class>
+	</component>
+	<component>
+		<component-type>Ext.Window</component-type>
+		<component-class>ext.Window</component-class>
+	</component>
+	<component>
+		<component-type>Ext.Message</component-type>
+		<component-class>ext.Message</component-class>
+	</component>
+	<component>
+		<component-type>Ext.Tool</component-type>
+		<component-class>ext.Tool</component-class>
+	</component>
+	
+	<component>
+		<component-type>Ext.list.ListView</component-type>
+		<component-class>ext.list.ListView</component-class>
+	</component>
+	<component>
+		<component-type>Ext.list.Column</component-type>
+		<component-class>ext.list.Column</component-class>
+	</component>
+	<component>
+		<component-type>Ext.list.BooleanColumn</component-type>
+		<component-class>ext.list.BooleanColumn</component-class>
+	</component>
+	<component>
+		<component-type>Ext.list.DateColumn</component-type>
+		<component-class>ext.list.DateColumn</component-class>
+	</component>
+	<component>
+		<component-type>Ext.list.NumberColumn</component-type>
+		<component-class>ext.list.NumberColumn</component-class>
+	</component>
+	
 	<component>
 		<component-type>Ext.ux.data.PagingMemoryProxy</component-type>
 		<component-class>ext.ux.data.PagingMemoryProxy</component-class>
@@ -899,24 +938,12 @@
 		<component-class>ext.ux.GroupTab</component-class>
 	</component>
 	<component>
-		<component-type>Ext.Viewport</component-type>
-		<component-class>ext.Viewport</component-class>
-	</component>
-	<component>
-		<component-type>Ext.Window</component-type>
-		<component-class>ext.Window</component-class>
-	</component>
-	<component>
-		<component-type>Ext.Message</component-type>
-		<component-class>ext.Message</component-class>
-	</component>
-	<component>
-		<component-type>Ext.Tool</component-type>
-		<component-class>ext.Tool</component-class>
-	</component>
-	<component>
 		<component-type>Ext.ux.PanelResizer</component-type>
 		<component-class>ext.ux.PanelResizer</component-class>
+	</component>
+	<component>
+		<component-type>Ext.ux.DataViewTransition</component-type>
+		<component-class>ext.ux.DataViewTransition</component-class>
 	</component>
 	<component>
 		<component-type>Ext.ux.ManagedIFrame.Panel</component-type>

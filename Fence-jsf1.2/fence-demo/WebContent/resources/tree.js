@@ -334,6 +334,24 @@ Docs.classData = {
 		} ]
 	}, {
 		"href" : "",
+		"text" : "List",
+		"id" : "Ext.List",
+		"isClass" : true,
+		"iconCls" : "icon-cmp",
+		"cls" : "cls",
+		"leaf" : false,
+		"expanded" : false,
+		"children" : [ {
+			"href" : "data/listview.xhtml",
+			"text" : "ListView",
+			"id" : "Ext.ListView",
+			"isClass" : true,
+			"iconCls" : "icon-cmp",
+			"cls" : "cls",
+			"leaf" : true
+		}]
+	}, {
+		"href" : "",
 		"text" : "Grid",
 		"id" : "Ext.Grid",
 		"isClass" : true,

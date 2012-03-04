@@ -1648,6 +1648,52 @@
 		</component>
 	</tag>
 	<tag>
+		<tag-name>tool</tag-name>
+		<component>
+			<component-type>Ext.Tool</component-type>
+			<renderer-type>Ext.Tool</renderer-type>
+		</component>
+	</tag>
+	
+	<!-- data list view -->
+	<tag>
+		<tag-name>datalistview</tag-name>
+		<component>
+			<component-type>Ext.list.ListView</component-type>
+			<renderer-type>Ext.list.ListView</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>listcolumn</tag-name>
+		<component>
+			<component-type>Ext.list.Column</component-type>
+			<renderer-type>Ext.list.Column</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>listbooleancolumn</tag-name>
+		<component>
+			<component-type>Ext.list.BooleanColumn</component-type>
+			<renderer-type>Ext.list.BooleanColumn</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>listdatecolumn</tag-name>
+		<component>
+			<component-type>Ext.list.DateColumn</component-type>
+			<renderer-type>Ext.list.DateColumn</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>listnumbercolumn</tag-name>
+		<component>
+			<component-type>Ext.list.NumberColumn</component-type>
+			<renderer-type>Ext.list.NumberColumn</renderer-type>
+		</component>
+	</tag>
+	<!-- data view list -->
+	
+	<tag>
 		<tag-name>region</tag-name>
 		<component>
 			<component-type>Ext.layout.BorderLayout.Region</component-type>
@@ -1676,13 +1722,6 @@
 		</component>
 	</tag>
 	<tag>
-		<tag-name>tool</tag-name>
-		<component>
-			<component-type>Ext.Tool</component-type>
-			<renderer-type>Ext.Tool</renderer-type>
-		</component>
-	</tag>
-	<tag>
 		<tag-name>mifpanel</tag-name>
 		<component>
 			<component-type>Ext.ux.ManagedIFrame.Panel</component-type>
@@ -1708,6 +1747,13 @@
 		<component>
 			<component-type>Ext.ux.PanelResizer</component-type>
 			<renderer-type>Ext.ux.PanelResizer</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>dataviewtransition</tag-name>
+		<component>
+			<component-type>Ext.ux.DataViewTransition</component-type>
+			<renderer-type>Ext.ux.DataViewTransition</renderer-type>
 		</component>
 	</tag>
 	<tag>
