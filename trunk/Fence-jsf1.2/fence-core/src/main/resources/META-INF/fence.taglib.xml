@@ -1429,6 +1429,13 @@
 		</component>
 	</tag>
 	<tag>
+		<tag-name>lockinggridview</tag-name>
+		<component>
+			<component-type>Ext.ux.grid.LockingGridView</component-type>
+			<renderer-type>Ext.ux.grid.LockingGridView</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>checkcolumn</tag-name>
 		<component>
 			<component-type>Ext.ux.grid.CheckColumn</component-type>

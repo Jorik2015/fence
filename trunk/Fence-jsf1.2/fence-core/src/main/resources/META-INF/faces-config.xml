@@ -714,7 +714,7 @@
 		<component-type>Ext.tree.TreeSorter</component-type>
 		<component-class>ext.tree.TreeSorter</component-class>
 	</component>
-	
+
 	<component>
 		<component-type>Ext.Viewport</component-type>
 		<component-class>ext.Viewport</component-class>
@@ -731,7 +731,7 @@
 		<component-type>Ext.Tool</component-type>
 		<component-class>ext.Tool</component-class>
 	</component>
-	
+
 	<component>
 		<component-type>Ext.list.ListView</component-type>
 		<component-class>ext.list.ListView</component-class>
@@ -752,7 +752,7 @@
 		<component-type>Ext.list.NumberColumn</component-type>
 		<component-class>ext.list.NumberColumn</component-class>
 	</component>
-	
+
 	<component>
 		<component-type>Ext.ux.data.PagingMemoryProxy</component-type>
 		<component-class>ext.ux.data.PagingMemoryProxy</component-class>
@@ -805,7 +805,7 @@
 		<component-type>Ext.ux.GMapPanel</component-type>
 		<component-class>ext.ux.GMapPanel</component-class>
 	</component>
-	
+
 	<!-- Grid plugins -->
 	<component>
 		<component-type>Ext.ux.grid.ColumnHeaderGroup</component-type>
@@ -818,6 +818,10 @@
 	<component>
 		<component-type>Ext.ux.grid.BufferView</component-type>
 		<component-class>ext.ux.grid.BufferView</component-class>
+	</component>
+	<component>
+		<component-type>Ext.ux.grid.LockingGridView</component-type>
+		<component-class>ext.ux.grid.LockingGridView</component-class>
 	</component>
 	<component>
 		<component-type>Ext.ux.grid.CheckColumn</component-type>
@@ -868,7 +872,7 @@
 		<component-class>ext.ux.grid.filter.StringFilter</component-class>
 	</component>
 	<!-- Grid plugins end -->
-	
+
 	<component>
 		<component-type>Ext.ux.layout.CenterLayout</component-type>
 		<component-class>ext.ux.layout.CenterLayout</component-class>
@@ -1283,19 +1287,19 @@
 			<renderer-type>Ext.data.DataReader</renderer-type>
 			<renderer-class>com.abner.fence.renderkit.ExtDataReaderRenderer</renderer-class>
 		</renderer>
-		
+
 		<renderer>
 			<component-family>Ext.data.JsonReader</component-family>
 			<renderer-type>Ext.data.JsonReader</renderer-type>
 			<renderer-class>com.abner.fence.renderkit.ExtDataReaderRenderer</renderer-class>
 		</renderer>
-		
+
 		<renderer>
 			<component-family>Ext.data.ArrayReader</component-family>
 			<renderer-type>Ext.data.ArrayReader</renderer-type>
 			<renderer-class>com.abner.fence.renderkit.ExtDataReaderRenderer</renderer-class>
 		</renderer>
-		
+
 		<renderer>
 			<component-family>Ext.data.ArrayStore</component-family>
 			<renderer-type>Ext.data.ArrayStore</renderer-type>
