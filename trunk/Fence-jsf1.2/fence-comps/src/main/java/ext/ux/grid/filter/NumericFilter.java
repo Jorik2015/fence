@@ -31,7 +31,7 @@ import ext.annotation.UXResources;
  */
 @InstanceOf("Ext.ux.grid.filter.NumericFilter")
 @UXResources(js = {"ext[version]/ux/gridfilters/menu/RangeMenu.js","ext[version]/ux/gridfilters/filter/NumericFilter.js"},css="ext30/ux/gridfilters/css/RangeMenu.css")
-@ParseConfigMode(ui = false, name = "filters", pmode = PersistenceMode.ParentProperty, rmode = ReferenceMode.Var)
+@ParseConfigMode(ui = false, name = "filters", pmode = PersistenceMode.ParentProperty, rmode = ReferenceMode.Config)
 public class NumericFilter extends Filter {
 	public static final String COMPONENT_TYPE = "Ext.ux.grid.filter.NumericFilter";
 	public static final String COMPONENT_FAMILY = "Ext.ux.grid.filter.NumericFilter";

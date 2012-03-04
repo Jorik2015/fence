@@ -47,7 +47,7 @@ import ext.annotation.UXResources;
  */
 @InstanceOf("Ext.ux.grid.filter.ListFilter")
 @UXResources(js = {"ext[version]/ux/gridfilters/menu/ListMenu.js","ext[version]/ux/gridfilters/filter/ListFilter.js"})
-@ParseConfigMode(ui = false, name = "filters", pmode = PersistenceMode.ParentProperty, rmode = ReferenceMode.Var)
+@ParseConfigMode(ui = false, name = "filters", pmode = PersistenceMode.ParentProperty, rmode = ReferenceMode.Config)
 
 public class ListFilter extends Filter {
 	public static final String COMPONENT_TYPE = "Ext.ux.grid.filter.ListFilter";
