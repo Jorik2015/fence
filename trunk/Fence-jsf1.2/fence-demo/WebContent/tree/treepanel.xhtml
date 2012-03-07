@@ -5,6 +5,14 @@
 	template="/layout/part.xhtml">
 	<ui:define name="pageTitle">Button</ui:define>
 	<ui:define name="body">
-		
+		<table class="demoTable">
+			<tr>
+				<td class="td">
+					<s:treepanel id="treegrid" loadMask="true" title="TreePanel" height="350" width="500">
+						<s:asynctreenode />
+						<s:treeloader data="#{treeAction.menus}" />
+					</s:treepanel></td>
+			</tr>
+		</table>
 	</ui:define>
 </ui:composition>
