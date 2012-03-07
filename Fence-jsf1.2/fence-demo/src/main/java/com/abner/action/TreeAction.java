@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.springframework.stereotype.Controller;
 
+import com.abner.model.TreeMenu;
 import com.abner.model.TreeModel;
 
 @Controller("treeAction")
@@ -30,6 +31,19 @@ public class TreeAction {
 					treeModel.getChildren().add(treeModelChild);
 				}
 			}
+		}
+		return result;
+	}
+
+	public Set<TreeMenu> getTreeMenus() {
+		Set<TreeMenu> result = new HashSet<TreeMenu>();
+		for (int i = 0; i < 10; i++) {
+			TreeMenu treeMenu = new TreeMenu();
+			treeMenu.setHref("#");
+			treeMenu.setText("Menu " + i);
+			treeMenu.setLeaf(false);
+
+			result.add(treeMenu);
 		}
 		return result;
 	}
