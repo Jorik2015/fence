@@ -35,6 +35,7 @@
             }
             this.setActiveTab(tab);
 	    };
+	    mainPanel.loadClass('home.xhtml','Ext.Home');
 	</s:onready>
 	</head>
 	<body>
@@ -74,9 +75,6 @@
 		<s:tabpanel id="mainPanel" title="Center" region="center"
 			enableTabScroll="true" defaults="{xtype:'iframepanel'}"
 			activeTab="home" cmargins="2 0 5 0" margins="2 0 5 0">
-			<s:mifpanel id="home" defaultSrc="/home.xhtml" iconCls="home"
-				title="Home" autoScroll="true">
-			</s:mifpanel>
 			<s:tabclosemenu />
 			<ui:insert name="body" />
 			<s:toolbar position="bbar">
