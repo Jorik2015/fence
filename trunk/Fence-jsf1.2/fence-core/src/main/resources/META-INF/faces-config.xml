@@ -834,6 +834,10 @@
 		<component-class>ext.ux.grid.LockingGridView</component-class>
 	</component>
 	<component>
+		<component-type>Ext.ux.grid.LockingColumnModel</component-type>
+		<component-class>ext.ux.grid.LockingColumnModel</component-class>
+	</component>
+	<component>
 		<component-type>Ext.ux.grid.CheckColumn</component-type>
 		<component-class>ext.ux.grid.CheckColumn</component-class>
 	</component>

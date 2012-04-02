@@ -1436,6 +1436,13 @@
 		</component>
 	</tag>
 	<tag>
+		<tag-name>lockingcolumnmodel</tag-name>
+		<component>
+			<component-type>Ext.ux.grid.LockingColumnModel</component-type>
+			<renderer-type>Ext.ux.grid.LockingColumnModel</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>checkcolumn</tag-name>
 		<component>
 			<component-type>Ext.ux.grid.CheckColumn</component-type>
