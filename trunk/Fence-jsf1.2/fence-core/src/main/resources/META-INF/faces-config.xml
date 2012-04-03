@@ -767,6 +767,11 @@
 		<component-type>Ext.ux.data.PagingMemoryProxy</component-type>
 		<component-class>ext.ux.data.PagingMemoryProxy</component-class>
 	</component>
+	
+	<component>
+		<component-type>Ext.ux.UploadDialog</component-type>
+		<component-class>Ext.ux.UploadDialog</component-class>
+	</component>
 	<component>
 		<component-type>Ext.ux.form.DateTime</component-type>
 		<component-class>ext.ux.form.DateTime</component-class>
