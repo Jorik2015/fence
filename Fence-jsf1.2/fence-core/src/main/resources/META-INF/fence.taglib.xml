@@ -1321,11 +1321,20 @@
 			<renderer-type>Ext.ux.data.PagingMemoryProxy</renderer-type>
 		</component>
 	</tag>
+	
 	<tag>
 		<tag-name>datetime</tag-name>
 		<component>
 			<component-type>Ext.ux.form.DateTime</component-type>
 			<renderer-type>Ext.ux.form.DateTime</renderer-type>
+		</component>
+	</tag>
+	
+	<tag>
+		<tag-name>uploaddialog</tag-name>
+		<component>
+			<component-type>Ext.ux.UploadDialog</component-type>
+			<renderer-type>Ext.ux.UploadDialog</renderer-type>
 		</component>
 	</tag>
 	<tag>
