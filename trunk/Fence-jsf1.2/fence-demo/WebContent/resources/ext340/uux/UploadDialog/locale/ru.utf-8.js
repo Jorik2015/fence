@@ -1,7 +1,7 @@
 Ext.apply(
 Ext.ux.UploadDialog.Dialog.prototype.i18n,
 {
-    title: '上传附件',
+    title: '上传',
     state_col_title: '状态',
     state_col_width: 70,
     filename_col_title: '文件名',
