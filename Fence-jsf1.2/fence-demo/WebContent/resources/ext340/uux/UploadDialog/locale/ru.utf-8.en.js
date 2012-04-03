@@ -1,0 +1,37 @@
+Ext.apply(
+Ext.ux.UploadDialog.Dialog.prototype.i18n,
+{
+    title: 'Upload',
+    state_col_title: 'Status',
+    state_col_width: 70,
+    filename_col_title: 'File Name',
+    filename_col_width: 230,
+    note_col_title: 'Remark',
+    note_col_width: 150,
+    add_btn_text: 'Add',
+    add_btn_tip: 'Add To Upload List',
+    remove_btn_text: 'Delete',
+    remove_btn_tip: 'Upload From List',
+    reset_btn_text: 'Reset',
+    reset_btn_tip: 'Reset Upload List',
+    upload_btn_start_text: 'Start Upload',
+    upload_btn_stop_text: 'Stop Upload',
+    upload_btn_start_tip: 'Start Upload',
+    upload_btn_stop_tip: 'Stop Upload',
+    close_btn_text: 'Ok',
+    close_btn_tip: 'Close',
+    progress_waiting_text: 'Waiting……',
+    progress_uploading_text: 'Uploading: {0} / {1} successfully',
+    error_msgbox_title: 'Error Msg',
+    permitted_extensions_join_str: ',',
+    err_file_type_not_permitted: 'Error File Type: {1}',
+    note_queued_to_upload: 'Wait Upload',
+    note_processing: 'Uploading……',
+    note_upload_failed: 'Upload Failed',
+    note_upload_success: 'Upload Successfully',
+    note_upload_error: 'Upload Error',
+    note_aborted: 'Igonre',
+    note_canceled: 'Cancel'
+}
+);
+
