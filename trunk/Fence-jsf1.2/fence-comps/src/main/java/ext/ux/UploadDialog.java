@@ -25,7 +25,7 @@ import java.util.Date;
 @XType("uploaddialog")
 @InstanceOf("Ext.ux.UploadDialog.Dialog")
 public class UploadDialog extends Window {
-	public static final String COMPONENT_FAMILY = "Ext.ux.UploadDialog.Dialog";
+	public static final String COMPONENT_FAMILY = "Ext.ux.UploadDialog";
 
 	/**
 	 * <p>
