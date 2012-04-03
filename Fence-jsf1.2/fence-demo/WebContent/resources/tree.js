@@ -263,6 +263,14 @@ Docs.classData = {
 			"iconCls" : "icon-cmp",
 			"cls" : "cls",
 			"leaf" : true
+		}, {
+			"href" : "formpanel/uploaddialog.xhtml",
+			"text" : "UploadDialog",
+			"id" : "Ext.UploadDialog",
+			"isClass" : true,
+			"iconCls" : "icon-cmp",
+			"cls" : "cls",
+			"leaf" : true
 		} ]
 	}, {
 		"href" : "",
