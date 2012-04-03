@@ -770,7 +770,7 @@
 	
 	<component>
 		<component-type>Ext.ux.UploadDialog</component-type>
-		<component-class>Ext.ux.UploadDialog</component-class>
+		<component-class>ext.ux.UploadDialog</component-class>
 	</component>
 	<component>
 		<component-type>Ext.ux.form.DateTime</component-type>
