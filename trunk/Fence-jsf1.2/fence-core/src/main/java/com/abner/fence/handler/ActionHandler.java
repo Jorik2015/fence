@@ -28,7 +28,7 @@ public class ActionHandler implements ExtHandler {
 
 		if (result != null) {
 			JsonConfig cfg = JsonUtils.getDateJsonConfig();
-			cfg.setJsonPropertyFilter(new JsonCommonFilter(new JsonLevelFilter(2)));
+			cfg.setJsonPropertyFilter(new JsonCommonFilter(new JsonLevelFilter(3)));
 			cfg.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
 			writer.write(JsonUtils.toJson(result, cfg));
 		}
