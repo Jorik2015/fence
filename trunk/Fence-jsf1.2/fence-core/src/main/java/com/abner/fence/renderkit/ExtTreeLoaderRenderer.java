@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.faces.context.FacesContext;
 
+import net.sf.json.JSONObject;
+
 import org.apache.commons.lang.StringUtils;
 
 import com.abner.fence.handler.TreeLoaderHandler;
@@ -30,12 +32,20 @@ public class ExtTreeLoaderRenderer extends ExtBasicRenderer<TreeLoader> {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private String encodeBaseParams(FacesContext context, TreeLoader loader) {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put(RequestUtils.AJAX_PARAM, String.valueOf(true));
 		params.put(RequestUtils.RENDER_PARAM, loader.getClientId(context));
 		params.put(RequestUtils.IMMEDIATE_PARAM, String.valueOf(true));
 		params.put(RequestUtils.HANDLER_PARAM, TreeLoaderHandler.HANDLER_ID);
+		
+		Object rawParams = loader.getBaseParams();
+		if(rawParams != null){
+			JSONObject rawParamJson = JSONObject.fromObject(rawParams);
+			params.putAll(rawParamJson);
+		}
+		
 		StringBuilder sb = new StringBuilder(128);
 		int i = 0;
 		for (Map.Entry<String, String> entry : params.entrySet()) {
