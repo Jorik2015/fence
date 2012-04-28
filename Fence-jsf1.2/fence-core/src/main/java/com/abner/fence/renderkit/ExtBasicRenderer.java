@@ -496,14 +496,14 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 	 * @return an array of parameters
 	 */
 	@SuppressWarnings("unchecked")
-	public static Map<String, Object> getParamList(UIComponent command, boolean includeHidden) {
+	public static Map<String, String> getParamList(UIComponent command, boolean includeHidden) {
 		if (command.getChildCount() > 0) {
-			Map<String, Object> parameterList = new HashMap<String, Object>();
+			Map<String, String> parameterList = new HashMap<String, String>();
 			for (UIComponent kid : command.getChildren()) {
 				if (kid instanceof UIParameter) {
 					UIParameter uiParam = (UIParameter) kid;
 					Object value = uiParam.getValue();
-					parameterList.put(uiParam.getName(), value);
+					parameterList.put(uiParam.getName(), String.valueOf(value));
 				}
 				if (includeHidden && kid instanceof Hidden) {
 					Hidden hidden = (Hidden) kid;
@@ -518,7 +518,7 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 		}
 	}
 
-	public static Map<String, Object> getParamList(UIComponent command) {
+	public static Map<String, String> getParamList(UIComponent command) {
 		return getParamList(command, false);
 	}
 }
