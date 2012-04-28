@@ -39,12 +39,14 @@ public class ExtTreeLoaderRenderer extends ExtBasicRenderer<TreeLoader> {
 		params.put(RequestUtils.RENDER_PARAM, loader.getClientId(context));
 		params.put(RequestUtils.IMMEDIATE_PARAM, String.valueOf(true));
 		params.put(RequestUtils.HANDLER_PARAM, TreeLoaderHandler.HANDLER_ID);
+		params.putAll(getParamList(loader, true));
 		
 		Object rawParams = loader.getBaseParams();
 		if(rawParams != null){
 			JSONObject rawParamJson = JSONObject.fromObject(rawParams);
 			params.putAll(rawParamJson);
 		}
+		
 		
 		StringBuilder sb = new StringBuilder(128);
 		int i = 0;
