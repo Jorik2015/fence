@@ -23,26 +23,30 @@ public class TreeLoaderHandler implements ExtHandler {
 
 	private TreeLoader loader;
 
-	public void render(FacesContext context, UIComponent target)
-			throws IOException {
+	public void render(FacesContext context, UIComponent target) throws IOException {
 		ResponseWriter writer = context.getResponseWriter();
-		HttpServletResponse  response = (HttpServletResponse)context.getExternalContext().getResponse();
+		HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
 		response.setContentType("text/plain; charset=UTF-8");
 		this.loader = (TreeLoader) target;
 
 		assert loader != null;
-		
+
 		List<Config> configs = ComponentUtil.findComponents(loader, Config.class);
-		for(Config config :configs){
+		for (Config config : configs) {
 			config.encodeAll(context);
 		}
 
 		Object data = loader.getData();
-		if(data == null)
+		if (data == null)
 			data = loader.getConfig("data");
 
+		int levelValue = loader.getConfigValue("levelFilter").getIntValue();
+		if (levelValue == 0) {
+			levelValue = 3;
+		}
+
 		JsonConfig cfg = JsonUtils.getDateJsonConfig();
-		cfg.setJsonPropertyFilter(new JsonCommonFilter(new JsonLevelFilter(1)));
+		cfg.setJsonPropertyFilter(new JsonCommonFilter(new JsonLevelFilter(3)));
 		cfg.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
 		writer.write(JsonUtils.getJSON(data, cfg).toString());
 	}
