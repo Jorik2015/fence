@@ -64,6 +64,10 @@ Ext.extend(Ext.ux.ComboBoxTree,Ext.form.ComboBox, {
     },
     
 	setValue : function(node){
+		if(typeof node =='string'){
+			return;
+		}
+		
 		this.node = node;
 		if(!this.displayField){
 			this.displayField = 'text';
