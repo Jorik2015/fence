@@ -4,6 +4,7 @@
 	<ui:define name="pageHeader">
 		<s:resource library="/resources/ext340/uux/" src="DateTimeField.js" />
 		<s:resource library="/resources/ext340/uux/SuperBoxSelect/" src="superboxselect.css;SuperBoxSelect.js" />
+		<s:resource library="/resources/ext340/uux/" src="ComboBoxTree.js" />
 		<s:resource library="/resources/ext340/uux/SearchBox/" src="css/Ext.ux.form.SearchBox.css;css/Ext.ux.form.ExtendedComboBox.css;js/Ext.ux.form.SearchBox.js;js/Ext.ux.form.ExtendedComboBox.js" />
 		<script type="text/javascript"> //<![CDATA[
 	//]]> </script>
@@ -30,7 +31,15 @@
 						</s:compositefield>
 						<s:searchfield fieldLabel="SearchField" />
 						<s:searchbox fieldLabel="SearchBox" />
-						<s:extendedcomboBox fieldLabel="ExtendedComboBox" valueField="id" checkField="userName" store="userStore" displayField="username"/>
+						<s:treepanel id="treegrid" loadMask="true">
+							<s:asynctreenode text="Root"/>
+							<s:treeloader data="#{treeAction.treeMenus}" />
+						</s:treepanel>
+						<s:comboboxtree fieldLabel="ComboboxTree" tree="@treegrid" selectNodeModel="all"  typeAhead="true" triggerAction="all">
+						</s:comboboxtree>
+						<s:comboboxchecktree fieldLabel="ComboboxCheckTree" tree="@treegrid" checkModel="cascade">
+						</s:comboboxchecktree>
+						<s:extendedcombobox fieldLabel="ExtendedComboBox" valueField="id" checkField="userName" store="userStore" displayField="username"/>
 						<!-- <s:checktreecombobox fieldLabel="CheckTreeComboBox" />-->
 						<s:superboxselect fieldLabel="SuperBoxSelect" valueField="id" store="userStore" displayField="username" typeAhead="true" triggerAction="all" mode="local" />
 					</s:formpanel></td>
