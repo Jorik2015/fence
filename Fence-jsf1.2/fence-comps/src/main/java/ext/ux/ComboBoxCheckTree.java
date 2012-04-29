@@ -43,6 +43,7 @@ public class ComboBoxCheckTree extends ComboBox {
 		enum PropertyKeys {
 			checkModel
 			,onlyLeafCheckable
+			,selectValueModel 
 		;
 		String toString;
 
@@ -114,15 +115,44 @@ public class ComboBoxCheckTree extends ComboBox {
 		this.onlyLeafCheckable = onlyLeafCheckable;
 		this.handleConfig("onlyLeafCheckable", onlyLeafCheckable);
 	}
+    	
+	private String selectValueModel ;
+	
+	/*
+	 *$cfg.commonts
+	 */
+	
+	public String getselectValueModel  () {
+		if (null != this.selectValueModel ) {
+			return this.selectValueModel ;
+		}
+		ValueExpression _ve = getValueExpression("selectValueModel ");
+		if (_ve != null) {
+			return (String) _ve.getValue(getFacesContext().getELContext());
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * <p>
+	 * Set the value of the <code>selectValueModel </code> property.
+	 * </p>
+	 */
+	public void setselectValueModel  (String  selectValueModel ) {
+		this.selectValueModel  = selectValueModel ;
+		this.handleConfig("selectValueModel ", selectValueModel );
+	}
         
   	private Object[] _values;
 		public Object saveState(FacesContext _context) {
 		if (_values == null) {
-			_values = new Object[3];
+			_values = new Object[4];
 		}
 		_values[0] = super.saveState(_context);
 				_values[1] = checkModel;	
 				_values[2] = onlyLeafCheckable;	
+				_values[3] = selectValueModel ;	
 				return _values;
 	}
 
@@ -133,5 +163,7 @@ public class ComboBoxCheckTree extends ComboBox {
 		this.handleConfig("checkModel", this.checkModel);
 				this.onlyLeafCheckable = (Boolean) _values[2];
 		this.handleConfig("onlyLeafCheckable", this.onlyLeafCheckable);
+				this.selectValueModel  = (String) _values[3];
+		this.handleConfig("selectValueModel ", this.selectValueModel );
 			}
 }
