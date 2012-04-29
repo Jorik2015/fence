@@ -801,6 +801,10 @@
 		<component-class>ext.ux.form.CheckTreeComboBox</component-class>
 	</component>
 	<component>
+		<component-type>Ext.ux.ComboBoxTree</component-type>
+		<component-class>ext.ux.ComboBoxTree</component-class>
+	</component>
+	<component>
 		<component-type>Ext.ux.form.SearchField</component-type>
 		<component-class>ext.ux.form.SearchField</component-class>
 	</component>
@@ -1503,6 +1507,11 @@
 		<renderer>
 			<component-family>Ext.ux.form.CheckTreeComboBox</component-family>
 			<renderer-type>Ext.ux.form.CheckTreeComboBox</renderer-type>
+			<renderer-class>com.abner.fence.renderkit.ExtInputRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>Ext.ux.ComboBoxTree</component-family>
+			<renderer-type>Ext.ux.ComboBoxTree</renderer-type>
 			<renderer-class>com.abner.fence.renderkit.ExtInputRenderer</renderer-class>
 		</renderer>
 		<renderer>
