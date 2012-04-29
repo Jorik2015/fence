@@ -1394,6 +1394,13 @@
 		</component>
 	</tag>
 	<tag>
+		<tag-name>extendedcombobox</tag-name>
+		<component>
+			<component-type>Ext.ux.form.ExtendedComboBox</component-type>
+			<renderer-type>Ext.ux.form.ExtendedComboBox</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>checktreecombobox</tag-name>
 		<component>
 			<component-type>Ext.ux.form.CheckTreeComboBox</component-type>
