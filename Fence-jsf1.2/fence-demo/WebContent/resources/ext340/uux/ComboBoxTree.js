@@ -65,13 +65,19 @@ Ext.extend(Ext.ux.ComboBoxTree,Ext.form.ComboBox, {
     
 	setValue : function(node){
 		this.node = node;
-        var text = node.text;
+		if(!this.displayField){
+			this.displayField = 'text';
+		}
+		if(!this.valueField){
+			this.valueField = 'id';
+		}
+        var text = node[this.displayField];
         this.lastSelectionText = text;
         if(this.hiddenField){
-            this.hiddenField.value = node.id;
+            this.hiddenField.value = node[this.valueField];
         }
         Ext.form.ComboBox.superclass.setValue.call(this, text);
-        this.value = node.id;
+        this.value = node[this.valueField];
     },
     
     getValue : function(){
