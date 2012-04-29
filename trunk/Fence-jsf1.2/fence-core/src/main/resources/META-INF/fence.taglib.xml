@@ -1401,6 +1401,13 @@
 		</component>
 	</tag>
 	<tag>
+		<tag-name>comboboxchecktree</tag-name>
+		<component>
+			<component-type>Ext.ux.ComboBoxCheckTree</component-type>
+			<renderer-type>Ext.ux.ComboBoxCheckTree</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>checktreecombobox</tag-name>
 		<component>
 			<component-type>Ext.ux.form.CheckTreeComboBox</component-type>
