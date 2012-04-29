@@ -10,17 +10,17 @@ Ext.ux.ComboBoxTree = function(){
 	this.onSelect = Ext.emptyFn;
 	this.editable = false;
 	
-	//all:ËùÓĞ½áµã¶¼¿ÉÑ¡ÖĞ
-	//exceptRoot£º³ı¸ù½áµã£¬ÆäËü½áµã¶¼¿ÉÑ¡£¨Ä¬ÈÏ£©
-	//folder:Ö»ÓĞÄ¿Â¼£¨·ÇÒ¶×ÓºÍ·Ç¸ù½áµã£©¿ÉÑ¡
-	//leaf£ºÖ»ÓĞÒ¶×Ó½áµã¿ÉÑ¡
+	//all:æ‰€æœ‰ç»“ç‚¹éƒ½å¯é€‰ä¸­
+	//exceptRootï¼šé™¤æ ¹ç»“ç‚¹ï¼Œå…¶å®ƒç»“ç‚¹éƒ½å¯é€‰ï¼ˆé»˜è®¤ï¼‰
+	//folder:åªæœ‰ç›®å½•ï¼ˆéå¶å­å’Œéæ ¹ç»“ç‚¹ï¼‰å¯é€‰
+	//leafï¼šåªæœ‰å¶å­ç»“ç‚¹å¯é€‰
 	this.selectNodeModel = arguments[0].selectNodeModel || 'exceptRoot';
 	
 	this.addEvents('afterchange');
 
 	Ext.ux.ComboBoxTree.superclass.constructor.apply(this, arguments);
 
-}
+};
 
 Ext.extend(Ext.ux.ComboBoxTree,Ext.form.ComboBox, {
 
