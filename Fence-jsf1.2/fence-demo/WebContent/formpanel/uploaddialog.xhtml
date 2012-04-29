@@ -1,0 +1,25 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
+	template="/layout/part.xhtml">
+	<ui:define name="pageTitle">Button</ui:define>
+	<ui:define name="pageHeader">
+	<s:resource library="/resources/ext340/uux/UploadDialog/" src="css/Ext.ux.UploadDialog.css;Ext.ux.UploadDialog.js;locale/ru.utf-8.js"/>
+	<script type="text/javascript"> 
+	//<![CDATA[
+	//]]> </script>
+	</ui:define>
+	<ui:define name="body">
+		<table class="demoTable" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+					<s:button text="Upload" handler="uploadDialog.show()"/>
+					<s:uploaddialog ns="" id="uploadDialog" reset_on_hide="false" allow_close_on_upload="true" upload_autostart="false">
+						<s:button text="Import" />
+					</s:uploaddialog>
+				</td>
+			</tr>
+		</table>
+	</ui:define>
+</ui:composition>
