@@ -5,6 +5,7 @@
 		<s:resource library="/resources/ext340/uux/" src="DateTimeField.js" />
 		<s:resource library="/resources/ext340/uux/SuperBoxSelect/" src="superboxselect.css;SuperBoxSelect.js" />
 		<s:resource library="/resources/ext340/uux/" src="ComboBoxTree.js" />
+		<s:resource library="/resources/ext340/uux/" src="ComboBoxCheckTree.js" />
 		<s:resource library="/resources/ext340/uux/SearchBox/" src="css/Ext.ux.form.SearchBox.css;css/Ext.ux.form.ExtendedComboBox.css;js/Ext.ux.form.SearchBox.js;js/Ext.ux.form.ExtendedComboBox.js" />
 		<script type="text/javascript"> //<![CDATA[
 	//]]> </script>
@@ -31,13 +32,19 @@
 						</s:compositefield>
 						<s:searchfield fieldLabel="SearchField" />
 						<s:searchbox fieldLabel="SearchBox" />
-						<s:treepanel id="treegrid" loadMask="true">
-							<s:asynctreenode text="Root"/>
-							<s:treeloader data="#{treeAction.treeMenus}" />
-						</s:treepanel>
-						<s:comboboxtree fieldLabel="ComboboxTree" tree="@treegrid" selectNodeModel="all"  typeAhead="true" triggerAction="all">
+						
+						<s:comboboxtree fieldLabel="ComboboxTree" tree="@treegrid1" selectNodeModel="all"  typeAhead="true" triggerAction="all">
+							<s:treepanel id="treegrid1" loadMask="true">
+								<s:asynctreenode text="Root"/>
+								<s:treeloader data="#{treeAction.treeMenus}" />
+							</s:treepanel>
 						</s:comboboxtree>
-						<s:comboboxchecktree fieldLabel="ComboboxCheckTree" tree="@treegrid" checkModel="cascade">
+						<s:comboboxchecktree fieldLabel="ComboboxCheckTree" tree="@treegrid2" checkModel="cascade" selectValueModel="all">
+							<s:treepanel id="treegrid2" loadMask="true">
+								<s:asynctreenode text="Root"/>
+								<s:treeloader data="#{treeAction.treeMenus}" baseAttrs="@{uiProvider: Ext.ux.TreeCheckNodeUI}">
+ 								</s:treeloader>
+							</s:treepanel>
 						</s:comboboxchecktree>
 						<s:extendedcombobox fieldLabel="ExtendedComboBox" valueField="id" checkField="userName" store="userStore" displayField="username"/>
 						<!-- <s:checktreecombobox fieldLabel="CheckTreeComboBox" />-->
