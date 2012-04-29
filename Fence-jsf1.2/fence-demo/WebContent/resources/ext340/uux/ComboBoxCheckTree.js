@@ -213,6 +213,7 @@ Ext.ux.ComboBoxCheckTree = function() {
 	this.mode = 'local';
 	this.triggerAction = 'all';
 	this.onSelect = Ext.emptyFn;
+	this.onViewClick = Ext.emptyFn;
 	this.editable = false;
 	this.selectValueModel = 'leaf';
 
