@@ -1401,6 +1401,13 @@
 		</component>
 	</tag>
 	<tag>
+		<tag-name>comboboxtree</tag-name>
+		<component>
+			<component-type>Ext.ux.ComboBoxTree</component-type>
+			<renderer-type>Ext.ux.ComboBoxTree</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>superboxselect</tag-name>
 		<component>
 			<component-type>Ext.ux.form.SuperBoxSelect</component-type>
