@@ -12,6 +12,7 @@ import net.sf.json.JsonConfig;
 import net.sf.json.util.CycleDetectionStrategy;
 import ext.base.Config;
 import ext.tree.TreeLoader;
+import ext.util.AttributeValue;
 import ext.util.ComponentUtil;
 import ext.util.JsonCommonFilter;
 import ext.util.JsonLevelFilter;
@@ -40,7 +41,12 @@ public class TreeLoaderHandler implements ExtHandler {
 		if (data == null)
 			data = loader.getConfig("data");
 
-		int levelValue = loader.getConfigValue("levelFilter").getIntValue();
+		int levelValue = 3;
+		AttributeValue av = loader.getConfigValue("levelFilter");
+		if (av != null) {
+			levelValue = av.getIntValue();
+		}
+
 		if (levelValue == 0) {
 			levelValue = 3;
 		}
