@@ -7,6 +7,7 @@
 		<s:resource library="/resources/ext340/uux/" src="ComboBoxTree.js" />
 		<s:resource library="/resources/ext340/uux/" src="ComboBoxCheckTree.js" />
 		<s:resource library="/resources/ext340/uux/SearchBox/" src="css/Ext.ux.form.SearchBox.css;css/Ext.ux.form.ExtendedComboBox.css;js/Ext.ux.form.SearchBox.js;js/Ext.ux.form.ExtendedComboBox.js" />
+		<s:resource library="/resources/ext340/uux/fckeditor/" src="fckeditor.js;ext.fckeditor.js" />
 		<script type="text/javascript"> //<![CDATA[
 	//]]> </script>
 	</ui:define>
@@ -16,7 +17,7 @@
 				<td><s:jsonstore id="userStore" data="#{userAction.users}" autoLoad="true">
 						<s:dfield name="username" />
 						<s:dfield name="id" />
-					</s:jsonstore> <s:formpanel width="550" height="550" labelWidth="150" title="Form UX Fields" bodyStyle="padding:10px;">
+					</s:jsonstore> <s:formpanel width="550" height="850" labelWidth="150" title="Form UX Fields" bodyStyle="padding:10px;">
 						<s:multiselect id="mOne" valueField="id" width="200" store="userStore" fieldLabel="Multiselect" displayField="username" />
 						<s:selectbox store="userStore" valueField="id" displayField="username" fieldLabel="SelectBox" />
 						<s:datetime fieldLabel="DateTime" hiddenFormat="Y/m/d H:i:s" dateFormat="Y-m-d" timeFormat="H:i:s" />
@@ -49,6 +50,7 @@
 						<s:extendedcombobox fieldLabel="ExtendedComboBox" valueField="id" checkField="userName" store="userStore" displayField="username"/>
 						<!-- <s:checktreecombobox fieldLabel="CheckTreeComboBox" />-->
 						<s:superboxselect fieldLabel="SuperBoxSelect" valueField="id" store="userStore" displayField="username" typeAhead="true" triggerAction="all" mode="local" />
+						<s:efckeditor fieldLabel="EFCKEditor" basePath="#{app.appPath}/resources/ext340/uux/fckeditor/" name="efckeditor" height="200"/>
 					</s:formpanel></td>
 			</tr>
 		</table>
