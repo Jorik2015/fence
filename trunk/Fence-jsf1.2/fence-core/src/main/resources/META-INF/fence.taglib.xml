@@ -1429,6 +1429,13 @@
 		</component>
 	</tag>
 	<tag>
+		<tag-name>efckeditor</tag-name>
+		<component>
+			<component-type>Ext.ux.form.EFCKEditor</component-type>
+			<renderer-type>Ext.ux.form.SuperBoxSelect</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>gmappanel</tag-name>
 		<component>
 			<component-type>Ext.ux.GMapPanel</component-type>

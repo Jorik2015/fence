@@ -825,6 +825,10 @@
 		<component-class>ext.ux.form.SuperBoxSelect</component-class>
 	</component>
 	<component>
+		<component-type>Ext.ux.form.EFCKEditor</component-type>
+		<component-class>ext.ux.form.EFCKEditor</component-class>
+	</component>
+	<component>
 		<component-type>Ext.ux.GMapPanel</component-type>
 		<component-class>ext.ux.GMapPanel</component-class>
 	</component>
@@ -1526,6 +1530,11 @@
 		<renderer>
 			<component-family>Ext.ux.form.SuperBoxSelect</component-family>
 			<renderer-type>Ext.ux.form.SuperBoxSelect</renderer-type>
+			<renderer-class>com.abner.fence.renderkit.ExtInputRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>Ext.ux.form.EFCKEditor</component-family>
+			<renderer-type>Ext.ux.form.EFCKEditor</renderer-type>
 			<renderer-class>com.abner.fence.renderkit.ExtInputRenderer</renderer-class>
 		</renderer>
 		<!-- form end window start -->
