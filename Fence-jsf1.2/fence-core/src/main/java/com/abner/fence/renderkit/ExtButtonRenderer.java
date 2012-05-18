@@ -9,6 +9,7 @@ import com.abner.fence.util.ConfigHelper;
 import ext.Panel;
 import ext.Toolbar;
 import ext.base.ExtCommand;
+import ext.form.CompositeField;
 import ext.util.ComponentUtil;
 import ext.util.StringUtil;
 
@@ -27,6 +28,12 @@ public class ExtButtonRenderer extends ExtCommandRenderer<ExtCommand> {
 
 		Toolbar tb = ComponentUtil.inNested(Toolbar.class, btn, true);
 		if (tb != null) {
+			if (ComponentUtil.isHaeresNatus(btn))
+				configTo = "items";
+		}
+		
+		CompositeField compField = ComponentUtil.inNested(CompositeField.class, btn, true);
+		if (compField != null) {
 			if (ComponentUtil.isHaeresNatus(btn))
 				configTo = "items";
 		}
