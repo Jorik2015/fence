@@ -39,8 +39,7 @@ public class ExtInputRenderer extends ExtBasicRenderer<ExtInput> {
 		IExt toComp = null;
 		
 		FormPanel form = ComponentUtil.inNested(FormPanel.class, component);
-		Toolbar tb = ComponentUtil.inNested(Toolbar.class, component, true);
-		if (form != null || tb != null) {
+		if (form != null ) {
 			configTo = "items";
 			toComp = form;
 		}
@@ -51,11 +50,18 @@ public class ExtInputRenderer extends ExtBasicRenderer<ExtInput> {
 			toComp = fieldSet;
 		}
 		
+		Toolbar tb = ComponentUtil.inNested(Toolbar.class, component, true);
+		if ( tb != null) {
+			configTo = "items";
+			toComp = tb;
+		}
+		
 		CompositeField  compField = ComponentUtil.inNested(CompositeField.class, component);
 		if (compField != null) {
 			configTo = "items";
 			toComp = compField;
 		}
+		
 		
 		CheckboxGroup chkGroup = ComponentUtil.inNested(CheckboxGroup.class,component);
 		if(chkGroup != null){
