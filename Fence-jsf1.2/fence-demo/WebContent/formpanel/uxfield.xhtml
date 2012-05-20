@@ -25,11 +25,17 @@
 						<s:triggerfield fieldLabel="TriggerField" />
 						<s:twintriggerfield fieldLabel="TwinTriggerField" />
 						<s:sliderfield fieldLabel="SliderField" />
-						<s:compositefield fieldLabel="CompositeField">
+						<s:compositefield fieldLabel="CompositeField1">
 							<s:displayfield html="Pre:" />
 							<s:textfield />
 							<s:displayfield html="End:" />
 							<s:textfield />
+						</s:compositefield>
+						<s:compositefield fieldLabel="CompositeField2">
+							<s:displayfield html="Pre:" />
+							<s:textfield />
+							<s:displayfield html="Button" />
+							<s:button text="Select" handler="alert('ok')"/>
 						</s:compositefield>
 						<s:searchfield fieldLabel="SearchField" />
 						<s:searchbox fieldLabel="SearchBox" />
