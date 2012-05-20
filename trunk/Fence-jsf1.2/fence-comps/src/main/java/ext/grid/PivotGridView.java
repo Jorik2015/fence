@@ -52,6 +52,7 @@ import java.util.Date;
  */
 
 @InstanceOf("Ext.grid.PivotGridView")
+@ParseConfigMode(ui = false, name = "view", pmode = PersistenceMode.ParentProperty, rmode = ReferenceMode.Var)
 public class PivotGridView extends GridView {
 	public static final String COMPONENT_FAMILY = "Ext.grid.PivotGridView";
 
