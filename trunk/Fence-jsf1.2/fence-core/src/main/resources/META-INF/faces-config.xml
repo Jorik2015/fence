@@ -411,6 +411,10 @@
 		<component-class>ext.grid.AbstractSelectionModel</component-class>
 	</component>
 	<component>
+		<component-type>Ext.grid.ActionColumn</component-type>
+		<component-class>ext.grid.ActionColumn</component-class>
+	</component>
+	<component>
 		<component-type>Ext.grid.BooleanColumn</component-type>
 		<component-class>ext.grid.BooleanColumn</component-class>
 	</component>
@@ -457,6 +461,22 @@
 	<component>
 		<component-type>Ext.grid.NumberColumn</component-type>
 		<component-class>ext.grid.NumberColumn</component-class>
+	</component>
+	<component>
+		<component-type>Ext.grid.PivotGrid</component-type>
+		<component-class>ext.grid.PivotGrid</component-class>
+	</component>
+	<component>
+		<component-type>Ext.grid.TopPivotAxis</component-type>
+		<component-class>ext.grid.TopPivotAxis</component-class>
+	</component>
+	<component>
+		<component-type>Ext.grid.LeftPivotAxis</component-type>
+		<component-class>ext.grid.LeftPivotAxis</component-class>
+	</component>
+	<component>
+		<component-type>Ext.grid.PivotGridView</component-type>
+		<component-class>ext.grid.PivotGridView</component-class>
 	</component>
 	<component>
 		<component-type>Ext.grid.PropertyColumnModel</component-type>
@@ -1204,6 +1224,11 @@
 		<renderer>
 			<component-family>Ext.grid.EditorGridPanel</component-family>
 			<renderer-type>Ext.grid.EditorGridPanel</renderer-type>
+			<renderer-class>com.abner.fence.renderkit.ExtPanelRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>Ext.grid.PivotGrid</component-family>
+			<renderer-type>Ext.grid.PivotGrid</renderer-type>
 			<renderer-class>com.abner.fence.renderkit.ExtPanelRenderer</renderer-class>
 		</renderer>
 		<renderer>

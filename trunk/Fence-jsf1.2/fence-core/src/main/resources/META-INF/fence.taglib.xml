@@ -762,6 +762,13 @@
 		</component>
 	</tag>
 	<tag>
+		<tag-name>actioncolumn</tag-name>
+		<component>
+			<component-type>Ext.grid.ActionColumn</component-type>
+			<renderer-type>Ext.grid.ActionColumn</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>columnmodel</tag-name>
 		<component>
 			<component-type>Ext.grid.ColumnModel</component-type>
@@ -804,10 +811,38 @@
 		</component>
 	</tag>
 	<tag>
+		<tag-name>pivotgrid</tag-name>
+		<component>
+			<component-type>Ext.grid.PivotGrid</component-type>
+			<renderer-type>Ext.grid.PivotGrid</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>leftpivotaxis</tag-name>
+		<component>
+			<component-type>Ext.grid.LeftPivotAxis</component-type>
+			<renderer-type>Ext.grid.LeftPivotAxis</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>toppivotaxis</tag-name>
+		<component>
+			<component-type>Ext.grid.TopPivotAxis</component-type>
+			<renderer-type>Ext.grid.TopPivotAxis</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>gridview</tag-name>
 		<component>
 			<component-type>Ext.grid.GridView</component-type>
 			<renderer-type>Ext.grid.GridView</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>pivotgridview</tag-name>
+		<component>
+			<component-type>Ext.grid.PivotGridView</component-type>
+			<renderer-type>Ext.grid.PivotGridView</renderer-type>
 		</component>
 	</tag>
 	<tag>
