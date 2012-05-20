@@ -99,6 +99,7 @@ import java.util.Date;
  */
 
 @InstanceOf("Ext.grid.ActionColumn")
+@ParseConfigMode(ui = false, name = "columns", pmode = PersistenceMode.ParentProperty, rmode = ReferenceMode.Var)
 public class ActionColumn extends Column {
 	public static final String COMPONENT_FAMILY = "Ext.grid.ActionColumn";
 
