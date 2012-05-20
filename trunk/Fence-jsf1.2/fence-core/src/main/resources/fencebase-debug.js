@@ -14,22 +14,22 @@ fence.Abner = function(config) {
 fence.Abner.prototype = {
 	// error,info,question,waring
 	info : function(msg) {
-		this._show("提示", msg, Ext.Msg.INFO);
+		this._show("Info", msg, Ext.Msg.INFO);
 	},
 	warn : function(msg) {
-		this._show("警告", msg, Ext.Msg.WARNING);
+		this._show("Warning", msg, Ext.Msg.WARNING);
 	},
 
 	question : function(msg) {
-		this._show("询问", msg, Ext.Msg.QUESTION);
+		this._show("Question", msg, Ext.Msg.QUESTION);
 	},
 
 	error : function(msg) {
-		this._show("错误", msg, Ext.Msg.ERROR);
+		this._show("Error", msg, Ext.Msg.ERROR);
 	},
 
 	confirm : function(msg, callBack) {
-		Ext.Msg.confirm("确认", msg, callBack);
+		Ext.Msg.confirm("Confirm", msg, callBack);
 	},
 
 	show : function(title, msg, content) {
@@ -227,7 +227,7 @@ fence.Abner.prototype = {
 		} else {
 			var d = Ext.getDom(dest);
 			if (!d) {
-				Fence.warn(dest + " 节点不存在，如果一直出现此错误，尝试重新刷新页面。");
+				Fence.warn(dest + " node does't exist，Try refresh page again.");
 				return;
 			}
 			var temp = document.createElement('div');
@@ -306,6 +306,12 @@ fence.Abner.prototype = {
 		return Ext_ViewState ? Ext_ViewState.value : '';
 	},
 	/* Call server action method */
+	/*action:server bean method
+	 *callback:callback
+	 *src:the source element,eg:button id
+	 *params:the request params;
+	 *url:the request url
+	 * */
 	call : function(action, callback, src, params, url) {
 		var pars = {
 			EXT_HANDLER : 'actionHandler',
@@ -353,7 +359,7 @@ fence.Abner.prototype = {
 		},
 		actionFailure : function(form, action) {
 			if (action.failureType === Ext.form.Action.CLIENT_INVALID) {
-				Fence.error("Form fields may not be submitted with invalid values");
+				Fence.error("Form fields can not be submitted with invalid values");
 			}
 			if (action.failureType === Ext.form.Action.CONNECT_FAILURE) {
 				Fence.renderException(action.response);
@@ -451,15 +457,38 @@ fence.Abner.prototype = {
 			try {
 				if (!src && options.scope && options.scope.options)
 					src = options.scope.options.src;
-				if (!src)
-					return;
-				if (isEnable) {
-					src.setText(src.origText);
-					src.enable();
-				} else {
-					src.origText = src.getText();
-					src.setText('Loading');
-					src.disable();
+				if (!src){return;}
+				if(typeof src == 'string'){
+					if (isEnable) {
+						Ext.getDom(src).innerHTML = Ext.getDom(src).getAttribute("back_html");
+					} else {
+						Ext.getDom(src).setAttribute("back_html",Ext.getDom(src).innerHTML);
+						Ext.getDom(src).innerHTML = "Loading";
+					}
+				}else if(src instanceof Ext.Toolbar.TextItem){
+					if (isEnable) {
+						src.setText(src.origText);
+						src.enable();
+					} else {
+						src.origText = src.text;
+						src.setText('Loading');
+						src.disable();
+					}
+				}else if(src instanceof Ext.Button){
+					if (isEnable) {
+						src.setText(src.origText);
+						src.enable();
+					} else {
+						src.origText = src.getText();
+						src.setText('Loading');
+						src.disable();
+					}
+				}else if(src instanceof Ext.LoadMask){
+					if (isEnable) {
+						src.hide();
+					} else {
+						src.show();
+					}
 				}
 			} catch (e) {
 			}
