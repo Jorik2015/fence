@@ -511,7 +511,7 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 					String name = hidden.getName();
 					name = name == null ? hidden.getClientId(FacesUtils.context()) : name;
 					parameterList.put(hidden.getName(), Ext.PREFIX_RAW_VALUE + hidden.getVar() + ".getValue()");
-					if (StringUtils.isBlank(hidden.getRefer())) {
+					if (StringUtils.isNotBlank(hidden.getRefer())) {
 						String[] ids = hidden.getRefer().split(",");
 						for (String id : ids) {
 							parameterList.put(id, Ext.PREFIX_RAW_VALUE + id + ".getValue()");
