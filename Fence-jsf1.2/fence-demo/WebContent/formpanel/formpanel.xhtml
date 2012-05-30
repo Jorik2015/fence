@@ -42,7 +42,7 @@
 						<s:event name="click" handler="alert('event click 2' + src);" />
 						<s:event name="click" handler="fun1" />
 					</s:button></div>
-					<s:textfield fieldLabel="UserName" width="120" required="true"
+					<s:textfield id="username" fieldLabel="UserName" width="120" required="true"
 						name="username" value="#{userAction.user.username}"
 						allowBlank="false" />
 					<s:textfield fieldLabel="Password" width="120" name="password"
@@ -60,7 +60,8 @@
 						<s:submit reset="false" />
 					</s:button>
 				</s:formpanel></td>
-				<td class="td"><s:panel id="renderPanel" layout="border"
+				<td class="td">
+				<s:panel id="renderPanel" layout="border"
 					width="400" height="200" title="border layout panel">
 					<s:panel id="renderwest" width="150" layout="fit" region="west">
 						<s:panel id="fitPanel" title="w#{userAction.labelText}">
@@ -76,8 +77,15 @@
 		<h:panelGroup id="jsfpanel" styleClass="red">
 			this jsf panel will be rerendered when the up actions execute success
 			<br />
-			<s:button id="extButton" type="button" text="not in form button"
-				render="renderPanel" />
+			<s:button id="extButtonNotInFormSubmit" type="submit" text="not in form submit" />
+			<s:button id="extButton" type="button" text="not in form button" render="renderPanel" />
+			<s:button id="extButtonAction" type="button" text="not in form button with action" successFn="function(res){
+				alert(res);
+			}"/>
+			<s:button id="extButtonNotInFormClient" type="client" text="not in form client" successFn="function(res){alert(res);}" action="#{userAction.user}">
+				<s:event name="click" handler="function(res){alert('ok');}"/>
+				<s:hidden name="param" ref="username"/>
+			</s:button>
 			<h:outputText id="inputText2" value="#{userAction.labelText}" />
 		</h:panelGroup>
 		<hr />

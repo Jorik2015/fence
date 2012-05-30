@@ -5,6 +5,11 @@
 	template="/layout/part.xhtml">
 	<ui:define name="pageTitle">Button</ui:define>
 	<ui:define name="body">
+		<s:onready>
+			// display a dropdown menu:
+var a = new Ext.SplitButton({text: 'Options'});
+			alert(a instanceof Ext.Button);
+		</s:onready>
 		<div id="overview">
 		<h1>Welcome to Fence Components</h1>
 		<p>Fence Components
