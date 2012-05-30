@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.el.MethodExpression;
 import javax.faces.application.ViewHandler;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -25,8 +26,7 @@ import ext.util.StringUtil;
 public class ExtCommandRenderer<T> extends ExtBasicRenderer<ExtCommand> {
 
 	@Override
-	public void beforeEncodeEnd(FacesContext context, ExtCommand commandBtn)
-			throws IOException {
+	public void beforeEncodeEnd(FacesContext context, ExtCommand commandBtn) throws IOException {
 		FormPanel form = ComponentUtil.inNested(FormPanel.class, commandBtn);
 		StringBuilder sb = new StringBuilder(256);
 
@@ -34,7 +34,7 @@ public class ExtCommandRenderer<T> extends ExtBasicRenderer<ExtCommand> {
 			if (this.isTypeOf(commandBtn, "submit")) {
 				Boolean stSubmit = form.getStandardSubmit();
 				if (stSubmit != null && stSubmit.booleanValue()) {
-					String hiddenId = form.getClientId(context)	+ ExtFormPanelRenderer.EVENT_SUFFIX;
+					String hiddenId = form.getClientId(context) + ExtFormPanelRenderer.EVENT_SUFFIX;
 					String funBody = hiddenId + ".setValue(src.getId());";
 					sb.append(funBody);
 
@@ -45,14 +45,13 @@ public class ExtCommandRenderer<T> extends ExtBasicRenderer<ExtCommand> {
 				sb.append(form.getVar());
 				sb.append(".getForm().submit(");
 				if (stSubmit == null || !stSubmit.booleanValue()) {
-					sb.append(encodeFormCommandOptions(context, form,
-							commandBtn, "submit"));
+					sb.append(encodeFormCommandOptions(context, form, commandBtn, "submit"));
 				}
 				sb.append(");");
 			} else if (this.isTypeOf(commandBtn, "load")) {
 				sb.append(form.getVar());
 				sb.append(".getForm().load(");
-				sb.append(encodeFormCommandOptions(context, form, commandBtn,"load"));
+				sb.append(encodeFormCommandOptions(context, form, commandBtn, "load"));
 				sb.append(");");
 			} else if (this.isTypeOf(commandBtn, "reset")) {
 				sb.append(form.getVar());
@@ -66,7 +65,12 @@ public class ExtCommandRenderer<T> extends ExtBasicRenderer<ExtCommand> {
 			sb.append("top.location.href =");
 			sb.append(this.encodeDownloadUrl(context, commandBtn));
 		} else if (this.isTypeOf(commandBtn, "client")) {
-			AjaxJSUtils.handleEvent(commandBtn, "click", sb.toString(), true);
+			MethodExpression me = commandBtn.getActionExpression();
+			if (me != null) {
+				sb.append(AjaxJSUtils.encodeAjaxCallFn(context, commandBtn,me));
+			}else{
+				AjaxJSUtils.handleEvent(commandBtn, "click", sb.toString(), true);
+			}
 		}
 
 		if (sb.length() > 0) {
@@ -76,7 +80,7 @@ public class ExtCommandRenderer<T> extends ExtBasicRenderer<ExtCommand> {
 			String[] eventTypes = commandBtn.getEventType().split(",");
 			for (String eventType : eventTypes) {
 				boolean isClick = "click".endsWith(eventType);
-				AjaxJSUtils.handleEvent(commandBtn, eventType, sb.toString(),isClick);
+				AjaxJSUtils.handleEvent(commandBtn, eventType, sb.toString(), isClick);
 			}
 		}
 	}
@@ -85,8 +89,7 @@ public class ExtCommandRenderer<T> extends ExtBasicRenderer<ExtCommand> {
 		StringBuilder sb = new StringBuilder(128);
 		sb.append(ScriptManager.AJAX_PATH + "+ '?");
 
-		Map<String, String> params = FacesUtils.extContext()
-				.getRequestParameterMap();
+		Map<String, String> params = FacesUtils.extContext().getRequestParameterMap();
 		for (Map.Entry<String, String> entry : params.entrySet()) {
 			sb.append(entry.getKey() + "=" + entry.getValue() + "&");
 		}
@@ -103,21 +106,17 @@ public class ExtCommandRenderer<T> extends ExtBasicRenderer<ExtCommand> {
 	}
 
 	@Override
-	public void afterEncodeEnd(FacesContext context, ExtCommand component)
-			throws IOException {
+	public void afterEncodeEnd(FacesContext context, ExtCommand component) throws IOException {
 		if (ComponentUtil.inNested(FormPanel.class, component) == null) {
 			if (!RequestUtils.hasRenderViewState()) {
-				ViewHandler viewHandler = context.getApplication()
-						.getViewHandler();
+				ViewHandler viewHandler = context.getApplication().getViewHandler();
 				viewHandler.writeState(context);
-				RequestContext.instance().put(RequestUtils.VIEW_STATE_RENDER,
-						Boolean.TRUE);
+				RequestContext.instance().put(RequestUtils.VIEW_STATE_RENDER, Boolean.TRUE);
 			}
 		}
 	}
 
-	private String encodeFormCommandOptions(FacesContext context,
-			FormPanel form, ExtCommand btn, String type) { 
+	private String encodeFormCommandOptions(FacesContext context, FormPanel form, ExtCommand btn, String type) {
 		Map<String, Object> pars = new HashMap<String, Object>();
 		if (this.isTypeOf(btn, "load")) {
 			pars.put(RequestUtils.HANDLER_PARAM, FormHandler.HANDLER_ID);
@@ -138,24 +137,19 @@ public class ExtCommandRenderer<T> extends ExtBasicRenderer<ExtCommand> {
 		if (!shouldDecode(component)) {
 			return;
 		}
-		if (wasClicked(context, component) && !isReset(component)
-				&& !this.isTypeOf((ExtCommand) component, "load")) {
+		if (wasClicked(context, component) && !isReset(component) && !this.isTypeOf((ExtCommand) component, "load")) {
 			component.queueEvent(new ActionEvent(component));
 		}
 	}
 
-	private static boolean wasClicked(FacesContext context,
-			UIComponent component) {
+	private static boolean wasClicked(FacesContext context, UIComponent component) {
 		String clientId = component.getClientId(context);
-		Map<String, String> requestParameterMap = context.getExternalContext()
-				.getRequestParameterMap();
-		String eventSourceId = requestParameterMap
-				.get(RequestUtils.EXECUTE_PARAM);
+		Map<String, String> requestParameterMap = context.getExternalContext().getRequestParameterMap();
+		String eventSourceId = requestParameterMap.get(RequestUtils.EXECUTE_PARAM);
 		if (eventSourceId != null && clientId.equals(eventSourceId)) {
 			return true;
 		}
-		Map<String, String> requestHeaderMap = context.getExternalContext()
-				.getRequestHeaderMap();
+		Map<String, String> requestHeaderMap = context.getExternalContext().getRequestHeaderMap();
 		eventSourceId = requestHeaderMap.get(RequestUtils.EXECUTE_PARAM);
 		if (eventSourceId != null && clientId.equals(eventSourceId)) {
 			return true;
