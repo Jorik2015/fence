@@ -45,7 +45,7 @@
 					<s:textfield id="username" fieldLabel="UserName" width="120" required="true"
 						name="username" value="#{userAction.user.username}"
 						allowBlank="false" />
-					<s:textfield fieldLabel="Password" width="120" name="password"
+					<s:textfield id="pasword" fieldLabel="Password" width="120" name="password"
 						value="#{userAction.user.password}">
 					</s:textfield>
 					<s:datefield fieldLabel="Birthdate" width="120" name="birthdate"
@@ -84,7 +84,7 @@
 			}"/>
 			<s:button id="extButtonNotInFormClient" type="client" text="not in form client" successFn="function(res){alert(res);}" action="#{userAction.user}">
 				<s:event name="click" handler="function(res){alert('ok');}"/>
-				<s:hidden name="param" ref="username"/>
+				<s:hidden name="param" value="abc" refer="username,pasword"/>
 			</s:button>
 			<h:outputText id="inputText2" value="#{userAction.labelText}" />
 		</h:panelGroup>
