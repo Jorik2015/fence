@@ -18,6 +18,7 @@ import javax.faces.convert.ConverterException;
 import javax.faces.render.Renderer;
 
 import org.apache.commons.collections.MapUtils;
+import org.apache.commons.lang.StringUtils;
 
 import com.abner.fence.resources.ScriptManager;
 import com.abner.fence.util.AjaxJSUtils;
@@ -144,7 +145,7 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 			script.append(this.buildInstanceWithTemplate(comp));
 		}
 		script.append(comp.getAfterScript());
-		script = this.processAfterReadyScript(component,script);
+		script = this.processAfterReadyScript(component, script);
 		JSUtils.RegisterClientInitScript(script.toString());
 
 		// 此处条件应该和encodeBegin中保持一致
@@ -155,7 +156,7 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 		}
 	}
 
-	protected StringBuilder processAfterReadyScript(UIComponent comp,StringBuilder script) {
+	protected StringBuilder processAfterReadyScript(UIComponent comp, StringBuilder script) {
 		// process the script after ready;
 		return script;
 	}
@@ -510,6 +511,12 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 					String name = hidden.getName();
 					name = name == null ? hidden.getClientId(FacesUtils.context()) : name;
 					parameterList.put(hidden.getName(), Ext.PREFIX_RAW_VALUE + hidden.getVar() + ".getValue()");
+					if (StringUtils.isBlank(hidden.getRefer())) {
+						String[] ids = hidden.getRefer().split(",");
+						for (String id : ids) {
+							parameterList.put(id, Ext.PREFIX_RAW_VALUE + id + ".getValue()");
+						}
+					}
 				}
 			}
 			return parameterList;
