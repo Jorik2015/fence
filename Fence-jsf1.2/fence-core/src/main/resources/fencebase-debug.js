@@ -387,20 +387,17 @@ fence.Abner.prototype = {
 				if (typeof options.successFn == 'function') {
 					if (options.params && options.params.EXT_HANDLER == 'actionHandler') { 
 						if (Ext.isEmpty(response.responseText)) {
-							Ext.callback(options.successFn, null, [ null,
-									options ]);
+							Ext.callback(options.successFn, null, [ null, options ]);
 						} else {
 							try {
 								var res = Ext.decode(response.responseText);
-								Ext.callback(options.successFn, null, [ res,
-										options ]);
+								Ext.callback(options.successFn, null, [ res, options ]);
 							} catch (e) {
 								Fence.error(e.message);
 							}
 						}
 					} else {
-						Ext.callback(options.successFn, null, [ response,
-								options ]);
+						Ext.callback(options.successFn, null, [response,options ]);
 					}
 				}
 			} else {
