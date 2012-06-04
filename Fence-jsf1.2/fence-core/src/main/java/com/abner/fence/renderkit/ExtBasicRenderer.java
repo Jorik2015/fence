@@ -25,6 +25,7 @@ import com.abner.fence.util.AjaxJSUtils;
 import com.abner.fence.util.ConfigHelper;
 import com.abner.fence.util.Ext;
 import com.abner.fence.util.JSUtils;
+import com.sun.facelets.FaceletHandler;
 
 import ext.Window;
 import ext.annotation.PersistenceMode;
@@ -123,7 +124,7 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 					throw new IllegalArgumentException("The ParentProperty name can not be empty.");
 
 				UIComponent parent = component.getParent();
-				if (parent instanceof IExt) {
+				if (parent instanceof IExt || parent instanceof FaceletHandler) {
 					comp.handleConfig("renderTo", null);
 					String configValue = ConfigHelper.getRefence(comp, metadata.getRmode(), this.getStructureTemplate());
 					ConfigHelper.configTo(name, configValue, comp);
