@@ -84,5 +84,10 @@
 			<artifactId>slf4j-nop</artifactId>
 			<version>1.6.4</version>
 		</dependency>
+		<dependency>
+			<groupId>com.sun.facelets</groupId>
+			<artifactId>jsf-facelets</artifactId>
+			<version>1.1.14</version>
+		</dependency>
 	</dependencies>
 </project>
