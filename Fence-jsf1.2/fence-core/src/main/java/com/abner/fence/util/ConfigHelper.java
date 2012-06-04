@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import javax.el.ValueExpression;
+import javax.faces.component.UIComponent;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONFunction;
@@ -16,6 +17,8 @@ import net.sf.json.JSONObject;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.sun.facelets.FaceletHandler;
 
 import ext.annotation.ClientConfig;
 import ext.annotation.ReferenceMode;
@@ -30,12 +33,11 @@ import ext.util.StringUtil;
 
 public class ConfigHelper {
 	private static Log log = LogFactory.getLog(ConfigHelper.class);
-	
+
 	@SuppressWarnings("unchecked")
 	public static void appendConfig(IExt from, IExt to) {
 		if (from == null || to == null)
-			throw new IllegalArgumentException(
-					"the from and to arg can not be null.");
+			throw new IllegalArgumentException("the from and to arg can not be null.");
 
 		String fromConfig = interpretConfig(from);
 		JSONObject fromJson = JSONObject.fromObject(fromConfig);
@@ -48,36 +50,36 @@ public class ConfigHelper {
 			to.handleConfig(key, value);
 		}
 	}
-	public static void valueTo(String configName,Object configValue,IExt self){
-		valueTo(configName,configValue,self,null);
+
+	public static void valueTo(String configName, Object configValue, IExt self) {
+		valueTo(configName, configValue, self, null);
 	}
-	
-	public static void valueTo(String configName,Object configValue,IExt self,IExt toComp){
-		IExt p = checkParent(self,toComp);
-		if(configValue == null)
+
+	public static void valueTo(String configName, Object configValue, IExt self, IExt toComp) {
+		IExt p = checkParent(self, toComp);
+		if (configValue == null)
 			return;
 		String getMethodName = "get" + StringUtil.upperFirstChar(configName);
 		String methodName = "set" + StringUtil.upperFirstChar(configName);
-		Method m = ClassUtils.lookupMethod(p.getClass(),getMethodName);
-		m = ClassUtils.lookupMethod(p.getClass(),methodName,new Class<?>[]{m.getReturnType()});
-		if(m == null){
-			if(log.isWarnEnabled()){
-				log.warn("The component " + p +" with id (" + p.getId() +") no config '" + configName + "',but the " + self + " set a config to it");
+		Method m = ClassUtils.lookupMethod(p.getClass(), getMethodName);
+		m = ClassUtils.lookupMethod(p.getClass(), methodName, new Class<?>[] { m.getReturnType() });
+		if (m == null) {
+			if (log.isWarnEnabled()) {
+				log.warn("The component " + p + " with id (" + p.getId() + ") no config '" + configName + "',but the " + self + " set a config to it");
 			}
-		}else{
+		} else {
 			try {
 				m.invoke(p, configValue);
 			} catch (Exception e) {
 				e.printStackTrace();
-				if(log.isWarnEnabled()){
+				if (log.isWarnEnabled()) {
 					log.warn("The value set failed with component:" + p.getClass());
 				}
 			}
 		}
 	}
 
-	public static void configToSelf(String configName, String configValue,
-			IExt self) {
+	public static void configToSelf(String configName, String configValue, IExt self) {
 		configTo(configName, configValue, null, self);
 	}
 
@@ -88,19 +90,18 @@ public class ConfigHelper {
 		}
 	}
 
-	public static void configTo(String configName, String configValue,
-			IExt self, IExt toComp) {
-		IExt p = checkParent(self,toComp);
+	public static void configTo(String configName, String configValue, IExt self, IExt toComp) {
+		IExt p = checkParent(self, toComp);
 		AttributeValue oldConfigValue = p.getAllConfig().get(configName);
 		// new
 		String methodName = "get" + StringUtil.upperFirstChar(configName);
-		
-		if(log.isWarnEnabled()){
-			if(ClassUtils.lookupMethod(p.getClass(), methodName) == null)
-				log.warn("The component " + p +" with id (" + p.getId() +") no config '" + configName + "',but the " + self + " set a config to it");
+
+		if (log.isWarnEnabled()) {
+			if (ClassUtils.lookupMethod(p.getClass(), methodName) == null)
+				log.warn("The component " + p + " with id (" + p.getId() + ") no config '" + configName + "',but the " + self + " set a config to it");
 		}
-		
-		ClientConfig cc = ClassUtils.lookupAnno(p.getClass(), methodName,ClientConfig.class);
+
+		ClientConfig cc = ClassUtils.lookupAnno(p.getClass(), methodName, ClientConfig.class);
 		if (cc == null) {
 			p.handleConfig(configName, configValue);
 		} else {
@@ -127,8 +128,8 @@ public class ConfigHelper {
 			}
 		}
 	}
-	
-	private static IExt checkParent(IExt self,IExt toComp){
+
+	private static IExt checkParent(IExt self, IExt toComp) {
 		if (self instanceof IExt) {
 			((IExt) self).handleConfig("renderTo", null);
 			((IExt) self).handleConfig("applyTo", null);
@@ -139,16 +140,36 @@ public class ConfigHelper {
 			if (self == null)
 				throw new IllegalArgumentException("The config component can not be null both from and to.");
 
-			parent = (IExt) self.getParent();
+			parent = getFirstExtParent(self);
 		}
 
 		if (parent == null)
-			throw new NullPointerException("The parent of " + self.getId()	+ " is null.");
+			throw new NullPointerException("The parent of " + self.getId() + " is null.");
 		else if (!(parent instanceof IExt))
-			throw new IllegalArgumentException("the component " + self
-					+ " must used in Ext Component.");
+			throw new IllegalArgumentException("the component " + self + " must used in Ext Component.");
 
-		return((IExt) parent);
+		return ((IExt) parent);
+	}
+
+	private static IExt getFirstExtParent(IExt comp) {
+		UIComponent p = comp.getParent();
+		if (p instanceof IExt) {
+			return (IExt) p;
+		} else {
+			return getParent(p);
+		}
+	}
+
+	private static IExt getParent(UIComponent comp) {
+		UIComponent p = comp.getParent();
+		if (p == null) {
+			return null;
+		}
+		if (p instanceof IExt) {
+			return (IExt) p;
+		} else {
+			return getParent(p);
+		}
 	}
 
 	public static String interpretConfig(IExt component) {
@@ -156,12 +177,10 @@ public class ConfigHelper {
 			return component.getRefer();
 
 		String result = "{";
-		for (Map.Entry<String, AttributeValue> entry : component.getAllConfig()
-				.entrySet()) {
+		for (Map.Entry<String, AttributeValue> entry : component.getAllConfig().entrySet()) {
 			String k = entry.getKey();
 			ExtComponentMetaData metadata = ComponentUtil.getMetadata(component);
-			if (metadata != null && metadata.getPmode() != null
-					&& metadata.getRmode() != null) {
+			if (metadata != null && metadata.getPmode() != null && metadata.getRmode() != null) {
 
 				if ("id".equalsIgnoreCase(k) && !metadata.isId())
 					continue;
@@ -197,8 +216,7 @@ public class ConfigHelper {
 			v = (AttributeValue) value;
 		else {
 			if (value instanceof ValueExpression) {
-				value = ((ValueExpression) value).getValue(FacesUtils.context()
-						.getELContext());
+				value = ((ValueExpression) value).getValue(FacesUtils.context().getELContext());
 			}
 			v = new AttributeValue(value);
 		}
@@ -207,8 +225,7 @@ public class ConfigHelper {
 			return "";
 
 		String methodName = "get" + StringUtil.upperFirstChar(configName);
-		ClientConfig cc = ClassUtils.lookupAnno(comp.getClass(), methodName,
-				ClientConfig.class);
+		ClientConfig cc = ClassUtils.lookupAnno(comp.getClass(), methodName, ClientConfig.class);
 		if (cc != null && !StringUtil.isEmpty(cc.name())) {
 			configName = cc.name();
 		}
@@ -245,11 +262,11 @@ public class ConfigHelper {
 						config = configName + ":" + v.getRawValue();
 						break;
 					case Object:
-						if(ClassUtils.isRepresentsPrimitive(v.getRawValue().getClass())){
+						if (ClassUtils.isRepresentsPrimitive(v.getRawValue().getClass())) {
 							config = configName + ":" + v.getRawValue();
-						}else if(v.getRawValue() instanceof String){
+						} else if (v.getRawValue() instanceof String) {
 							config = configName + ":" + v.getRawValue();
-						}else{
+						} else {
 							config = configName + ":" + JsonUtils.toJson(v.getRawValue());
 						}
 						break;
@@ -258,8 +275,7 @@ public class ConfigHelper {
 						if (rawValue instanceof JSONArray) {
 							config = configName + ":" + rawValue.toString();
 						} else {
-							config = configName + ": [" + rawValue.toString()
-									+ "]";
+							config = configName + ": [" + rawValue.toString() + "]";
 						}
 						break;
 					default:
@@ -301,8 +317,7 @@ public class ConfigHelper {
 				if (result.length() > 1)
 					result += ",";
 
-				result += "'" + oo.getKey() + "':"
-						+ getConfigValue(oo.getKey().toString(), oo.getValue());
+				result += "'" + oo.getKey() + "':" + getConfigValue(oo.getKey().toString(), oo.getValue());
 			}
 			return result + "}";
 		}
@@ -326,8 +341,7 @@ public class ConfigHelper {
 				if (result.length() > 1)
 					result += ",";
 
-				if (v.getRawValue() instanceof Collection
-						|| v.getRawValue() instanceof Map) {
+				if (v.getRawValue() instanceof Collection || v.getRawValue() instanceof Map) {
 					value = jsonConfig(v.getRawValue());
 				} else {
 					value = getConfigValue(k, v.getRawValue());
@@ -338,8 +352,7 @@ public class ConfigHelper {
 		return result + "}";
 	}
 
-	public static String getRefence(IExt comp, ReferenceMode refMode,
-			String template) {
+	public static String getRefence(IExt comp, ReferenceMode refMode, String template) {
 		switch (refMode) {
 		case Var:
 			return comp.getVar();
@@ -367,8 +380,7 @@ public class ConfigHelper {
 			var = comp.getNs() + "." + var;
 		}
 
-		String config = MessageFormat.format(template, var, instance,
-				ConfigHelper.interpretConfig(comp));
+		String config = MessageFormat.format(template, var, instance, ConfigHelper.interpretConfig(comp));
 		return config;
 	}
 }
