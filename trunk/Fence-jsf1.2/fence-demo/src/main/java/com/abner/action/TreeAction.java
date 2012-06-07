@@ -6,11 +6,23 @@ import java.util.Set;
 
 import org.springframework.stereotype.Controller;
 
+import com.abner.fence.web.ExtNode;
+import com.abner.model.MenuNode;
 import com.abner.model.TreeMenu;
 import com.abner.model.TreeModel;
 
 @Controller("treeAction")
 public class TreeAction {
+	public Set<ExtNode> getUxMenus() {
+		Set<ExtNode> result = new HashSet<ExtNode>();
+		for (int i = 0; i < 10; i++) {
+			ExtNode menu = new MenuNode();
+			menu.setText("Menu" + i);
+			result.add(menu);
+		}
+		return result;
+	}
+
 	public Set<TreeModel> getMenus() {
 		Set<TreeModel> result = new HashSet<TreeModel>();
 		for (int i = 0; i < 10; i++) {
