@@ -23,8 +23,9 @@ public class ExtUXMenuRenderer extends ExtBasicRenderer<Menu> {
 	private static Log log = LogFactory.getLog(ExtUXMenuRenderer.class);
 
 	@Override
-	public void beforeEncodeEnd(FacesContext context, Menu component)
-			throws IOException {
+	public void beforeEncodeEnd(FacesContext context, Menu component) throws IOException {
+		component.handleConfig("renderTo", null);
+		
 		Object data = component.getData();
 		if (data == null)
 			return;
@@ -48,32 +49,28 @@ public class ExtUXMenuRenderer extends ExtBasicRenderer<Menu> {
 				}
 			}
 		} else {
-			throw new IllegalArgumentException(
-					"The menu data must collection or array.");
+			throw new IllegalArgumentException("The menu data must collection or array.");
 		}
-		
-		component.handleConfig("renderTo",null);
 	}
 
-	private void writeMenuNode(FacesContext context, Menu component,
-			ExtNode node) throws IOException {
+	private void writeMenuNode(FacesContext context, Menu component, ExtNode node) throws IOException {
 		ResponseWriter writer = context.getResponseWriter();
 		writer.startElement("li", component);
 		writer.startElement("a", component);
 		writer.writeAttribute("href", node.getHref(), "href");
 		writer.write(node.getText());
 		writer.endElement("a");
-		
+
 		Set<? extends ExtNode> childs = node.getChildren();
-		if(!childs.isEmpty()){
+		if (!childs.isEmpty()) {
 			writer.startElement("ul", component);
-			
-			for(Iterator<? extends ExtNode> iter = childs.iterator();iter.hasNext();){
-				writeMenuNode(context,component,iter.next());
+
+			for (Iterator<? extends ExtNode> iter = childs.iterator(); iter.hasNext();) {
+				writeMenuNode(context, component, iter.next());
 			}
 			writer.endElement("ul");
 		}
-		
+
 		writer.endElement("li");
 	}
 
@@ -82,8 +79,7 @@ public class ExtUXMenuRenderer extends ExtBasicRenderer<Menu> {
 		String instance = component.getFamily();
 		String clientId = this.getContainerId();
 		String config = ConfigHelper.interpretConfig(component);
-		return MessageFormat.format(this.getStructureTemplate(), component
-				.getVar(), instance, clientId, config);
+		return MessageFormat.format(this.getStructureTemplate(), component.getVar(), instance, clientId, config);
 	}
 
 	@Override
