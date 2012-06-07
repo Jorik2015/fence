@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -25,7 +26,7 @@ public class ExtUXMenuRenderer extends ExtBasicRenderer<Menu> {
 	@Override
 	public void beforeEncodeEnd(FacesContext context, Menu component) throws IOException {
 		component.handleConfig("renderTo", null);
-		
+
 		Object data = component.getData();
 		if (data == null)
 			return;
@@ -62,7 +63,7 @@ public class ExtUXMenuRenderer extends ExtBasicRenderer<Menu> {
 		writer.endElement("a");
 
 		Set<? extends ExtNode> childs = node.getChildren();
-		if (!childs.isEmpty()) {
+		if (CollectionUtils.isNotEmpty(childs)) {
 			writer.startElement("ul", component);
 
 			for (Iterator<? extends ExtNode> iter = childs.iterator(); iter.hasNext();) {
