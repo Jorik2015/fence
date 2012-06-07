@@ -1,15 +1,14 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext"
-	template="/layout/part.xhtml">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext" template="/layout/part.xhtml">
 	<ui:define name="pageTitle">Button</ui:define>
 	<ui:define name="pageHeader">
-	<script type="text/javascript">
+		<script type="text/javascript">
 		var colorMenu = new Ext.menu.ColorMenu({handler:function(){}}); 
 	</script>
+		<s:resource library="/resources/ext340/uux/menu/" src="menu.js;menu.css" />
 	</ui:define>
 	<ui:define name="body">
+		<s:umenu id="umenu" data="#{treeAction.uxMenus}" />
 		<s:splitbutton text="menubutton" var="mbtn">
 			<s:menu>
 				<s:textitem text="textitem" />
