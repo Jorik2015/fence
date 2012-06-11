@@ -619,6 +619,18 @@
 		<component-class>ext.Panel</component-class>
 	</component>
 	<component>
+		<component-type>Ext.ux.Portal</component-type>
+		<component-class>ext.ux.Portal</component-class>
+	</component>
+	<component>
+		<component-type>Ext.ux.PortalColumn</component-type>
+		<component-class>ext.ux.PortalColumn</component-class>
+	</component>
+	<component>
+		<component-type>Ext.ux.Portlet</component-type>
+		<component-class>ext.ux.Portlet</component-class>
+	</component>
+	<component>
 		<component-type>Ext.ProgressBar</component-type>
 		<component-class>ext.ProgressBar</component-class>
 	</component>
@@ -787,7 +799,7 @@
 		<component-type>Ext.ux.data.PagingMemoryProxy</component-type>
 		<component-class>ext.ux.data.PagingMemoryProxy</component-class>
 	</component>
-	
+
 	<component>
 		<component-type>Ext.ux.UploadDialog</component-type>
 		<component-class>ext.ux.UploadDialog</component-class>
@@ -1199,6 +1211,23 @@
 		<renderer>
 			<component-family>Ext.BoxComponent</component-family>
 			<renderer-type>Ext.BoxComponent</renderer-type>
+			<renderer-class>com.abner.fence.renderkit.ExtPanelRenderer</renderer-class>
+		</renderer>
+
+		<renderer>
+			<component-family>Ext.ux.Portal</component-family>
+			<renderer-type>Ext.ux.Portal</renderer-type>
+			<renderer-class>com.abner.fence.renderkit.ExtPanelRenderer</renderer-class>
+		</renderer>
+
+		<renderer>
+			<component-family>Ext.ux.PortalColumn</component-family>
+			<renderer-type>Ext.ux.PortalColumn</renderer-type>
+			<renderer-class>com.abner.fence.renderkit.ExtPanelRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>Ext.ux.Portlet</component-family>
+			<renderer-type>Ext.ux.Portlet</renderer-type>
 			<renderer-class>com.abner.fence.renderkit.ExtPanelRenderer</renderer-class>
 		</renderer>
 		<renderer>
