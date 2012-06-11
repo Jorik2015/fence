@@ -78,8 +78,7 @@ public class ExtPanelRenderer<T extends BoxComponent> extends ExtBasicRenderer<B
 			if (layoutType != null)
 				layout = layoutType.value().toString();
 		}
-		List<String> lays = Arrays.asList(new String[] { "accordion", "anchor", "card", "form", "menu", "table", "fit", "border", "toolbar", "vbox",
-				"vbox" });
+		List<String> lays = Arrays.asList(new String[] { "accordion", "anchor", "card", "form", "menu", "table", "fit", "border", "toolbar", "vbox","vbox" });
 
 		if (lays.contains(layout)) {
 			return false;
