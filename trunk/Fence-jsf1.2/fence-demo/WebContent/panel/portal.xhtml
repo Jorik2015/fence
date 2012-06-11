@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://fence.com/ext" template="/layout/part.xhtml">
+	<ui:define name="pageTitle">Button</ui:define>
+	<ui:define name="body">
+		<table class="demoTable" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="td" width="800"><s:panel width="700" height="600" autoScroll="true" title="simple panel" layout="fit">
+						<s:toolbar>
+							<s:button text="tbbutton" />
+						</s:toolbar>
+						<s:portal margins="35 5 5 0">
+							<s:portalcolumn columnWidth=".33" style="padding:10px 0 10px 10px">
+								<s:portlet title="Nested Floating Panel" height="80">
+									<div>panel static html content.</div>
+								</s:portlet>
+							</s:portalcolumn>
+							<s:portalcolumn columnWidth=".33" style="padding:10px 0 10px 10px">
+								<s:portlet title="Nested Floating Panel" height="80">
+									<div>panel static html content.</div>
+								</s:portlet>
+							</s:portalcolumn>
+							<s:portalcolumn columnWidth=".33" style="padding:10px">
+								<s:portlet title="Ajax (URL)" autoScroll="true" id="panelAjax1" autoLoad="#{app.appPath}/panel/ajax.html">
+								</s:portlet>
+								<s:portlet title="Ajax (Fun)" autoScroll="true" id="panelAjax2" autoLoad="function(){return '#{app.appPath}/panel/ajax.html';}">
+								</s:portlet>
+							</s:portalcolumn>
+						</s:portal>
+					</s:panel></td>
+			</tr>
+		</table>
+	</ui:define>
+</ui:composition>
