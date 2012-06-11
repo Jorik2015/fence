@@ -132,6 +132,14 @@ Docs.classData = {
 			"cls" : "cls",
 			"leaf" : true
 		}, {
+			"href" : "panel/portal.xhtml",
+			"text" : "Portal",
+			"id" : "Ext.Portal",
+			"isClass" : true,
+			"iconCls" : "icon-cmp",
+			"cls" : "cls",
+			"leaf" : true
+		}, {
 			"href" : "panel/tabpanel.xhtml",
 			"text" : "TabPanel",
 			"id" : "Ext.TabPanel",
@@ -199,7 +207,7 @@ Docs.classData = {
 			"iconCls" : "icon-cmp",
 			"cls" : "cls",
 			"leaf" : true
-		},{
+		}, {
 			"href" : "formpanel/uxfield.xhtml",
 			"text" : "Form Field UX",
 			"id" : "Ext.UxField",
@@ -255,7 +263,7 @@ Docs.classData = {
 			"iconCls" : "icon-cmp",
 			"cls" : "cls",
 			"leaf" : true
-		} , {
+		}, {
 			"href" : "formpanel/itemselector.xhtml",
 			"text" : "ItemSelector",
 			"id" : "Ext.ItemSelector",
@@ -357,7 +365,7 @@ Docs.classData = {
 			"iconCls" : "icon-cmp",
 			"cls" : "cls",
 			"leaf" : true
-		}]
+		} ]
 	}, {
 		"href" : "",
 		"text" : "Grid",
@@ -431,7 +439,7 @@ Docs.classData = {
 			"iconCls" : "icon-cmp",
 			"cls" : "cls",
 			"leaf" : true
-		} , {
+		}, {
 			"href" : "grid/treegrid.xhtml",
 			"text" : "TreeGrid",
 			"id" : "Ext.TreeGrid",
