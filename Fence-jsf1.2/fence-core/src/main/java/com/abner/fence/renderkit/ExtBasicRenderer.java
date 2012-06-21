@@ -200,7 +200,7 @@ public class ExtBasicRenderer<T extends IExt> extends Renderer {
 		// Don't overwrite the value unless you have to!
 		String newValue = requestMap.get(submitParamName);
 		if (newValue != null) {
-			setSubmittedValue(component, newValue);
+			setSubmittedValue(component, newValue.trim());
 		}
 	}
 
