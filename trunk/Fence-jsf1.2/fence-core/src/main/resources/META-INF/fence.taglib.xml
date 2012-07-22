@@ -1488,7 +1488,7 @@
 		<tag-name>efckeditor</tag-name>
 		<component>
 			<component-type>Ext.ux.form.EFCKEditor</component-type>
-			<renderer-type>Ext.ux.form.SuperBoxSelect</renderer-type>
+			<renderer-type>Ext.ux.form.EFCKEditor</renderer-type>
 		</component>
 	</tag>
 	<tag>
