@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public final class FacesUtils {
+	public static String EXCEPTION_CLASS_INITPARAM_NAME = "com.abner.fence.exception.classnames";
+	
 
 	public static FacesContext context() {
 		return FacesContext.getCurrentInstance();
@@ -90,5 +92,9 @@ public final class FacesUtils {
 
 	public static HttpServletRequest getRequest() {
 		return (HttpServletRequest) extContext().getRequest();
+	}
+	
+	public static String getServletInitParam(String key){
+		return extContext().getInitParameter(key);
 	}
 }

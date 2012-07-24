@@ -14,11 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.abner.fence.lifecycle.AsyncResponse;
 import com.abner.fence.util.WriterUtils;
 
+import ext.util.FacesUtils;
+
 public class ExceptionOutputMaker {
 	private static boolean debug = false;
 
-	public void writeErrorMessage(FacesContext context, Throwable e,
-			String phase) throws FacesException, IOException {
+	public void writeErrorMessage(FacesContext context, Throwable e, String phase) throws FacesException, IOException {
 		if (null == context) {
 			throw new FacesException("FacesContext is null", e);
 		}
@@ -53,16 +54,22 @@ public class ExceptionOutputMaker {
 		Throwable lastestException = null;
 		while (null != ec) {
 			message = ec.getMessage();
-			if(message == null){
-				if(lastestException == null){
+			if (message == null) {
+				if (lastestException == null) {
 					message = "Unknow error! source:" + ec.toString();
 					break;
 				}
 				message = lastestException.getMessage();
 				break;
 			}
+			
 			lastestException = ec;
 			ec = ec.getCause();
+			
+			String exClasses = FacesUtils.getServletInitParam(FacesUtils.EXCEPTION_CLASS_INITPARAM_NAME);
+			if (exClasses != null && exClasses.indexOf(ec.getClass().getName()) >= 0) {
+				break;
+			}
 		}
 
 		if (lastestException instanceof ExtMessageException) {
@@ -80,7 +87,7 @@ public class ExceptionOutputMaker {
 					writer.write("info");
 				}
 			}
-		}else{
+		} else {
 			writer.write("error");
 		}
 
@@ -98,8 +105,7 @@ public class ExceptionOutputMaker {
 		writer.close();
 	}
 
-	public void writeExceptionStack(Throwable e, Writer writer)
-			throws IOException {
+	public void writeExceptionStack(Throwable e, Writer writer) throws IOException {
 		writer.write("Exceptions:\n");
 		Throwable error = e;
 		while (null != error) {
@@ -109,8 +115,7 @@ public class ExceptionOutputMaker {
 			for (int i = 0; i < stackTrace.length; i++) {
 				writer.write("\n at " + stackTrace[i].getClassName());
 				writer.write("." + stackTrace[i].getMethodName());
-				writer.write("in " + stackTrace[i].getFileName() + " line "
-						+ stackTrace[i].getLineNumber());
+				writer.write("in " + stackTrace[i].getFileName() + " line " + stackTrace[i].getLineNumber());
 			}
 			error = error.getCause();
 		}
