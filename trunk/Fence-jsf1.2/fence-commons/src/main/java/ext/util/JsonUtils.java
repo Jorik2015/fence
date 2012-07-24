@@ -23,8 +23,7 @@ public class JsonUtils {
 			cfg = new JsonConfig();
 
 		JSON jsonObj;
-		if (obj instanceof Enum<?> || JSONUtils.isArray(obj)
-				|| (obj instanceof String && obj.toString().startsWith("["))) {
+		if (obj instanceof Enum<?> || JSONUtils.isArray(obj) || (obj instanceof String && obj.toString().startsWith("["))) {
 			jsonObj = JSONArray.fromObject(obj, cfg);
 		} else if (obj instanceof String || obj instanceof Character) {
 			if (JSONUtils.mayBeJSON(obj.toString())) {
@@ -66,19 +65,17 @@ public class JsonUtils {
 
 	public static JsonConfig getDateJsonConfig() {
 		JsonConfig cfg = new JsonConfig();
-		cfg.registerJsonValueProcessor(java.util.Date.class,
-				new DateJsonValueProcessor());
-		cfg.registerJsonValueProcessor(java.sql.Date.class,
-				new DateJsonValueProcessor());
+		cfg.registerJsonValueProcessor(java.util.Date.class, new DateJsonValueProcessor());
+		cfg.registerJsonValueProcessor(java.sql.Date.class, new DateJsonValueProcessor());
+		cfg.registerJsonValueProcessor(java.sql.Timestamp.class, new DateJsonValueProcessor());
 		return cfg;
 	}
 
 	public static JsonConfig getDateJsonConfig(String pattern) {
 		JsonConfig cfg = new JsonConfig();
-		cfg.registerJsonValueProcessor(java.util.Date.class,
-				new DateJsonValueProcessor(pattern));
-		cfg.registerJsonValueProcessor(java.sql.Date.class,
-				new DateJsonValueProcessor(pattern));
+		cfg.registerJsonValueProcessor(java.util.Date.class, new DateJsonValueProcessor(pattern));
+		cfg.registerJsonValueProcessor(java.sql.Date.class, new DateJsonValueProcessor(pattern));
+		cfg.registerJsonValueProcessor(java.sql.Timestamp.class, new DateJsonValueProcessor(pattern));
 		return cfg;
 	}
 
