@@ -984,7 +984,7 @@ public class Panel extends Container {
 		this.handleConfig("disabled", disabled);
 	}
 
-	private Boolean draggable;
+	private Object draggable;
 
 	/**
 	 * <p>
@@ -1043,13 +1043,13 @@ public class Panel extends Container {
 	 * }).show();&lt;/code&gt;
 	 * </pre>
 	 */
-	public Boolean getDraggable() {
+	public Object getDraggable() {
 		if (null != this.draggable) {
 			return this.draggable;
 		}
 		ValueExpression _ve = getValueExpression("draggable");
 		if (_ve != null) {
-			return (Boolean) _ve.getValue(getFacesContext().getELContext());
+			return (Object) _ve.getValue(getFacesContext().getELContext());
 		} else {
 			return null;
 		}
@@ -1060,7 +1060,7 @@ public class Panel extends Container {
 	 * Set the value of the <code>draggable</code> property.
 	 * </p>
 	 */
-	public void setDraggable(Boolean draggable) {
+	public void setDraggable(Object draggable) {
 		this.draggable = draggable;
 		this.handleConfig("draggable", draggable);
 	}
@@ -2407,7 +2407,7 @@ true</tt>) by clicking anywhere in the header bar, <tt>false</tt>) to
 		this.handleConfig("contentEl", this.contentEl);
 		this.disabled = (Boolean) _values[23];
 		this.handleConfig("disabled", this.disabled);
-		this.draggable = (Boolean) _values[24];
+		this.draggable = (Object) _values[24];
 		this.handleConfig("draggable", this.draggable);
 		this.elements = (String) _values[25];
 		this.handleConfig("elements", this.elements);
