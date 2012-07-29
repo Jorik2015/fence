@@ -209,6 +209,7 @@ public class Button extends ExtCommand implements Serializable{
 	/**
 	 * True to start disabled (defaults to false)
 	 */
+	@ClientConfig(value = JsonMode.Ignore)
 	public Boolean getDisabled() {
 		if (null != this.disabled) {
 			return this.disabled;
@@ -231,6 +232,35 @@ public class Button extends ExtCommand implements Serializable{
 		this.handleConfig("disabled", disabled);
 	}
 
+	private Boolean extDisabled;
+
+	/**
+	 * True to disable all components using this action, false to enable them
+	 * (defaults to false).
+	 */
+	@ClientConfig(name="disabled")
+	public Boolean getExtDisabled() {
+		if (null != this.extDisabled) {
+			return this.extDisabled;
+		}
+		ValueExpression _ve = getValueExpression("extDisabled");
+		if (_ve != null) {
+			return (Boolean) _ve.getValue(getFacesContext().getELContext());
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * <p>
+	 * Set the value of the <code>disabled</code> property.
+	 * </p>
+	 */
+	public void setExtDisabled(Boolean extDisabled) {
+		this.extDisabled = extDisabled;
+		this.handleConfig("extDisabled", extDisabled);
+	}
+	
 	private Boolean enableToggle;
 
 	/**
@@ -965,7 +995,7 @@ public class Button extends ExtCommand implements Serializable{
 
 	public Object saveState(FacesContext _context) {
 		if (_values == null) {
-			_values = new Object[30];
+			_values = new Object[31];
 		}
 		_values[0] = super.saveState(_context);
 		_values[1] = allowDepress;
@@ -997,7 +1027,7 @@ public class Button extends ExtCommand implements Serializable{
 		_values[27] = tooltip;
 		_values[28] = tooltipType;
 		_values[29] = type;
-
+		_values[30] = extDisabled;
 		return _values;
 	}
 
@@ -1062,5 +1092,7 @@ public class Button extends ExtCommand implements Serializable{
 		this.handleConfig("tooltipType", this.tooltipType);
 		this.type = (String) _values[29];
 		this.handleConfig("type", this.type);
+		this.extDisabled = (Boolean) _values[30];
+		this.handleConfig("extDisabled", this.extDisabled);
 	}
 }

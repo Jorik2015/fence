@@ -962,6 +962,7 @@ public class Panel extends Container {
 	 * });&lt;/code&gt;
 	 * </pre>
 	 */
+	@ClientConfig(value = JsonMode.Ignore)
 	public Boolean getDisabled() {
 		if (null != this.disabled) {
 			return this.disabled;
@@ -982,6 +983,35 @@ public class Panel extends Container {
 	public void setDisabled(Boolean disabled) {
 		this.disabled = disabled;
 		this.handleConfig("disabled", disabled);
+	}
+	
+	private Boolean extDisabled;
+
+	/**
+	 * True to disable all components using this action, false to enable them
+	 * (defaults to false).
+	 */
+	@ClientConfig(name="disabled")
+	public Boolean getExtDisabled() {
+		if (null != this.extDisabled) {
+			return this.extDisabled;
+		}
+		ValueExpression _ve = getValueExpression("extDisabled");
+		if (_ve != null) {
+			return (Boolean) _ve.getValue(getFacesContext().getELContext());
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * <p>
+	 * Set the value of the <code>disabled</code> property.
+	 * </p>
+	 */
+	public void setExtDisabled(Boolean extDisabled) {
+		this.extDisabled = extDisabled;
+		this.handleConfig("extDisabled", extDisabled);
 	}
 
 	private Object draggable;
@@ -2300,7 +2330,7 @@ true</tt>) by clicking anywhere in the header bar, <tt>false</tt>) to
 
 	public Object saveState(FacesContext _context) {
 		if (_values == null) {
-			_values = new Object[52];
+			_values = new Object[53];
 		}
 		_values[0] = super.saveState(_context);
 		_values[1] = animCollapse;
@@ -2354,7 +2384,7 @@ true</tt>) by clicking anywhere in the header bar, <tt>false</tt>) to
 		_values[49] = toolTemplate;
 		_values[50] = tools;
 		_values[51] = unstyled;
-
+		_values[52] = extDisabled;
 		return _values;
 	}
 
@@ -2463,6 +2493,7 @@ true</tt>) by clicking anywhere in the header bar, <tt>false</tt>) to
 		this.handleConfig("tools", this.tools);
 		this.unstyled = (Boolean) _values[51];
 		this.handleConfig("unstyled", this.unstyled);
-
+		this.extDisabled = (Boolean) _values[52];
+		this.handleConfig("extDisabled", this.extDisabled);
 	}
 }

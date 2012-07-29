@@ -175,7 +175,7 @@ import ext.util.Observable;
 //TODO others resources
 @InstanceOf("Ext.ux.grid.GridFilters")
 @ParseConfigMode(ui = false, name = "plugins", pmode = PersistenceMode.ParentProperty, rmode = ReferenceMode.Var)
-@UXResources(js = "ext[version]/ux/gridfilters/GridFilters.js",css="ext[version]/ux/gridfilters/GridFilters.css")
+//@UXResources(js = "ext[version]/ux/gridfilters/GridFilters.js",css="ext[version]/ux/gridfilters/GridFilters.css")
 public class GridFilters extends Observable {
 	public static final String COMPONENT_TYPE = "Ext.ux.grid.GridFilters";
 	public static final String COMPONENT_FAMILY = "Ext.ux.grid.GridFilters";
