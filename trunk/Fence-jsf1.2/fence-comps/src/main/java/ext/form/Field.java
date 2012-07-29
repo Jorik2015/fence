@@ -3,7 +3,9 @@ package ext.form;
 import javax.el.ValueExpression;
 import javax.faces.context.FacesContext;
 
+import ext.annotation.ClientConfig;
 import ext.annotation.InstanceOf;
+import ext.annotation.JsonMode;
 import ext.annotation.XType;
 import ext.base.ExtInput;
 
@@ -112,6 +114,7 @@ public class Field extends ExtInput {
 	 * ext:member="submit" ext:cls="Ext.form.BasicForm">submitted</a>.
 	 * </p>
 	 */
+	@ClientConfig(value = JsonMode.Ignore)
 	public Boolean getDisabled() {
 		if (null != this.disabled) {
 			return this.disabled;
@@ -132,6 +135,35 @@ public class Field extends ExtInput {
 	public void setDisabled(Boolean disabled) {
 		this.disabled = disabled;
 		this.handleConfig("disabled", disabled);
+	}
+	
+	private Boolean extDisabled;
+
+	/**
+	 * True to disable all components using this action, false to enable them
+	 * (defaults to false).
+	 */
+	@ClientConfig(name="disabled")
+	public Boolean getExtDisabled() {
+		if (null != this.extDisabled) {
+			return this.extDisabled;
+		}
+		ValueExpression _ve = getValueExpression("extDisabled");
+		if (_ve != null) {
+			return (Boolean) _ve.getValue(getFacesContext().getELContext());
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * <p>
+	 * Set the value of the <code>disabled</code> property.
+	 * </p>
+	 */
+	public void setExtDisabled(Boolean extDisabled) {
+		this.extDisabled = extDisabled;
+		this.handleConfig("extDisabled", extDisabled);
 	}
 
 	private String fieldClass;
@@ -555,7 +587,7 @@ public class Field extends ExtInput {
 
 	public Object saveState(FacesContext _context) {
 		if (_values == null) {
-			_values = new Object[18];
+			_values = new Object[19];
 		}
 		_values[0] = super.saveState(_context);
 		_values[1] = autoCreate;
@@ -575,7 +607,7 @@ public class Field extends ExtInput {
 		_values[15] = validationDelay;
 		_values[16] = validationEvent;
 		_values[17] = value;
-
+		_values[18] = extDisabled;
 		return _values;
 	}
 
@@ -616,6 +648,7 @@ public class Field extends ExtInput {
 		this.handleConfig("validationEvent", this.validationEvent);
 		this.value = (Object) _values[17];
 		this.handleConfig("value", this.value);
-
+		this.extDisabled = (Boolean) _values[18];
+		this.handleConfig("extDisabled", this.extDisabled);
 	}
 }

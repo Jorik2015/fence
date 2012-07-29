@@ -176,6 +176,7 @@ public class TreeNode extends Node {
 	/**
 	 * true to start the node disabled
 	 */
+	@ClientConfig(value = JsonMode.Ignore)
 	public Boolean getDisabled() {
 		if (null != this.disabled) {
 			return this.disabled;
@@ -196,6 +197,35 @@ public class TreeNode extends Node {
 	public void setDisabled(Boolean disabled) {
 		this.disabled = disabled;
 		this.handleConfig("disabled", disabled);
+	}
+	
+	private Boolean extDisabled;
+
+	/**
+	 * True to disable all components using this action, false to enable them
+	 * (defaults to false).
+	 */
+	@ClientConfig(name="disabled")
+	public Boolean getExtDisabled() {
+		if (null != this.extDisabled) {
+			return this.extDisabled;
+		}
+		ValueExpression _ve = getValueExpression("extDisabled");
+		if (_ve != null) {
+			return (Boolean) _ve.getValue(getFacesContext().getELContext());
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * <p>
+	 * Set the value of the <code>disabled</code> property.
+	 * </p>
+	 */
+	public void setExtDisabled(Boolean extDisabled) {
+		this.extDisabled = extDisabled;
+		this.handleConfig("extDisabled", extDisabled);
 	}
 
 	private Boolean draggable;
@@ -613,7 +643,7 @@ public class TreeNode extends Node {
 
 	public Object saveState(FacesContext _context) {
 		if (_values == null) {
-			_values = new Object[22];
+			_values = new Object[23];
 		}
 		_values[0] = super.saveState(_context);
 		_values[1] = allowChildren;
@@ -637,7 +667,7 @@ public class TreeNode extends Node {
 		_values[19] = singleClickExpand;
 		_values[20] = text;
 		_values[21] = uiProvider;
-
+		_values[22] = extDisabled;
 		return _values;
 	}
 
@@ -686,6 +716,7 @@ public class TreeNode extends Node {
 		this.handleConfig("text", this.text);
 		this.uiProvider = (Object) _values[21];
 		this.handleConfig("uiProvider", this.uiProvider);
-
+		this.extDisabled = (Boolean) _values[22];
+		this.handleConfig("extDisabled", this.extDisabled);
 	}
 }
