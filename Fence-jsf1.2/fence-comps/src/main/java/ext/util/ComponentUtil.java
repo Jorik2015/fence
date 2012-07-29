@@ -27,7 +27,7 @@ import ext.base.IExt;
  */
 /**
  * @author Administrator
- *
+ * 
  */
 public class ComponentUtil {
 	private static Map<Class<? extends IExt>, ExtComponentMetaData> metadatas = new HashMap<Class<? extends IExt>, ExtComponentMetaData>();
@@ -111,8 +111,7 @@ public class ComponentUtil {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static UIComponent findComponent(UIComponent base, String id,
-			boolean checkId) {
+	public static UIComponent findComponent(UIComponent base, String id, boolean checkId) {
 		if (checkId && id.equals(base.getId())) {
 			return base;
 		}
@@ -163,9 +162,9 @@ public class ComponentUtil {
 
 		return null;
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public static <T> T getFirstExtChild(IExt comp,Class<T> type) {
+	public static <T> T getFirstExtChild(IExt comp, Class<T> type) {
 		if (comp == null)
 			return null;
 		List<UIComponent> childs = comp.getChildren();
@@ -181,7 +180,6 @@ public class ComponentUtil {
 		return null;
 	}
 
-
 	public static boolean hasNotExtComponetChild(IExt comp) {
 		if (comp == null)
 			return false;
@@ -194,6 +192,31 @@ public class ComponentUtil {
 		for (UIComponent child : childs) {
 			if (!(child instanceof IExt))
 				return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * 判断是父组件的唯一组件
+	 * 
+	 * @param component
+	 * @return
+	 */
+	public static boolean isOnlyChildForParent(IExt component) {
+		UIComponent parent = component.getParent();
+		if (parent == null)
+			return false;
+
+		if (!(parent instanceof IExt))
+			return false;
+
+		List<UIComponent> childs = parent.getChildren();
+		if (childs.size() != 1)
+			return false;
+
+		if (childs.get(0).equals(component)) {
+			return true;
 		}
 
 		return false;
@@ -227,12 +250,12 @@ public class ComponentUtil {
 
 			if (!nextHas && !(child instanceof IExt) && index > 0)
 				nextHas = true;
-			
-			if(component instanceof Container){
-				if(preHas || nextHas)
+
+			if (component instanceof Container) {
+				if (preHas || nextHas)
 					return false;
-			}else{
-				if(preHas && nextHas)
+			} else {
+				if (preHas && nextHas)
 					return false;
 			}
 		}
@@ -262,37 +285,37 @@ public class ComponentUtil {
 	}
 
 	public static boolean isActiveItem(BoxComponent component) {
-		if(!(component instanceof Panel))
+		if (!(component instanceof Panel))
 			return true;
-		
-		Panel panel = (Panel)component;
+
+		Panel panel = (Panel) component;
 		UIComponent parent = panel.getParent();
-		if(parent instanceof TabPanel){
-			TabPanel tab = (TabPanel)parent;
+		if (parent instanceof TabPanel) {
+			TabPanel tab = (TabPanel) parent;
 			String activeTab = tab.getActiveTab();
-			
-			List<UIComponent> childs =  parent.getChildren();
+
+			List<UIComponent> childs = parent.getChildren();
 			int index = -1;
-			for(Iterator<UIComponent> iter = childs.iterator();iter.hasNext();){
-				index ++;
+			for (Iterator<UIComponent> iter = childs.iterator(); iter.hasNext();) {
+				index++;
 				UIComponent child = iter.next();
-				if(child != panel)
+				if (child != panel)
 					continue;
-				
-				if(NumberUtils.isNumber(activeTab)){
+
+				if (NumberUtils.isNumber(activeTab)) {
 					return activeTab.equals(String.valueOf(index));
-				}else{
+				} else {
 					return panel.getId().equals(activeTab);
 				}
 			}
 		}
-		//TODO card layout
+		// TODO card layout
 		return true;
 	}
 
 	public static void flaseRenderAllChild(BoxComponent component) {
 		List<UIComponent> childs = component.getChildren();
-		for(UIComponent child : childs){
+		for (UIComponent child : childs) {
 			child.setRendered(false);
 		}
 	}
