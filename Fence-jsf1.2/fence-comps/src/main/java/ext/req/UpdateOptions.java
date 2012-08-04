@@ -10,7 +10,7 @@ import ext.annotation.ReferenceMode;
 
 @ParseConfigMode(id = false, ui = false, pmode = PersistenceMode.Custom, rmode = ReferenceMode.Config)
 public class UpdateOptions extends RequestOptions {
-	public static final String COMPONENT_TYPE = "Ext.req.Updater";
+	public static final String COMPONENT_TYPE = "Ext.req.UpdateOptions";
 
 	/**
 	 * <p>
