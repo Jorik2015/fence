@@ -147,6 +147,27 @@ public class ComponentUtil {
 		return childs.get(0).toString();
 	}
 
+	public static IExt getFirstExtParent(IExt comp) {
+		UIComponent p = comp.getParent();
+		if (p instanceof IExt) {
+			return (IExt) p;
+		} else {
+			return getExtParent(p);
+		}
+	}
+
+	private static IExt getExtParent(UIComponent comp) {
+		UIComponent p = comp.getParent();
+		if (p == null) {
+			return null;
+		}
+		if (p instanceof IExt) {
+			return (IExt) p;
+		} else {
+			return getExtParent(p);
+		}
+	}
+
 	public static IExt getFirstExtChild(IExt comp) {
 		if (comp == null)
 			return null;
