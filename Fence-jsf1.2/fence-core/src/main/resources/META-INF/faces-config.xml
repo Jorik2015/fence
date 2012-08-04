@@ -1044,6 +1044,12 @@
 		<component-type>Ext.ux.tree.TreeGridLoader</component-type>
 		<component-class>ext.ux.tree.TreeGridLoader</component-class>
 	</component>
+	
+	<component>
+		<component-type>Ext.ux.HighChart</component-type>
+		<component-class>ext.ux.HighChart</component-class>
+	</component>
+	
 	<render-kit>
 		<renderer>
 			<component-family>Ext.ExtIncludeResource</component-family>
@@ -1369,6 +1375,11 @@
 		<renderer>
 			<component-family>Ext.chart.StackedColumnChart</component-family>
 			<renderer-type>Ext.chart.StackedColumnChart</renderer-type>
+			<renderer-class>com.abner.fence.renderkit.ExtPanelRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>Ext.ux.HighChart</component-family>
+			<renderer-type>Ext.ux.HighChart</renderer-type>
 			<renderer-class>com.abner.fence.renderkit.ExtPanelRenderer</renderer-class>
 		</renderer>
 		<!-- chart end store start -->
