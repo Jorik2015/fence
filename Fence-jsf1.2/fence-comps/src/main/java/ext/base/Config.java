@@ -21,7 +21,7 @@ public class Config extends Observable {
 	}
 
 	private String name;
-	private String value;
+	private Object value;
 	private String mode;
 
 	public String getName() {
@@ -40,19 +40,19 @@ public class Config extends Observable {
 		this.name = name;
 	}
 
-	public String getValue() {
+	public Object getValue() {
 		if (null != this.value) {
 			return this.value;
 		}
 		ValueExpression _ve = getValueExpression("value");
 		if (_ve != null) {
-			return (String)_ve.getValue(getFacesContext().getELContext());
+			return (Object)_ve.getValue(getFacesContext().getELContext());
 		} else {
 			return null;
 		}
 	}
 
-	public void setValue(String value) {
+	public void setValue(Object value) {
 		this.value = value;
 	}
 
@@ -89,7 +89,7 @@ public class Config extends Observable {
 		_values = (Object[]) _state;
 		super.restoreState(_context, _values[0]);
 		this.name = (String) _values[1];
-		this.value = (String)_values[2];
+		this.value = (Object)_values[2];
 		this.mode = (String) _values[3];
 	}
 }
