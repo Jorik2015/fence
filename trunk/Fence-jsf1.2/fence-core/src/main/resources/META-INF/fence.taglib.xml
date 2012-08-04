@@ -215,6 +215,13 @@
 		</component>
 	</tag>
 	<tag>
+		<tag-name>highchart</tag-name>
+		<component>
+			<component-type>Ext.ux.HighChart</component-type>
+			<renderer-type>Ext.ux.HighChart</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>colorpalette</tag-name>
 		<component>
 			<component-type>Ext.ColorPalette</component-type>
