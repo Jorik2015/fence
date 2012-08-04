@@ -10,7 +10,7 @@ import ext.annotation.ParseConfigMode;
 import ext.annotation.UXResources;
 import ext.util.Observable;
 
-@UXResources(js = "ext[version]/ux/menu.js", css = "ext[version]/ux/css/menu.css")
+//@UXResources(js = "ext[version]/ux/menu.js", css = "ext[version]/ux/css/menu.css")
 @InstanceOf("Ext.ux.Menu")
 @ParseConfigMode(id = false)
 public class Menu extends Observable {
