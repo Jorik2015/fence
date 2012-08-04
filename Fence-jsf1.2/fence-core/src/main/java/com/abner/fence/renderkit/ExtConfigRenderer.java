@@ -11,44 +11,40 @@ import com.abner.fence.util.Ext;
 
 import ext.base.Config;
 import ext.base.IExt;
+import ext.util.ComponentUtil;
 import ext.util.ELUtils;
+import ext.util.JsonUtils;
 import ext.util.StringUtil;
 
 public class ExtConfigRenderer extends Renderer {
 
 	@Override
-	public void encodeBegin(FacesContext context, UIComponent component)
-			throws IOException {
+	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
 		super.encodeBegin(context, component);
-		UIComponent parent = component.getParent();
-		if (!(parent instanceof IExt)) {
+
+		Config configComp = (Config) component;
+		String name = configComp.getName();
+		Object value = configComp.getValue();
+		String mode = configComp.getMode();
+		if (value == null || name == null)
+			return;
+
+		IExt parent = ComponentUtil.getFirstExtParent(configComp);
+		if (parent == null) {
 			return;
 		}
 
-		Config config = (Config) component;
-		String name = config.getName();
-		String value = config.getValue();
-		String mode = config.getMode();
-		if ( value == null) 
-			return;
-		
-		if(!"json".equals(mode) && StringUtil.isEmpty(name))
-			return;
-		
-		Object valueResult = value;
-		if (!"json".equals(mode) && ELUtils.isEL(value)) {
-			valueResult = ELUtils.evaluate(context, value);
-		}
-
-		if (valueResult == null)
+		if (!"json".equals(mode) && StringUtil.isEmpty(name))
 			return;
 
 		if ("value".equals(mode)) {
-			ConfigHelper.valueTo(name, valueResult, config);
+			ConfigHelper.valueTo(name, value, configComp);
 		} else if ("json".equals(mode)) {
-			Ext.applyConfig((IExt) parent, valueResult);
+			Ext.applyConfig((IExt) parent, value);
+		} else if ("object".equals(mode)) {
+			ConfigHelper.configTo(name, JsonUtils.getJSON(value).toString(), configComp, parent);
 		} else {
-			ConfigHelper.configTo(name, valueResult.toString(), config);
+			ConfigHelper.configTo(name, value.toString(), configComp);
 		}
 	}
 }
