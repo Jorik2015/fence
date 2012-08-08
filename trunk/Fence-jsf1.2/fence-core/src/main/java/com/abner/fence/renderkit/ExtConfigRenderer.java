@@ -42,7 +42,7 @@ public class ExtConfigRenderer extends Renderer {
 		} else if ("json".equals(mode)) {
 			Ext.applyConfig((IExt) parent, value);
 		} else if ("object".equals(mode)) {
-			ConfigHelper.configTo(name, JsonUtils.getJSON(value).toString(), configComp, parent);
+			ConfigHelper.configTo(name, Ext.PREFIX_RAW_VALUE + JsonUtils.getJSON(value).toString(), configComp, parent);
 		} else {
 			ConfigHelper.configTo(name, value.toString(), configComp);
 		}
