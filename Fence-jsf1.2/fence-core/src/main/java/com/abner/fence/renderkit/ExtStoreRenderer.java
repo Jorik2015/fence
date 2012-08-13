@@ -384,12 +384,22 @@ public class ExtStoreRenderer extends ExtBasicRenderer<Store> {
 	}
 
 	public String encodeDataSource(Store store, boolean autoLoad) {
-		if (!RequestUtils.isAjaxRequest() && autoLoad) {
-			StoreHelper.guessDefaultProperty(store);
-			return null;
+		Map<String, Object> dataSource = null;
+		if (!RequestUtils.isAjaxRequest()) {
+			if (autoLoad) {
+				StoreHelper.guessDefaultProperty(store);
+				return null;
+			} else {
+				dataSource = new HashMap<String, Object>();
+				dataSource.put(StoreHelper.getRoot(store), CollectionUtils.EMPTY_COLLECTION);
+				dataSource.put(StoreHelper.getSuccessProperty(store), Boolean.TRUE);
+				dataSource.put(StoreHelper.getTotalProperty(store), 0);
+				dataSource.put("message", "The store load data successfully.");
+				return JsonUtils.toJson(dataSource);
+			}
 		}
-		Map<String, Object> dataSource = new HashMap<String, Object>();
 
+		dataSource = new HashMap<String, Object>();
 		Object data = StoreHelper.getData(store);
 
 		JsonConfig cfg = JsonUtils.getDateJsonConfig();
